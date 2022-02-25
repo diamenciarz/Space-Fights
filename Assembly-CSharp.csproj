@@ -85,7 +85,7 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShipPart.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
   </ItemGroup>

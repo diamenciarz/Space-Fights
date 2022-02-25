@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IOnDestroyed
 {
-    public abstract void Destroy();
+    public abstract void DestroyObject();
 }

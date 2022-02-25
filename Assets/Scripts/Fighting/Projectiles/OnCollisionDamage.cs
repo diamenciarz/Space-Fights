@@ -12,10 +12,6 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     [Header("Damage type")]
     public List<TypeOfDamage> damageTypes = new List<TypeOfDamage>();
 
-    [Header("Physics settings")]
-    public bool isPushing = false;
-    public float pushingPower;
-
     public enum TypeOfDamage
     {
         Projectile,
@@ -138,14 +134,6 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     public bool IsAProjectile()
     {
         return damageTypes.Count != 0;
-    }
-    public bool GetIsPushing()
-    {
-        return isPushing;
-    }
-    public virtual Vector3 GetPushVector(Vector3 colisionPosition)
-    {
-        return entityData.GetVelocityVector3().normalized * pushingPower;
     }
     public GameObject CreatedBy()
     {

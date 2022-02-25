@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerOnDeath : TeamUpdater
+public class TriggerOnDeath : TeamUpdater, IOnDestroyed
 {
     [Header("Upon Breaking")]
     [SerializeField] SingleShotScriptableObject shot;

@@ -66,18 +66,7 @@ public class DamageReceiver : ListUpdater
         UpdateHealthBar();
         CheckHealth();
 
-        //ModifyVelocity(iDamage);
         HandleDamage(iDamage);
-    }
-    private void ModifyVelocity(IDamageReceived iDamage)
-    {
-        if (myEntityData != null)
-        {
-            if (canBePushed && iDamage.GetIsPushing())
-            {
-                myEntityData.ModifyVelocityVector3(iDamage.GetPushVector(transform.position));
-            }
-        }
     }
     private void CheckHealth()
     {

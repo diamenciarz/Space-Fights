@@ -6,5 +6,5 @@ public interface ICollision
 {
     public abstract int GetMass();
     public abstract Vector2 GetVelocity();
-    public abstract bool DealsDamageOnCollision();
+    public abstract bool DealsCollisionDamage();
 }
