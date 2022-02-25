@@ -35,10 +35,11 @@ public class ListUpdater : MonoBehaviour
     public void DestroyObject()
     {
         RemoveObjectFromLists();
+        StartCoroutine(DestroyAtTheEndOfFrame());
+        /* I've decided that only the destroyed object's trigger should be called
         if (!HelperMethods.CallAllTriggers(gameObject))
         {
-            StartCoroutine(DestroyAtTheEndOfFrame());
-        }
+        }*/
     }
     private IEnumerator DestroyAtTheEndOfFrame()
     {

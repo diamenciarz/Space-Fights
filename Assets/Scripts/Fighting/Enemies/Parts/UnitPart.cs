@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitPart : TeamUpdater, IDamageReceiver
+public class UnitPart : SpriteUpdater, IDamageReceiver
 {
     [Header("Startup")]
-    [Tooltip("Specify the sprites that this part should change according to its team. Starting from team 1, onwards")]
-    [SerializeField] Sprite[] sprites;
+    
     [Tooltip("Actions to call on death")]
     [SerializeField] IOnDestroyed iOnDestroyed;
 
-    [Header("Properties")]
+    [Header("Health")]
     [Tooltip("The amount of damage that this part can receive, before it is destroyed")]
     [SerializeField] float partHealth;
     [Tooltip("The share of health that this part contributes to the HP bar")]
     [SerializeField] float barHealth;
     [Tooltip("The additional damage that is dealt to the unit, when this part is destroyed")]
     [SerializeField] float destroyDamage;
+
+    [Header("Collisions")]
     [Tooltip("The collision velocity, above which this ship part will start taking damage")]
     [SerializeField] float minKineticEnergy = 10;
     [SerializeField] float collisionDamageModifier = 0.5f;
@@ -28,8 +29,8 @@ public class UnitPart : TeamUpdater, IDamageReceiver
     [SerializeField] protected List<AudioClip> hitSounds;
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
+    //Private variables
     DamageReceiver damageReceiver;
-    SpriteRenderer mySpriteRenderer;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
 
@@ -45,11 +46,11 @@ public class UnitPart : TeamUpdater, IDamageReceiver
     }
     private void SetupStartingVariables()
     {
-        onHitCalls = GetComponentsInChildren<IOnDamageDealt>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
-        myRigidbody2D = GetComponent<Rigidbody2D>();
+        onHitCalls = GetComponentsInParent<IOnDamageDealt>(); // Informs AI script about getting hit
+        myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         damageReceiver = GetComponentInParent<DamageReceiver>();
-        iOnDestroyed = GetComponent<IOnDestroyed>();
+
+        iOnDestroyed = GetComponent<IOnDestroyed>(); // On death trigger
 
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
@@ -170,33 +171,6 @@ public class UnitPart : TeamUpdater, IDamageReceiver
     private void DoDestroyActions()
     {
         iOnDestroyed.DestroyObject();
-    }
-    #endregion
-
-    #region Team
-    private void UpdateTeam()
-    {
-        team = GetTeamFromParent();
-        UpdateSprite();
-    }
-    private int GetTeamFromParent()
-    {
-        DamageReceiver parentScript = GetComponentInParent<DamageReceiver>();
-        return parentScript.GetTeam();
-    }
-    private void UpdateSprite()
-    {
-        if (mySpriteRenderer == null)
-        {
-            return;
-        }
-
-        int spriteCount = sprites.Length;
-        bool isInBounds = spriteCount > 0 && team > 0 && team <= spriteCount;
-        if (isInBounds)
-        {
-            mySpriteRenderer.sprite = sprites[team - 1];
-        }
     }
     #endregion
 

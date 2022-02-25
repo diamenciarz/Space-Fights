@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class BasicProjectileController : OnCollisionDamage
+public abstract class BasicProjectileController : OnCollisionDamage, IParent
 {
     [Header("Projectile Properties")]
     [SerializeField] protected List<Sprite> spriteList;
@@ -76,6 +76,10 @@ public abstract class BasicProjectileController : OnCollisionDamage
     public Vector3 GetVelocityVector3()
     {
         return myRigidbody2D.velocity;
+    }
+    public GameObject GetParent()
+    {
+        return gameObject;
     }
     #endregion
 }

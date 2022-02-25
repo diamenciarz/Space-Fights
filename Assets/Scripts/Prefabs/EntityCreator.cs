@@ -198,7 +198,7 @@ public class EntityCreator : MonoBehaviour
         {
             foreach (TeamUpdater item in teamUpdaters)
             {
-                item.SetTeam(team);
+                item.UpdateTeam(team);
                 SetCreatedBy(item, parent);
             }
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageReceiver : ListUpdater
+public class DamageReceiver : ListUpdater, IParent
 {
     [Header("Basic Stats")]
     [SerializeField] int team;
@@ -73,6 +73,7 @@ public class DamageReceiver : ListUpdater
     #region HP
     private float CountHP()
     {
+        FindParts();
         float hp = 0;
         foreach (UnitPart part in parts)
         {
@@ -124,19 +125,14 @@ public class DamageReceiver : ListUpdater
     public virtual void SetTeam(int newTeam)
     {
         team = newTeam;
-        UpdateTeam(newTeam);
+        UpdateTeam();
     }
-    private void UpdateTeam(int newTeam)
+    private void UpdateTeam()
     {
         TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
         foreach (TeamUpdater item in teamUpdater)
         {
-            item.ChangeTeamTo(newTeam);
-        }
-        DamageReceiver[] damageReceivers = GetComponentsInChildren<DamageReceiver>();
-        foreach (DamageReceiver item in damageReceivers)
-        {
-            item.ChangeTeamTo(newTeam);
+            item.UpdateTeam();
         }
     }
     /// <summary>
@@ -157,6 +153,10 @@ public class DamageReceiver : ListUpdater
     public float GetCurrentHealth()
     {
         return health;
+    }
+    public GameObject GetParent()
+    {
+        return gameObject;
     }
     #endregion
 

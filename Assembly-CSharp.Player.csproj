@@ -87,6 +87,8 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceiver.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
