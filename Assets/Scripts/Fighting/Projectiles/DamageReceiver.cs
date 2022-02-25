@@ -9,19 +9,10 @@ public class DamageReceiver : ListUpdater
     [SerializeField] int health;
     [SerializeField] GameObject healthBarPrefab;
     [SerializeField] bool turnHealthBarOn;
-    [SerializeField] bool canBePushed;
-
-    [Header("Sounds")]
-    [SerializeField] protected List<AudioClip> breakingSounds;
-    [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
-    [SerializeField] protected List<AudioClip> hitSounds;
-    [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
     //Private variables
     private GameObject healthBarInstance;
     private int maxHP;
-    private bool isDestroyed = false;
-    private ICollidingEntityData myEntityData; //basic projectile controller script for velocity editing
     protected ProgressionBarController healthBarScript;
     private IOnDamageDealt[] onHitCalls;
 
@@ -31,7 +22,6 @@ public class DamageReceiver : ListUpdater
     }
     private void SetupStartingVariables()
     {
-        myEntityData = GetComponent<ICollidingEntityData>();
         maxHP = health;
         onHitCalls = GetComponentsInChildren<IOnDamageDealt>();
     }
@@ -64,20 +54,8 @@ public class DamageReceiver : ListUpdater
     {
         health -= iDamage.GetDamage();
         UpdateHealthBar();
-        CheckHealth();
 
         HandleDamage(iDamage);
-    }
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            HandleBreak();
-        }
-        else
-        {
-            HandleHit();
-        }
     }
     private void HandleDamage(IDamageReceived iDamage)
     {
@@ -88,45 +66,7 @@ public class DamageReceiver : ListUpdater
         }
     }
     #endregion
-
-    #region Collision Handling
-    //Break methods
-    protected void HandleBreak()
-    {
-        if (!isDestroyed)
-        {
-            isDestroyed = true;
-            StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
-            DestroyObject();
-        }
-    }
-    protected void HandleHit()
-    {
-        StaticDataHolder.PlaySound(GetHitSound(), transform.position, hitSoundVolume);
-    }
     
-    #endregion
-
-    #region Sounds
-    protected AudioClip GetHitSound()
-    {
-        int soundIndex = Random.Range(0, hitSounds.Count);
-        if (hitSounds.Count > soundIndex)
-        {
-            return hitSounds[soundIndex];
-        }
-        return null;
-    }
-    protected AudioClip GetBreakSound()
-    {
-        int soundIndex = Random.Range(0, breakingSounds.Count);
-        if (breakingSounds.Count > soundIndex)
-        {
-            return breakingSounds[soundIndex];
-        }
-        return null;
-    }
-    #endregion
 
     #region UI
     //Other stuff

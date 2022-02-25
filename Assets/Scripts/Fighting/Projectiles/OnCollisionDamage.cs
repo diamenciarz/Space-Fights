@@ -14,7 +14,7 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
 
     public enum TypeOfDamage
     {
-        Projectile,
+        Bullet,
         Explosion,
         Rocket
     }

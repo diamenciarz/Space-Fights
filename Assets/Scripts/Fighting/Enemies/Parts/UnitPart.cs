@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitPart : MonoBehaviour
 {
     [Header("Startup")]
+    [Tooltip("Specify the sprites that this part should change according to its team. Starting from team 1, onwards")]
     [SerializeField] Sprite[] sprites;
     [Tooltip("Actions to call on death")]
     [SerializeField] IOnDestroyed[] iOnDestroyed;
@@ -15,11 +16,19 @@ public class UnitPart : MonoBehaviour
     [SerializeField] float collisionDeltaVelocity = 10;
     [SerializeField] OnCollisionDamage.TypeOfDamage[] immuneTo;
 
+    [Header("Sounds")]
+    [SerializeField] protected List<AudioClip> breakingSounds;
+    [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
+    [SerializeField] protected List<AudioClip> hitSounds;
+    [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
+
+
     SpriteRenderer mySpriteRenderer;
     private Rigidbody2D myRigidbody2D;
 
     private int team;
     private int health;
+    private bool isDestroyed;
 
     void Start()
     {
@@ -36,27 +45,27 @@ public class UnitPart : MonoBehaviour
     #region Collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        HandleDamage(collision.gameObject);
+        HandleDamage(collision.gameObject.GetComponent<IDamageReceived>());
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision);
-        HandleDamage(collision.gameObject);
+        HandleDamage(collision.gameObject.GetComponent<IDamageReceived>());
     }
     private void HandleCollision(Collision2D collision)
     {
-        ICollision iCollision = collision.gameObject.GetComponent<ICollision>();
-        if (iCollision == null || !iCollision.DealsCollisionDamage())
+        Rigidbody2D colliderRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (colliderRB2D == null)
         {
             return;
         }
 
-        int damage = CountCollisionDamage(iCollision);
+        int damage = CountCollisionDamage(colliderRB2D);
         ReceiveDamage(damage);
     }
-    private int CountCollisionDamage(ICollision iCollision)
+    private int CountCollisionDamage(Rigidbody2D colliderRB2D)
     {
-        Vector2 deltaVelocity = iCollision.GetVelocity() - myRigidbody2D.velocity;
+        Vector2 deltaVelocity = colliderRB2D.velocity - myRigidbody2D.velocity;
         bool shouldDealDamage = deltaVelocity.magnitude > collisionDeltaVelocity;
         if (!shouldDealDamage)
         {
@@ -64,15 +73,14 @@ public class UnitPart : MonoBehaviour
         }
 
         float speed = deltaVelocity.magnitude;
-        float mass = iCollision.GetMass();
+        float mass = colliderRB2D.mass;
         float damage = (speed * speed / collisionDeltaVelocity) * mass;
 
         return (int)damage;
     }
 
-    private void HandleDamage(GameObject collidedWithGO)
+    private void HandleDamage(IDamageReceived iDamageReceived)
     {
-        IDamageReceived iDamageReceived = collidedWithGO.GetComponent<IDamageReceived>();
         if (iDamageReceived == null || iDamageReceived.GetTeam() != team || IsImmune(iDamageReceived))
         {
             return;
@@ -95,7 +103,7 @@ public class UnitPart : MonoBehaviour
     #endregion
 
     #region Mutator methods
-    public void ReceiveDamage(int damage)
+    private void ReceiveDamage(int damage)
     {
         if (damage == 0)
         {
@@ -116,10 +124,27 @@ public class UnitPart : MonoBehaviour
     {
         if (health <= 0)
         {
-            DestroyUnitPart();
+            HandleBreak();
+        }
+        else
+        {
+            HandleHit();
         }
     }
-    private void DestroyUnitPart()
+    protected void HandleBreak()
+    {
+        if (!isDestroyed)
+        {
+            isDestroyed = true;
+            StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
+            DestroyObject();
+        }
+    }
+    protected void HandleHit()
+    {
+        StaticDataHolder.PlaySound(GetHitSound(), transform.position, hitSoundVolume);
+    }
+    private void DestroyObject()
     {
         foreach (IOnDestroyed item in iOnDestroyed)
         {
@@ -156,6 +181,27 @@ public class UnitPart : MonoBehaviour
         {
             mySpriteRenderer.sprite = sprites[team - 1];
         }
+    }
+    #endregion
+
+    #region Sounds
+    protected AudioClip GetHitSound()
+    {
+        int soundIndex = Random.Range(0, hitSounds.Count);
+        if (hitSounds.Count > soundIndex)
+        {
+            return hitSounds[soundIndex];
+        }
+        return null;
+    }
+    protected AudioClip GetBreakSound()
+    {
+        int soundIndex = Random.Range(0, breakingSounds.Count);
+        if (breakingSounds.Count > soundIndex)
+        {
+            return breakingSounds[soundIndex];
+        }
+        return null;
     }
     #endregion
 }

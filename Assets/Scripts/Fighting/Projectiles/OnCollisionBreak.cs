@@ -162,13 +162,13 @@ public class OnCollisionBreak : TeamUpdater
     {
         int collisionTeam = iDamage.GetTeam();
         bool areTeamsEqual = collisionTeam == team;
-        return BreaksOnContactWith(BreaksOn.AllyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Projectile) && areTeamsEqual;
+        return BreaksOnContactWith(BreaksOn.AllyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && areTeamsEqual;
     }
     private bool BreaksOnEnemyBullet(IDamageReceived iDamage)
     {
         int collisionTeam = iDamage.GetTeam();
         bool areTeamsEqual = collisionTeam == team;
-        return BreaksOnContactWith(BreaksOn.EnemyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Projectile) && !areTeamsEqual;
+        return BreaksOnContactWith(BreaksOn.EnemyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && !areTeamsEqual;
     }
     private bool BreaksOnExplosion(IDamageReceived iDamage)
     {
