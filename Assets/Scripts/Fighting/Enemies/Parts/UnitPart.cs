@@ -149,13 +149,12 @@ public class UnitPart : MonoBehaviour
         {
             return;
         }
-        if (team == 2)
+
+        int spriteCount = sprites.Length;
+        bool isInBounds = spriteCount > 0 && team > 0 && team <= spriteCount;
+        if (isInBounds)
         {
-            mySpriteRenderer.sprite = sprites[1];
-        }
-        else
-        {
-            mySpriteRenderer.sprite = sprites[0];
+            mySpriteRenderer.sprite = sprites[team - 1];
         }
     }
     #endregion

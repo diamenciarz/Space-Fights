@@ -64,12 +64,6 @@ public class ExplosionController : BasicProjectileController
         gameObject.transform.localScale = new Vector3(expandRate * originalSize, expandRate * originalSize, 0);
     }
     #endregion
-
-    public override Vector3 GetPushVector(Vector3 collisionPosition)
-    {
-        Vector3 deltaPositionToCollision = HelperMethods.DeltaPosition(transform.position, collisionPosition);
-        return deltaPositionToCollision.normalized * pushingPower;
-    }
 }
 
 
