@@ -6,70 +6,104 @@ public class DamageReceiver : ListUpdater
 {
     [Header("Basic Stats")]
     [SerializeField] int team;
-    [SerializeField] int health;
     [SerializeField] GameObject healthBarPrefab;
     [SerializeField] bool turnHealthBarOn;
 
+    [Header("Sounds")]
+    [SerializeField] protected List<AudioClip> breakingSounds;
+    [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
+
     //Private variables
     private GameObject healthBarInstance;
-    private int maxHP;
+    private float health;
+    private float maxHealth;
+    private List<UnitPart> parts;
+    /// <summary>
+    /// This is the additional damage received from parts being destroyed
+    /// </summary>
+    private float additionalDamage;
     protected ProgressionBarController healthBarScript;
-    private IOnDamageDealt[] onHitCalls;
 
-    protected void Awake()
+    #region Startup
+    protected void Start()
     {
         SetupStartingVariables();
     }
     private void SetupStartingVariables()
     {
-        maxHP = health;
-        onHitCalls = GetComponentsInChildren<IOnDamageDealt>();
+        FindParts();
+        UpdateMaxHP();
+        UpdateHealth();
     }
+    private void FindParts()
+    {
+        UnitPart[] partsFound = GetComponentsInChildren<UnitPart>();
+        parts.AddRange(partsFound);
+    }
+    private void UpdateMaxHP()
+    {
+        maxHealth = 0;
+        foreach (UnitPart part in parts)
+        {
+            maxHealth += part.GetMaxBarHealth();
+        }
+    }
+    #endregion
+
     protected void Update()
     {
         UpdateHealthBarVisibility();
     }
     private void UpdateHealthBarVisibility()
     {
-        if (healthBarScript)
+        if (!healthBarScript)
         {
-            if (turnHealthBarOn)
-            {
-                healthBarScript.SetIsVisible(true);
-            }
-            else
-            {
-                healthBarScript.SetIsVisible(false);
-            }
+            return;
+        }
+        if (turnHealthBarOn)
+        {
+            healthBarScript.SetIsVisible(true);
+        }
+        else
+        {
+            healthBarScript.SetIsVisible(false);
         }
     }
 
-    #region Receive Damage
-    /// <summary>
-    /// Deal damage and try to push object
-    /// </summary>
-    /// <param name="damage"></param>
-    /// <param name="gameObject"></param>
-    public void DealDamage(IDamageReceived iDamage)
+    #region HP
+    private float CountHP()
     {
-        health -= iDamage.GetDamage();
-        UpdateHealthBar();
-
-        HandleDamage(iDamage);
-    }
-    private void HandleDamage(IDamageReceived iDamage)
-    {
-        foreach (IOnDamageDealt call in onHitCalls)
+        float hp = 0;
+        foreach (UnitPart part in parts)
         {
-            //If an enemy is hit by a bullet, then he receives information about the position of the entity shooting
-            call.HitBy(iDamage.CreatedBy());
+            hp += part.GetBarHealth();
         }
+        return hp;
+    }
+    private void CheckHP()
+    {
+        if (health <= 0)
+        {
+            HandleBreak();
+        }
+    }
+    protected void HandleBreak()
+    {
+        StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
+        DestroyObject();
+    }
+    protected AudioClip GetBreakSound()
+    {
+        int soundIndex = Random.Range(0, breakingSounds.Count);
+        if (breakingSounds.Count > soundIndex)
+        {
+            return breakingSounds[soundIndex];
+        }
+        return null;
     }
     #endregion
-    
 
     #region UI
-    //Other stuff
     public void CreateHealthBar()
     {
         healthBarInstance = Instantiate(healthBarPrefab, transform.position, transform.rotation);
@@ -82,8 +116,7 @@ public class DamageReceiver : ListUpdater
         {
             CreateHealthBar();
         }
-        //Debug.Log("Updated HP");
-        healthBarScript.UpdateProgressionBar(health, maxHP);
+        healthBarScript.UpdateProgressionBar(health, maxHealth);
     }
     #endregion
 
@@ -121,9 +154,35 @@ public class DamageReceiver : ListUpdater
     {
         return team;
     }
-    public int GetCurrentHealth()
+    public float GetCurrentHealth()
     {
         return health;
+    }
+    #endregion
+
+    #region Mutator methods
+    public void UpdateHealth()
+    {
+        health = CountHP() - additionalDamage;
+        UpdateHealthBar();
+        CheckHP();
+    }
+    public void RemovePart(UnitPart part)
+    {
+        parts.Remove(part);
+        additionalDamage += part.GetDestroyDamage();
+        UpdateHealth();
+    }
+    /// <summary>
+    /// Set HP of each non-destroyed part to maximum and update HP bar
+    /// </summary>
+    private void DoFullHeal()
+    {
+        foreach (UnitPart part in parts)
+        {
+            part.DoFullHeal();
+        }
+        UpdateHealth();
     }
     #endregion
 }

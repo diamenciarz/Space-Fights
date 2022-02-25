@@ -310,7 +310,7 @@ public static class HelperMethods
     #region Object checks
     public static bool IsObjectAProjectile(GameObject collisionObject)
     {
-        IDamageReceived damageReceiver = collisionObject.GetComponent<IDamageReceived>();
+        IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
         if (damageReceiver != null)
         {
             return damageReceiver.IsAProjectile();
@@ -373,10 +373,10 @@ public static class HelperMethods
     /// <returns></returns>
     public static bool CallAllTriggers(GameObject gameObject)
     {
-        TriggerOnDeath[] triggerOnDeath = gameObject.GetComponentsInChildren<TriggerOnDeath>();
-        if (triggerOnDeath.Length != 0)
+        IOnDestroyed[] onDeathTriggers = gameObject.GetComponentsInChildren<IOnDestroyed>();
+        if (onDeathTriggers.Length != 0)
         {
-            foreach (TriggerOnDeath item in triggerOnDeath)
+            foreach (IOnDestroyed item in onDeathTriggers)
             {
                 item.DestroyObject();
             }

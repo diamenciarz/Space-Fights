@@ -23,6 +23,7 @@ public class BulletController : BasicProjectileController
     private bool timedDestroy = false;
     private float MAX_DESTROY_DELAY = 100f;
 
+
     protected override void Start()
     {
         base.Start();
@@ -100,22 +101,23 @@ public class BulletController : BasicProjectileController
     }
     private void BounceCheck(Collision2D collision)
     {
-        if (!IsInvulnerableTo(collision.gameObject))
+        if (IsInvulnerableTo(collision.gameObject))
         {
-            if (ShouldReflect(collision))
-            {
-                HandleReflection();
-            }
-            else
-            {
-                DestroyObject();
-            }
+            return;
+        }
+        if (ShouldReflect(collision))
+        {
+            HandleReflection();
+        }
+        else
+        {
+            DestroyObject();
         }
     }
     private bool ShouldReflect(Collision2D collision)
     {
         Vector3 collisionNormal = collision.GetContact(0).normal;
-        float hitAngle = Vector3.Angle(GetVelocityVector3(), collisionNormal);
+        float hitAngle = Vector3.Angle(myRigidbody2D.velocity, collisionNormal);
         //The collision angle has to be bigger than "minAngleToReflect" for the bullet to not get destroyed
         bool isAngleBigEnough = Mathf.Abs(hitAngle) >= minAngleToReflect;
         //Some bullets have a limited number of bounces

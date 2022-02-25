@@ -12,8 +12,10 @@ public class OnCollisionBreak : TeamUpdater
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
 
     protected GameObject objectThatCreatedThisProjectile;
-    private bool isDestroyed = false;
+    protected bool isDestroyed = false;
     protected float creationTime;
+    const float INVULNERABILITY_TIME = 0.25f;
+
 
     public enum BreaksOn
     {
@@ -101,7 +103,7 @@ public class OnCollisionBreak : TeamUpdater
     protected bool IsInvulnerableTo(GameObject collisionObject)
     {
         bool isTouchingParent = createdBy == collisionObject;
-        bool isStillInvulnerable = Time.time < creationTime + 0.1f; //The shooting object should be immune to its own projectiles for a split second
+        bool isStillInvulnerable = Time.time < creationTime + INVULNERABILITY_TIME; //The shooting object should be immune to its own projectiles for a split second
         if (isTouchingParent && isStillInvulnerable)
         {
             return true;
@@ -131,14 +133,14 @@ public class OnCollisionBreak : TeamUpdater
     #region Check projectiles
     private bool CheckProjectile(GameObject collisionObject)
     {
-        IDamageReceived damageReceiver = collisionObject.GetComponent<IDamageReceived>();
+        IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
         if (damageReceiver != null && BreaksOnProjectile(damageReceiver))
         {
             return true;
         }
         return false;
     }
-    private bool BreaksOnProjectile(IDamageReceived iDamage)
+    private bool BreaksOnProjectile(IDamageDealer iDamage)
     {
         if (BreaksOnAllyBullet(iDamage))
         {
@@ -158,23 +160,23 @@ public class OnCollisionBreak : TeamUpdater
         }
         return false;
     }
-    private bool BreaksOnAllyBullet(IDamageReceived iDamage)
+    private bool BreaksOnAllyBullet(IDamageDealer iDamage)
     {
         int collisionTeam = iDamage.GetTeam();
         bool areTeamsEqual = collisionTeam == team;
         return BreaksOnContactWith(BreaksOn.AllyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && areTeamsEqual;
     }
-    private bool BreaksOnEnemyBullet(IDamageReceived iDamage)
+    private bool BreaksOnEnemyBullet(IDamageDealer iDamage)
     {
         int collisionTeam = iDamage.GetTeam();
         bool areTeamsEqual = collisionTeam == team;
         return BreaksOnContactWith(BreaksOn.EnemyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && !areTeamsEqual;
     }
-    private bool BreaksOnExplosion(IDamageReceived iDamage)
+    private bool BreaksOnExplosion(IDamageDealer iDamage)
     {
         return BreaksOnContactWith(BreaksOn.Explosions) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Explosion);
     }
-    private bool BreaksOnRocket(IDamageReceived iDamage)
+    private bool BreaksOnRocket(IDamageDealer iDamage)
     {
         return BreaksOnContactWith(BreaksOn.Rockets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Rocket);
     }

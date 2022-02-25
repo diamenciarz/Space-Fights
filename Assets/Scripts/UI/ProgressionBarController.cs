@@ -15,6 +15,9 @@ public class ProgressionBarController : MonoBehaviour
     [SerializeField] bool useGradient = true;
     [SerializeField] Gradient barColorGradient;
     [SerializeField] [Range(0, 1)] float originalAlfa = 1f;
+    /// <summary>
+    /// After not receiving damage for this amount of time, the health bar will disappear
+    /// </summary>
     [SerializeField] protected float hideOverTime = 0.5f;
     [Tooltip("Time, after which the bar will disappear, after being shown (-1 for never)")]
     [SerializeField] [Range(0, 100)] private float hideDelay = 0;
@@ -136,7 +139,36 @@ public class ProgressionBarController : MonoBehaviour
     }
     #endregion
 
+    #region Update Bar
+    private void UpdateBarRatio(float ratio)
+    {
+        UpdateLastUsedTime();
+        healthBarImage.fillAmount = ratio;
+
+        UpdateGradientColor(ratio);
+    }
+    private void UpdateLastUsedTime()
+    {
+        lastUsedTime = Time.time;
+    }
+    private void UpdateGradientColor(float ratio)
+    {
+        if (useGradient)
+        {
+            Color newColor = barColorGradient.Evaluate(ratio);
+            newColor.a = originalAlfa;
+            healthBarImage.color = newColor;
+
+            currentColor = healthBarImage.color;
+        }
+    }
+    #endregion
+
     #region Mutator methods
+    public void SetHideDelay (float delay)
+    {
+        hideDelay = delay;
+    }
     public void SetObjectToFollow(GameObject followGO)
     {
         objectToFollow = followGO;
@@ -166,7 +198,7 @@ public class ProgressionBarController : MonoBehaviour
                 Debug.LogError("MaxHP was 0 and the ratio was NaN! Followed object: " + objectToFollow);
                 return;
             }
-         
+
             float newRatio = newHP / maxHP;
             newRatio = Mathf.Clamp(newRatio, 0, 1);
 
@@ -174,29 +206,5 @@ public class ProgressionBarController : MonoBehaviour
         }
     }
 
-    #region Update Bar
-    private void UpdateBarRatio(float ratio)
-    {
-        UpdateLastUsedTime();
-        healthBarImage.fillAmount = ratio;
-
-        UpdateGradientColor(ratio);
-    }
-    private void UpdateLastUsedTime()
-    {
-        lastUsedTime = Time.time;
-    }
-    private void UpdateGradientColor(float ratio)
-    {
-        if (useGradient)
-        {
-            Color newColor = barColorGradient.Evaluate(ratio);
-            newColor.a = originalAlfa;
-            healthBarImage.color = newColor;
-
-            currentColor = healthBarImage.color;
-        }
-    }
-    #endregion
     #endregion
 }

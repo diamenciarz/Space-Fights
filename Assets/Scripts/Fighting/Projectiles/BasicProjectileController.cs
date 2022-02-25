@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BasicProjectileController : OnCollisionDamage, ICollidingEntityData
+[RequireComponent(typeof(Rigidbody2D))]
+public abstract class BasicProjectileController : OnCollisionDamage
 {
     [Header("Projectile Properties")]
     [SerializeField] protected List<Sprite> spriteList;
@@ -65,10 +66,6 @@ public abstract class BasicProjectileController : OnCollisionDamage, ICollidingE
         Vector3 velocity = myRigidbody2D.velocity;
         transform.rotation = HelperMethods.DeltaPositionRotation(transform.position, transform.position + velocity);
     }
-    public void ModifyVelocityVector3(Vector3 deltaVector)
-    {
-        SetVelocityVector(GetVelocityVector3() + deltaVector);
-    }
     #endregion
 
     #region Accessor methods
@@ -76,7 +73,7 @@ public abstract class BasicProjectileController : OnCollisionDamage, ICollidingE
     {
         return velocityVector;
     }
-    public override Vector3 GetVelocityVector3()
+    public Vector3 GetVelocityVector3()
     {
         return myRigidbody2D.velocity;
     }

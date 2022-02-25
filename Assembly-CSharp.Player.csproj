@@ -53,7 +53,6 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\ICollision.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
@@ -75,8 +74,7 @@
     <Compile Include="Assets\Scripts\Other\StaticDataHolder.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\VisualDetector.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageReceiver.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceived.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\ICollidingEntityData.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Movement\EntityMover.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDestroyed.cs" />
@@ -88,6 +86,7 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

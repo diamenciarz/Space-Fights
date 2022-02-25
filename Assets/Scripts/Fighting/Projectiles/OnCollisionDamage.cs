@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
+public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
 {
     [Header("Basic Stats")]
     [SerializeField] int damage;
@@ -19,8 +19,8 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
         Rocket
     }
 
-    private ICollidingEntityData entityData;
     private int currentDamageLeft;
+
 
     protected override void Awake()
     {
@@ -29,7 +29,6 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     }
     private void SetupStartingValues()
     {
-        entityData = GetComponent<ICollidingEntityData>();
         currentDamageLeft = damage;
     }
 
@@ -48,40 +47,51 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     {
         if (CanDealDamage(collisionObject))
         {
-            DamageReceiver damageReceiver = collisionObject.GetComponent<DamageReceiver>();
+            IDamageReceiver damageReceiver = collisionObject.GetComponent<IDamageReceiver>();
             DealDamageToObject(damageReceiver);
         }
     }
     private bool CanDealDamage(GameObject collisionObject)
     {
-        DamageReceiver damageReceiver = collisionObject.GetComponent<DamageReceiver>();
-        bool objectCanReceiveDamage = damageReceiver != null;
-        if (objectCanReceiveDamage)
+        if (isDestroyed)
         {
-            bool shouldDealDamage = hurtsAllies || damageReceiver.GetTeam() != team;
-            if (shouldDealDamage)
-            {
-                bool isInvulnerable = IsInvulnerableTo(collisionObject);
-                if (!isInvulnerable)
-                {
-                    return true;
-                }
-            }
+            return false;
         }
-        return false;
+        IDamageReceiver iDamageReceiver = collisionObject.GetComponent<IDamageReceiver>();
+        bool objectCanReceiveDamage = iDamageReceiver != null;
+        if (!objectCanReceiveDamage)
+        {
+            return false;
+        }
+        bool shouldDealDamage = hurtsAllies || iDamageReceiver.GetTeam() != team;
+        if (!shouldDealDamage)
+        {
+            return false;
+        }
+        bool isInvulnerable = IsInvulnerableTo(collisionObject);
+        if (isInvulnerable)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
+
     #region Deal damage
-    private void DealDamageToObject(DamageReceiver damageReceiver)
+    private void DealDamageToObject(IDamageReceiver damageReceiver)
     {
-        damageReceiver.DealDamage(this);
-        HandlePiercing(damageReceiver);
+        if (damageReceiver.HandleDamage(this))
+        {
+            HandlePiercing(damageReceiver);
+        }
     }
-    private void HandlePiercing(DamageReceiver damageReceiver)
+    private void HandlePiercing(IDamageReceiver damageReceiver)
     {
         if (isPiercing)
         {
-            int collisionHP = damageReceiver.GetCurrentHealth();
-            LowerMyDamage(collisionHP);
+            LowerMyDamage(damageReceiver.GetHealth());
         }
     }
     private void LowerMyDamage(int change)
@@ -99,6 +109,7 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     }
     protected void DestroyObject()
     {
+        isDestroyed = true;
         HelperMethods.CallAllTriggers(gameObject);
         StartCoroutine(DestroyAtTheEndOfFrame());
     }
@@ -111,13 +122,13 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageReceived
     #endregion
 
     #region Accessor methods
-    public virtual Vector3 GetVelocityVector3()
+    public int GetDamage(GameObject damageReceiver)
     {
-        return entityData.GetVelocityVector3();
-    }
-    public int GetDamage()
-    {
-        return currentDamageLeft;
+        if (CanDealDamage(damageReceiver))
+        {
+            return currentDamageLeft;
+        }
+        return 0;
     }
     public List<TypeOfDamage> GetDamageTypes()
     {
