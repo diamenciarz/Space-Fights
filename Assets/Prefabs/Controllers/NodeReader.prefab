@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3234156282444344716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3234156282444344718}
+  - component: {fileID: 3234156282444344719}
+  m_Layer: 0
+  m_Name: NodeReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3234156282444344718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234156282444344716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.601553, y: 25.422613, z: -28.847057}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3234156282444344719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234156282444344716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b2a4038dc3d094caca3f583e5cbf89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueGraph: {fileID: 11400000, guid: 28104c246c1d7c44a9a04f321a357f8e, type: 2}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogueBoxGO: {fileID: 0}
+  dialogueChoiceButtonPrefab: {fileID: 3677151485011163866, guid: 2991e265b2322b9499fb5751e168217d, type: 3}
+  endConversationButtonPrefab: {fileID: 3677151485011163866, guid: aca9efee0d32fc0468c60e3888eacfa2, type: 3}
+  bigPopupWindowPrefab: {fileID: 1685025740213843504, guid: f2ad6df7251178944b33c579cb9df07c, type: 3}
+  smallPopupWindowPrefab: {fileID: 1098409304922893859, guid: ffcfb68c8c37f994598a5e5df056cfdd, type: 3}
+  textWindowAnimator: {fileID: 0}
+  firstButtonPosition: {x: -500, y: -200}
+  yOffset: -110
+  xOffset: 1000
+  calledEventList: []
+  isDisplayingMessage: 0
