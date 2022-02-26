@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionBreak : TeamUpdater
+public class OnCollisionBreak : SpriteUpdater
 {
     [Header("Collision Settings")]
     public List<BreaksOn> breakEnum = new List<BreaksOn>();

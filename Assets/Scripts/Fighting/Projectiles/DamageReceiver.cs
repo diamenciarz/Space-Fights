@@ -18,6 +18,7 @@ public class DamageReceiver : ListUpdater, IParent
     private float health;
     private float maxHealth;
     private List<UnitPart> parts;
+    private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed
     /// </summary>
@@ -31,9 +32,17 @@ public class DamageReceiver : ListUpdater, IParent
     }
     private void SetupStartingVariables()
     {
+        SetupCreatedBy();
         FindParts();
         UpdateMaxHP();
         UpdateHealth();
+    }
+    private void SetupCreatedBy()
+    {
+        if (!createdBy)
+        {
+            createdBy = gameObject;
+        }
     }
     private void FindParts()
     {
@@ -158,6 +167,10 @@ public class DamageReceiver : ListUpdater, IParent
     {
         return gameObject;
     }
+    private GameObject GetCreatedBy()
+    {
+        return createdBy;
+    }
     #endregion
 
     #region Mutator methods
@@ -183,6 +196,13 @@ public class DamageReceiver : ListUpdater, IParent
             part.DoFullHeal();
         }
         UpdateHealth();
+    }
+    public void SetCreatedBy(GameObject parent)
+    {
+        if (parent)
+        {
+            createdBy = parent;
+        }
     }
     #endregion
 }

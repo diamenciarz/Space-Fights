@@ -31,6 +31,7 @@ public class EntityCreator : MonoBehaviour
     {
         Walker
     }
+
     #region Salvos
     public void SummonShot(SummonedShotData data)
     {
@@ -193,25 +194,24 @@ public class EntityCreator : MonoBehaviour
     #region Helper methods
     private void SetupStartingValues(GameObject summonedObject, int team, GameObject parent)
     {
-        TeamUpdater[] teamUpdaters = summonedObject.GetComponentsInChildren<TeamUpdater>();
-        if (teamUpdaters.Length != 0)
+        IParent teamUpdater = summonedObject.GetComponent<IParent>();
+        if (teamUpdater == null)
         {
-            foreach (TeamUpdater item in teamUpdaters)
-            {
-                item.UpdateTeam(team);
-                SetCreatedBy(item, parent);
-            }
+            return;
         }
+        teamUpdater.SetTeam(team);
+        SetCreatedBy(summonedObject, parent);
     }
-    private void SetCreatedBy(TeamUpdater item, GameObject createdBy)
+    private void SetCreatedBy(GameObject summonedObject, GameObject createdBy)
     {
+        IParent iParent = summonedObject.GetComponent<IParent>();
         if (createdBy)
         {
-            item.SetCreatedBy(createdBy);
+            iParent.SetCreatedBy(createdBy);
         }
         else
         {
-            item.SetCreatedBy(item.gameObject);
+            iParent.SetCreatedBy(summonedObject.gameObject);
         }
     }
     private void CheckForRocket(GameObject summonedObject, SummonedProjectileData data)
@@ -225,36 +225,6 @@ public class EntityCreator : MonoBehaviour
             }
         }
     }
-
-    #region Unused
-    private bool CanFitSummon(GameObject summonedObject)
-    {
-        Vector3 dir = HelperMethods.DirectionVectorNormalized(transform.rotation.eulerAngles.z);
-        ContactFilter2D filter = CreateObstacleContactFilter();
-        RaycastHit2D[] hits = new RaycastHit2D[0];
-
-        Collider2D collider = summonedObject.GetComponent<Collider2D>();
-        collider.Cast(dir, filter, hits);
-
-        bool hitSomeObstacle = hits.Length != 0;
-        if (hitSomeObstacle)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    private ContactFilter2D CreateObstacleContactFilter()
-    {
-        LayerMask layerMask = LayerMask.GetMask("Obstacles");
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(layerMask);
-
-        return filter;
-    }
-    #endregion
 
     #endregion
 

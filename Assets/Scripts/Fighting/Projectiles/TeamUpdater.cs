@@ -37,14 +37,21 @@ public class TeamUpdater : MonoBehaviour
     #endregion
 
     #region Mutator methods
-    public void SetCreatedBy(GameObject newObject)
+    public void SetCreatedBy(GameObject parent)
     {
-        createdBy = newObject;
+        if (parent)
+        {
+            createdBy = parent;
+        }
     }
     public virtual void UpdateTeam()
     {
         IParent damageReceiver = GetComponentInParent<IParent>();
         team = damageReceiver.GetTeam();
+    }
+    public void SetTeam(int newTeam)
+    {
+        team = newTeam;
     }
     #endregion
 }
