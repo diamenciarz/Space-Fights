@@ -6,12 +6,11 @@ using UnityEngine;
 public abstract class BasicProjectileController : OnCollisionDamage, IParent
 {
     [Header("Projectile Properties")]
+    [SerializeField] string projectileName;
     [SerializeField] protected List<Sprite> spriteList;
     [SerializeField] protected float startingSpeed = 2f;
 
     //Private variables
-    protected EntityCreator entityCreator;
-    protected SpriteRenderer mySpriteRenderer;
     protected Rigidbody2D myRigidbody2D;
 
     protected Vector2 velocityVector;
@@ -32,8 +31,6 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     }
     private void SetupStartingValues()
     {
-        mySpriteRenderer = FindObjectOfType<SpriteRenderer>();
-        entityCreator = FindObjectOfType<EntityCreator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
 
         creationTime = Time.time;
@@ -66,6 +63,10 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     public GameObject GetParent()
     {
         return gameObject;
+    }
+    public string Name()
+    {
+        return projectileName;
     }
     #endregion
 }

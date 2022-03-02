@@ -10,7 +10,7 @@ public class SingleShotScriptableObject : ScriptableObject, ISerializationCallba
     public float spreadDegrees;
     public float leftBulletSpread;
     public float rightBulletSpread;
-    public List<EntityCreator.BulletTypes> projectilesToCreateList;
+    public List<EntityCreator.EntityTypes> projectilesToCreateList;
     [Header("Sound")]
     public AudioClip[] shotSounds;
     public float shotSoundVolume;

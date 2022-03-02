@@ -4081,7 +4081,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites: []
-  maxHealth: 0
-  collisionDeltaVelocity: 10
+  team: 0
+  sprites:
+  - {fileID: 21300000, guid: d222450d090a8e4458784de63169f065, type: 3}
+  partHealth: 0
+  barHealth: 0
+  destroyDamage: 0
+  minKineticEnergy: 10
+  collisionDamageModifier: 0.5
   immuneTo: 
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1

@@ -79,21 +79,27 @@ public class OnCollisionBreak : SpriteUpdater
     }
 
     #region Check Actors
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collisionObject"></param>
+    /// <returns>True, if should break on actor</returns>
     private bool CheckActors(GameObject collisionObject)
     {
-        if (!IsInvulnerableTo(collisionObject))
+        if (IsInvulnerableTo(collisionObject))
         {
-            bool areTeamsEqual = team == HelperMethods.GetObjectTeam(collisionObject);
-            if (areTeamsEqual)
-            {
-                return BreaksOnAlly(collisionObject);
-            }
-            else
-            {
-                return BreaksOnEnemy(collisionObject);
-            }
+            return false;
         }
-        return false;
+
+        bool areTeamsEqual = team == HelperMethods.GetObjectTeam(collisionObject);
+        if (areTeamsEqual)
+        {
+            return BreaksOnAlly(collisionObject);
+        }
+        else
+        {
+            return BreaksOnEnemy(collisionObject);
+        }
     }
     /// <summary>
     /// Every unit is invulnerable to its own projectiles for 0.1 sec
@@ -211,7 +217,7 @@ public class OnCollisionBreak : SpriteUpdater
     #endregion
 
     //Sounds
-    protected AudioClip GetBreakSound()
+    private AudioClip GetBreakSound()
     {
         int soundIndex = Random.Range(0, breakingSounds.Count);
         if (breakingSounds.Count > soundIndex)
@@ -221,7 +227,7 @@ public class OnCollisionBreak : SpriteUpdater
         return null;
     }
     //Accessor methods
-    public bool BreaksOnContactWith(BreaksOn contact)
+    private bool BreaksOnContactWith(BreaksOn contact)
     {
         if (breakEnum.Contains(contact))
         {

@@ -9,14 +9,12 @@ public class TriggerOnDeath : TeamUpdater, IOnDestroyed
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
     [SerializeField] protected bool targetEnemies;
 
-    protected EntityCreator entityCreator;
     private bool isDestroyed;
     protected float deltaRotationToTarget = -90;
 
     protected override void Awake()
     {
         base.Awake();
-        entityCreator = FindObjectOfType<EntityCreator>();
     }
 
     #region OnDestroy
@@ -39,7 +37,7 @@ public class TriggerOnDeath : TeamUpdater, IOnDestroyed
         data.shot = shot;
         data.target = GetShotTarget();
 
-        entityCreator.SummonShot(data);
+        EntityCreator.SummonShot(data);
     }
     private GameObject GetShotTarget()
     {

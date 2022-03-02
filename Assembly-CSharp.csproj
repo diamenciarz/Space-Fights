@@ -53,21 +53,24 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceiver.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\UserShootingController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TeamUpdater.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TriggerOnDeath.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BasicProjectileController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\ShootingController.cs" />
     <Compile Include="Assets\Scripts\Movement\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
     <Compile Include="Assets\Scripts\Movement\IEntityMover.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionBreak.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionDamage.cs" />
-    <Compile Include="Assets\Scripts\Fighting\ShipController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\ShipController.cs" />
     <Compile Include="Assets\Scripts\Other\HelperMethods.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ExplosionController.cs" />
     <Compile Include="Assets\Scripts\Effects\MusicPlayer.cs" />
@@ -86,9 +89,7 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceiver.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -89,7 +89,6 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
         return 0;
     }
 
-    //Property damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HandleDamage(collision.gameObject.GetComponent<IDamageDealer>());
@@ -225,13 +224,13 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
         barHealth = maxBarHealth;
     }
     /// <summary>
-    /// Returns true, if the damage was positive
+    /// Returns true, if the damage was successfully dealt
     /// </summary>
     /// <param name="damage"></param>
     /// <returns></returns>
     public bool DealDamage(int damage)
     {
-        if (damage > 0)
+        if (damage > 0 && !isDestroyed)
         {
             LowerHealthBy(damage);
             CheckHP();

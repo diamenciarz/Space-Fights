@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShootingController : TeamUpdater
@@ -24,7 +23,6 @@ public class ShootingController : TeamUpdater
     protected bool shoot;
     //Private variables
     private ProgressionBarController gunReloadingBarScript;
-    private EntityCreator entityCreator;
     private SingleShotScriptableObject currentShotSO;
     private GameObject parent;
 
@@ -44,7 +42,6 @@ public class ShootingController : TeamUpdater
     private void InitializeStartingVariables()
     {
         parent = transform.parent.gameObject;
-        entityCreator = FindObjectOfType<EntityCreator>();
         lastShotTime = Time.time;
         shootingTimeBank = GetSalvoTimeSum();
         shotAmount = salvo.shots.Length;
@@ -156,7 +153,7 @@ public class ShootingController : TeamUpdater
         data.shot = salvo.shots[shotIndex];
         data.target = GetShotTarget();
 
-        entityCreator.SummonShot(data);
+        EntityCreator.SummonShot(data);
     }
     private GameObject GetShotTarget()
     {

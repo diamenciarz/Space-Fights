@@ -73,10 +73,7 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
         {
             return false;
         }
-        else
-        {
-            return true;
-        }
+        return true;
     }
 
     #region Deal damage

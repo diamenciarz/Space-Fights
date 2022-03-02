@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteUpdater : TeamUpdater
@@ -8,7 +6,7 @@ public class SpriteUpdater : TeamUpdater
     [SerializeField] Sprite[] sprites;
 
     //Private variables
-    SpriteRenderer mySpriteRenderer;
+    protected SpriteRenderer mySpriteRenderer;
 
     #region Startup
     private void Start()
