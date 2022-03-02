@@ -39,10 +39,11 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     private float barToPartRatio;
     private bool isDestroyed;
 
-    void Start()
+    protected override void Awake()
     {
-        SetupStartingVariables();
+        base.Awake();
         UpdateTeam();
+        SetupStartingVariables();
     }
     private void SetupStartingVariables()
     {

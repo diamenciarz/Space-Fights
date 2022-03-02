@@ -15,6 +15,10 @@ public class EntityCreator : MonoBehaviour
         BouncyLaser,
         Ship
     }
+    private void Awake()
+    {
+        EntityFactory.InitializeFactory();
+    }
 
     #region Salvos
     public static void SummonShot(SummonedShotData data)

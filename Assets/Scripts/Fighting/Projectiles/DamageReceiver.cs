@@ -17,7 +17,7 @@ public class DamageReceiver : ListUpdater, IParent
     private GameObject healthBarInstance;
     private float health;
     private float maxHealth;
-    private List<UnitPart> parts;
+    private List<UnitPart> parts = new List<UnitPart>();
     private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed
@@ -47,7 +47,10 @@ public class DamageReceiver : ListUpdater, IParent
     private void FindParts()
     {
         UnitPart[] partsFound = GetComponentsInChildren<UnitPart>();
-        parts.AddRange(partsFound);
+        if (partsFound.Length > 0)
+        {
+            parts.AddRange(partsFound);
+        }
     }
     private void UpdateMaxHP()
     {
@@ -59,6 +62,7 @@ public class DamageReceiver : ListUpdater, IParent
     }
     #endregion
 
+    #region Update
     protected void Update()
     {
         UpdateHealthBarVisibility();
@@ -78,6 +82,7 @@ public class DamageReceiver : ListUpdater, IParent
             healthBarScript.SetIsVisible(false);
         }
     }
+    #endregion
 
     #region HP
     private float CountHP()
@@ -131,7 +136,11 @@ public class DamageReceiver : ListUpdater, IParent
     #endregion
 
     #region Team
-    public virtual void SetTeam(int newTeam)
+    /// <summary>
+    /// Change team of this object and all its children. Use SetTeam() to change team of the whole gameObject
+    /// </summary>
+    /// <param name="newTeam"></param>
+    public void SetTeam(int newTeam)
     {
         team = newTeam;
         UpdateTeam();
@@ -143,14 +152,6 @@ public class DamageReceiver : ListUpdater, IParent
         {
             item.UpdateTeam();
         }
-    }
-    /// <summary>
-    /// Change team of this script. Use SetTeam() to change team of the whole gameObject
-    /// </summary>
-    /// <param name="newTeam"></param>
-    public void ChangeTeamTo(int newTeam)
-    {
-        team = newTeam;
     }
     #endregion
 
@@ -189,7 +190,7 @@ public class DamageReceiver : ListUpdater, IParent
     /// <summary>
     /// Set HP of each non-destroyed part to maximum and update HP bar
     /// </summary>
-    private void DoFullHeal()
+    public void DoFullHeal()
     {
         foreach (UnitPart part in parts)
         {

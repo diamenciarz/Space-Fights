@@ -7,8 +7,8 @@ public static class EntityFactory
     private static Dictionary<String, GameObject> entitiesByName = new Dictionary<string, GameObject>();
 
     private static bool initialized = false;
-    private static string projectilePath = "Assets/Prefabs/Projectiles/";
-    private static string entityPath = "Assets/Prefabs/Ships/";
+    private static string projectilePath = "Prefabs/Projectiles";
+    private static string entityPath = "Prefabs/Ships";
 
     #region Initialization
     public static void InitializeFactory()
@@ -16,14 +16,16 @@ public static class EntityFactory
         if (!initialized)
         {
             initialized = true;
+            entitiesByName = new Dictionary<string, GameObject>();
             FillDictionaryWithEntities(projectilePath);
             FillDictionaryWithEntities(entityPath);
         }
     }
     private static void FillDictionaryWithEntities(string path)
     {
-        entitiesByName = new Dictionary<string, GameObject>();
-        GameObject[] foundProjectiles = Resources.LoadAll(path, typeof(GameObject)) as GameObject[];
+        //error
+        GameObject[] foundProjectiles = Resources.LoadAll<GameObject>(path);
+
         foreach (GameObject projectile in foundProjectiles)
         {
             entitiesByName.Add(projectile.name, projectile);
@@ -34,8 +36,6 @@ public static class EntityFactory
     public static GameObject GetPrefab(EntityCreator.EntityTypes enumName)
     {
         string name = enumName.ToString();
-        InitializeFactory();
-
         if (entitiesByName.ContainsKey(name))
         {
             return entitiesByName[name];
