@@ -14,7 +14,7 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
 
     public enum TypeOfDamage
     {
-        Bullet,
+        Projectile,
         Explosion,
         Rocket
     }
@@ -57,6 +57,11 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
         {
             return false;
         }
+        bool isInvulnerable = IsInvulnerableTo(collisionObject);
+        if (isInvulnerable)
+        {
+            return false;
+        }
         IDamageReceiver iDamageReceiver = collisionObject.GetComponent<IDamageReceiver>();
         bool objectCanReceiveDamage = iDamageReceiver != null;
         if (!objectCanReceiveDamage)
@@ -65,11 +70,6 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
         }
         bool shouldDealDamage = hurtsAllies || iDamageReceiver.GetTeam() != team;
         if (!shouldDealDamage)
-        {
-            return false;
-        }
-        bool isInvulnerable = IsInvulnerableTo(collisionObject);
-        if (isInvulnerable)
         {
             return false;
         }

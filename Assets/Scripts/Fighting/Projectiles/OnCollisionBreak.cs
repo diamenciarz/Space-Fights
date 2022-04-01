@@ -10,21 +10,23 @@ public class OnCollisionBreak : SpriteUpdater
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
+    [SerializeField] const float INVULNERABILITY_TIME = 0.25f;
 
     protected GameObject objectThatCreatedThisProjectile;
     protected bool isDestroyed = false;
     protected float creationTime;
-    const float INVULNERABILITY_TIME = 0.25f;
 
 
     public enum BreaksOn
     {
-        Allies,
-        Enemies,
-        AllyBullets,
-        EnemyBullets,
-        Explosions,
-        Rockets,
+        AllyPart,
+        EnemyPart,
+        AllyProjectiles,
+        EnemyProjectiles,
+        AllyExplosions,
+        EnemyExplosions,
+        AllyRockets,
+        EnemyRockets,
         Obstacles
     }
 
@@ -55,51 +57,32 @@ public class OnCollisionBreak : SpriteUpdater
     }
     private bool CheckIfShouldBreak(GameObject collisionObject)
     {
-        if (CheckObstacle(collisionObject))
-        {
-            return true;
-        }
+        List<BreaksOn> collisionPropertyList = HelperMethods.GetCollisionProperties(collisionObject, team);
 
-        if (CheckProjectile(collisionObject))
+        if (IsInvulnerableTo(collisionObject))
         {
-            return true;
+            collisionPropertyList.Remove(BreaksOn.AllyPart);
         }
-
-        if (CheckActors(collisionObject))
+        return DoPropertiesOverlap(collisionPropertyList);
+    }
+    private bool DoPropertiesOverlap(List<BreaksOn> collisionPropertyList)
+    {
+        foreach (BreaksOn property in collisionPropertyList)
+        {
+            if (BreaksOnContactWith(property))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool BreaksOnContactWith(BreaksOn contact)
+    {
+        if (breakEnum.Contains(contact))
         {
             return true;
         }
         return false;
-    }
-
-    #region Break Checks
-    private bool CheckObstacle(GameObject collisionObject)
-    {
-        return HelperMethods.IsAnObstacle(collisionObject) && BreaksOnContactWith(BreaksOn.Obstacles);
-    }
-
-    #region Check Actors
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="collisionObject"></param>
-    /// <returns>True, if should break on actor</returns>
-    private bool CheckActors(GameObject collisionObject)
-    {
-        if (IsInvulnerableTo(collisionObject))
-        {
-            return false;
-        }
-
-        bool areTeamsEqual = team == HelperMethods.GetObjectTeam(collisionObject);
-        if (areTeamsEqual)
-        {
-            return BreaksOnAlly(collisionObject);
-        }
-        else
-        {
-            return BreaksOnEnemy(collisionObject);
-        }
     }
     /// <summary>
     /// Every unit is invulnerable to its own projectiles for 0.1 sec
@@ -116,79 +99,6 @@ public class OnCollisionBreak : SpriteUpdater
         }
         return false;
     }
-    private bool BreaksOnAlly(GameObject collisionObject)
-    {
-        bool breaksOnAlly = BreaksOnContactWith(BreaksOn.Allies) && HelperMethods.IsObjectAnEntity(collisionObject);
-        if (breaksOnAlly)
-        {
-            return true;
-        }
-        return false;
-    }
-    private bool BreaksOnEnemy(GameObject collisionObject)
-    {
-        bool breaksOnEnemy = BreaksOnContactWith(BreaksOn.Enemies) && HelperMethods.IsObjectAnEntity(collisionObject);
-        if (breaksOnEnemy)
-        {
-            return true;
-        }
-        return false;
-    }
-    #endregion
-
-    #region Check projectiles
-    private bool CheckProjectile(GameObject collisionObject)
-    {
-        IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
-        if (damageReceiver != null && BreaksOnProjectile(damageReceiver))
-        {
-            return true;
-        }
-        return false;
-    }
-    private bool BreaksOnProjectile(IDamageDealer iDamage)
-    {
-        if (BreaksOnAllyBullet(iDamage))
-        {
-            return true;
-        }
-        if (BreaksOnEnemyBullet(iDamage))
-        {
-            return true;
-        }
-        if (BreaksOnExplosion(iDamage))
-        {
-            return true;
-        }
-        if (BreaksOnRocket(iDamage))
-        {
-            return true;
-        }
-        return false;
-    }
-    private bool BreaksOnAllyBullet(IDamageDealer iDamage)
-    {
-        int collisionTeam = iDamage.GetTeam();
-        bool areTeamsEqual = collisionTeam == team;
-        return BreaksOnContactWith(BreaksOn.AllyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && areTeamsEqual;
-    }
-    private bool BreaksOnEnemyBullet(IDamageDealer iDamage)
-    {
-        int collisionTeam = iDamage.GetTeam();
-        bool areTeamsEqual = collisionTeam == team;
-        return BreaksOnContactWith(BreaksOn.EnemyBullets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Bullet) && !areTeamsEqual;
-    }
-    private bool BreaksOnExplosion(IDamageDealer iDamage)
-    {
-        return BreaksOnContactWith(BreaksOn.Explosions) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Explosion);
-    }
-    private bool BreaksOnRocket(IDamageDealer iDamage)
-    {
-        return BreaksOnContactWith(BreaksOn.Rockets) && iDamage.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Rocket);
-    }
-    #endregion
-
-    #endregion
     #endregion
 
     #region Destroy
@@ -201,6 +111,15 @@ public class OnCollisionBreak : SpriteUpdater
 
             DestroyObject();
         }
+    }
+    private AudioClip GetBreakSound()
+    {
+        int soundIndex = Random.Range(0, breakingSounds.Count);
+        if (breakingSounds.Count > soundIndex)
+        {
+            return breakingSounds[soundIndex];
+        }
+        return null;
     }
     private void DestroyObject()
     {
@@ -215,24 +134,4 @@ public class OnCollisionBreak : SpriteUpdater
         Destroy(gameObject);
     }
     #endregion
-
-    //Sounds
-    private AudioClip GetBreakSound()
-    {
-        int soundIndex = Random.Range(0, breakingSounds.Count);
-        if (breakingSounds.Count > soundIndex)
-        {
-            return breakingSounds[soundIndex];
-        }
-        return null;
-    }
-    //Accessor methods
-    private bool BreaksOnContactWith(BreaksOn contact)
-    {
-        if (breakEnum.Contains(contact))
-        {
-            return true;
-        }
-        return false;
-    }
 }

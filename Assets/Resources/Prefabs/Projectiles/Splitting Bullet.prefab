@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: -1566152343811300086}
   - component: {fileID: 5411452294418001787}
   m_Layer: 9
-  m_Name: SplittingBullet
+  m_Name: Splitting Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,15 +169,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  breakEnum: 0400000001000000050000000600000003000000
+  sprites: []
+  breakEnum: 00000000010000000400000005000000060000000700000008000000
   breakingSounds: []
   breakingSoundVolume: 1
   damage: 1
   hurtsAllies: 0
   isPiercing: 0
   damageTypes: 00000000
-  isPushing: 1
-  pushingPower: 0.5
   spriteList:
   - {fileID: 21300000, guid: f8887aa7e07d9b54b945a0286d775326, type: 3}
   - {fileID: 21300000, guid: 7090487e8efd833498e1a0ae3367222e, type: 3}
@@ -200,13 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  gameObjectsToTurnIntoList: 080000000800000008000000
-  shootsAtEnemies: 0
-  shotDirection: 90
-  spreadProjectilesEvenly: 1
-  spreadDegrees: 30
-  leftBulletSpread: 0
-  rightBulletSpread: 0
+  shot: {fileID: 0}
+  targetEnemies: 0
 --- !u!114 &5411452294418001787
 MonoBehaviour:
   m_ObjectHideFlags: 0

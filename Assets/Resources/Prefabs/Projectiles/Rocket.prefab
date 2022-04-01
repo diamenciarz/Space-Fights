@@ -188,15 +188,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  breakEnum: 06000000030000000400000001000000050000000000000002000000
+  sprites: []
+  breakEnum: 000000000100000006000000070000000400000005000000020000000300000008000000
   breakingSounds: []
   breakingSoundVolume: 1
   damage: 5
   hurtsAllies: 1
   isPiercing: 0
   damageTypes: 02000000
-  isPushing: 1
-  pushingPower: 1
   spriteList:
   - {fileID: 21300000, guid: 6c469d7fff4f2d34e81241b4a657e2a0, type: 3}
   - {fileID: 21300000, guid: 899773e3db456df4188c23327a130961, type: 3}
@@ -205,7 +204,7 @@ MonoBehaviour:
   maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 120
-  timeToExpire: 30
+  timeToExpire: 60
   currentRocketSpeed: 0
   targetGameObject: {fileID: 0}
 --- !u!114 &7748659938827264479
@@ -221,13 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  gameObjectsToTurnIntoList: 05000000
-  shootsAtEnemies: 0
-  shotDirection: 0
-  spreadProjectilesEvenly: 0
-  spreadDegrees: 0
-  leftBulletSpread: 0
-  rightBulletSpread: 0
+  shot: {fileID: 0}
+  targetEnemies: 0
 --- !u!114 &-776891561322186458
 MonoBehaviour:
   m_ObjectHideFlags: 0

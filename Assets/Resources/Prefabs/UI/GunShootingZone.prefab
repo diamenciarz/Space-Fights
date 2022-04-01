@@ -260,9 +260,7 @@ MonoBehaviour:
   originalAlfa: 0.15
   hideOverTime: 0.5
   hideDelay: 0
-  destroyWithoutParent: 1
   rotateSameAsParent: 1
-  lastUsedTime: 0
 --- !u!114 &6266471521723400712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,4 +283,4 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1

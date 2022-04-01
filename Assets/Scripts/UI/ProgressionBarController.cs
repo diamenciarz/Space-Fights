@@ -28,7 +28,14 @@ public class ProgressionBarController : MonoBehaviour
     private Quaternion deltaRotationFromParent;
     private bool isDestroyed;
     Color currentColor;
+    /// <summary>
+    /// The current state of the bar. For internal use only
+    /// </summary>
     private bool isShown = true;
+    /// <summary>
+    /// If false, the bar is never visible. If true, the bar can still hide after a delay
+    /// </summary>
+    private bool isVisible;
     private double lastUsedTime;
     private float visibilityChangeRate;
 
@@ -93,7 +100,7 @@ public class ProgressionBarController : MonoBehaviour
     }
     private void ChangeImageVisibility(Image image)
     {
-        if (isShown)
+        if (isShown && isVisible)
         {
             MoveAlfaTowards(image, originalAlfa);
         }
@@ -127,6 +134,11 @@ public class ProgressionBarController : MonoBehaviour
 
     private void CheckHideDelay()
     {
+        if (!isVisible)
+        {
+            return;
+        }
+
         bool pastHideCooldown = Time.time > lastUsedTime + hideDelay;
         if (pastHideCooldown)
         {
@@ -187,7 +199,7 @@ public class ProgressionBarController : MonoBehaviour
     }
     public void SetIsVisible(bool isTrue)
     {
-        isShown = isTrue;
+        isVisible = isTrue;
     }
     public void UpdateProgressionBar(float newHP, float maxHP)
     {

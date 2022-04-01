@@ -6,10 +6,10 @@ public class ObjectMissingIcon : MonoBehaviour
 {
     public GameObject objectToFollow;
 
-    public float xMin;
-    public float xMax;
-    public float yMin;
-    public float yMax;
+    private float xMin;
+    private float xMax;
+    private float yMin;
+    private float yMax;
 
     [Tooltip("Delta position from the screen edge, where the object should be placed")]
     private float positionOffset = 0.3f;
@@ -129,7 +129,7 @@ public class ObjectMissingIcon : MonoBehaviour
 
         newXPosition = Mathf.Clamp(newXPosition, xMin - positionOffset, xMax + positionOffset);
         newYPosition = Mathf.Clamp(newYPosition, yMin - positionOffset, yMax + positionOffset);
-        return new Vector2(newXPosition,newYPosition);
+        return new Vector2(newXPosition, newYPosition);
     }
     private void UpdateScale()
     {
@@ -167,7 +167,6 @@ public class ObjectMissingIcon : MonoBehaviour
     }
     #endregion
 
-    #region Accessor/mutator methods
     private void SetVisibility(bool isVisible)
     {
         foreach (SpriteRenderer sprite in mySpriteRenderers)
@@ -189,6 +188,9 @@ public class ObjectMissingIcon : MonoBehaviour
         yMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + screenEdgeOffset;
         yMax = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - screenEdgeOffset;
     }
+
+    #region Accessor/mutator methods
+
     #endregion
 
 }

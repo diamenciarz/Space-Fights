@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class BasicProjectileController : OnCollisionDamage, IParent
 {
     [Header("Projectile Properties")]
-    [SerializeField] string projectileName;
     [SerializeField] protected List<Sprite> spriteList;
     [SerializeField] protected float startingSpeed = 2f;
 
@@ -63,10 +62,6 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     public GameObject GetParent()
     {
         return gameObject;
-    }
-    public string Name()
-    {
-        return projectileName;
     }
     #endregion
 }

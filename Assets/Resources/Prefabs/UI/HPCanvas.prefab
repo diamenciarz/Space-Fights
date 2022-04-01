@@ -393,6 +393,4 @@ MonoBehaviour:
   originalAlfa: 1
   hideOverTime: 0.1
   hideDelay: 3
-  destroyWithoutParent: 1
   rotateSameAsParent: 0
-  lastUsedTime: 0

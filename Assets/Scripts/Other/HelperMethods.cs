@@ -357,12 +357,102 @@ public static class HelperMethods
         }
         return -2;
     }
+    public static bool IsAnEntityPart(GameObject collisionObject)
+    {
+        UnitPart listUpdater = collisionObject.GetComponent<UnitPart>();
+        if (listUpdater)
+        {
+            return true;
+        }
+        return false;
+    }
     #endregion
 
     #region Break checks
-    public static bool ShouldBreak()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collidingObject"></param>
+    /// <param name="team">The team of the object that the collidingObject collides with</param>
+    /// <returns></returns>
+    public static List<OnCollisionBreak.BreaksOn> GetCollisionProperties(GameObject collidingObject, int team)
     {
-        return true;
+        List<OnCollisionBreak.BreaksOn> collisionPropertyList = new List<OnCollisionBreak.BreaksOn>();
+        CheckObstacle(collidingObject, collisionPropertyList);
+
+        int collidingObjectTeam = GetObjectTeam(collidingObject);
+        if (team == -2)
+        {
+            return collisionPropertyList;
+        }
+        bool isAlly = collidingObjectTeam == team;
+
+        CheckProjectile(collidingObject, collisionPropertyList, isAlly);
+        CheckActors(collidingObject, collisionPropertyList, isAlly);
+
+        return collisionPropertyList;
+    }
+    private static void CheckObstacle(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList)
+    {
+        if (HelperMethods.IsAnObstacle(collisionObject))
+        {
+            collisionPropertyList.Add(OnCollisionBreak.BreaksOn.Obstacles);
+        }
+    }
+    private static void CheckProjectile(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList, bool isAlly)
+    {
+        IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
+        if (damageReceiver == null)
+        {
+            return;
+        }
+        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Projectile))
+        {
+            if (isAlly)
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyProjectiles);
+            }
+            else
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyProjectiles);
+            }
+        }
+        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Explosion))
+        {
+            if (isAlly)
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyExplosions);
+            }
+            else
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyExplosions);
+            }
+        }
+        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Rocket))
+        {
+            if (isAlly)
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyRockets);
+            }
+            else
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyRockets);
+            }
+        }
+    }
+    private static void CheckActors(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList, bool isAlly)
+    {
+        if (IsObjectAnEntity(collisionObject))
+        {
+            if (isAlly)
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyPart);
+            }
+            else
+            {
+                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyPart);
+            }
+        }
     }
 
     #region OnDestroy
@@ -373,12 +463,12 @@ public static class HelperMethods
     /// <returns></returns>
     public static bool CallAllTriggers(GameObject gameObject)
     {
-        IOnDestroyed[] onDeathTriggers = gameObject.GetComponentsInChildren<IOnDestroyed>();
+        TriggerOnDeath[] onDeathTriggers = gameObject.GetComponentsInChildren<TriggerOnDeath>();
         if (onDeathTriggers.Length != 0)
         {
-            foreach (IOnDestroyed item in onDeathTriggers)
+            foreach (TriggerOnDeath trigger in onDeathTriggers)
             {
-                item.DestroyObject();
+                trigger.DoDestroyAction();
             }
             return true;
         }

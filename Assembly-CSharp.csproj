@@ -80,16 +80,16 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Movement\EntityMover.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDestroyed.cs" />
     <Compile Include="Assets\Scripts\UI\CameraPositionController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ListUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShootOnDeath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

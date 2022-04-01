@@ -122,15 +122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  breakEnum: 06000000030000000200000004000000050000000100000000000000
+  sprites: []
+  breakEnum: 060000000700000002000000030000000400000005000000000000000100000008000000
   breakingSounds: []
   breakingSoundVolume: 1
   damage: 2
   hurtsAllies: 0
   isPiercing: 0
   damageTypes: 00000000
-  isPushing: 1
-  pushingPower: 1
   spriteList:
   - {fileID: 21300000, guid: 8f1c4fe59212bd34ca8036985f1ffaeb, type: 3}
   - {fileID: 21300000, guid: c560136ccd162704f82f7a9609a5fb69, type: 3}
@@ -149,17 +148,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c9974e248e4804ca183ecefbf18f72, type: 3}
+  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  gameObjectsToTurnIntoList: 05000000
-  shootsAtEnemies: 0
-  shotDirection: 0
-  spreadProjectilesEvenly: 0
-  spreadDegrees: 0
-  leftBulletSpread: 0
-  rightBulletSpread: 0
+  shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
+  targetEnemies: 0
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0

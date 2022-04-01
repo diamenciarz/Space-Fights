@@ -5,9 +5,9 @@ using UnityEngine;
 public class UnitPart : SpriteUpdater, IDamageReceiver
 {
     [Header("Startup")]
-    
+
     [Tooltip("Actions to call on death")]
-    [SerializeField] IOnDestroyed iOnDestroyed;
+    public TriggerOnDeath[] onDeathTriggers;
 
     [Header("Health")]
     [Tooltip("The amount of damage that this part can receive, before it is destroyed")]
@@ -51,7 +51,7 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
         myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         damageReceiver = GetComponentInParent<DamageReceiver>();
 
-        iOnDestroyed = GetComponent<IOnDestroyed>(); // On death trigger
+        onDeathTriggers = GetComponents<TriggerOnDeath>(); // On death trigger
 
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
@@ -96,7 +96,7 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     }
     public bool HandleDamage(IDamageDealer iDamageReceived)
     {
-        if (iDamageReceived == null || iDamageReceived.GetTeam() != team || IsImmune(iDamageReceived))
+        if (iDamageReceived == null || iDamageReceived.GetTeam() == team || IsImmune(iDamageReceived))
         {
             return false;
         }
@@ -154,6 +154,8 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     {
         if (!isDestroyed)
         {
+            barHealth = 0;
+            partHealth = 0;
             isDestroyed = true;
             StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
             DestroyObject();
@@ -167,10 +169,22 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     {
         DoDestroyActions();
         damageReceiver.RemovePart(this);
+        StartCoroutine(DestroyAtTheEndOfFrame());
     }
     private void DoDestroyActions()
     {
-        iOnDestroyed.DestroyObject();
+        foreach (TriggerOnDeath trigger in onDeathTriggers)
+        {
+            if (trigger != null)
+            {
+                trigger.DoDestroyAction();
+            }
+        }
+    }
+    private IEnumerator DestroyAtTheEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
     }
     #endregion
 
@@ -233,11 +247,20 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     {
         if (damage > 0 && !isDestroyed)
         {
+            Debug.Log("Received: " + damage);
             LowerHealthBy(damage);
             CheckHP();
             return true;
         }
         return false;
+    }
+    #endregion
+
+    #region JointBreak
+    public void OnJointBreak2D(Joint2D joint)
+    {
+        damageReceiver.RemovePart(this);
+        transform.SetParent(null);
     }
     #endregion
 }

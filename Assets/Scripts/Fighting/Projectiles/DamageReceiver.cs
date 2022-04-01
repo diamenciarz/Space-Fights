@@ -15,14 +15,14 @@ public class DamageReceiver : ListUpdater, IParent
 
     //Private variables
     private GameObject healthBarInstance;
-    private float health;
-    private float maxHealth;
-    private List<UnitPart> parts = new List<UnitPart>();
+    public float health;
+    public float maxHealth;
+    public List<UnitPart> parts = new List<UnitPart>();
     private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed
     /// </summary>
-    private float additionalDamage;
+    public float additionalDamage;
     protected ProgressionBarController healthBarScript;
 
     #region Startup
@@ -46,6 +46,7 @@ public class DamageReceiver : ListUpdater, IParent
     }
     private void FindParts()
     {
+        parts = new List<UnitPart>();
         UnitPart[] partsFound = GetComponentsInChildren<UnitPart>();
         if (partsFound.Length > 0)
         {
@@ -87,7 +88,6 @@ public class DamageReceiver : ListUpdater, IParent
     #region HP
     private float CountHP()
     {
-        FindParts();
         float hp = 0;
         foreach (UnitPart part in parts)
         {
@@ -177,7 +177,9 @@ public class DamageReceiver : ListUpdater, IParent
     #region Mutator methods
     public void UpdateHealth()
     {
-        health = CountHP() - additionalDamage;
+        float counted = CountHP();
+        Debug.Log("Counted HP:" + counted);
+        health = counted - additionalDamage;
         UpdateHealthBar();
         CheckHP();
     }
@@ -204,6 +206,20 @@ public class DamageReceiver : ListUpdater, IParent
         {
             createdBy = parent;
         }
+    }
+    #endregion
+
+    #region JoinBreak
+    public void OnJointBreak2D(Joint2D joint)
+    {
+        UnitPart jointPart = joint.gameObject.GetComponent<UnitPart>();
+        if (!jointPart)
+        {
+            return;
+        }
+
+
+        jointPart.GetBarHealth();
     }
     #endregion
 }

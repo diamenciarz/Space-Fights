@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 133220287009352267}
   - component: {fileID: 1594040755141738852}
   m_Layer: 9
-  m_Name: BombExplosion
+  m_Name: Grenade Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   breakEnum: 
   breakingSounds: []
   breakingSoundVolume: 1
-  damage: 4
+  damage: 8
   hurtsAllies: 1
   isPiercing: 0
   damageTypes: 01000000
@@ -149,6 +149,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
   - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
   startingSpeed: 0
-  timeToExpire: 0.2
-  expandRate: 6
+  timeToExpire: 0.3
+  expandRate: 10
   rotateDuringLifetime: 90

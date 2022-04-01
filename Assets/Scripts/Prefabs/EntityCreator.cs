@@ -135,11 +135,25 @@ public class EntityCreator : MonoBehaviour
     public static void Summon(SummonedEntityData data, EntityTypes entityType)
     {
         GameObject entityToSummon = EntityFactory.GetPrefab(entityType);
-        if (entityToSummon != null)
+        if (!IsEntityNull(entityToSummon, entityType))
         {
-            SummonEntity(data, entityToSummon);
+            return;
         }
+        SummonEntity(data, entityToSummon);
     }
+
+    #region Null Check
+    private static bool IsEntityNull(GameObject entityToSummon, EntityTypes entityType)
+    {
+        if (entityToSummon == null)
+        {
+            Debug.LogError("Entity type " + entityType.ToString() + "couldn't be found. The name of the prefab should match the name on the list!");
+            return true;
+        }
+        return false;
+    }
+    #endregion
+
     public static void SummonEntity(SummonedEntityData data, GameObject entityToSummon)
     {
         GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
