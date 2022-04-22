@@ -53,7 +53,7 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageReceiver.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
     <Compile Include="Assets\Scripts\Movement\IEntityMover.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionBreak.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\BreakOnCollision.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionDamage.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\ShipController.cs" />
     <Compile Include="Assets\Scripts\Other\HelperMethods.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageReceiver.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShootOnDeath.cs" />
     <Compile Include="Assets\Scripts\Movement\EntityMover.cs" />
     <Compile Include="Assets\Scripts\UI\CameraPositionController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ListUpdater.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShootOnDeath.cs" />
+    <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

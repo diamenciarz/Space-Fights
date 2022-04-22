@@ -326,6 +326,15 @@ public static class HelperMethods
         }
         return false;
     }
+    public static bool IsObjectAnEntityPart(GameObject collisionObject)
+    {
+        UnitPart unitPart = collisionObject.GetComponent<UnitPart>();
+        if (unitPart)
+        {
+            return true;
+        }
+        return false;
+    }
     public static bool IsAnObstacle(GameObject collisionObject)
     {
         if (collisionObject.tag == "Obstacle")
@@ -375,31 +384,34 @@ public static class HelperMethods
     /// <param name="collidingObject"></param>
     /// <param name="team">The team of the object that the collidingObject collides with</param>
     /// <returns></returns>
-    public static List<OnCollisionBreak.BreaksOn> GetCollisionProperties(GameObject collidingObject, int team)
+    public static List<BreakOnCollision.BreaksOn> GetCollisionProperties(GameObject collidingObject, int team)
     {
-        List<OnCollisionBreak.BreaksOn> collisionPropertyList = new List<OnCollisionBreak.BreaksOn>();
+        List<BreakOnCollision.BreaksOn> collisionPropertyList = new List<BreakOnCollision.BreaksOn>();
         CheckObstacle(collidingObject, collisionPropertyList);
 
-        int collidingObjectTeam = GetObjectTeam(collidingObject);
-        if (team == -2)
-        {
-            return collisionPropertyList;
-        }
-        bool isAlly = collidingObjectTeam == team;
-
+        bool isAlly = IsAlly(collidingObject, team);
         CheckProjectile(collidingObject, collisionPropertyList, isAlly);
         CheckActors(collidingObject, collisionPropertyList, isAlly);
 
         return collisionPropertyList;
     }
-    private static void CheckObstacle(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList)
+    private static bool IsAlly(GameObject collidingObject, int team)
+    {
+        int collidingObjectTeam = GetObjectTeam(collidingObject);
+        if (collidingObjectTeam == -1 || team == -1)
+        {
+            return false;
+        }
+        return collidingObjectTeam == team;
+    }
+    private static void CheckObstacle(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList)
     {
         if (HelperMethods.IsAnObstacle(collisionObject))
         {
-            collisionPropertyList.Add(OnCollisionBreak.BreaksOn.Obstacles);
+            collisionPropertyList.Add(BreakOnCollision.BreaksOn.Obstacles);
         }
     }
-    private static void CheckProjectile(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList, bool isAlly)
+    private static void CheckProjectile(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList, bool isAlly)
     {
         IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
         if (damageReceiver == null)
@@ -410,48 +422,50 @@ public static class HelperMethods
         {
             if (isAlly)
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyProjectiles);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.AllyProjectiles);
             }
             else
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyProjectiles);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyProjectiles);
             }
         }
         if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Explosion))
         {
             if (isAlly)
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyExplosions);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.AllyExplosions);
             }
             else
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyExplosions);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyExplosions);
             }
         }
         if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Rocket))
         {
             if (isAlly)
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyRockets);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.AllyRockets);
             }
             else
             {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyRockets);
+                collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyRockets);
             }
         }
     }
-    private static void CheckActors(GameObject collisionObject, List<OnCollisionBreak.BreaksOn> collisionPropertyList, bool isAlly)
+    private static void CheckActors(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList, bool isAlly)
     {
-        if (IsObjectAnEntity(collisionObject))
+        if (!(IsObjectAnEntity(collisionObject) || IsObjectAnEntityPart(collisionObject)))
         {
-            if (isAlly)
-            {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.AllyPart);
-            }
-            else
-            {
-                collisionPropertyList.Add(OnCollisionBreak.BreaksOn.EnemyPart);
-            }
+            return;
+        }
+
+        if (isAlly)
+        {
+            collisionPropertyList.Add(BreakOnCollision.BreaksOn.AllyParts);
+        }
+        else
+        {
+            collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyParts);
         }
     }
 
@@ -461,21 +475,19 @@ public static class HelperMethods
     /// </summary>
     /// <param name="gameObject"></param>
     /// <returns></returns>
-    public static bool CallAllTriggers(GameObject gameObject)
+    public static bool DoDestroyActions(GameObject gameObject)
     {
         TriggerOnDeath[] onDeathTriggers = gameObject.GetComponentsInChildren<TriggerOnDeath>();
-        if (onDeathTriggers.Length != 0)
-        {
-            foreach (TriggerOnDeath trigger in onDeathTriggers)
-            {
-                trigger.DoDestroyAction();
-            }
-            return true;
-        }
-        else
+        if (onDeathTriggers.Length == 0)
         {
             return false;
         }
+
+        foreach (TriggerOnDeath trigger in onDeathTriggers)
+        {
+            trigger.DoDestroyAction();
+        }
+        return true;
     }
     #endregion
 

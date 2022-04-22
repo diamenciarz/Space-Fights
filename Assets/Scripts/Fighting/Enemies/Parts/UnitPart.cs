@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitPart : SpriteUpdater, IDamageReceiver
+public class UnitPart : SpriteUpdater, IDamageable
 {
     [Header("Startup")]
 
@@ -51,7 +51,7 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
         myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         damageReceiver = GetComponentInParent<DamageReceiver>();
 
-        onDeathTriggers = GetComponents<TriggerOnDeath>(); // On death trigger
+        onDeathTriggers = GetComponentsInChildren<TriggerOnDeath>(); // On death trigger
 
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
@@ -63,7 +63,6 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     private void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision);
-        HandleDamage(collision.gameObject.GetComponent<IDamageDealer>());
     }
     private void HandleCollision(Collision2D collision)
     {
@@ -89,21 +88,47 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
         }
         return 0;
     }
+    #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        HandleDamage(collision.gameObject.GetComponent<IDamageDealer>());
-    }
+    #region HP
+    /// <summary>
+    /// Deals damage if applicable and 
+    /// </summary>
+    /// <param name="iDamageReceived"></param>
+    /// <returns></returns>
     public bool HandleDamage(IDamageDealer iDamageReceived)
     {
         if (iDamageReceived == null || iDamageReceived.GetTeam() == team || IsImmune(iDamageReceived))
         {
             return false;
         }
-        if (DealDamage(iDamageReceived.GetDamage(gameObject)))
+        if (DealDamage(iDamageReceived.GetDamage()))
         {
             NotifyAboutDamage(iDamageReceived);
             return true;
+        }
+        return false;
+    }
+    #region Helper methods
+    private bool IsImmune(IDamageDealer iDamageReceived)
+    {
+        foreach (var damageType in iDamageReceived.GetDamageTypes())
+        {
+            if (!IsImmuneToDamageType(damageType))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private bool IsImmuneToDamageType(OnCollisionDamage.TypeOfDamage damageType)
+    {
+        foreach (var immunity in immuneTo)
+        {
+            if (damageType == immunity)
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -119,25 +144,13 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
             call.HitBy(iDamage.CreatedBy());
         }
     }
-    private bool IsImmune(IDamageDealer iDamageReceived)
-    {
-        foreach (var damageType in immuneTo)
-        {
-            if (iDamageReceived.DamageTypeContains(damageType))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    #endregion
-
-    #region HP
     private void LowerHealthBy(int damage)
     {
         partHealth -= damage;
         barHealth -= (float)damage * barToPartRatio;
     }
+    #endregion
+
     private void CheckHP()
     {
         damageReceiver.UpdateHealth();
@@ -167,19 +180,9 @@ public class UnitPart : SpriteUpdater, IDamageReceiver
     }
     private void DestroyObject()
     {
-        DoDestroyActions();
+        HelperMethods.DoDestroyActions(gameObject);
         damageReceiver.RemovePart(this);
         StartCoroutine(DestroyAtTheEndOfFrame());
-    }
-    private void DoDestroyActions()
-    {
-        foreach (TriggerOnDeath trigger in onDeathTriggers)
-        {
-            if (trigger != null)
-            {
-                trigger.DoDestroyAction();
-            }
-        }
     }
     private IEnumerator DestroyAtTheEndOfFrame()
     {

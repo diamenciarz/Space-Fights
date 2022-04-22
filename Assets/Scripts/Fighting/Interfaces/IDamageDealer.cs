@@ -9,7 +9,7 @@ public interface IDamageDealer
     /// </summary>
     /// <param name="damageReceiver"></param>
     /// <returns></returns>
-    public abstract int GetDamage(GameObject damageReceiver);
+    public abstract int GetDamage();
     public abstract int GetTeam();
     public abstract List<OnCollisionDamage.TypeOfDamage> GetDamageTypes();
     public abstract bool DamageTypeContains(OnCollisionDamage.TypeOfDamage damageType);

@@ -5,14 +5,15 @@ public class EntityCreator : MonoBehaviour
     public enum EntityTypes
     {
         Nothing,
-        SplittingBullet,
+        Splitting_Bullet,
         Laser,
         Rocket,
+        Rocket_Explosion,
         Bomb,
-        BombExplosion,
+        Bomb_Explosion,
         Grenade,
-        GrenadeExplosion,
-        BouncyLaser,
+        Grenade_Explosion,
+        Bouncy_Laser,
         Ship
     }
     private void Awake()
@@ -135,7 +136,7 @@ public class EntityCreator : MonoBehaviour
     public static void Summon(SummonedEntityData data, EntityTypes entityType)
     {
         GameObject entityToSummon = EntityFactory.GetPrefab(entityType);
-        if (!IsEntityNull(entityToSummon, entityType))
+        if (IsEntityNull(entityToSummon, entityType))
         {
             return;
         }
@@ -145,9 +146,14 @@ public class EntityCreator : MonoBehaviour
     #region Null Check
     private static bool IsEntityNull(GameObject entityToSummon, EntityTypes entityType)
     {
+        if (entityType == EntityTypes.Nothing)
+        {
+            return false;
+            //This is supposed to be a placeholder that skips one summoning action without returning an error
+        }
         if (entityToSummon == null)
         {
-            Debug.LogError("Entity type " + entityType.ToString() + "couldn't be found. The name of the prefab should match the name on the list!");
+            Debug.LogError("Entity type " + entityType.ToString() + " couldn't be found. The name of the prefab should match the name on the list!");
             return true;
         }
         return false;
@@ -235,6 +241,7 @@ public class SummonedEntityData
     public Quaternion summonRotation;
     public int team;
     public GameObject createdBy;
+    [Tooltip("If null, will shoot forward")]
     public GameObject target;
 
 }

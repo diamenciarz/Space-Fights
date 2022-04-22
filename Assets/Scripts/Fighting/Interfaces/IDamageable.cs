@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageReceiver
+public interface IDamageable
 {
     public abstract GameObject GetCreatedBy();
     public abstract int GetTeam();

@@ -11,12 +11,10 @@ GameObject:
   - component: {fileID: 7700761372939823443}
   - component: {fileID: 7700761372939823442}
   - component: {fileID: 7700761372939823440}
-  - component: {fileID: 3278521563504507919}
-  - component: {fileID: 1082129703195348843}
-  - component: {fileID: -553088433232255719}
-  - component: {fileID: 5409658927449349606}
-  m_Layer: 0
-  m_Name: Grenade
+  - component: {fileID: 133220287009352267}
+  - component: {fileID: 1594040755141738852}
+  m_Layer: 9
+  m_Name: Bomb_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7700761372939823446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 9096f092cd033fd4ba2dec92cc6cf60d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.56, y: 0.56}
+  m_Size: {x: 0.13, y: 0.37}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,78 +94,20 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7700761372939823446}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: e782e5b19ac414042a2688cf19680076, type: 2}
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3278521563504507919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: -1
-  sprites: []
-  breakEnum: 02000000030000000500000004000000
-  breakingSounds: []
-  breakingSoundVolume: 1
-  damage: 0
-  hurtsAllies: 0
-  isPiercing: 0
-  damageTypes: 00000000
-  spriteList:
-  - {fileID: 21300000, guid: 1a7b65179356e684abbb8fb0edb8c358, type: 3}
-  - {fileID: 21300000, guid: 3a2db6f9bd864da42a74a6f026b5b5af, type: 3}
-  startingSpeed: 8
-  destroyDelay: 3
-  destroyDistance: -1
-  minAngleToReflect: 0
-  maxReflectionNumber: 3
-  timeAddedUponReflection: 0
---- !u!114 &1082129703195348843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: -1
-  shot: {fileID: 11400000, guid: d43f87f347076604ea1f1f0cf8ce7518, type: 2}
-  targetEnemies: 0
---- !u!114 &-553088433232255719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 00000000
---- !u!58 &5409658927449349606
+--- !u!58 &133220287009352267
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,9 +117,39 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0012454987, y: 0}
+  m_Offset: {x: -0.0004696923, y: -0.0048275925}
   serializedVersion: 2
-  m_Radius: 0.28093147
+  m_Radius: 0.15996362
+--- !u!114 &1594040755141738852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebd032f4f5b13540ae023ed67610dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  sprites:
+  - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
+  - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1
+  damage: 4
+  hurtsAllies: 1
+  isPiercing: 0
+  damageTypes: 01000000
+  spriteList:
+  - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
+  - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
+  startingSpeed: 0
+  timeToExpire: 0.2
+  expandRate: 6
+  rotateDuringLifetime: 90

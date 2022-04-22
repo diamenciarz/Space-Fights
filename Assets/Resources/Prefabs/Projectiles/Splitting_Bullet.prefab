@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: -1566152343811300086}
   - component: {fileID: 5411452294418001787}
   m_Layer: 9
-  m_Name: Splitting Bullet
+  m_Name: Splitting_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,11 +195,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c9974e248e4804ca183ecefbf18f72, type: 3}
+  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  shot: {fileID: 0}
+  shot: {fileID: 11400000, guid: 1b8859275a9420b4c9d2a045f141c0af, type: 2}
   targetEnemies: 0
 --- !u!114 &5411452294418001787
 MonoBehaviour:

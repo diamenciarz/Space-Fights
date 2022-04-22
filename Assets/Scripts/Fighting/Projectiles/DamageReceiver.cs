@@ -164,11 +164,7 @@ public class DamageReceiver : ListUpdater, IParent
     {
         return health;
     }
-    public GameObject GetParent()
-    {
-        return gameObject;
-    }
-    private GameObject GetCreatedBy()
+    public GameObject GetCreatedBy()
     {
         return createdBy;
     }

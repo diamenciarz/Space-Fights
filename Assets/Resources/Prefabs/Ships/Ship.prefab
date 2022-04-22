@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7182946479378704666}
   - component: {fileID: 4646124888540696105}
   m_Layer: 0
-  m_Name: RightSide
+  m_Name: RightArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
   - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
+  onDeathTriggers: []
   partHealth: 50
   barHealth: 15
   destroyDamage: 10
@@ -296,7 +297,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 80
   m_Sprite: {fileID: 21300000, guid: eba91cdefaaf6214a8bb01dd4240c789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -384,7 +385,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 90
   m_Sprite: {fileID: 21300000, guid: b3eaa05984763dd4da20733ec5cf511c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -410,6 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 50
   barHealth: 50
   destroyDamage: 5000
@@ -462,7 +464,7 @@ GameObject:
   - component: {fileID: 5658236472919251325}
   - component: {fileID: 3862922706345355818}
   m_Layer: 0
-  m_Name: LeftSide
+  m_Name: LeftArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,6 +552,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
   - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
+  onDeathTriggers: []
   partHealth: 50
   barHealth: 15
   destroyDamage: 10
@@ -664,7 +667,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 80
   m_Sprite: {fileID: 21300000, guid: eba91cdefaaf6214a8bb01dd4240c789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -691,7 +694,7 @@ GameObject:
   - component: {fileID: 6441913592109276640}
   - component: {fileID: 150306887083321031}
   m_Layer: 0
-  m_Name: spaceParts_009 (1)
+  m_Name: RightWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,6 +852,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
   - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
+  onDeathTriggers: []
   partHealth: 40
   barHealth: 10
   destroyDamage: 10
@@ -874,7 +878,7 @@ GameObject:
   - component: {fileID: 6441913592164531684}
   - component: {fileID: 499978558431784088}
   m_Layer: 0
-  m_Name: spaceParts_041
+  m_Name: BackCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1028,6 +1032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 40
   barHealth: 15
   destroyDamage: 10
@@ -1210,6 +1215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 50
   barHealth: 20
   destroyDamage: 20
@@ -1235,7 +1241,7 @@ GameObject:
   - component: {fileID: 6441913592454232451}
   - component: {fileID: 5350038369014034529}
   m_Layer: 0
-  m_Name: spaceParts_019
+  m_Name: Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1394,6 +1400,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 988254853a746f949a1d4082d7f16ac1, type: 3}
   - {fileID: 21300000, guid: 9d27531a9da0ed742adc10d992343a92, type: 3}
+  onDeathTriggers: []
   partHealth: 100
   barHealth: 20
   destroyDamage: 20
@@ -1727,6 +1734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 25
   barHealth: 10
   destroyDamage: 10
@@ -1752,7 +1760,7 @@ GameObject:
   - component: {fileID: 6441913592912191838}
   - component: {fileID: 2083487983885887712}
   m_Layer: 0
-  m_Name: engine2
+  m_Name: LeftEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1907,6 +1915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 25
   barHealth: 10
   destroyDamage: 20
@@ -1932,7 +1941,7 @@ GameObject:
   - component: {fileID: 6441913593705025614}
   - component: {fileID: 28915839474252319}
   m_Layer: 0
-  m_Name: spaceParts_009
+  m_Name: LeftWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,6 +2099,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
   - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
+  onDeathTriggers: []
   partHealth: 40
   barHealth: 10
   destroyDamage: 10
@@ -2344,6 +2354,7 @@ MonoBehaviour:
   team: 0
   sprites:
   - {fileID: 21300000, guid: d222450d090a8e4458784de63169f065, type: 3}
+  onDeathTriggers: []
   partHealth: 50
   barHealth: 20
   destroyDamage: 20
@@ -2595,6 +2606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 25
   barHealth: 10
   destroyDamage: 10
@@ -2620,7 +2632,7 @@ GameObject:
   - component: {fileID: 6441913594190072068}
   - component: {fileID: 2265164786527116680}
   m_Layer: 0
-  m_Name: engine2 (1)
+  m_Name: RightEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2775,6 +2787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
+  onDeathTriggers: []
   partHealth: 25
   barHealth: 10
   destroyDamage: 20
@@ -2810,7 +2823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7893371383631579498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.2, z: 0}
+  m_LocalPosition: {x: -0, y: -0.2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2522728260603260505}

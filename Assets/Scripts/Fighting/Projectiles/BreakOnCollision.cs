@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionBreak : SpriteUpdater
+public class BreakOnCollision : SpriteUpdater
 {
     [Header("Collision Settings")]
     public List<BreaksOn> breakEnum = new List<BreaksOn>();
@@ -10,17 +10,19 @@ public class OnCollisionBreak : SpriteUpdater
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
-    [SerializeField] const float INVULNERABILITY_TIME = 0.25f;
 
+    protected const float INVULNERABILITY_TIME = 0.25f;
     protected GameObject objectThatCreatedThisProjectile;
     protected bool isDestroyed = false;
     protected float creationTime;
 
-
+    /// <summary>
+    /// This entity should break if it collides with one of these types of objects
+    /// </summary>
     public enum BreaksOn
     {
-        AllyPart,
-        EnemyPart,
+        AllyParts,
+        EnemyParts,
         AllyProjectiles,
         EnemyProjectiles,
         AllyExplosions,
@@ -61,7 +63,7 @@ public class OnCollisionBreak : SpriteUpdater
 
         if (IsInvulnerableTo(collisionObject))
         {
-            collisionPropertyList.Remove(BreaksOn.AllyPart);
+            collisionPropertyList.Remove(BreaksOn.AllyParts);
         }
         return DoPropertiesOverlap(collisionPropertyList);
     }
@@ -106,7 +108,6 @@ public class OnCollisionBreak : SpriteUpdater
     {
         if (!isDestroyed)
         {
-            isDestroyed = true;
             StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
 
             DestroyObject();
@@ -121,10 +122,12 @@ public class OnCollisionBreak : SpriteUpdater
         }
         return null;
     }
-    private void DestroyObject()
+    protected void DestroyObject()
     {
-        if (!HelperMethods.CallAllTriggers(gameObject))
+        if (!isDestroyed)
         {
+            isDestroyed = true;
+            HelperMethods.DoDestroyActions(gameObject);
             StartCoroutine(DestroyAtTheEndOfFrame());
         }
     }

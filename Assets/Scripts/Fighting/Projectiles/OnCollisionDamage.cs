@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
+public class OnCollisionDamage : BreakOnCollision, IDamageDealer
 {
     [Header("Basic Stats")]
     [SerializeField] int damage;
@@ -11,6 +11,8 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
 
     [Header("Damage type")]
     public List<TypeOfDamage> damageTypes = new List<TypeOfDamage>();
+
+    public List<GameObject> dealtDamageTo = new List<GameObject>();
 
     public enum TypeOfDamage
     {
@@ -47,14 +49,14 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
     {
         if (CanDealDamage(collisionObject))
         {
-            IDamageReceiver damageReceiver = collisionObject.GetComponent<IDamageReceiver>();
-            DealDamageToObject(damageReceiver);
+            DealDamageToObject(collisionObject);
         }
     }
     private bool CanDealDamage(GameObject collisionObject)
     {
-        if (isDestroyed)
+        if (dealtDamageTo.Contains(collisionObject))
         {
+            Debug.Log("Dealt damage already!");
             return false;
         }
         bool isInvulnerable = IsInvulnerableTo(collisionObject);
@@ -62,7 +64,7 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
         {
             return false;
         }
-        IDamageReceiver iDamageReceiver = collisionObject.GetComponent<IDamageReceiver>();
+        IDamageable iDamageReceiver = collisionObject.GetComponent<IDamageable>();
         bool objectCanReceiveDamage = iDamageReceiver != null;
         if (!objectCanReceiveDamage)
         {
@@ -77,18 +79,21 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
     }
 
     #region Deal damage
-    private void DealDamageToObject(IDamageReceiver damageReceiver)
+    private void DealDamageToObject(GameObject collisionObject)
     {
-        if (damageReceiver.HandleDamage(this))
+        dealtDamageTo.Add(collisionObject);
+        IDamageable iDamageReceiver = collisionObject.GetComponent<IDamageable>();
+        if (iDamageReceiver.HandleDamage(this))
         {
-            HandlePiercing(damageReceiver);
+            HandlePiercing(iDamageReceiver);
         }
     }
-    private void HandlePiercing(IDamageReceiver damageReceiver)
+    private void HandlePiercing(IDamageable iDamageReceiver)
     {
         if (isPiercing)
         {
-            LowerMyDamage(damageReceiver.GetHealth());
+            //EmitPiercingParticle();
+            LowerMyDamage(iDamageReceiver.GetHealth());
         }
     }
     private void LowerMyDamage(int change)
@@ -104,28 +109,13 @@ public class OnCollisionDamage : OnCollisionBreak, IDamageDealer
             DestroyObject();
         }
     }
-    protected void DestroyObject()
-    {
-        isDestroyed = true;
-        HelperMethods.CallAllTriggers(gameObject);
-        StartCoroutine(DestroyAtTheEndOfFrame());
-    }
-    private IEnumerator DestroyAtTheEndOfFrame()
-    {
-        yield return new WaitForEndOfFrame();
-        Destroy(gameObject);
-    }
     #endregion
     #endregion
 
     #region Accessor methods
-    public int GetDamage(GameObject damageReceiver)
+    public int GetDamage()
     {
-        if (CanDealDamage(damageReceiver))
-        {
-            return currentDamageLeft;
-        }
-        return 0;
+        return currentDamageLeft;
     }
     public List<TypeOfDamage> GetDamageTypes()
     {

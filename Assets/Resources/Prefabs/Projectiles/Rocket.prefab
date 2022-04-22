@@ -216,11 +216,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c9974e248e4804ca183ecefbf18f72, type: 3}
+  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  shot: {fileID: 0}
+  shot: {fileID: 11400000, guid: 8499d9b2b736f714098049b4d609c21d, type: 2}
   targetEnemies: 0
 --- !u!114 &-776891561322186458
 MonoBehaviour:

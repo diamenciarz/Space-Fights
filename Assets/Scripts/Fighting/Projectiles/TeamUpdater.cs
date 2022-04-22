@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class TeamUpdater : MonoBehaviour
 {
+    /// <summary>
+    /// If equal to -1 - this object is an enemy to everyone
+    /// </summary>
     [HideInInspector]
     public int team = -1;
     protected GameObject createdBy;
@@ -20,7 +23,7 @@ public class TeamUpdater : MonoBehaviour
         {
             return;
         }
-        SetCreatedBy(parent.GetParent());
+        SetCreatedBy(parent.GetCreatedBy());
     }
     #endregion
 
