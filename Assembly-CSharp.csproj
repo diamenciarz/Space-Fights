@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
+    <Compile Include="Assets\Scripts\Effects\DoodadFlicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
