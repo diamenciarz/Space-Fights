@@ -10,11 +10,18 @@ public class CameraInformation : MonoBehaviour
     private static float yMin;
     private static float yMax;
 
+    /// <summary>
+    /// This is given in world units. Y means height, X means width
+    /// </summary>
+    public static Vector2 cameraSize;
+
     Camera mainCamera;
 
     private void Start()
     {
         SetMainCamera(Camera.main);
+        cameraSize.y = 2f * mainCamera.orthographicSize;
+        cameraSize.x = cameraSize.y * mainCamera.aspect;
     }
 
     void Update()
