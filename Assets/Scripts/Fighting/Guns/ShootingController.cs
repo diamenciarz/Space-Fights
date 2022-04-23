@@ -19,6 +19,8 @@ public class ShootingController : TeamUpdater
     bool isControlledByMouseCursor;
     [SerializeField] bool reloadingBarOn = true;
 
+    private bool isDetached = false;
+
     //The gun tries to shoot, if this is set to true
     protected bool shoot;
     //Private variables
@@ -63,16 +65,26 @@ public class ShootingController : TeamUpdater
     }
     private void TryShoot()
     {
-        if (shoot)
+        if (!shoot)
         {
-            if ((shotIndex <= shotAmount - 1) && canShoot)
-            {
-                DoOneShot(shotIndex);
-                canShoot = false;
-                StartCoroutine(WaitForNextShotCooldown(shotIndex));
-                shotIndex++;
-                UpdateTimeBetweenEachShot();
-            }
+            return;
+        }
+        if (!canShoot)
+        {
+            return;
+        }
+        if (isDetached)
+        {
+            return;
+        }
+        bool hasAmmo = shotIndex <= shotAmount - 1;
+        if (hasAmmo)
+        {
+            DoOneShot(shotIndex);
+            canShoot = false;
+            StartCoroutine(WaitForNextShotCooldown(shotIndex));
+            shotIndex++;
+            UpdateTimeBetweenEachShot();
         }
     }
 
@@ -293,6 +305,15 @@ public class ShootingController : TeamUpdater
         isControlledByMouseCursor = isTrue;
         UpdateUIState();
     }
+    #endregion
+
+    #region Mutator methods
+        
+    public void setIsDetached(bool set)
+    {
+        isDetached = set;
+    }
+
     #endregion
 
 }

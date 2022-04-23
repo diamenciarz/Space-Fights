@@ -6,13 +6,6 @@ public class ObjectMissingIcon : MonoBehaviour
 {
     public GameObject objectToFollow;
 
-    private float xMin;
-    private float xMax;
-    private float yMin;
-    private float yMax;
-
-    [Tooltip("Delta position from the screen edge, where the object should be placed")]
-    private float positionOffset = 0.3f;
     [Tooltip("Fraction of the full size")]
     [SerializeField] [Range(0.1f, 1)] float minimumSpriteSize = 0.4f;
     [SerializeField]
@@ -22,7 +15,7 @@ public class ObjectMissingIcon : MonoBehaviour
     [Tooltip("The full size of the sprite. This will be used in the transform of the game object")]
     [SerializeField] float spriteScale = 1;
     [Tooltip("Delta position from the screen edge to regard the icon as outside the screen space")]
-    private float screenEdgeOffset = 0.5f;
+    [SerializeField] float screenEdgeOffset = 0.5f;
     [SerializeField] Color allyColor;
     [SerializeField] Color enemyColor;
 
@@ -30,11 +23,11 @@ public class ObjectMissingIcon : MonoBehaviour
     //Private variables
     Camera mainCamera;
     SpriteRenderer[] mySpriteRenderers;
+    private bool isVisible;
 
     void Start()
     {
         SetupStartingVariables();
-        RecountScreenEdges();
     }
 
     #region Initialization
@@ -45,48 +38,30 @@ public class ObjectMissingIcon : MonoBehaviour
     }
     public void TryFollowThisObject(GameObject followThis)
     {
-        if (followThis != null)
-        {
-            objectToFollow = followThis;
-            UpdateSpriteColor(followThis);
-        }
-        else
+        if (followThis == null)
         {
             Destroy(gameObject);
         }
+
+        objectToFollow = followThis;
+        UpdateSpriteColor(followThis);
     }
     private void UpdateSpriteColor(GameObject objectToFollow)
     {
-        DamageReceiver damageReceiver;
-        damageReceiver = objectToFollow.GetComponent<DamageReceiver>();
-        if (damageReceiver != null)
+        ITeamable teamable = objectToFollow.GetComponent<ITeamable>();
+        if (teamable == null)
         {
-            if (damageReceiver.GetTeam() == 1)
-            {
-                GetComponent<SpriteRenderer>().color = allyColor;
-                return;
-            }
-            if (damageReceiver.GetTeam() == 2)
-            {
-                GetComponent<SpriteRenderer>().color = enemyColor;
-                return;
-            }
+            return;
         }
-
-        BasicProjectileController basicProjectileController;
-        basicProjectileController = objectToFollow.GetComponent<BasicProjectileController>();
-        if (basicProjectileController != null)
+        if (teamable.GetTeam() == 1)
         {
-            if (basicProjectileController.GetTeam() == 1)
-            {
-                GetComponent<SpriteRenderer>().color = allyColor;
-                return;
-            }
-            if (basicProjectileController.GetTeam() == 2)
-            {
-                GetComponent<SpriteRenderer>().color = enemyColor;
-                return;
-            }
+            GetComponent<SpriteRenderer>().color = allyColor;
+            return;
+        }
+        if (teamable.GetTeam() == 2)
+        {
+            GetComponent<SpriteRenderer>().color = enemyColor;
+            return;
         }
     }
     #endregion
@@ -94,25 +69,28 @@ public class ObjectMissingIcon : MonoBehaviour
     #region Update
     void Update()
     {
-        if (objectToFollow != null)
-        {
-            RecountScreenEdges(); // this is called by every icon instance, even thouth we could only call it once per frame. Maybe that could be dont later?
-            UpdateVisibility();
-            if (IsVisible())
-            {
-                UpdateTransform();
-            }
-        }
-        else
+        CheckDestroy();
+
+        UpdateVisibility();
+        UpdateTransform();
+    }
+    private void CheckDestroy()
+    {
+        if (objectToFollow == null)
         {
             Destroy(gameObject);
         }
     }
+
+    #region Transform
     private void UpdateTransform()
     {
-        UpdateRotation();
-        UpdatePosition();
-        UpdateScale();
+        if (isVisible)
+        {
+            UpdateRotation();
+            UpdatePosition();
+            UpdateScale();
+        }
     }
     private void UpdateRotation()
     {
@@ -120,16 +98,7 @@ public class ObjectMissingIcon : MonoBehaviour
     }
     private void UpdatePosition()
     {
-        transform.position = CountNewPosition();
-    }
-    private Vector2 CountNewPosition()
-    {
-        float newXPosition = objectToFollow.transform.position.x;
-        float newYPosition = objectToFollow.transform.position.y;
-
-        newXPosition = Mathf.Clamp(newXPosition, xMin - positionOffset, xMax + positionOffset);
-        newYPosition = Mathf.Clamp(newYPosition, yMin - positionOffset, yMax + positionOffset);
-        return new Vector2(newXPosition, newYPosition);
+        transform.position = CameraInformation.ClampPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset);
     }
     private void UpdateScale()
     {
@@ -140,57 +109,41 @@ public class ObjectMissingIcon : MonoBehaviour
 
         transform.localScale = newScaleVector3;
     }
+    #endregion
+
+    #region Visibility
     private void UpdateVisibility()
     {
-        bool isFollowedObjectOutsideCameraView = objectToFollow.transform.position.x > xMax + positionOffset
-                || objectToFollow.transform.position.x < xMin - positionOffset
-                || objectToFollow.transform.position.y > yMax + positionOffset
-                || objectToFollow.transform.position.y < yMin - positionOffset;
-        if (isFollowedObjectOutsideCameraView)
+        if (!CameraInformation.IsPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset))
         {
-            //If the followed object is further from the screen edge, than scaleFactor (in map units), the icon will disappear
-            float distanceToFollowedObject = (transform.position - objectToFollow.transform.position).magnitude;
-            bool isObjectTooFar = (distanceToFollowedObject / scaleFactor > 1f);
-            if (isObjectTooFar)
-            {
-                SetVisibility(false);
-            }
-            else
-            {
-                SetVisibility(true);
-            }
+            SetSpriteVisibility(false);
+        }
+        //If the followed object is further from the screen edge, than scaleFactor (in map units), the icon will disappear
+        float distanceToFollowedObject = (transform.position - objectToFollow.transform.position).magnitude;
+        bool objectIsTooFar = (distanceToFollowedObject / scaleFactor > 1f);
+        if (objectIsTooFar)
+        {
+            SetSpriteVisibility(false);
         }
         else
         {
-            SetVisibility(false);
+            SetSpriteVisibility(true);
         }
     }
-    #endregion
 
-    private void SetVisibility(bool isVisible)
+    private void SetSpriteVisibility(bool setVisibility)
     {
+        if (isVisible == setVisibility)
+        {
+            return;
+        }
+
+        isVisible = setVisibility;
         foreach (SpriteRenderer sprite in mySpriteRenderers)
         {
             sprite.enabled = isVisible;
         }
     }
-    private bool IsVisible()
-    {
-        return mySpriteRenderers[0].enabled;
-    }
-    /// <summary>
-    /// Update the screen edges to 
-    /// </summary>
-    private void RecountScreenEdges()
-    {
-        xMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + screenEdgeOffset;
-        xMax = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - screenEdgeOffset;
-        yMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + screenEdgeOffset;
-        yMax = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - screenEdgeOffset;
-    }
-
-    #region Accessor/mutator methods
-
     #endregion
-
+    #endregion
 }

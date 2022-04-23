@@ -8,14 +8,19 @@ public class ParallaxScroller : MonoBehaviour
 
     const float MAX_DISTANCE = 1000;
 
-    public Camera mainCamera;
+    private Camera mainCamera;
+    private Vector2 startingPosition;
+    private bool isOnScreen;
+
     private void Start()
     {
         mainCamera = Camera.main;
+        startingPosition = transform.position;
     }
 
     void Update()
     {
+        OnScreenCheck();
         CounteractCameraMovement();
     }
 
@@ -25,7 +30,7 @@ public class ParallaxScroller : MonoBehaviour
 
         Vector2 offset = countParallaxOffset(cameraPosition);
 
-        transform.position = offset;
+        transform.position = startingPosition + offset;
     }
 
     private Vector2 countParallaxOffset(Vector2 cameraPosition)
@@ -33,5 +38,10 @@ public class ParallaxScroller : MonoBehaviour
         float parallaxFactor = (MAX_DISTANCE - distanceFromCamera) / MAX_DISTANCE;
 
         return new Vector2(cameraPosition.x * parallaxFactor, cameraPosition.y * parallaxFactor);
+    }
+
+    private void OnScreenCheck()
+    {
+        //mainCamera.
     }
 }

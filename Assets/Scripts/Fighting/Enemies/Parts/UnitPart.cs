@@ -80,11 +80,12 @@ public class UnitPart : SpriteUpdater, IDamageable
         Vector2 deltaVelocity = colliderRB2D.velocity - myRigidbody2D.velocity;
         float speed = deltaVelocity.magnitude;
         float mass = colliderRB2D.mass;
-        float damage = speed * speed * mass * collisionDamageModifier;
+        float collisionDamage = speed * speed * mass * collisionDamageModifier;
 
-        if (damage > minKineticEnergy)
+        if (collisionDamage > minKineticEnergy)
         {
-            return (int)damage;
+            Debug.Log("Collision damage: " + collisionDamage + " received by " + gameObject.name);
+            return (int)collisionDamage;
         }
         return 0;
     }
@@ -250,7 +251,6 @@ public class UnitPart : SpriteUpdater, IDamageable
     {
         if (damage > 0 && !isDestroyed)
         {
-            Debug.Log("Received: " + damage);
             LowerHealthBy(damage);
             CheckHP();
             return true;
@@ -264,6 +264,16 @@ public class UnitPart : SpriteUpdater, IDamageable
     {
         damageReceiver.RemovePart(this);
         transform.SetParent(null);
+
+        turnOffGuns();
+    }
+    private void turnOffGuns()
+    {
+        ShootingController shootingController = GetComponent<ShootingController>();
+        if (shootingController)
+        {
+            shootingController.setIsDetached(true);
+        }
     }
     #endregion
 }

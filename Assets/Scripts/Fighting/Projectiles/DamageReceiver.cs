@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageReceiver : ListUpdater, IParent
+public class DamageReceiver : ListUpdater, IParent, ITeamable
 {
     [Header("Basic Stats")]
     [SerializeField] int team;

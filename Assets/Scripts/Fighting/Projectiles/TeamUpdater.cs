@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TeamUpdater : MonoBehaviour
+public class TeamUpdater : MonoBehaviour, ITeamable
 {
     /// <summary>
     /// If equal to -1 - this object is an enemy to everyone
