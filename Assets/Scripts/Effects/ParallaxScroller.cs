@@ -26,6 +26,10 @@ public class ParallaxScroller : MonoBehaviour
     private void OnScreenCheck()
     {
         isOnScreen = CameraInformation.IsPositionOnScreen(transform.position);
+
+        //float distanceToFollowedObject = (transform.position - objectToFollow.transform.position).magnitude;
+        //bool objectIsTooFar = (distanceToFollowedObject / scaleFactor > 1f);
+        //if (objectIsTooFar)
     }
     private void CounteractCameraMovement()
     {

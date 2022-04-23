@@ -114,8 +114,7 @@ public class ProgressionBarController : MonoBehaviour
         float colorAlfa = image.color.a;
         if (colorAlfa != targetAlfa)
         {
-            Color newColor = currentColor;
-            newColor.a = CountNewAlfa(image, targetAlfa);
+            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, CountNewAlfa(image, targetAlfa));
             SetColor(image, newColor);
         }
     }
@@ -170,14 +169,13 @@ public class ProgressionBarController : MonoBehaviour
             Color newColor = barColorGradient.Evaluate(ratio);
             newColor.a = originalAlfa;
             healthBarImage.color = newColor;
-
-            currentColor = healthBarImage.color;
+            currentColor = newColor;
         }
     }
     #endregion
 
     #region Mutator methods
-    public void SetHideDelay (float delay)
+    public void SetHideDelay(float delay)
     {
         hideDelay = delay;
     }
