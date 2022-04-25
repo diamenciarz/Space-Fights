@@ -8,7 +8,7 @@ public class SalvoScriptableObject : ScriptableObject, ISerializationCallbackRec
     public float additionalReloadTime;
     [Tooltip("True - the gun waits the full time to reload all ammo at once. False - the ammo reolads gradually")]
     public bool reloadAllAtOnce = true;
-    
+
     public SingleShotScriptableObject[] shots;
     public List<float> delayAfterEachShot;
     public List<float> reloadDelays;
@@ -21,22 +21,30 @@ public class SalvoScriptableObject : ScriptableObject, ISerializationCallbackRec
 
     public void OnBeforeSerialize()
     {
+        controlShotDelayLength();
+        controlReloadDelayLength();
+    }
+    private void controlShotDelayLength()
+    {
         if (delayAfterEachShot.Count < shots.Length)
         {
             delayAfterEachShot.Add(0);
-        }
-        if (reloadDelays.Count < shots.Length)
-        {
-            reloadDelays.Add(0);
-        }
-        if (reloadDelays.Count > shots.Length)
-        {
-            reloadDelays.RemoveAt(reloadDelays.Count -1);
         }
         if (delayAfterEachShot.Count > shots.Length)
         {
             delayAfterEachShot.RemoveAt(delayAfterEachShot.Count - 1);
         }
     }
-    #endregion
+    private void controlReloadDelayLength()
+    {
+        if (reloadDelays.Count < shots.Length)
+        {
+            reloadDelays.Add(0);
+        }
+        if (reloadDelays.Count > shots.Length)
+        {
+            reloadDelays.RemoveAt(reloadDelays.Count - 1);
+        }
+    }
 }
+    #endregion

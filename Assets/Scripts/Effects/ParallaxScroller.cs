@@ -15,20 +15,20 @@ public class ParallaxScroller : MonoBehaviour
     /// <summary>
     /// After the doodad has moved this many camera sizes away from the middle of the camera and "recalculateOffScreen" is set to true,
     /// the position of this doodad will be recalculated.
-    /// If the camera had 10 units of length, a value of 2 would mean that the position will be recalculated after a distance of 2 * 10 from the middle of the camera.
+    /// If the camera had 10 units of length, a value of 2 would mean that the position will be recalculated after moving away for a distance of 2 * 10 from the middle of the camera.
     /// </summary>
-    const float RECALCULATE_FACTOR = 1;
+    const float CAMERA_DISTANCE_FACTOR = 1;
 
     private Camera mainCamera;
     private Vector2 startingPosition;
-    private bool isOnScreen;
 
     private void Start()
     {
-        distanceFromCamera = Random.Range(minDistance, maxDistance);
         mainCamera = Camera.main;
-        startingPosition = transform.position;
+        SetRandomDistance();
+        GoToRandomPosition();
     }
+
 
     void Update()
     {
@@ -38,7 +38,7 @@ public class ParallaxScroller : MonoBehaviour
     }
     private void OnScreenCheck()
     {
-        isOnScreen = CameraInformation.IsPositionOnScreen(transform.position);
+        //isOnScreen = CameraInformation.IsPositionOnScreen(transform.position);
     }
     private void CheckPosition()
     {
@@ -60,19 +60,17 @@ public class ParallaxScroller : MonoBehaviour
     private Vector2 CalculateDeltaPosition(Vector2 posToCamera)
     {
         Vector2 translatePosition = Vector2.zero;
-        bool widthOutBounds = Mathf.Abs(posToCamera.x) / CameraInformation.cameraSize.x > RECALCULATE_FACTOR;
+        bool widthOutBounds = Mathf.Abs(posToCamera.x) / CameraInformation.cameraSize.x > CAMERA_DISTANCE_FACTOR;
         if (widthOutBounds)
         {
-            float randomNewHeight = Random.Range(-CameraInformation.cameraSize.y, CameraInformation.cameraSize.y);
-            translatePosition = new Vector2(-2 * posToCamera.x, -posToCamera.y + randomNewHeight);
+            translatePosition = new Vector2(-2 * posToCamera.x, -posToCamera.y + getRandomHeight());
             Debug.Log("Delta pos: " + posToCamera);
         }
 
-        bool heightOutOfBounds = Mathf.Abs(posToCamera.y) / CameraInformation.cameraSize.y > RECALCULATE_FACTOR;
+        bool heightOutOfBounds = Mathf.Abs(posToCamera.y) / CameraInformation.cameraSize.y > CAMERA_DISTANCE_FACTOR;
         if (heightOutOfBounds)
         {
-            float randomNewWidth = Random.Range(-CameraInformation.cameraSize.x, CameraInformation.cameraSize.x);
-            translatePosition = new Vector2(-posToCamera.x + randomNewWidth, -2 * posToCamera.y);
+            translatePosition = new Vector2(-posToCamera.x + getRandomWidth(), -2 * posToCamera.y);
             Debug.Log("Delta pos: " + posToCamera);
         }
         return translatePosition;
@@ -95,5 +93,35 @@ public class ParallaxScroller : MonoBehaviour
         float parallaxFactor = (MAX_DISTANCE - distanceFromCamera) / MAX_DISTANCE;
 
         return new Vector2(cameraPosition.x * parallaxFactor, cameraPosition.y * parallaxFactor);
+    }
+
+    #region Mutator methods
+
+    public void GoToRandomPosition()
+    {
+        startingPosition = new Vector2(getRandomHeight(), getRandomWidth());
+    }
+    public void GoToPosition(Vector2 position)
+    {
+        startingPosition = position;
+    }
+    public void SetRandomDistance()
+    {
+        distanceFromCamera = Random.Range(minDistance, maxDistance);
+    }
+    public void SetDistance(float distance)
+    {
+        distanceFromCamera = distance;
+    }
+    #endregion
+
+    private float getRandomHeight()
+    {
+        return Random.Range(-CameraInformation.cameraSize.y * CAMERA_DISTANCE_FACTOR, CameraInformation.cameraSize.y * CAMERA_DISTANCE_FACTOR);
+
+    }
+    private float getRandomWidth()
+    {
+        return Random.Range(-CameraInformation.cameraSize.x * CAMERA_DISTANCE_FACTOR, CameraInformation.cameraSize.x * CAMERA_DISTANCE_FACTOR);
     }
 }

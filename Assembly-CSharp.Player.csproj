@@ -56,7 +56,9 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\UserShootingController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TeamUpdater.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\VisualDetector.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageReceiver.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
+    <Compile Include="Assets\Scripts\Effects\DoodadFlicker.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShootOnDeath.cs" />
     <Compile Include="Assets\Scripts\Movement\EntityMover.cs" />
@@ -85,15 +88,14 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ListUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
+    <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Interfaces\ITeamable.cs" />
-    <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
-    <Compile Include="Assets\Scripts\Effects\DoodadFlicker.cs" />
+    <Compile Include="Assets\Scripts\Effects\BackgroundGenerator.cs" />
+    <Compile Include="Assets\Scripts\Movement\MovementModifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
