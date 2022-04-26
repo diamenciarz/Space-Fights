@@ -174,7 +174,6 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     public void UpdateHealth()
     {
         float counted = CountHP();
-        Debug.Log("Counted HP:" + counted);
         health = counted - additionalDamage;
         UpdateHealthBar();
         CheckHP();

@@ -13,11 +13,12 @@ public class CameraInformation : MonoBehaviour
     /// <summary>
     /// This is given in world units. Y means height, X means width
     /// </summary>
-    public static Vector2 cameraSize;
 
-    Camera mainCamera;
+    static Camera mainCamera;
+    private static bool hasCalculatedCameraSize = false;
+    private static Vector2 cameraSize;
 
-    private void Start()
+    private static void CalculateCameraSize()
     {
         SetMainCamera(Camera.main);
         cameraSize.y = 2f * mainCamera.orthographicSize;
@@ -37,6 +38,14 @@ public class CameraInformation : MonoBehaviour
     }
 
     #region Accessor methods
+    public static Vector2 GetCameraSize()
+    {
+        if (!hasCalculatedCameraSize)
+        {
+            CalculateCameraSize();
+        }
+        return cameraSize;
+    }
     public static bool IsPositionOnScreen(Vector2 position)
     {
         return IsPositionOnScreen(position, 0);
@@ -79,7 +88,7 @@ public class CameraInformation : MonoBehaviour
     #endregion
 
     #region Mutator methods
-    public void SetMainCamera(Camera cam)
+    public static void SetMainCamera(Camera cam)
     {
         mainCamera = cam;
     }

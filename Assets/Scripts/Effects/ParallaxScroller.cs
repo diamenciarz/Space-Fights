@@ -22,13 +22,25 @@ public class ParallaxScroller : MonoBehaviour
     private Camera mainCamera;
     private Vector2 startingPosition;
 
+    /// <summary>
+    /// If the doodad is further from the middle of the screen than that distance, then it will be put at a random position with a flipped coordinate
+    /// </summary>
+    public float horizontalBoundary;
+    public float verticalBoundary;
+
     private void Start()
     {
         mainCamera = Camera.main;
         SetRandomDistance();
+        SetupPositionBoundaries();
         GoToRandomPosition();
     }
 
+    private void SetupPositionBoundaries()
+    {
+        horizontalBoundary = CameraInformation.GetCameraSize().x * CAMERA_DISTANCE_FACTOR;
+        verticalBoundary = CameraInformation.GetCameraSize().y * CAMERA_DISTANCE_FACTOR;
+    }
 
     void Update()
     {
@@ -60,18 +72,20 @@ public class ParallaxScroller : MonoBehaviour
     private Vector2 CalculateDeltaPosition(Vector2 posToCamera)
     {
         Vector2 translatePosition = Vector2.zero;
-        bool widthOutBounds = Mathf.Abs(posToCamera.x) / CameraInformation.cameraSize.x > CAMERA_DISTANCE_FACTOR;
+        bool widthOutBounds = Mathf.Abs(posToCamera.x) > horizontalBoundary;
         if (widthOutBounds)
         {
-            translatePosition = new Vector2(-2 * posToCamera.x, -posToCamera.y + getRandomHeight());
-            Debug.Log("Delta pos: " + posToCamera);
+            float deltaX = -(posToCamera.x + Mathf.Sign(posToCamera.x) * horizontalBoundary);
+            float deltaY = -posToCamera.y + getRandomHeight();
+            translatePosition = new Vector2(deltaX, deltaY);
         }
 
-        bool heightOutOfBounds = Mathf.Abs(posToCamera.y) / CameraInformation.cameraSize.y > CAMERA_DISTANCE_FACTOR;
+        bool heightOutOfBounds = Mathf.Abs(posToCamera.y) > verticalBoundary;
         if (heightOutOfBounds)
         {
-            translatePosition = new Vector2(-posToCamera.x + getRandomWidth(), -2 * posToCamera.y);
-            Debug.Log("Delta pos: " + posToCamera);
+            float deltaY = -(posToCamera.y + Mathf.Sign(posToCamera.y) * verticalBoundary);
+            float deltaX = -posToCamera.x + getRandomWidth();
+            translatePosition = new Vector2(deltaX, deltaY);
         }
         return translatePosition;
     }
@@ -115,13 +129,15 @@ public class ParallaxScroller : MonoBehaviour
     }
     #endregion
 
+    #region Calculation methods
     private float getRandomHeight()
     {
-        return Random.Range(-CameraInformation.cameraSize.y * CAMERA_DISTANCE_FACTOR, CameraInformation.cameraSize.y * CAMERA_DISTANCE_FACTOR);
+        return Random.Range(-verticalBoundary, verticalBoundary);
 
     }
     private float getRandomWidth()
     {
-        return Random.Range(-CameraInformation.cameraSize.x * CAMERA_DISTANCE_FACTOR, CameraInformation.cameraSize.x * CAMERA_DISTANCE_FACTOR);
+        return Random.Range(-horizontalBoundary, horizontalBoundary);
     }
+    #endregion
 }
