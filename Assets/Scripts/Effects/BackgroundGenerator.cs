@@ -7,16 +7,24 @@ public class BackgroundGenerator : MonoBehaviour, ISerializationCallbackReceiver
     public List<GameObject> doodads;
     public List<int> spawnCount;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        generateDoodads();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void generateDoodads()
     {
-        
+        for (int i = 0; i < doodads.Count; i++)
+        {
+            GameObject doodad = doodads[i];
+            spawnNCopies(doodad, spawnCount[i]);
+        }
+    }
+    private void spawnNCopies(GameObject doodad, int count)
+    {
+        for (int j = 0; j < count; j++)
+        {
+            Instantiate(doodad);
+        }
     }
 
     #region Serialization

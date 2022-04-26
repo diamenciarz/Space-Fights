@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoodadFlicker : MonoBehaviour
+public class DoodadFlicker : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField] float minDelay;
     [SerializeField] float maxDelay;
     [SerializeField] float flickerDuration;
 
-    [SerializeField] Gradient[] flickerGradients;
+    [SerializeField] List<Gradient> flickerGradients;
     [Tooltip("Each value is the chance for this gradient to be chosen")]
-    [SerializeField] [Range(0, 100)] int[] weightedChance;
+    [SerializeField] [Range(0, 100)] List<int> gradientProbabilities;
+
+    [SerializeField] List<Sprite> alternativeLooks;
+    [Tooltip("Each value is the chance for this sprite to be chosen")]
+    [SerializeField] [Range(0, 100)] List<int> spriteProbabilities;
 
     private int chanceSum;
     private SpriteRenderer[] sprites;
@@ -18,10 +22,19 @@ public class DoodadFlicker : MonoBehaviour
     private Gradient currentGradient;
     private bool isVisible;
 
-
+    
+    #region Startup
     private void Start()
     {
         SetupStartingVariables();
+        ChooseRandomSprite();
+    }
+    private void ChooseRandomSprite()
+    {
+        int chance = Random.Range(0, chanceSum);
+
+        int spriteIndex = HelperMethods.GetIndexFromChance(chance, spriteProbabilities);
+        sprites[0].sprite = alternativeLooks[spriteIndex];
     }
     private void SetupStartingVariables()
     {
@@ -34,12 +47,14 @@ public class DoodadFlicker : MonoBehaviour
     private int CountChanceSum()
     {
         int sum = 0;
-        foreach (int chance in weightedChance)
+        foreach (int chance in gradientProbabilities)
         {
             sum += chance;
         }
         return sum;
     }
+    #endregion
+
     private IEnumerator flickerRoutine()
     {
         while (true)
@@ -62,22 +77,10 @@ public class DoodadFlicker : MonoBehaviour
     private void ChooseRandomGradient()
     {
         int chance = Random.Range(0, chanceSum);
-        int gradientIndex = GetIndexFromChance(chance);
+        int gradientIndex = HelperMethods.GetIndexFromChance(chance, gradientProbabilities);
         currentGradient = flickerGradients[gradientIndex];
     }
-    private int GetIndexFromChance(int chance)
-    {
-        int sum = 0;
-        for (int i = 0; i < weightedChance.Length; i++)
-        {
-            sum += weightedChance[i];
-            if (chance < sum)
-            {
-                return i;
-            }
-        }
-        return weightedChance.Length - 1;
-    }
+
     #endregion
 
     #region Update
@@ -114,6 +117,40 @@ public class DoodadFlicker : MonoBehaviour
         foreach (SpriteRenderer renderer in sprites)
         {
             renderer.color = newColor;
+        }
+    }
+    #endregion
+
+    #region Serialization
+    public void OnAfterDeserialize()
+    {
+
+    }
+    public void OnBeforeSerialize()
+    {
+        controlGradientProbabilitiesLength();
+        controlSpriteProbabilitiesLength();
+    }
+    private void controlGradientProbabilitiesLength()
+    {
+        if (gradientProbabilities.Count < flickerGradients.Count)
+        {
+            gradientProbabilities.Add(0);
+        }
+        if (gradientProbabilities.Count > flickerGradients.Count)
+        {
+            gradientProbabilities.RemoveAt(gradientProbabilities.Count - 1);
+        }
+    }
+    private void controlSpriteProbabilitiesLength()
+    {
+        if (spriteProbabilities.Count < alternativeLooks.Count)
+        {
+            spriteProbabilities.Add(0);
+        }
+        if (spriteProbabilities.Count > alternativeLooks.Count)
+        {
+            spriteProbabilities.RemoveAt(spriteProbabilities.Count - 1);
         }
     }
     #endregion

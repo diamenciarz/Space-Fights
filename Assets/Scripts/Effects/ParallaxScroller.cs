@@ -99,7 +99,7 @@ public class ParallaxScroller : MonoBehaviour
 
     public void GoToRandomPosition()
     {
-        startingPosition = new Vector2(getRandomHeight(), getRandomWidth());
+        startingPosition = new Vector2(getRandomWidth(), getRandomHeight());
     }
     public void GoToPosition(Vector2 position)
     {
