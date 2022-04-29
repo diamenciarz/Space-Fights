@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2000
   m_Sprite: {fileID: 21300000, guid: f8dfd11d5a546ef438b6968168a8d635, type: 3}
   m_Color: {r: 1, g: 0.9294118, b: 0.2392157, a: 1}
   m_FlipX: 0
@@ -112,6 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7b7ef9acd39c94198c9ae87e38ae0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alternativeLooks:
+  - {fileID: 21300000, guid: f8dfd11d5a546ef438b6968168a8d635, type: 3}
+  - {fileID: 21300000, guid: 471b06dcece9fbe42b9c3b5ab3ff662b, type: 3}
+  spriteProbabilities: 0a00000003000000
+  spriteRenderer: {fileID: 0}
   minDelay: 5
   maxDelay: 20
   flickerDuration: 1
@@ -257,7 +262,3 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 7
   gradientProbabilities: 0100000003000000050000000a0000000a000000
-  alternativeLooks:
-  - {fileID: 21300000, guid: f8dfd11d5a546ef438b6968168a8d635, type: 3}
-  - {fileID: 21300000, guid: 471b06dcece9fbe42b9c3b5ab3ff662b, type: 3}
-  spriteProbabilities: 0a00000003000000

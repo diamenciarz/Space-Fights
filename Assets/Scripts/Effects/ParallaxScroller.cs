@@ -9,6 +9,7 @@ public class ParallaxScroller : MonoBehaviour
 
     [Tooltip("If on, the position of this doodad will be recalculated after the camera moves too far from it. Set to off if this is an important landmark")]
     [SerializeField] bool recalculateOffScreen = true;
+    [SerializeField] bool changeSpriteOnRecalculation = true;
 
     private float distanceFromCamera;
     const float MAX_DISTANCE = 1000;
@@ -21,16 +22,20 @@ public class ParallaxScroller : MonoBehaviour
 
     private Camera mainCamera;
     private Vector2 startingPosition;
+    private SetRandomTexture textureUpdater;
 
     /// <summary>
     /// If the doodad is further from the middle of the screen than that distance, then it will be put at a random position with a flipped coordinate
     /// </summary>
-    public float horizontalBoundary;
-    public float verticalBoundary;
+    private float horizontalBoundary;
+    private float verticalBoundary;
 
+
+    #region Startup
     private void Start()
     {
         mainCamera = Camera.main;
+        textureUpdater = GetComponent<SetRandomTexture>();
         SetRandomDistance();
         SetupPositionBoundaries();
         GoToRandomPosition();
@@ -41,18 +46,20 @@ public class ParallaxScroller : MonoBehaviour
         horizontalBoundary = CameraInformation.GetCameraSize().x * CAMERA_DISTANCE_FACTOR;
         verticalBoundary = CameraInformation.GetCameraSize().y * CAMERA_DISTANCE_FACTOR;
     }
+    #endregion
 
+    #region Update
     void Update()
     {
         OnScreenCheck();
-        CheckPosition();
+        CheckBoundaries();
         CounteractCameraMovement();
     }
     private void OnScreenCheck()
     {
         //isOnScreen = CameraInformation.IsPositionOnScreen(transform.position);
     }
-    private void CheckPosition()
+    private void CheckBoundaries()
     {
         if (!recalculateOffScreen)
         {
@@ -62,14 +69,24 @@ public class ParallaxScroller : MonoBehaviour
         Vector2 cameraPositionInWorldSpace = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
         Vector2 deltaPositionToCameraOrigin = (Vector2)transform.position - cameraPositionInWorldSpace;
 
-        startingPosition += CalculateDeltaPosition(deltaPositionToCameraOrigin);
+        Vector2 boundaryDeltaPosition = CalculateBoundaryDeltaPosition(deltaPositionToCameraOrigin);
+        startingPosition += boundaryDeltaPosition;
+
+        if (!changeSpriteOnRecalculation)
+        {
+            return;
+        }
+        if (boundaryDeltaPosition != Vector2.zero)
+        {
+            SetRandomSprite();
+        }
     }
     /// <summary>
     /// Calculates a translation of the doodad's current position if it is out of bounds. Otherwise, returns a zero vector;
     /// </summary>
     /// <param name="posToCamera"></param>
     /// <returns></returns>
-    private Vector2 CalculateDeltaPosition(Vector2 posToCamera)
+    private Vector2 CalculateBoundaryDeltaPosition(Vector2 posToCamera)
     {
         Vector2 translatePosition = Vector2.zero;
         bool widthOutBounds = Mathf.Abs(posToCamera.x) > horizontalBoundary;
@@ -91,12 +108,6 @@ public class ParallaxScroller : MonoBehaviour
     }
     private void CounteractCameraMovement()
     {
-        /*
-        if (!isOnScreen)
-        {
-            return;
-        }
-        */
         Vector2 cameraPosition = mainCamera.transform.position;
         Vector2 offset = countParallaxOffset(cameraPosition);
 
@@ -108,6 +119,14 @@ public class ParallaxScroller : MonoBehaviour
 
         return new Vector2(cameraPosition.x * parallaxFactor, cameraPosition.y * parallaxFactor);
     }
+    private void SetRandomSprite()
+    {
+        if (textureUpdater)
+        {
+            textureUpdater.SetRandomSprite();
+        }
+    }
+    #endregion
 
     #region Mutator methods
 

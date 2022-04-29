@@ -170,11 +170,11 @@ public static class HelperMethods
     #endregion
 
     #region List Methods
-    public static int GetWeightedIndex(int[] probabilities)
+    public static int GetWeightedIndex(List<int> probabilities)
     {
         int chance = Random.Range(0, CountChanceSum(probabilities));
         int sum = 0;
-        for (int i = 0; i < probabilities.Length; i++)
+        for (int i = 0; i < probabilities.Count; i++)
         {
             sum += probabilities[i];
             if (chance < sum)
@@ -182,9 +182,9 @@ public static class HelperMethods
                 return i;
             }
         }
-            return probabilities.Length - 1;
+            return probabilities.Count - 1;
     }
-    private static int CountChanceSum(int[] probabilities)
+    private static int CountChanceSum(List<int> probabilities)
     {
         int sum = 0;
         foreach (int chance in probabilities)

@@ -59,9 +59,5 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     {
         return myRigidbody2D.velocity;
     }
-    public GameObject GetCreatedBy()
-    {
-        return gameObject;
-    }
     #endregion
 }
