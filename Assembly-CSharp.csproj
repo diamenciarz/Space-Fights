@@ -73,7 +73,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BreakOnCollision.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionDamage.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\ShipController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Movement\ShipController.cs" />
     <Compile Include="Assets\Scripts\Other\HelperMethods.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ExplosionController.cs" />
     <Compile Include="Assets\Scripts\Effects\MusicPlayer.cs" />
@@ -91,14 +91,14 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\UserInput.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Movement\UserInput.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Movement\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Movement\ConstantMoveAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\Shaders\Blur.shader" />

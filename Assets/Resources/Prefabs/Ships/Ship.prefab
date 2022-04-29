@@ -69,7 +69,7 @@ AreaEffector2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616818911}
-  m_Enabled: 1
+  m_Enabled: 0
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -1016,7 +1016,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.000000037748947, y: -0.50000006}
+  m_LinearOffset: {x: 0.00000003774895, y: -0.5}
   m_AngularOffset: -1.5707964
 --- !u!114 &499978558431784088
 MonoBehaviour:
@@ -1199,7 +1199,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.5, y: 0.3750001}
+  m_LinearOffset: {x: 0.5, y: 0.37499997}
   m_AngularOffset: -1.5707964
 --- !u!114 &5726154762509764180
 MonoBehaviour:
@@ -1382,7 +1382,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.29700634, y: 0.049874984}
+  m_LinearOffset: {x: -0.29700622, y: 0.049874954}
   m_AngularOffset: -0.23283124
 --- !u!114 &5350038369014034529
 MonoBehaviour:
@@ -1425,6 +1425,7 @@ GameObject:
   - component: {fileID: 6441913592538751779}
   - component: {fileID: 6441913592538751967}
   - component: {fileID: 6441913592538751778}
+  - component: {fileID: 1630741118}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -1461,9 +1462,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 8
   minSpeed: -4
-  acceleratingForce: 50000
-  brakingForce: 100000
-  backingForce: 20000
+  acceleratingForce: 500
+  brakingForce: 1000
+  backingForce: 200
   turningSpeed: 150
   driftFactor: 0
 --- !u!114 &6441913592538751776
@@ -1533,13 +1534,28 @@ MonoBehaviour:
   putInLists: 02000000
   team: 1
   healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
-  turnHealthBarOn: 0
+  turnHealthBarOn: 1
   breakingSounds: []
   breakingSoundVolume: 1
   health: 0
   maxHealth: 0
   parts: []
   additionalDamage: 0
+--- !u!114 &1630741118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b370cd9ae425a4429cf9c049b08b0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 75000000
+  actions:
+  - {fileID: 11400000, guid: 97c12476fe496dd49b788d8c383b025b, type: 2}
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1714,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.000000037748947, y: 0.50000006}
+  m_LinearOffset: {x: 0.000000021855694, y: 0.5}
   m_AngularOffset: 0
 --- !u!114 &6441913592834814980
 MonoBehaviour:
@@ -1899,7 +1915,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.24999996, y: -0.5000001}
+  m_LinearOffset: {x: -0.2499999, y: -0.5}
   m_AngularOffset: -1.5707964
 --- !u!114 &2083487983885887712
 MonoBehaviour:
@@ -2081,7 +2097,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.08838686, y: -0.7955141}
+  m_LinearOffset: {x: -0.088386625, y: -0.7955142}
   m_AngularOffset: -0.78539824
 --- !u!114 &28915839474252319
 MonoBehaviour:
@@ -2554,7 +2570,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.00000009735359, y: 0.50000006}
+  m_LinearOffset: {x: -0.00000009735359, y: 0.5}
   m_AngularOffset: 0
 --- !u!114 &6441913594127976653
 MonoBehaviour:
@@ -2771,7 +2787,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.25000006, y: -0.5}
+  m_LinearOffset: {x: 0.2500001, y: -0.5}
   m_AngularOffset: -1.5707964
 --- !u!114 &2265164786527116680
 MonoBehaviour:

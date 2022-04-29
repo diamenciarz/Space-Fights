@@ -71,7 +71,8 @@ public class EntityMover : MonoBehaviour, IEntityMover
         if (GetSpeed() < maxSpeed)
         {
             Vector2 basicForce = inputVector.y * transform.right * acceleratingForce * Time.fixedDeltaTime;
-            float maxForce = (maxSpeed - GetSpeed()) / Time.fixedDeltaTime / myRigidbody2D.mass;
+            float maxForce = (maxSpeed - GetSpeed()) / Time.fixedDeltaTime;
+            Debug.Log("Max force: " + maxForce + "Counted force: " + basicForce);
             return Vector2.ClampMagnitude(basicForce, maxForce);
         }
         else
@@ -81,15 +82,17 @@ public class EntityMover : MonoBehaviour, IEntityMover
     }
     private Vector2 GetBackwardsForce()
     {
+        float maxForce = (GetSpeed() - minSpeed) / Time.fixedDeltaTime;
+
         if (IsGoingForward())
         {
             //Is braking
             Vector2 basicForce = inputVector.y * transform.right * brakingForce * Time.fixedDeltaTime;
-            float maxForce = (GetSpeed() - minSpeed) / Time.fixedDeltaTime / myRigidbody2D.mass;
             return Vector2.ClampMagnitude(basicForce, maxForce);
         }
 
-        if (GetSpeed() <= minSpeed)
+        bool isGoingBackwardsTooFast = GetSpeed() <= minSpeed;
+        if (isGoingBackwardsTooFast)
         {
             return Vector2.zero;
         }
@@ -97,7 +100,6 @@ public class EntityMover : MonoBehaviour, IEntityMover
         {
             //Is backing
             Vector2 basicForce = inputVector.y * transform.right * backingForce * Time.fixedDeltaTime;
-            float maxForce = (GetSpeed() - minSpeed) / Time.fixedDeltaTime / myRigidbody2D.mass;
             return Vector2.ClampMagnitude(basicForce, maxForce);
         }
     }
