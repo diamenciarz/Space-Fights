@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 412578077085716772}
   - component: {fileID: 412578077085716773}
   m_Layer: 0
-  m_Name: BackgroundGenerator
+  m_Name: DoodadGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

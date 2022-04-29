@@ -8,7 +8,6 @@ public class CameraPositionController : MonoBehaviour
     [SerializeField] [Range(-10, 10)] float deltaY;
     [SerializeField] List<GameObject> follow;
     [SerializeField] SpriteRenderer background;
-    [SerializeField] Camera virtualCamera;
     [SerializeField] bool limitView;
 
     private float xLimit;
@@ -29,10 +28,24 @@ public class CameraPositionController : MonoBehaviour
         float width = sprite.texture.width;
         float height = sprite.texture.height;
 
-        float camSize = virtualCamera.orthographicSize;
+        Vector2 cameraSize = CameraInformation.GetCameraSize();
 
-        xLimit = (width / pixelsPerUnit) / 2 - camSize;
-        yLimit = (height / pixelsPerUnit) / 2 - camSize;
+        //Size in game units
+        float backgroundWidth = width / pixelsPerUnit * background.transform.lossyScale.x;
+        float backgroundHeight= height / pixelsPerUnit * background.transform.lossyScale.y;
+        Debug.Log("BG width: " + backgroundWidth + " Camera width: " + cameraSize.x);
+
+        xLimit = backgroundWidth - cameraSize.x;
+        yLimit = backgroundHeight - cameraSize.y;
+
+        if (xLimit < 0)
+        {
+            xLimit = 0;
+        }
+        if (yLimit < 0)
+        {
+            yLimit = 0;
+        }
     }
     void Update()
     {
@@ -65,8 +78,7 @@ public class CameraPositionController : MonoBehaviour
     }
     private Vector2 CountMiddlePoint()
     {
-        Vector2 averagedVector = GetSummedPos() / follow.Count;
-        return averagedVector;
+        return GetSummedPos() / follow.Count;
     }
     private Vector2 CountClampedPosition()
     {
@@ -80,14 +92,16 @@ public class CameraPositionController : MonoBehaviour
     private Vector2 GetSummedPos()
     {
         Vector2 summedPos = Vector2.zero;
-        foreach (GameObject obj in follow)
+        for (int i = follow.Count - 1; i >= 0; i--)
         {
+            GameObject obj = follow[i];
             if (obj == null)
             {
-                follow.Remove(obj);
+                follow.RemoveAt(i);
                 continue;
             }
             summedPos += (Vector2)obj.transform.position;
+
         }
         return summedPos;
     }

@@ -38,6 +38,10 @@ public class CameraInformation : MonoBehaviour
     }
 
     #region Accessor methods
+    /// <summary>
+    /// Camera size in game units
+    /// </summary>
+    /// <returns></returns>
     public static Vector2 GetCameraSize()
     {
         if (!hasCalculatedCameraSize)
