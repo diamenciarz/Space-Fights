@@ -13,7 +13,7 @@ public class DamageInstance : MonoBehaviour
     public List<DamageCategory> damageCategories;
     public GameObject createdBy;
     public GameObject dealtBy;
-    public IPiercingDamage piercingDamage;
+    public IPiercingDamage iPiercingDamage;
 
     public bool ContainsTypeOfDamage(OnCollisionDamage.TypeOfDamage typeOfDamage)
     {
@@ -25,6 +25,17 @@ public class DamageInstance : MonoBehaviour
             }
         }
         return false;
+    }
+    public DamageCategory GetCategoryWithDamageOfType(OnCollisionDamage.TypeOfDamage typeOfDamage)
+    {
+        foreach (var category in damageCategories)
+        {
+            if (category.damageType == typeOfDamage)
+            {
+                return category;
+            }
+        }
+        return null;
     }
     public class DamageCategory
     {

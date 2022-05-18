@@ -414,7 +414,7 @@ public static class HelperMethods
         CheckObstacle(collidingObject, collisionPropertyList);
 
         bool isAlly = IsAlly(collidingObject, team);
-        CheckProjectile(collidingObject, collisionPropertyList, isAlly);
+        CheckDamageDealers(collidingObject, collisionPropertyList, isAlly);
         CheckActors(collidingObject, collisionPropertyList, isAlly);
 
         return collisionPropertyList;
@@ -435,14 +435,14 @@ public static class HelperMethods
             collisionPropertyList.Add(BreakOnCollision.BreaksOn.Obstacles);
         }
     }
-    private static void CheckProjectile(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList, bool isAlly)
+    private static void CheckDamageDealers(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList, bool isAlly)
     {
         IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
         if (damageReceiver == null)
         {
             return;
         }
-        if (damageReceiver.DamageCategoryContains(OnCollisionDamage.TypeOfDamage.Projectile))
+        if (IsObjectAProjectile(collisionObject))
         {
             if (isAlly)
             {

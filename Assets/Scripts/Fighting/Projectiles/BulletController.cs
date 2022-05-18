@@ -169,7 +169,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     {
         DamageInstance damageInstance = base.GetDamageInstance();
         damageInstance.isPiercing = true;
-        damageInstance.piercingDamage = this;
+        damageInstance.iPiercingDamage = this;
         return damageInstance;
     }
     #endregion

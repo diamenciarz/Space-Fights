@@ -18,6 +18,7 @@ public class DamageCalculator : MonoBehaviour
         {
             damageable.DealDamage(totalDamage);
             damageable.NotifyAboutDamage(damageInstance.dealtBy);
+            HandlePiercing(damageable, damageInstance);
         }
     }
 
@@ -60,13 +61,13 @@ public class DamageCalculator : MonoBehaviour
         int totalDamage = 0;
         foreach (var damageType in damageInstance.damageCategories)
         {
-            totalDamage += AddDamage(damageable, damageType);
+            int categoryDamage = GetDamageFromCategory(damageable, damageType);
+            totalDamage += categoryDamage;
         }
         return totalDamage;
     }
-    private static int AddDamage(IDamageable damageable, DamageInstance.DamageCategory damageCategory)
+    private static int GetDamageFromCategory(IDamageable damageable, DamageInstance.DamageCategory damageCategory)
     {
-
         float trueDamage = ((float)damageCategory.damage) * (1 - GetApplicableImmunityPercentage(damageable, damageCategory));
         return (int)trueDamage;
     }
@@ -81,6 +82,19 @@ public class DamageCalculator : MonoBehaviour
             }
         }
         return 0;
+    }
+    private static void HandlePiercing(IDamageable damageable, DamageInstance damageInstance)
+    {
+        if (!damageInstance.isPiercing)
+        {
+            return;
+        }
+        DamageInstance.DamageCategory category = damageInstance.GetCategoryWithDamageOfType(OnCollisionDamage.TypeOfDamage.Physical);
+        if (category == null)
+        {
+            return;
+        }
+        damageInstance.iPiercingDamage.LowerDamageBy(GetDamageFromCategory(damageable, category));
     }
     #endregion
 
