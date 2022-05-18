@@ -27,8 +27,6 @@ public class BreakOnCollision : SpriteUpdater
         EnemyProjectiles,
         AllyExplosions,
         EnemyExplosions,
-        AllyRockets,
-        EnemyRockets,
         Obstacles
     }
 
@@ -52,12 +50,12 @@ public class BreakOnCollision : SpriteUpdater
     }
     private void HandleCollision(GameObject collisionObject)
     {
-        if (CheckIfShouldBreak(collisionObject))
+        if (ShouldBreak(collisionObject))
         {
             Break();
         }
     }
-    private bool CheckIfShouldBreak(GameObject collisionObject)
+    private bool ShouldBreak(GameObject collisionObject)
     {
         List<BreaksOn> collisionPropertyList = HelperMethods.GetCollisionProperties(collisionObject, team);
 

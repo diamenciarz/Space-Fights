@@ -20,9 +20,9 @@ public class SpriteUpdater : TeamUpdater
     #endregion
 
     #region Mutator methods
-    public override void UpdateTeam()
+    public override void UpdateTeam(IParent parent)
     {
-        base.UpdateTeam();
+        base.UpdateTeam(parent);
         UpdateSprite();
     }
     #endregion

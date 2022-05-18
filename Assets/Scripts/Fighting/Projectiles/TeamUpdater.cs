@@ -12,14 +12,18 @@ public class TeamUpdater : MonoBehaviour, ITeamable
 
     protected virtual void Awake()
     {
-        UpdateCreatedBy();
-        UpdateTeam();
+        IParent parent = GetComponentInParent<IParent>();
+        if (parent == null)
+        {
+            return;
+        }
+        UpdateCreatedBy(parent);
+        UpdateTeam(parent);
     }
     #region Set parent
-    private void UpdateCreatedBy()
+    private void UpdateCreatedBy(IParent parent)
     {
-        IParent parent = GetComponentInParent<IParent>();
-        if (parent == null || createdBy != null)
+        if (createdBy != null)
         {
             return;
         }
@@ -46,10 +50,9 @@ public class TeamUpdater : MonoBehaviour, ITeamable
             createdBy = parent;
         }
     }
-    public virtual void UpdateTeam()
+    public virtual void UpdateTeam(IParent parent)
     {
-        IParent damageReceiver = GetComponentInParent<IParent>();
-        team = damageReceiver.GetTeam();
+        team = parent.GetTeam();
     }
     public void SetTeam(int newTeam)
     {

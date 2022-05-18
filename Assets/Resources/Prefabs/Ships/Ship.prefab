@@ -828,8 +828,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 500
-  m_BreakTorque: 500
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
@@ -1010,8 +1010,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 500
-  m_BreakTorque: 500
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
@@ -1376,8 +1376,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
@@ -1462,11 +1462,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 8
   minSpeed: -4
-  acceleratingForce: 500
-  brakingForce: 1000
-  backingForce: 200
+  acceleratingForce: 5000
+  brakingForce: 10000
+  backingForce: 5000
   turningSpeed: 150
-  driftFactor: 0
+  driftFactor: 0.325
 --- !u!114 &6441913592538751776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,8 +1553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b370cd9ae425a4429cf9c049b08b0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 75000000
+  keys: 6500000071000000
   actions:
+  - {fileID: 11400000, guid: a39b87a497491134cb7ae03584f40b53, type: 2}
   - {fileID: 11400000, guid: 97c12476fe496dd49b788d8c383b025b, type: 2}
 --- !u!1 &6441913592834815039
 GameObject:
@@ -1909,8 +1910,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 500
-  m_BreakTorque: 500
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
@@ -2091,8 +2092,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 500
-  m_BreakTorque: 500
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01
@@ -2781,8 +2782,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 500
-  m_BreakTorque: 500
+  m_BreakForce: 1000
+  m_BreakTorque: 1000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.01

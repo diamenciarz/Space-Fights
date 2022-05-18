@@ -59,5 +59,11 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     {
         return myRigidbody2D.velocity;
     }
+    public override DamageInstance GetDamageInstance()
+    {
+        DamageInstance damageInstance = base.GetDamageInstance();
+        damageInstance.isAProjectile = true;
+        return damageInstance;
+    }
     #endregion
 }

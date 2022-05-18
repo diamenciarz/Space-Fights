@@ -5,36 +5,27 @@ using UnityEngine;
 public class OnCollisionDamage : BreakOnCollision, IDamageDealer
 {
     [Header("Basic Stats")]
-    [SerializeField] int damage;
     [SerializeField] protected bool hurtsAllies;
-    [SerializeField] bool isPiercing;
 
     [Header("Damage type")]
-    public List<TypeOfDamage> damageTypes = new List<TypeOfDamage>();
+    [SerializeField] protected List<DamageInstance.DamageCategory> damageCategories = new List<DamageInstance.DamageCategory>();
 
-    public List<GameObject> dealtDamageTo = new List<GameObject>();
+    private List<GameObject> dealtDamageTo = new List<GameObject>();
 
     public enum TypeOfDamage
     {
         Projectile,
         Explosion,
-        Rocket
+        Rocket,
+        Physical
     }
-
-    private int currentDamageLeft;
-
 
     protected override void Awake()
     {
         base.Awake();
-        SetupStartingValues();
-    }
-    private void SetupStartingValues()
-    {
-        currentDamageLeft = damage;
     }
 
-    #region Collision
+    #region Collisions
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
@@ -54,88 +45,50 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
     }
     private bool CanDealDamage(GameObject collisionObject)
     {
-        if (dealtDamageTo.Contains(collisionObject))
-        {
-            Debug.Log("Dealt damage already!");
-            return false;
-        }
-        bool isInvulnerable = IsInvulnerableTo(collisionObject);
-        if (isInvulnerable)
-        {
-            return false;
-        }
         IDamageable iDamageReceiver = collisionObject.GetComponent<IDamageable>();
         bool objectCanReceiveDamage = iDamageReceiver != null;
         if (!objectCanReceiveDamage)
         {
             return false;
         }
-        bool shouldDealDamage = hurtsAllies || iDamageReceiver.GetTeam() != team;
-        if (!shouldDealDamage)
+        if (dealtDamageTo.Contains(collisionObject))
         {
             return false;
         }
         return true;
     }
-
-    #region Deal damage
     private void DealDamageToObject(GameObject collisionObject)
     {
         dealtDamageTo.Add(collisionObject);
-        IDamageable iDamageReceiver = collisionObject.GetComponent<IDamageable>();
-        if (iDamageReceiver.HandleDamage(this))
-        {
-            HandlePiercing(iDamageReceiver);
-        }
+        IDamageable iDamageable = collisionObject.GetComponent<IDamageable>();
+        DamageCalculator.ApplyDamage(iDamageable, GetDamageInstance());
     }
-    private void HandlePiercing(IDamageable iDamageReceiver)
-    {
-        if (isPiercing)
-        {
-            //EmitPiercingParticle();
-            LowerMyDamage(iDamageReceiver.GetHealth());
-        }
-    }
-    private void LowerMyDamage(int change)
-    {
-        currentDamageLeft -= change;
-        CheckDamageLeft();
-    }
-    private void CheckDamageLeft()
-    {
-        if (currentDamageLeft < 0)
-        {
-            currentDamageLeft = 0;
-            DestroyObject();
-        }
-    }
-    #endregion
     #endregion
 
     #region Accessor methods
-    public int GetDamage()
+    public virtual DamageInstance GetDamageInstance()
     {
-        return currentDamageLeft;
+        DamageInstance damageInstance = new DamageInstance();
+        damageInstance.createdBy = createdBy;
+        damageInstance.damageCategories = damageCategories;
+        damageInstance.dealtBy = gameObject;
+        damageInstance.team = team;
+        damageInstance.hurtsAllies = hurtsAllies;
+        damageInstance.lifetime = Time.time - creationTime;
+
+        return damageInstance;
     }
-    public List<TypeOfDamage> GetDamageTypes()
+
+    public bool DamageCategoryContains(TypeOfDamage typeOfDamage)
     {
-        return damageTypes;
-    }
-    public bool DamageTypeContains(TypeOfDamage damageType)
-    {
-        if (damageTypes.Contains(damageType))
+        foreach (var category in damageCategories)
         {
-            return true;
+            if (category.damageType == typeOfDamage)
+            {
+                return true;
+            }
         }
         return false;
-    }
-    public bool IsAProjectile()
-    {
-        return damageTypes.Count != 0;
-    }
-    public GameObject CreatedBy()
-    {
-        return createdBy;
     }
     #endregion
 }

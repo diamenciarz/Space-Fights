@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class UnitPart : SpriteUpdater, IDamageable
 {
-    [Header("Startup")]
-
-    [Tooltip("Actions to call on death")]
-    public TriggerOnDeath[] onDeathTriggers;
-
     [Header("Health")]
     [Tooltip("The amount of damage that this part can receive, before it is destroyed")]
     [SerializeField] float partHealth;
@@ -16,18 +11,22 @@ public class UnitPart : SpriteUpdater, IDamageable
     [SerializeField] float barHealth;
     [Tooltip("The additional damage that is dealt to the unit, when this part is destroyed")]
     [SerializeField] float destroyDamage;
+    [SerializeField] List<DamageCalculator.Immunity> immunities = new List<DamageCalculator.Immunity>();
 
     [Header("Collisions")]
     [Tooltip("The collision velocity, above which this ship part will start taking damage")]
     [SerializeField] float minKineticEnergy = 10;
     [SerializeField] float collisionDamageModifier = 0.5f;
-    [SerializeField] OnCollisionDamage.TypeOfDamage[] immuneTo;
 
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
     [SerializeField] protected List<AudioClip> hitSounds;
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
+
+    [Header("When destroyed")]
+    [Tooltip("Actions to call on death")]
+    public TriggerOnDeath[] onDeathTriggers;
 
     //Private variables
     DamageReceiver damageReceiver;
@@ -39,10 +38,11 @@ public class UnitPart : SpriteUpdater, IDamageable
     private float barToPartRatio;
     private bool isDestroyed;
 
+    #region Startup
     protected override void Awake()
     {
         base.Awake();
-        UpdateTeam();
+        UpdateTeam(damageReceiver);
         SetupStartingVariables();
     }
     private void SetupStartingVariables()
@@ -57,17 +57,19 @@ public class UnitPart : SpriteUpdater, IDamageable
         maxBarHealth = barHealth;
         barToPartRatio = barHealth / partHealth;
     }
+    #endregion
 
-    #region Collisions
+    #region Physical Collisions
     //Collision damage
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //This class only calculates physical damage on its own
         HandleCollision(collision);
     }
     private void HandleCollision(Collision2D collision)
     {
         Rigidbody2D colliderRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
-        if (colliderRB2D == null)
+        if (colliderRB2D == null || isDestroyed)
         {
             return;
         }
@@ -80,69 +82,123 @@ public class UnitPart : SpriteUpdater, IDamageable
         Vector2 deltaVelocity = colliderRB2D.velocity - myRigidbody2D.velocity;
         float speed = deltaVelocity.magnitude;
         float mass = colliderRB2D.mass;
-        float collisionDamage = speed * speed * mass * collisionDamageModifier;
+        float collisionKineticEnergy = speed * speed * mass / 2;
 
-        if (collisionDamage > minKineticEnergy)
+        if (collisionKineticEnergy > minKineticEnergy)
         {
-            Debug.Log("Collision damage: " + collisionDamage + " received by " + gameObject.name);
-            return (int)collisionDamage;
+            collisionKineticEnergy *= collisionDamageModifier;
+            return (int)collisionKineticEnergy;
         }
         return 0;
     }
     #endregion
 
-    #region HP
-    /// <summary>
-    /// Deals damage if applicable and 
-    /// </summary>
-    /// <param name="iDamageReceived"></param>
-    /// <returns></returns>
-    public bool HandleDamage(IDamageDealer iDamageReceived)
+    #region Sounds
+    protected AudioClip GetHitSound()
     {
-        if (iDamageReceived == null || iDamageReceived.GetTeam() == team || IsImmune(iDamageReceived))
+        int soundIndex = Random.Range(0, hitSounds.Count);
+        if (hitSounds.Count > soundIndex)
         {
-            return false;
+            return hitSounds[soundIndex];
         }
-        if (DealDamage(iDamageReceived.GetDamage()))
+        return null;
+    }
+    protected AudioClip GetBreakSound()
+    {
+        int soundIndex = Random.Range(0, breakingSounds.Count);
+        if (breakingSounds.Count > soundIndex)
         {
-            NotifyAboutDamage(iDamageReceived);
+            return breakingSounds[soundIndex];
+        }
+        return null;
+    }
+    #endregion
+
+    #region Accessor methods
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+    public float GetBarHealth()
+    {
+        return barHealth;
+    }
+    public float GetMaxBarHealth()
+    {
+        return maxBarHealth;
+    }
+    /// <summary>
+    /// Returns the health of the part, not the part on the HP bar
+    /// </summary>
+    /// <returns></returns>
+    public int GetHealth()
+    {
+        return (int)partHealth;
+    }
+    public float GetDestroyDamage()
+    {
+        return destroyDamage;
+    }
+    public List<DamageCalculator.Immunity> GetImmunities()
+    {
+        return immunities;
+    }
+    #endregion
+
+    #region Mutator methods
+    public void DoFullHeal()
+    {
+        partHealth = maxPartHealth;
+        barHealth = maxBarHealth;
+    }
+    /// <summary>
+    /// Returns true, if the damage was successfully dealt
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <returns></returns>
+    public bool DealDamage(int damage)
+    {
+        bool damageDealt = damage > 0 && !isDestroyed;
+        if (damageDealt)
+        {
+            LowerHealthBy(damage);
+            CheckHP();
             return true;
         }
         return false;
     }
-    #region Helper methods
-    private bool IsImmune(IDamageDealer iDamageReceived)
+    #endregion
+
+    #region OnJointBreak2D
+    public void OnJointBreak2D(Joint2D joint)
     {
-        foreach (var damageType in iDamageReceived.GetDamageTypes())
-        {
-            if (!IsImmuneToDamageType(damageType))
-            {
-                return false;
-            }
-        }
-        return true;
+        damageReceiver.RemovePart(this);
+        transform.SetParent(null);
+
+        TurnOffGuns();
     }
-    private bool IsImmuneToDamageType(OnCollisionDamage.TypeOfDamage damageType)
+    private void TurnOffGuns()
     {
-        foreach (var immunity in immuneTo)
+        ShootingController shootingController = GetComponent<ShootingController>();
+        if (shootingController)
         {
-            if (damageType == immunity)
-            {
-                return true;
-            }
+            shootingController.setIsDetached(true);
         }
-        return false;
     }
+    
+    #endregion
+
+    #region HP Helper methods
     /// <summary>
     /// Notify the AI controller type, who hit this unit
     /// </summary>
     /// <param name="iDamage"></param>
-    private void NotifyAboutDamage(IDamageDealer iDamage)
+    public void NotifyAboutDamage(GameObject damagedBy)
     {
         foreach (IOnDamageDealt call in onHitCalls)
         {
             //If an enemy is hit by a bullet, then he receives information about the position of the entity shooting
-            call.HitBy(iDamage.CreatedBy());
+            call.HitBy(damagedBy);
         }
     }
     private void LowerHealthBy(int damage)
@@ -150,8 +206,6 @@ public class UnitPart : SpriteUpdater, IDamageable
         partHealth -= damage;
         barHealth -= (float)damage * barToPartRatio;
     }
-    #endregion
-
     private void CheckHP()
     {
         damageReceiver.UpdateHealth();
@@ -189,91 +243,6 @@ public class UnitPart : SpriteUpdater, IDamageable
     {
         yield return new WaitForEndOfFrame();
         Destroy(gameObject);
-    }
-    #endregion
-
-    #region Sounds
-    protected AudioClip GetHitSound()
-    {
-        int soundIndex = Random.Range(0, hitSounds.Count);
-        if (hitSounds.Count > soundIndex)
-        {
-            return hitSounds[soundIndex];
-        }
-        return null;
-    }
-    protected AudioClip GetBreakSound()
-    {
-        int soundIndex = Random.Range(0, breakingSounds.Count);
-        if (breakingSounds.Count > soundIndex)
-        {
-            return breakingSounds[soundIndex];
-        }
-        return null;
-    }
-    #endregion
-
-    #region Accessor methods
-    public float GetBarHealth()
-    {
-        return barHealth;
-    }
-    public float GetMaxBarHealth()
-    {
-        return maxBarHealth;
-    }
-    /// <summary>
-    /// Returns the health of the part, not the part on the HP bar
-    /// </summary>
-    /// <returns></returns>
-    public int GetHealth()
-    {
-        return (int)partHealth;
-    }
-    public float GetDestroyDamage()
-    {
-        return destroyDamage;
-    }
-    #endregion
-
-    #region Mutator methods
-    public void DoFullHeal()
-    {
-        partHealth = maxPartHealth;
-        barHealth = maxBarHealth;
-    }
-    /// <summary>
-    /// Returns true, if the damage was successfully dealt
-    /// </summary>
-    /// <param name="damage"></param>
-    /// <returns></returns>
-    public bool DealDamage(int damage)
-    {
-        if (damage > 0 && !isDestroyed)
-        {
-            LowerHealthBy(damage);
-            CheckHP();
-            return true;
-        }
-        return false;
-    }
-    #endregion
-
-    #region JointBreak
-    public void OnJointBreak2D(Joint2D joint)
-    {
-        damageReceiver.RemovePart(this);
-        transform.SetParent(null);
-
-        turnOffGuns();
-    }
-    private void turnOffGuns()
-    {
-        ShootingController shootingController = GetComponent<ShootingController>();
-        if (shootingController)
-        {
-            shootingController.setIsDetached(true);
-        }
     }
     #endregion
 }

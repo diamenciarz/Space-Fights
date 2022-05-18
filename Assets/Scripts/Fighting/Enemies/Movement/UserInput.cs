@@ -8,11 +8,11 @@ public class UserInput : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] List<KeyCode> keys;
     [SerializeField] List<MoveAction> actions;
 
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb2D;
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -33,7 +33,7 @@ public class UserInput : MonoBehaviour, ISerializationCallbackReceiver
 
     private void callAction(int i)
     {
-        actions[i].applyAction(rigidbody2D);
+        actions[i].applyAction(rb2D);
     }
 
     #region Serialization

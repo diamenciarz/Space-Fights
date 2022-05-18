@@ -15,9 +15,9 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
 
     //Private variables
     private GameObject healthBarInstance;
-    public float health;
-    public float maxHealth;
-    public List<UnitPart> parts = new List<UnitPart>();
+    private float health;
+    private float maxHealth;
+    private List<UnitPart> parts = new List<UnitPart>();
     private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed
@@ -150,7 +150,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
         TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
         foreach (TeamUpdater item in teamUpdater)
         {
-            item.UpdateTeam();
+            item.UpdateTeam(this);
         }
     }
     #endregion
@@ -201,20 +201,6 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
         {
             createdBy = parent;
         }
-    }
-    #endregion
-
-    #region JoinBreak
-    public void OnJointBreak2D(Joint2D joint)
-    {
-        UnitPart jointPart = joint.gameObject.GetComponent<UnitPart>();
-        if (!jointPart)
-        {
-            return;
-        }
-
-
-        jointPart.GetBarHealth();
     }
     #endregion
 }

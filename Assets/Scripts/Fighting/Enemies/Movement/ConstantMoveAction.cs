@@ -15,11 +15,9 @@ public class ConstantMoveAction : MoveAction
 
     private Vector2 GetRelativeForce(Rigidbody2D rigidbody2D)
     {
-        
-        Vector2 basicForce = rigidbody2D.gameObject.transform.right * force * Time.fixedDeltaTime;
+        Vector2 basicForce =  force * Time.fixedDeltaTime;
         float maxForce = (maxSpeed - GetSpeed(rigidbody2D)) / Time.fixedDeltaTime;
         return Vector2.ClampMagnitude(basicForce, maxForce);
-        
     }
     public float GetSpeed(Rigidbody2D rigidbody2D)
     {

@@ -9,14 +9,6 @@ public interface IDamageDealer
     /// </summary>
     /// <param name="damageReceiver"></param>
     /// <returns></returns>
-    public abstract int GetDamage();
-    public abstract int GetTeam();
-    public abstract List<OnCollisionDamage.TypeOfDamage> GetDamageTypes();
-    public abstract bool DamageTypeContains(OnCollisionDamage.TypeOfDamage damageType);
-    public abstract bool IsAProjectile();
-    /// <summary>
-    /// The object that dealt this damage 
-    /// </summary>
-    /// <returns></returns>
-    public abstract GameObject CreatedBy();
+    public abstract DamageInstance GetDamageInstance();
+    public abstract bool DamageCategoryContains(OnCollisionDamage.TypeOfDamage typeOfDamage);
 }

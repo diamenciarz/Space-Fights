@@ -182,7 +182,7 @@ public static class HelperMethods
                 return i;
             }
         }
-            return probabilities.Count - 1;
+        return probabilities.Count - 1;
     }
     private static int CountChanceSum(List<int> probabilities)
     {
@@ -349,7 +349,7 @@ public static class HelperMethods
         IDamageDealer damageReceiver = collisionObject.GetComponent<IDamageDealer>();
         if (damageReceiver != null)
         {
-            return damageReceiver.IsAProjectile();
+            return damageReceiver.GetDamageInstance().isAProjectile;
         }
         return false;
     }
@@ -392,24 +392,12 @@ public static class HelperMethods
         {
             return damageReceiver.GetTeam();
         }
-        else
+        TeamUpdater teamUpdater = collisionObject.GetComponentInChildren<TeamUpdater>();
+        if (teamUpdater)
         {
-            TeamUpdater teamUpdater = collisionObject.GetComponentInChildren<TeamUpdater>();
-            if (teamUpdater)
-            {
-                return teamUpdater.GetTeam();
-            }
+            return teamUpdater.GetTeam();
         }
-        return -2;
-    }
-    public static bool IsAnEntityPart(GameObject collisionObject)
-    {
-        UnitPart listUpdater = collisionObject.GetComponent<UnitPart>();
-        if (listUpdater)
-        {
-            return true;
-        }
-        return false;
+        return -1;
     }
     #endregion
 
@@ -454,7 +442,7 @@ public static class HelperMethods
         {
             return;
         }
-        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Projectile))
+        if (damageReceiver.DamageCategoryContains(OnCollisionDamage.TypeOfDamage.Projectile))
         {
             if (isAlly)
             {
@@ -465,7 +453,7 @@ public static class HelperMethods
                 collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyProjectiles);
             }
         }
-        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Explosion))
+        if (damageReceiver.DamageCategoryContains(OnCollisionDamage.TypeOfDamage.Explosion))
         {
             if (isAlly)
             {
@@ -474,17 +462,6 @@ public static class HelperMethods
             else
             {
                 collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyExplosions);
-            }
-        }
-        if (damageReceiver.DamageTypeContains(OnCollisionDamage.TypeOfDamage.Rocket))
-        {
-            if (isAlly)
-            {
-                collisionPropertyList.Add(BreakOnCollision.BreaksOn.AllyRockets);
-            }
-            else
-            {
-                collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyRockets);
             }
         }
     }

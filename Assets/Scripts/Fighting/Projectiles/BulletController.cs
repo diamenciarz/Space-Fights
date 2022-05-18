@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : BasicProjectileController
+public class BulletController : BasicProjectileController, IPiercingDamage
 {
+    [Header("Piercing")]
+    [SerializeField] bool isPiercing;
+
     [Header("Timed destroy")]
     [Tooltip("Destroy the bullet after it has existed for this long. -1 for infinity")]
     [SerializeField] float destroyDelay = 5f;
@@ -23,7 +26,7 @@ public class BulletController : BasicProjectileController
     private bool timedDestroy = false;
     private float MAX_DESTROY_DELAY = 100f;
 
-
+    #region Startup
     protected override void Start()
     {
         base.Start();
@@ -38,6 +41,7 @@ public class BulletController : BasicProjectileController
         reflections = 0;
         SetupDestroyTime();
     }
+    #endregion
 
     #region Destroy
     private void SetupDestroyTime()
@@ -134,6 +138,39 @@ public class BulletController : BasicProjectileController
     {
         yield return new WaitForEndOfFrame();
         UpdateRotationToFaceForward();
+    }
+
+    #endregion
+
+    #region Mutator methods
+    /// <summary>
+    /// Lowers the physical damage by given value. All other types of damage reamin constant.
+    /// However, the bullet is destroyed, when physical damage drops to zero.
+    /// </summary>
+    public void LowerDamageBy(int change)
+    {
+        foreach (var category in damageCategories)
+        {
+            if (category.damageType != TypeOfDamage.Physical)
+            {
+                continue;
+            }
+            category.damage -= change;
+            if (category.damage < 0)
+            {
+                DestroyObject();
+            }
+        }
+    }
+    #endregion
+
+    #region Accessor methods
+    public override DamageInstance GetDamageInstance()
+    {
+        DamageInstance damageInstance = base.GetDamageInstance();
+        damageInstance.isPiercing = true;
+        damageInstance.piercingDamage = this;
+        return damageInstance;
     }
     #endregion
 }
