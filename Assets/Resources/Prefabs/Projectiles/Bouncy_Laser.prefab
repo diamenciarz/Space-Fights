@@ -171,17 +171,17 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 6e025619e4b3cd044b839e8942134089, type: 3}
   - {fileID: 21300000, guid: 6b19e11560449224b95b80fcd03fe592, type: 3}
-  breakEnum: 04000000050000000700000006000000
+  breakEnum: 040000000500000006000000
   breakingSounds: []
   breakingSoundVolume: 1
-  damage: 2
   hurtsAllies: 0
-  isPiercing: 0
-  damageTypes: 00000000
-  spriteList:
-  - {fileID: 21300000, guid: 6e025619e4b3cd044b839e8942134089, type: 3}
-  - {fileID: 21300000, guid: 6b19e11560449224b95b80fcd03fe592, type: 3}
+  damageCategories:
+  - damageType: 1
+    damage: 2
+  - damageType: 2
+    damage: 4
   startingSpeed: 10
+  isPiercing: 0
   destroyDelay: 5
   destroyDistance: -1
   minAngleToReflect: 0

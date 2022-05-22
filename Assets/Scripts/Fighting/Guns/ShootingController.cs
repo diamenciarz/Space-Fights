@@ -11,6 +11,7 @@ public class ShootingController : TeamUpdater
     [SerializeField] GameObject reloadingBarPosition;
 
     [Header("Settings")]
+    public KeyCode shootOnPressed;
     [Tooltip("The direction of bullets coming out of the gun pipe")]
     [SerializeField] float basicGunRotation;
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]

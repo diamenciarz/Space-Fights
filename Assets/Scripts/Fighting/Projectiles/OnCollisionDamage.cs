@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,10 +13,9 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
 
     public enum TypeOfDamage
     {
-        Projectile,
         Explosion,
-        Rocket,
-        Physical
+        Physical,
+        Fire
     }
 
     protected override void Awake()

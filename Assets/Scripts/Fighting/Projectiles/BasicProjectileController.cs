@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class BasicProjectileController : OnCollisionDamage, IParent
 {
     [Header("Projectile Properties")]
-    [SerializeField] protected List<Sprite> spriteList;
     [SerializeField] protected float startingSpeed = 2f;
 
     //Private variables

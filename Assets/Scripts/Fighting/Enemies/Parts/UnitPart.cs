@@ -42,15 +42,18 @@ public class UnitPart : SpriteUpdater, IDamageable
     protected override void Awake()
     {
         base.Awake();
-        UpdateTeam(damageReceiver);
         SetupStartingVariables();
+        UpdateTeam(damageReceiver);
     }
     private void SetupStartingVariables()
     {
         onHitCalls = GetComponentsInParent<IOnDamageDealt>(); // Informs AI script about getting hit
-        myRigidbody2D = GetComponentInParent<Rigidbody2D>();
+        myRigidbody2D = GetComponent<Rigidbody2D>();
+        if (myRigidbody2D == null)
+        {
+            myRigidbody2D = GetComponentInParent<Rigidbody2D>();
+        }
         damageReceiver = GetComponentInParent<DamageReceiver>();
-
         onDeathTriggers = GetComponentsInChildren<TriggerOnDeath>(); // On death trigger
 
         maxPartHealth = partHealth;
@@ -176,6 +179,7 @@ public class UnitPart : SpriteUpdater, IDamageable
         transform.SetParent(null);
 
         TurnOffGuns();
+        SetTeam(-1); //Everyone can shoot destroyed parts
     }
     private void TurnOffGuns()
     {

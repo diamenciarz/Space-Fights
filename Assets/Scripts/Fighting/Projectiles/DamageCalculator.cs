@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -98,6 +98,7 @@ public class DamageCalculator : MonoBehaviour
     }
     #endregion
 
+    [Serializable]
     public class Immunity
     {
         public OnCollisionDamage.TypeOfDamage damageType;

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +37,8 @@ public class DamageInstance : MonoBehaviour
         }
         return null;
     }
+    
+    [Serializable]
     public class DamageCategory
     {
         public OnCollisionDamage.TypeOfDamage damageType;

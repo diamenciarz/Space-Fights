@@ -188,17 +188,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites: []
-  breakEnum: 000000000100000006000000070000000400000005000000020000000300000008000000
-  breakingSounds: []
-  breakingSoundVolume: 1
-  damage: 5
-  hurtsAllies: 1
-  isPiercing: 0
-  damageTypes: 02000000
-  spriteList:
+  sprites:
   - {fileID: 21300000, guid: 6c469d7fff4f2d34e81241b4a657e2a0, type: 3}
   - {fileID: 21300000, guid: 899773e3db456df4188c23327a130961, type: 3}
+  breakEnum: 00000000010000000600000004000000050000000200000003000000
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hurtsAllies: 1
+  damageCategories:
+  - damageType: 1
+    damage: 2
   startingSpeed: 2
   objectMissingIconGameObject: {fileID: 5012750832036236270, guid: 255023bc84a7b2a4a82c0bbefa2e3f08, type: 3}
   maxRocketSpeed: 8

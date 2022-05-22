@@ -134,17 +134,15 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 76282dc5313948f4895b9dd54857a55a, type: 3}
   - {fileID: 21300000, guid: 2716a4593a30a3346ab2c3aef4d3d22d, type: 3}
-  breakEnum: 00000000010000000400000005000000060000000700000008000000
+  breakEnum: 0000000001000000040000000500000006000000
   breakingSounds: []
   breakingSoundVolume: 1
-  damage: 2
   hurtsAllies: 0
-  isPiercing: 0
-  damageTypes: 00000000
-  spriteList:
-  - {fileID: 21300000, guid: 76282dc5313948f4895b9dd54857a55a, type: 3}
-  - {fileID: 21300000, guid: 2716a4593a30a3346ab2c3aef4d3d22d, type: 3}
+  damageCategories:
+  - damageType: 1
+    damage: 4
   startingSpeed: 10
+  isPiercing: 0
   destroyDelay: -1
   destroyDistance: -1
   minAngleToReflect: 60
@@ -175,7 +173,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0

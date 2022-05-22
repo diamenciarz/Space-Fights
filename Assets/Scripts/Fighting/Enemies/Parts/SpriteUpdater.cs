@@ -16,6 +16,10 @@ public class SpriteUpdater : TeamUpdater
     private void SetupStartingVariables()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        if (mySpriteRenderer == null)
+        {
+            mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
     }
     #endregion
 

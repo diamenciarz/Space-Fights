@@ -150,11 +150,11 @@ public class EntityMover : MonoBehaviour, IEntityMover
     }
     public Vector2 GetSidewayVelocity()
     {
-        return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
+        return transform.right * Vector2.Dot(myRigidbody2D.velocity, transform.right);
     }
     public Vector2 GetForwardVelocity()
     {
-        return transform.right * Vector2.Dot(myRigidbody2D.velocity, transform.right);
+        return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
     }
     //Movement
     public float GetBrakingSpeed()

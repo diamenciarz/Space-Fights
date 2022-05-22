@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db425d0c4a24c3048a2d82378517b199, type: 3}
-  m_Name: RightForce
+  m_Name: BackwardForce
   m_EditorClassIdentifier: 
-  force: {x: 50, y: 0}
+  force: {x: 0, y: -50}
   maxVelocity: 8

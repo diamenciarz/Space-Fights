@@ -122,18 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites: []
-  breakEnum: 060000000700000002000000030000000400000005000000000000000100000008000000
-  breakingSounds: []
-  breakingSoundVolume: 1
-  damage: 2
-  hurtsAllies: 0
-  isPiercing: 0
-  damageTypes: 00000000
-  spriteList:
+  sprites:
   - {fileID: 21300000, guid: 8f1c4fe59212bd34ca8036985f1ffaeb, type: 3}
   - {fileID: 21300000, guid: c560136ccd162704f82f7a9609a5fb69, type: 3}
+  breakEnum: 06000000020000000300000004000000050000000000000001000000
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hurtsAllies: 0
+  damageCategories:
+  - damageType: 1
+    damage: 2
   startingSpeed: 6
+  isPiercing: 0
   destroyDelay: -1
   destroyDistance: -1
   minAngleToReflect: 0
@@ -177,7 +177,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

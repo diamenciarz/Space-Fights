@@ -32,7 +32,7 @@ public class CameraPositionController : MonoBehaviour
 
         //Size in game units
         float backgroundWidth = width / pixelsPerUnit * background.transform.lossyScale.x;
-        float backgroundHeight= height / pixelsPerUnit * background.transform.lossyScale.y;
+        float backgroundHeight = height / pixelsPerUnit * background.transform.lossyScale.y;
         Debug.Log("BG width: " + backgroundWidth + " Camera width: " + cameraSize.x);
 
         xLimit = backgroundWidth - cameraSize.x;
@@ -56,14 +56,7 @@ public class CameraPositionController : MonoBehaviour
     #region Movement
     private void Move()
     {
-        if (follow.Count > 0)
-        {
-            transform.position = CountPos();
-        }
-        else
-        {
-            Debug.Log("All followed objects have been destroyed");
-        }
+        transform.position = CountPos();
     }
     private Vector2 CountPos()
     {
@@ -78,6 +71,10 @@ public class CameraPositionController : MonoBehaviour
     }
     private Vector2 CountMiddlePoint()
     {
+        if (follow.Count == 0)
+        {
+            return transform.position;
+        }
         return GetSummedPos() / follow.Count;
     }
     private Vector2 CountClampedPosition()

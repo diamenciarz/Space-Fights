@@ -150,7 +150,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: e782e5b19ac414042a2688cf19680076, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.2612134e-13, y: -0.0000010579826}
@@ -169,18 +169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites: []
-  breakEnum: 00000000010000000400000005000000060000000700000008000000
-  breakingSounds: []
-  breakingSoundVolume: 1
-  damage: 1
-  hurtsAllies: 0
-  isPiercing: 0
-  damageTypes: 00000000
-  spriteList:
+  sprites:
   - {fileID: 21300000, guid: f8887aa7e07d9b54b945a0286d775326, type: 3}
   - {fileID: 21300000, guid: 7090487e8efd833498e1a0ae3367222e, type: 3}
+  breakEnum: 0000000001000000040000000500000006000000
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hurtsAllies: 0
+  damageCategories:
+  - damageType: 1
+    damage: 4
   startingSpeed: 6
+  isPiercing: 0
   destroyDelay: -1
   destroyDistance: -1
   minAngleToReflect: 60
