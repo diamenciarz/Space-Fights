@@ -33,7 +33,6 @@ public class CameraPositionController : MonoBehaviour
         //Size in game units
         float backgroundWidth = width / pixelsPerUnit * background.transform.lossyScale.x;
         float backgroundHeight = height / pixelsPerUnit * background.transform.lossyScale.y;
-        Debug.Log("BG width: " + backgroundWidth + " Camera width: " + cameraSize.x);
 
         xLimit = backgroundWidth - cameraSize.x;
         yLimit = backgroundHeight - cameraSize.y;
@@ -60,6 +59,10 @@ public class CameraPositionController : MonoBehaviour
     }
     private Vector2 CountPos()
     {
+        if (follow.Count == 0)
+        {
+            return transform.position;
+        }
         if (limitView)
         {
             return CountClampedPosition();
@@ -71,10 +74,6 @@ public class CameraPositionController : MonoBehaviour
     }
     private Vector2 CountMiddlePoint()
     {
-        if (follow.Count == 0)
-        {
-            return transform.position;
-        }
         return GetSummedPos() / follow.Count;
     }
     private Vector2 CountClampedPosition()

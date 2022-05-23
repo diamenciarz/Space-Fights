@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ShipAction : ScriptableObject
 {
-    public abstract void callAction(Rigidbody2D rigidbody2D);
+    public abstract void callAction(Rigidbody2D rigidbody2D, EntityMover entityMover);
 }

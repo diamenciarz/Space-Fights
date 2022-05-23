@@ -8,7 +8,7 @@ public class ConstantMoveAction : MoveAction
 
     [SerializeField] float maxVelocity;
 
-    public override void applyAction(Rigidbody2D rigidbody2D)
+    public override void applyAction(Rigidbody2D rigidbody2D, EntityMover entityMover)
     {
         rigidbody2D.AddRelativeForce(GetRelativeForce(rigidbody2D), ForceMode2D.Force);
     }

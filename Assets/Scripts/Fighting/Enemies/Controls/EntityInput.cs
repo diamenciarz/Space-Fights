@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EntityMover))]
 public class EntityInput : MonoBehaviour
 {
     public List<ActionTriplet> controls;
@@ -31,10 +32,12 @@ public class EntityInput : MonoBehaviour
     }
 
     private Rigidbody2D rb2D;
+    public EntityMover entityMover;
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        entityMover = GetComponent<EntityMover>();
     }
 
     private void FixedUpdate()
@@ -56,6 +59,6 @@ public class EntityInput : MonoBehaviour
 
     private void callAction(ActionTriplet actionTriplet)
     {
-        actionTriplet.action.callAction(rb2D);
+        actionTriplet.action.callAction(rb2D, entityMover);
     }
 }

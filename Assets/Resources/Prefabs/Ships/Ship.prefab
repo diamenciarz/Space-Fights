@@ -1461,11 +1461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 8
   minSpeed: -4
-  acceleratingForce: 5000
-  brakingForce: 10000
-  backingForce: 5000
-  turningSpeed: 150
-  driftFactor: 0.325
+  maxTurningSpeed: 5
+  driftFactor: 0.976
 --- !u!114 &6441913592538751776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,6 +1548,7 @@ MonoBehaviour:
   - key: 101
     type: 7
     action: {fileID: 11400000, guid: bc141bfb9056e36458225a4064f23a14, type: 2}
+  entityMover: {fileID: 0}
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
