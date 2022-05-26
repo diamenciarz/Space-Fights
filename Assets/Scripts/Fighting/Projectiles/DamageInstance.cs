@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageInstance : MonoBehaviour
+/// <summary>
+/// A data storing class used to conduct information about a shot to the DamageCalculator
+/// </summary>
+public class DamageInstance
 {
-    [HideInInspector]
     public int team = -1;
     public bool isAProjectile = false;
     public bool isPiercing = false;

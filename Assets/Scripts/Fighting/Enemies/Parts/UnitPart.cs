@@ -172,7 +172,7 @@ public class UnitPart : SpriteUpdater, IDamageable
         {
             LowerHealthBy(damage);
             CheckHP();
-            changeColorOnHit();
+            ChangeColorOnHit();
             return true;
         }
         return false;
@@ -182,34 +182,34 @@ public class UnitPart : SpriteUpdater, IDamageable
     #region OnJointBreak2D
     public void OnJointBreak2D(Joint2D joint)
     {
-        ParentBrokeOff();
-        transform.SetParent(null);
-        CallChildren();
+        BreakOff();
     }
-    private void CallChildren()
+    private void BreakOff()
     {
         UnitPart[] children = GetComponentsInChildren<UnitPart>();
         foreach (UnitPart child in children)
         {
-            Debug.Log("Found child");
             child.ParentBrokeOff();
         }
     }
     public void ParentBrokeOff()
     {
-        damageReceiver.RemovePart(this);
-        damageReceiver = null;
+        if (damageReceiver != null)
+        {
+            damageReceiver.RemovePart(this);
+            damageReceiver = null;
+        }
 
+        transform.SetParent(null);
         TurnOffGuns();
         SetTeam(-1); //Everyone can shoot destroyed parts
     }
     private void TurnOffGuns()
     {
-        Debug.Log("turning off guns");
         ShootingController[] shootingControllers = GetComponents<ShootingController>();
         foreach (var controller in shootingControllers)
         {
-            controller.SetIsDetached(true);
+            controller.Detach();
         }
     }
     #endregion
@@ -234,11 +234,10 @@ public class UnitPart : SpriteUpdater, IDamageable
     }
     private void CheckHP()
     {
-        if (damageReceiver == null)
+        if (damageReceiver != null)
         {
-            return;
+            damageReceiver.UpdateHealth();
         }
-        damageReceiver.UpdateHealth();
         if (partHealth <= 0)
         {
             HandleBreak();
@@ -265,6 +264,7 @@ public class UnitPart : SpriteUpdater, IDamageable
     }
     private void DestroyObject()
     {
+        BreakOff();
         HelperMethods.DoDestroyActions(gameObject);
         if (damageReceiver)
         {
@@ -277,7 +277,7 @@ public class UnitPart : SpriteUpdater, IDamageable
         yield return new WaitForEndOfFrame();
         Destroy(gameObject);
     }
-    private async void changeColorOnHit()
+    private async void ChangeColorOnHit()
     {
         Debug.Log("Changed color");
         mySpriteRenderer.color = onHitColor;

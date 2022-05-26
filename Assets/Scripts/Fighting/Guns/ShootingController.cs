@@ -16,7 +16,7 @@ public class ShootingController : TeamUpdater
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
     [SerializeField] protected bool targetEnemies;
     [Header("Mouse Steering")]
-    bool isControlledByMouseCursor;
+    bool isControlledByMouse;
     [SerializeField] bool reloadingBarOn = true;
 
     public bool isDetached = false;
@@ -244,7 +244,7 @@ public class ShootingController : TeamUpdater
     #region UI
     private void UpdateUIState()
     {
-        if (!isDetached && (isControlledByMouseCursor || reloadingBarOn))
+        if (isControlledByMouse || reloadingBarOn)
         {
             CreateUI();
         }
@@ -285,17 +285,18 @@ public class ShootingController : TeamUpdater
         }
 
     }
-    public void SetIsControlledByMouseCursorTo(bool isTrue)
+    public void SetIsControlledByMouse(bool isTrue)
     {
-        isControlledByMouseCursor = isTrue;
+        isControlledByMouse = isTrue;
         UpdateUIState();
     }
     #endregion
 
     #region Mutator methods
-    public void SetIsDetached(bool set)
+    public void Detach()
     {
-        isDetached = set;
+        isDetached = true;
+        DeleteUI();
     }
     public void SetShoot(bool set)
     {
