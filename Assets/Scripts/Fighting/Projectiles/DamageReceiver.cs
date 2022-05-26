@@ -17,7 +17,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     private GameObject healthBarInstance;
     private float health;
     private float maxHealth;
-    private List<UnitPart> parts = new List<UnitPart>();
+    public List<UnitPart> parts = new List<UnitPart>();
     private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed

@@ -7,8 +7,8 @@ public class ConstantRotationAction : MoveAction
     [Tooltip("Positive values rotate clockwise")]
     [SerializeField] float torque;
 
-    public override void applyAction(Rigidbody2D rigidbody2D, EntityMover entityMover)
+    public override void applyAction(EntityInput.ActionData actionData)
     {
-        entityMover.RotateByAngle(torque);
+        actionData.entityMover.RotateByAngle(torque);
     }
 }

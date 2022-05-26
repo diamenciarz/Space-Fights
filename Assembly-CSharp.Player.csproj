@@ -61,7 +61,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
     <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\MoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TeamUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IPiercingDamage.cs" />
@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageInstance.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionDamage.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Other\HelperMethods.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ExplosionController.cs" />
     <Compile Include="Assets\Scripts\Effects\MusicPlayer.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="Assets\Scripts\Effects\BackgroundGenerator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageReceiver.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ActiveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ShipAction.cs" />
     <Compile Include="Assets\Scripts\Effects\DoodadFlicker.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\ShootOnDeath.cs" />
@@ -94,16 +97,13 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ConstantMoveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantMoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\UnitPart.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipAction.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActiveAction.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ConstantRotationAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\Shaders\Blur.shader" />

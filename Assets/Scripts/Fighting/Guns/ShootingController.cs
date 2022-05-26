@@ -11,7 +11,6 @@ public class ShootingController : TeamUpdater
     [SerializeField] GameObject reloadingBarPosition;
 
     [Header("Settings")]
-    public KeyCode shootOnPressed;
     [Tooltip("The direction of bullets coming out of the gun pipe")]
     [SerializeField] float basicGunRotation;
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
@@ -20,7 +19,7 @@ public class ShootingController : TeamUpdater
     bool isControlledByMouseCursor;
     [SerializeField] bool reloadingBarOn = true;
 
-    private bool isDetached = false;
+    public bool isDetached = false;
 
     //The gun tries to shoot, if this is set to true
     protected bool shoot;
@@ -135,16 +134,6 @@ public class ShootingController : TeamUpdater
         yield return new WaitForSeconds(delay);
         canShoot = true;
     }
-    IEnumerator ShootSalvo()
-    {
-        for (int i = 0; i < shotAmount; i++)
-        {
-            shotIndex = i;
-            UpdateTimeBetweenEachShot();
-            DoOneShot(i);
-            yield return new WaitForSeconds(salvo.delayAfterEachShot[i]);
-        }
-    }
     #endregion
 
     #region Shot Methods
@@ -194,7 +183,7 @@ public class ShootingController : TeamUpdater
     #endregion
 
     #region Helper Functions
-    public float GetSalvoTimeSum()
+    private float GetSalvoTimeSum()
     {
         float timeSum = 0;
         foreach (var item in salvo.reloadDelays)
@@ -209,7 +198,7 @@ public class ShootingController : TeamUpdater
     /// </summary>
     /// <param name="amount"></param>
     /// <returns></returns>
-    public float GetSalvoTimeSum(int amount)
+    private float GetSalvoTimeSum(int amount)
     {
         amount = ClampInputIndex(amount);
         float timeSum = 0;
@@ -219,10 +208,6 @@ public class ShootingController : TeamUpdater
             timeSum += salvo.reloadDelays[i];
         }
         return timeSum;
-    }
-    public void SetShoot(bool set)
-    {
-        shoot = set;
     }
     private void DecreaseShootingTime()
     {
@@ -257,10 +242,9 @@ public class ShootingController : TeamUpdater
     #endregion
 
     #region UI
-    //Update states
     private void UpdateUIState()
     {
-        if (isControlledByMouseCursor || reloadingBarOn)
+        if (!isDetached && (isControlledByMouseCursor || reloadingBarOn))
         {
             CreateUI();
         }
@@ -285,7 +269,7 @@ public class ShootingController : TeamUpdater
     }
     private void CreateGunReloadingBar()
     {
-        if (gunReloadingBarPrefab != null)
+        if (isDetached || gunReloadingBarPrefab != null)
         {
             GameObject newReloadingBarGO = Instantiate(gunReloadingBarPrefab, transform.position, transform.rotation);
             gunReloadingBarScript = newReloadingBarGO.GetComponent<ProgressionBarController>();
@@ -309,12 +293,14 @@ public class ShootingController : TeamUpdater
     #endregion
 
     #region Mutator methods
-        
-    public void setIsDetached(bool set)
+    public void SetIsDetached(bool set)
     {
         isDetached = set;
     }
-
+    public void SetShoot(bool set)
+    {
+        shoot = set;
+    }
     #endregion
 
 }

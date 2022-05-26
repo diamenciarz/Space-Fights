@@ -7,6 +7,11 @@ using UnityEngine;
 public class EntityInput : MonoBehaviour
 {
     public List<ActionTriplet> controls;
+    public bool controlledByPlayer;
+
+    private Rigidbody2D rb2D;
+    private EntityMover entityMover;
+    private ActionData actionData = new ActionData();
 
     public enum EntityInputs
     {
@@ -16,6 +21,8 @@ public class EntityInput : MonoBehaviour
         RIGHT,
         DOUBLE_LEFT,
         DOUBLE_RIGHT,
+        FORWARD_LEFT,
+        FORWARD_RIGHT,
         BACKWARD_LEFT,
         BACKWARD_RIGHT,
         PRIMARY_ACTION,
@@ -29,15 +36,20 @@ public class EntityInput : MonoBehaviour
         public KeyCode key;
         public EntityInputs type;
         public ShipAction action;
+        public List<ShootingController> shootingControllers;
+
     }
-
-    private Rigidbody2D rb2D;
-    public EntityMover entityMover;
-
+    public class ActionData
+    {
+        public Rigidbody2D rigidbody2D;
+        public EntityMover entityMover;
+    }
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         entityMover = GetComponent<EntityMover>();
+        actionData.entityMover = entityMover;
+        actionData.rigidbody2D = rb2D;
     }
 
     private void FixedUpdate()
@@ -50,15 +62,32 @@ public class EntityInput : MonoBehaviour
 
     private void CheckIfKeyPressed(int i)
     {
+        if (!controlledByPlayer)
+        {
+            return;
+        }
+
         ActionTriplet actionTriplet = controls[i];
         if (Input.GetKey(actionTriplet.key))
         {
-            callAction(actionTriplet);
+            callAction(actionTriplet, true);
+        }
+        else
+        {
+            callAction(actionTriplet, false);
         }
     }
 
-    private void callAction(ActionTriplet actionTriplet)
+    private void callAction(ActionTriplet actionTriplet, bool isOn)
     {
-        actionTriplet.action.callAction(rb2D, entityMover);
+        if (actionTriplet.action && isOn)
+        {
+            actionTriplet.action.callAction(actionData);
+        }
+
+        foreach (ShootingController controller in actionTriplet.shootingControllers)
+        {
+            controller.SetShoot(isOn);
+        }
     }
 }

@@ -80,6 +80,14 @@ public static class HelperMethods
         return returnVector.normalized;
     }
     /// <summary>
+    /// Projects the vector on the left onto the vector on the right
+    /// </summary>
+    public static Vector2 ProjectVector(Vector2 project, Vector2 onto)
+    {
+        float length = Vector2.Dot(project, onto.normalized);
+        return onto.normalized * length;
+    }
+    /// <summary>
     /// Get translated mouse position in 2D. Returns the position, as if mouse cursor was actually placed in that position on the map (Screen to world point)
     /// </summary>
     /// <param name="zCoordinate"></param> 

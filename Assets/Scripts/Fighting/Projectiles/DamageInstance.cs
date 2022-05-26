@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageInstance : MonoBehaviour
 {
+    [HideInInspector]
     public int team = -1;
     public bool isAProjectile = false;
     public bool isPiercing = false;

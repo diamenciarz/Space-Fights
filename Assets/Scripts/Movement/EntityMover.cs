@@ -31,6 +31,7 @@ public class EntityMover : MonoBehaviour, IEntityMover
     }
     private void SetupVariables()
     {
+        rotationAngle = transform.rotation.eulerAngles.z;
         myRigidbody2D = GetComponent<Rigidbody2D>();
     }
     public void SetInputVector(Vector2 newInputVector)
@@ -71,6 +72,14 @@ public class EntityMover : MonoBehaviour, IEntityMover
     private Vector2 GetForwardVelocity()
     {
         return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
+    }
+    public float GetMaxVelocity()
+    {
+        return maxSpeed;
+    }
+    public float GetMinVelocity()
+    {
+        return minSpeed;
     }
     #endregion
 }

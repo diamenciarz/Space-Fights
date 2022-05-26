@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class UnitPart : SpriteUpdater, IDamageable
 {
@@ -24,12 +25,17 @@ public class UnitPart : SpriteUpdater, IDamageable
     [SerializeField] protected List<AudioClip> hitSounds;
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
+    [Header("On hit")]
+    private static Color onHitColor = new Color(255, 140, 140, 255);
+    private float hitColorChangeDuration = 0.5f;
+    private static Color defaultColor = Color.white;
+
     [Header("When destroyed")]
     [Tooltip("Actions to call on death")]
     public TriggerOnDeath[] onDeathTriggers;
 
     //Private variables
-    DamageReceiver damageReceiver;
+    public DamageReceiver damageReceiver;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
 
@@ -166,6 +172,7 @@ public class UnitPart : SpriteUpdater, IDamageable
         {
             LowerHealthBy(damage);
             CheckHP();
+            changeColorOnHit();
             return true;
         }
         return false;
@@ -175,21 +182,36 @@ public class UnitPart : SpriteUpdater, IDamageable
     #region OnJointBreak2D
     public void OnJointBreak2D(Joint2D joint)
     {
-        damageReceiver.RemovePart(this);
+        ParentBrokeOff();
         transform.SetParent(null);
+        CallChildren();
+    }
+    private void CallChildren()
+    {
+        UnitPart[] children = GetComponentsInChildren<UnitPart>();
+        foreach (UnitPart child in children)
+        {
+            Debug.Log("Found child");
+            child.ParentBrokeOff();
+        }
+    }
+    public void ParentBrokeOff()
+    {
+        damageReceiver.RemovePart(this);
+        damageReceiver = null;
 
         TurnOffGuns();
         SetTeam(-1); //Everyone can shoot destroyed parts
     }
     private void TurnOffGuns()
     {
-        ShootingController shootingController = GetComponent<ShootingController>();
-        if (shootingController)
+        Debug.Log("turning off guns");
+        ShootingController[] shootingControllers = GetComponents<ShootingController>();
+        foreach (var controller in shootingControllers)
         {
-            shootingController.setIsDetached(true);
+            controller.SetIsDetached(true);
         }
     }
-    
     #endregion
 
     #region HP Helper methods
@@ -212,6 +234,10 @@ public class UnitPart : SpriteUpdater, IDamageable
     }
     private void CheckHP()
     {
+        if (damageReceiver == null)
+        {
+            return;
+        }
         damageReceiver.UpdateHealth();
         if (partHealth <= 0)
         {
@@ -240,13 +266,29 @@ public class UnitPart : SpriteUpdater, IDamageable
     private void DestroyObject()
     {
         HelperMethods.DoDestroyActions(gameObject);
-        damageReceiver.RemovePart(this);
+        if (damageReceiver)
+        {
+            damageReceiver.RemovePart(this);
+        }
         StartCoroutine(DestroyAtTheEndOfFrame());
     }
     private IEnumerator DestroyAtTheEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
         Destroy(gameObject);
+    }
+    private async void changeColorOnHit()
+    {
+        Debug.Log("Changed color");
+        mySpriteRenderer.color = onHitColor;
+        float endTime = Time.time + hitColorChangeDuration;
+        float startTime = Time.time;
+        while (Time.time < endTime)
+        {
+            float percentage = (Time.time - startTime) / hitColorChangeDuration;
+            Color.Lerp(onHitColor, defaultColor, percentage);
+            await Task.Yield();
+        }
     }
     #endregion
 }
