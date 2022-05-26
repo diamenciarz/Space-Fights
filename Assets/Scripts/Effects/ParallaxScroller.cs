@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ParallaxScroller : MonoBehaviour
 {
-    [SerializeField] [Range(0, 1000)] float minDistance;
-    [SerializeField] [Range(0, 1000)] float maxDistance;
+    [SerializeField] [Range(0, MAX_DISTANCE)] float minDistance;
+    [SerializeField] [Range(0, MAX_DISTANCE)] float maxDistance;
 
     [Tooltip("If on, the position of this doodad will be recalculated after the camera moves too far from it. Set to off if this is an important landmark")]
     [SerializeField] bool recalculateOffScreen = true;
@@ -115,7 +115,7 @@ public class ParallaxScroller : MonoBehaviour
     }
     private Vector2 countParallaxOffset(Vector2 cameraPosition)
     {
-        float parallaxFactor = (MAX_DISTANCE - distanceFromCamera) / MAX_DISTANCE;
+        float parallaxFactor = (distanceFromCamera) / MAX_DISTANCE;
 
         return new Vector2(cameraPosition.x * parallaxFactor, cameraPosition.y * parallaxFactor);
     }
@@ -140,7 +140,7 @@ public class ParallaxScroller : MonoBehaviour
     }
     public void SetRandomDistance()
     {
-        distanceFromCamera = Random.Range(minDistance, maxDistance);
+        SetDistance(Random.Range(minDistance, maxDistance));
     }
     public void SetDistance(float distance)
     {

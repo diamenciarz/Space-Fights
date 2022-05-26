@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6684a7dc90ec684192cc42b1285f507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 50
-  maxDistance: 150
+  minDistance: 550
+  maxDistance: 850
   recalculateOffScreen: 0
   changeSpriteOnRecalculation: 0
 --- !u!114 &-5130600736205839532
