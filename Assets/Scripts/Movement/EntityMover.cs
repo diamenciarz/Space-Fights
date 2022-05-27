@@ -73,11 +73,11 @@ public class EntityMover : MonoBehaviour, IEntityMover
     {
         return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
     }
-    public float GetMaxVelocity()
+    public float GetMaxSpeed()
     {
         return maxSpeed;
     }
-    public float GetMinVelocity()
+    public float GetMinSpeed()
     {
         return minSpeed;
     }
