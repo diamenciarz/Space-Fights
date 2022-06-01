@@ -24,7 +24,7 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     {
         base.Start();
         float dir = transform.rotation.eulerAngles.z;
-        Vector3 newVelocity = HelperMethods.DirectionVector(startingSpeed, dir);
+        Vector3 newVelocity = HelperMethods.VectorUtils.DirectionVector(startingSpeed, dir);
         SetVelocityVector(newVelocity);
     }
     private void SetupStartingValues()
@@ -45,7 +45,7 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     protected void UpdateRotationToFaceForward()
     {
         Vector3 velocity = myRigidbody2D.velocity;
-        transform.rotation = HelperMethods.DeltaPositionRotation(transform.position, transform.position + velocity);
+        transform.rotation = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, transform.position + velocity);
     }
     #endregion
 

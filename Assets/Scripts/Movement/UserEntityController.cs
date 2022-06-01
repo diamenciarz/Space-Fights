@@ -55,12 +55,12 @@ public class UserEntityController : MonoBehaviour
     }
     private void DoMouseInput()
     {
-        Vector2 mousePos = HelperMethods.TranslatedMousePosition(transform.position);
-        Vector2 deltaMousePos = HelperMethods.DeltaPosition(transform.position, mousePos);
+        Vector2 mousePos = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
+        Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition(transform.position, mousePos);
         Vector2 forwardVector = transform.right;
 
         float deltaAngle = Vector2.SignedAngle(forwardVector, deltaMousePos);
-        Vector2 directionVector = HelperMethods.DirectionVectorNormalized(deltaAngle); ;
+        Vector2 directionVector = HelperMethods.VectorUtils.DirectionVectorNormalized(deltaAngle); ;
         myVehicle.SetInputVector(directionVector);
     }
     #endregion

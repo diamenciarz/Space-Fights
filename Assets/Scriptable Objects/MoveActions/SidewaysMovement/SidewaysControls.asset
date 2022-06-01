@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92b203f04a7b9b418b666d20ad3ab84, type: 3}
+  m_Name: SidewaysControls
+  m_EditorClassIdentifier: 
+  controls:
+  - key: 119
+    type: 0
+    action: {fileID: 11400000, guid: 40304473ff46a1b4894ab76520544e8d, type: 2}
+    shootingControllers: []
+  - key: 115
+    type: 1
+    action: {fileID: 11400000, guid: 3d83d9935b5f99349821dea644c42664, type: 2}
+    shootingControllers: []
+  - key: 97
+    type: 2
+    action: {fileID: 11400000, guid: 17647c825d3ec52418ceda555141c839, type: 2}
+    shootingControllers: []
+  - key: 100
+    type: 3
+    action: {fileID: 11400000, guid: fe854d128dda04d4cb8eb0f36566aba8, type: 2}
+    shootingControllers: []
+  - key: 0
+    type: 13
+    action: {fileID: 11400000, guid: 5bf30d48b5cbe2b41a2e2f89fbdace86, type: 2}
+    shootingControllers: []

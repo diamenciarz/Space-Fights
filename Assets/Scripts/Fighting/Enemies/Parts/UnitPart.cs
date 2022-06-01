@@ -265,7 +265,7 @@ public class UnitPart : SpriteUpdater, IDamageable
     private void DestroyObject()
     {
         BreakOff();
-        HelperMethods.DoDestroyActions(gameObject);
+        HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
         if (damageReceiver)
         {
             damageReceiver.RemovePart(this);

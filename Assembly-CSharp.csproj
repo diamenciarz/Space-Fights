@@ -104,6 +104,8 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\RotateInMoveMentDirectionAction.cs" />
+    <Compile Include="Assets\Scripts\Movement\MovementScheme.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\Shaders\Blur.shader" />

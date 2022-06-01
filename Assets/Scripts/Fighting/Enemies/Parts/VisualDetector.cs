@@ -139,7 +139,7 @@ public class VisualDetector : TeamUpdater
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            Vector3 mousePosition = HelperMethods.TranslatedMousePosition(transform.position);
+            Vector3 mousePosition = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
             return CanSeePosition(mousePosition, ignoreMouseCollisions);
         }
         else
@@ -154,7 +154,7 @@ public class VisualDetector : TeamUpdater
     {
         if (IsPositionInRange(targetPosition, range))
         {
-            float angleFromZeroToItem = HelperMethods.AngleFromUpToPosition(transform.position, targetPosition);
+            float angleFromZeroToItem = HelperMethods.AngleUtils.AngleFromUpToPosition(transform.position, targetPosition);
             float angleFromMiddleToItem = Mathf.DeltaAngle(GetMiddleAngle(), angleFromZeroToItem);
 
             bool isCursorInCone = angleFromMiddleToItem > -(rightMaxRotationLimit) && angleFromMiddleToItem < (leftMaxRotationLimit);
@@ -167,7 +167,7 @@ public class VisualDetector : TeamUpdater
     }
     private bool IsPositionInRange(Vector3 targetPosition, float range)
     {
-        float distanceToTarget = HelperMethods.Distance(transform.position, targetPosition);
+        float distanceToTarget = HelperMethods.VectorUtils.Distance(transform.position, targetPosition);
         bool canShoot = range > distanceToTarget || range == 0;
         if (canShoot)
         {
@@ -177,7 +177,7 @@ public class VisualDetector : TeamUpdater
     }
     private float CountAngleToPosition(Vector3 targetPosition)
     {
-        float angleFromZeroToItem = HelperMethods.DeltaPositionRotation(transform.position, targetPosition).eulerAngles.z;
+        float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, targetPosition).eulerAngles.z;
         float angleFromGunToItem = Mathf.DeltaAngle(GetGunAngle(), angleFromZeroToItem);
 
         return angleFromGunToItem;
@@ -302,7 +302,7 @@ public class VisualDetector : TeamUpdater
     /// <returns></returns>
     public bool CanSeePosition(Vector3 targetPosition, bool ignoreCollisions = false)
     {
-        if (ignoreCollisions || HelperMethods.CanSeeDirectly(transform.position, targetPosition))
+        if (ignoreCollisions || HelperMethods.LineOfSightUtils.CanSeeDirectly(transform.position, targetPosition))
         {
             //Mouse can not hide behind a bush
             if (hasRotationLimits)
@@ -318,7 +318,7 @@ public class VisualDetector : TeamUpdater
     }
     public bool CanSeeTarget(GameObject target)
     {
-        if (HelperMethods.CanSeeDirectly(transform.position, target))
+        if (HelperMethods.LineOfSightUtils.CanSeeDirectly(transform.position, target))
         {
             if (hasRotationLimits)
             {

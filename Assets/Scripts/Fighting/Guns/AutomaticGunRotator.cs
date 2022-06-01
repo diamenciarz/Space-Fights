@@ -175,7 +175,7 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private float CountAngleFromGunToTargetPosition(Vector3 targetPosition)
     {
-        Vector3 relativePositionFromGunToItem = HelperMethods.DeltaPosition(transform.position, targetPosition);
+        Vector3 relativePositionFromGunToItem = HelperMethods.VectorUtils.DeltaPosition(transform.position, targetPosition);
         float angleFromMiddleToItem = CountAngleFromMiddleToPosition(relativePositionFromGunToItem);
         if (hasRotationLimits)
         {

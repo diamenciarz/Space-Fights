@@ -64,7 +64,7 @@ public class DoodadFlicker : SetRandomTexture, ISerializationCallbackReceiver
     private void ChooseRandomGradient()
     {
         int chance = Random.Range(0, chanceSum);
-        int gradientIndex = HelperMethods.GetIndexFromChance(chance, gradientProbabilities);
+        int gradientIndex = HelperMethods.ListUtils.GetIndexFromChance(chance, gradientProbabilities);
         currentGradient = flickerGradients[gradientIndex];
     }
 

@@ -19,7 +19,7 @@ public class ShootingController : TeamUpdater
     bool isControlledByMouse;
     [SerializeField] bool reloadingBarOn = true;
 
-    public bool isDetached = false;
+    private bool isDetached = false;
 
     //The gun tries to shoot, if this is set to true
     protected bool shoot;

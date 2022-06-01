@@ -79,7 +79,7 @@ public class RocketController : BasicProjectileController
     }
     private void UpdateSpeed()
     {
-        Vector3 newVelocity = HelperMethods.DirectionVectorNormalized(transform.eulerAngles.z) * currentRocketSpeed;
+        Vector3 newVelocity = HelperMethods.VectorUtils.DirectionVectorNormalized(transform.eulerAngles.z) * currentRocketSpeed;
         SetVelocityVector(newVelocity);
     }
     public override void SetVelocityVector(Vector3 newVelocityVector)
@@ -87,14 +87,14 @@ public class RocketController : BasicProjectileController
         velocityVector = newVelocityVector;
         myRigidbody2D.velocity = newVelocityVector;
         Quaternion deltaRotation = Quaternion.Euler(0, 0, -90); // Weird thing with rockets
-        transform.rotation = HelperMethods.DeltaPositionRotation(transform.position, transform.position + newVelocityVector) * deltaRotation;
+        transform.rotation = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, transform.position + newVelocityVector) * deltaRotation;
     }
     private void TurnTowardsTarget()
     {
         if (targetGameObject)
         {
             Quaternion deltaRotation = Quaternion.Euler(0, 0, -90);// Weird thing with rockets
-            Quaternion targetRotation = HelperMethods.DeltaPositionRotation(transform.position, targetGameObject.transform.position) * deltaRotation;
+            Quaternion targetRotation = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, targetGameObject.transform.position) * deltaRotation;
             float deltaAngleThisFrame = rocketRotationSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, deltaAngleThisFrame);

@@ -24,7 +24,7 @@ public class SetRandomTexture : MonoBehaviour, ISerializationCallbackReceiver
     }
     public void SetRandomSprite()
     {
-        int spriteIndex = HelperMethods.GetWeightedIndex(spriteProbabilities);
+        int spriteIndex = HelperMethods.ListUtils.GetWeightedIndex(spriteProbabilities);
         if (spriteRenderer)
         {
             spriteRenderer.sprite = alternativeLooks[spriteIndex];

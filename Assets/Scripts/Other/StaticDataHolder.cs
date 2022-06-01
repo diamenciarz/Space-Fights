@@ -33,7 +33,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetObstacleList()
     {
-        return HelperMethods.CloneList(obstacleList);
+        return HelperMethods.ListUtils.CloneList(obstacleList);
     }
     #endregion
 
@@ -52,7 +52,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetDashableObjectList()
     {
-        return HelperMethods.CloneList(dashableObjectList);
+        return HelperMethods.ListUtils.CloneList(dashableObjectList);
     }
     #endregion
 
@@ -67,7 +67,7 @@ public static class StaticDataHolder
         List<GameObject> clonedDashableObjectList = StaticDataHolder.GetDashableObjectList();
         GameObject dashableObject = GetClosestObject(clonedDashableObjectList, position);
 
-        float distance = HelperMethods.Distance(dashableObject.transform.position, position);
+        float distance = HelperMethods.VectorUtils.Distance(dashableObject.transform.position, position);
         if (distance <= range)
         {
             return dashableObject;
@@ -88,7 +88,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetProjectileList()
     {
-        return HelperMethods.CloneList(projectileList);
+        return HelperMethods.ListUtils.CloneList(projectileList);
     }
     #endregion
 
@@ -103,7 +103,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetPlayerProjectileList()
     {
-        return HelperMethods.CloneList(playerProjectileList);
+        return HelperMethods.ListUtils.CloneList(playerProjectileList);
     }
     #endregion
 
@@ -118,7 +118,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetEntityList()
     {
-        return HelperMethods.CloneList(entityList);
+        return HelperMethods.ListUtils.CloneList(entityList);
     }
     #endregion
 
@@ -136,7 +136,7 @@ public static class StaticDataHolder
     }
     public static List<GameObject> GetCollidingObjectList()
     {
-        return HelperMethods.CloneList(objectsCollidingWithPlayerList);
+        return HelperMethods.ListUtils.CloneList(objectsCollidingWithPlayerList);
     }
     #region Objects colliding with player methods
     public static float GetHighestSlowEffect()
@@ -252,7 +252,7 @@ public static class StaticDataHolder
                     currentNearestTarget = target;
                     continue;
                 }
-                bool currentTargetIsCloser = HelperMethods.Distance(positionVector, target.transform.position) < HelperMethods.Distance(positionVector, currentNearestTarget.transform.position);
+                bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
                 if (currentTargetIsCloser)
                 {
                     currentNearestTarget = target;
@@ -268,14 +268,14 @@ public static class StaticDataHolder
         {
             foreach (GameObject target in possibleTargetList)
             {
-                if (HelperMethods.CanSeeDirectly(positionVector, target))
+                if (HelperMethods.LineOfSightUtils.CanSeeDirectly(positionVector, target))
                 {
                     if (currentNearestTarget == null)
                     {
                         currentNearestTarget = target;
                         continue;
                     }
-                    bool currentTargetIsCloser = HelperMethods.Distance(positionVector, target.transform.position) < HelperMethods.Distance(positionVector, currentNearestTarget.transform.position);
+                    bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
                     if (currentTargetIsCloser)
                     {
                         currentNearestTarget = target;
@@ -315,7 +315,7 @@ public static class StaticDataHolder
         {
             foreach (GameObject target in targetList)
             {
-                if (HelperMethods.CanSeeDirectly(middlePosition, target))
+                if (HelperMethods.LineOfSightUtils.CanSeeDirectly(middlePosition, target))
                 {
                     if (currentClosestEnemy == null)
                     {
@@ -337,7 +337,7 @@ public static class StaticDataHolder
     #region Helper methods
     private static float CountAngleFromMiddleToPosition(Vector3 middlePosition, Vector3 targetPosition, float middleAngle)
     {
-        float angleFromZeroToItem = HelperMethods.DeltaPositionRotation(middlePosition, targetPosition).eulerAngles.z;
+        float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(middlePosition, targetPosition).eulerAngles.z;
         float angleFromGunToItem = Mathf.DeltaAngle(middleAngle, angleFromZeroToItem);
 
         return angleFromGunToItem;

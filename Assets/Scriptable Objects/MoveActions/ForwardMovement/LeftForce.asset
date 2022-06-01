@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LeftForce
   m_EditorClassIdentifier: 
   force: {x: -500, y: 0}
+  isForceGlobal: 0

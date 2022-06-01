@@ -57,7 +57,7 @@ public class BreakOnCollision : SpriteUpdater
     }
     private bool ShouldBreak(GameObject collisionObject)
     {
-        List<BreaksOn> collisionPropertyList = HelperMethods.GetCollisionProperties(collisionObject, team);
+        List<BreaksOn> collisionPropertyList = HelperMethods.CollisionUtils.GetCollisionProperties(collisionObject, team);
 
         if (IsInvulnerableTo(collisionObject))
         {
@@ -125,7 +125,7 @@ public class BreakOnCollision : SpriteUpdater
         if (!isDestroyed)
         {
             isDestroyed = true;
-            HelperMethods.DoDestroyActions(gameObject);
+            HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
             StartCoroutine(DestroyAtTheEndOfFrame());
         }
     }

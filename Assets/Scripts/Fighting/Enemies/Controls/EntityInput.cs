@@ -1,44 +1,22 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static MovementScheme;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(EntityMover))]
 public class EntityInput : MonoBehaviour
 {
-    public List<ActionTriplet> controls;
     public bool controlledByPlayer;
+    public MovementScheme controlScheme;
+    public ActionTriplet primaryAction;
+    public ActionTriplet secondaryAction;
+    public ActionTriplet ternaryAction;
 
     private Rigidbody2D rb2D;
     private EntityMover entityMover;
     private ActionData actionData = new ActionData();
-
-    public enum EntityInputs
-    {
-        FORWARD,
-        BACKWARD,
-        LEFT,
-        RIGHT,
-        DOUBLE_LEFT,
-        DOUBLE_RIGHT,
-        FORWARD_LEFT,
-        FORWARD_RIGHT,
-        BACKWARD_LEFT,
-        BACKWARD_RIGHT,
-        PRIMARY_ACTION,
-        SECONDARY_ACTION,
-        TERNARY_ACTION
-    }
-
-    [Serializable]
-    public class ActionTriplet
-    {
-        public KeyCode key;
-        public EntityInputs type;
-        public ShipAction action;
-        public List<ShootingController> shootingControllers;
-
-    }
+    
     public class ActionData
     {
         public Rigidbody2D rigidbody2D;
@@ -54,21 +32,28 @@ public class EntityInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < controls.Count; i++)
+        foreach (ActionTriplet controls in controlScheme.controls)
         {
-            CheckIfKeyPressed(i);
+            CheckIfKeyPressed(controls);
         }
+        CheckIfKeyPressed(primaryAction);
+        CheckIfKeyPressed(secondaryAction);
+        CheckIfKeyPressed(ternaryAction);
     }
 
-    private void CheckIfKeyPressed(int i)
+    private void CheckIfKeyPressed(ActionTriplet actionTriplet)
     {
+        if (actionTriplet == null)
+        {
+            return;
+        }
         if (!controlledByPlayer)
         {
             return;
         }
 
-        ActionTriplet actionTriplet = controls[i];
-        if (Input.GetKey(actionTriplet.key))
+        bool isActionActive = actionTriplet.type == EntityInputs.ALWAYS_ACTIVE || Input.GetKey(actionTriplet.key);
+        if (isActionActive)
         {
             callAction(actionTriplet, true);
         }

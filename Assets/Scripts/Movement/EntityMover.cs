@@ -53,15 +53,23 @@ public class EntityMover : MonoBehaviour, IEntityMover
         myRigidbody2D.MoveRotation(rotationAngle);
         previousRotationAngle = rotationAngle;
     }
-    public void RotateByAngle(float rotation)
+    public void RotateByAngle(float rotation, bool affectedByVelocity)
     {
-        float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
-        float deltaAngle = rotation * Time.fixedDeltaTime * maxSpeedPercentage;
-        rotationAngle -= deltaAngle;
+        rotationAngle -= CalculateDeltaAngle(rotation, affectedByVelocity);
 
         float minRotation = previousRotationAngle - maxTurningSpeed * Time.fixedDeltaTime;
         float maxRotation = previousRotationAngle + maxTurningSpeed * Time.fixedDeltaTime;
         rotationAngle = Mathf.Clamp(rotationAngle, minRotation, maxRotation);
+    }
+
+    private float CalculateDeltaAngle(float rotation, bool affectedByVelocity)
+    {
+        if (affectedByVelocity)
+        {
+            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
+            return rotation * Time.fixedDeltaTime * maxSpeedPercentage;
+        }
+        return rotation * Time.fixedDeltaTime;
     }
 
     #region Accessor methods
