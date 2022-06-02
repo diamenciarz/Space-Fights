@@ -885,10 +885,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.08838835, y: -0.79549515}
@@ -1254,10 +1254,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 2000
-  m_BreakTorque: 2000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.50000006, y: 0.37499997}
@@ -1445,7 +1445,7 @@ RelativeJoint2D:
   m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.3348235, y: 0.0680921}
+  m_LinearOffset: {x: -0.3348234, y: 0.06809226}
   m_AngularOffset: -1.8036276
 --- !u!114 &5350038369014034529
 MonoBehaviour:
@@ -1750,10 +1750,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913594073557300}
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.00000004371139, y: 0.5}
@@ -2136,13 +2136,13 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.08838692, y: -0.7955141}
+  m_LinearOffset: {x: -0.08838686, y: -0.795514}
   m_AngularOffset: -2.3561945
 --- !u!114 &28915839474252319
 MonoBehaviour:
@@ -2393,10 +2393,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 2000
-  m_BreakTorque: 200
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.49999997, y: 0.37500003}
@@ -2609,10 +2609,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592222990136}
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.00000004371139, y: 0.5}

@@ -1,9 +1,9 @@
 using UnityEngine;
 using static EntityInput;
 
-[CreateAssetMenu(fileName = "RotateInMoveDirection", menuName = "Moves/RotateInMoveDirection")]
+[CreateAssetMenu(fileName = "RotateInMouseDirection", menuName = "Moves/RotateInMouseDirection")]
 
-public class RotateInMovementDirectionAction : MoveAction
+public class RotateInMouseDirectionAction : MoveAction
 {
     [Tooltip("Positive values rotate clockwise")]
     [SerializeField] bool affectedByVelocity;
@@ -18,12 +18,19 @@ public class RotateInMovementDirectionAction : MoveAction
         {
             return;
         }
-        actionData.entityMover.RotateTowardsVector(actionData.rigidbody2D.velocity, affectedByVelocity);
+        actionData.entityMover.RotateTowardsVector(GetDirectionToMouseCursor(actionData), affectedByVelocity);
     }
     private bool shipMovesTooSlowly(ActionData actionData)
     {
         float maxSpeed = actionData.entityMover.GetMaxSpeed();
         float speed = actionData.rigidbody2D.velocity.magnitude;
         return (speed / maxSpeed) < maxSpeedPercentage;
+    }
+    private Vector2 GetDirectionToMouseCursor(ActionData actionData)
+    {
+        Vector2 mousePosition = HelperMethods.VectorUtils.TranslatedMousePosition();
+        Vector2 shipPosition = actionData.rigidbody2D.gameObject.transform.position;
+        Vector2 directionToMouseCursor = HelperMethods.VectorUtils.DeltaPosition(shipPosition, mousePosition);
+        return directionToMouseCursor;
     }
 }

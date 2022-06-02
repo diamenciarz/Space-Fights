@@ -87,9 +87,7 @@ public static class HelperMethods
         /// <returns></returns>
         public static float VectorDirection(Vector2 vector)
         {
-            float clampedAngle = AngleUtils.ClampAngle360(Vector2.SignedAngle(Vector2.up, vector));
-            Debug.Log("Original vector: " + vector + " clampedAngle: " + clampedAngle);
-            return clampedAngle;
+            return AngleUtils.ClampAngle360(Vector2.SignedAngle(Vector2.up, vector));
         }
 
         /// <summary>
@@ -99,6 +97,17 @@ public static class HelperMethods
         {
             float length = Vector2.Dot(project, onto.normalized);
             return onto.normalized * length;
+        }
+        /// <summary>
+         /// Get translated mouse position in 2D. Returns the position, as if mouse cursor was actually placed in that position on the map (Screen to world point)
+         /// </summary>
+         /// <param name="zCoordinate"></param> 
+         /// <returns></returns>
+        public static Vector2 TranslatedMousePosition()
+        {
+            Vector3 returnVector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            return returnVector;
+
         }
         /// <summary>
         /// Get translated mouse position in 2D. Returns the position, as if mouse cursor was actually placed in that position on the map (Screen to world point)
@@ -197,6 +206,10 @@ public static class HelperMethods
             }
             return clamped;
         }
+        /// <summary>
+        /// Clamps angle between <-180;180>
+        /// </summary>
+        /// <returns></returns>
         public static float ClampAngle180(float rotation)
         {
             float clamped = rotation % 360;
@@ -382,6 +395,9 @@ public static class HelperMethods
             return false;
         }
     }
+    /// <summary>
+    /// Type checks
+    /// </summary>
     public class ObjectUtils
     {
         public static bool IsObjectAProjectile(GameObject collisionObject)

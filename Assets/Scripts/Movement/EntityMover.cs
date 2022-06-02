@@ -21,24 +21,79 @@ public class EntityMover : MonoBehaviour, IEntityMover
     private Vector2 inputVector;
 
     private float previousRotationAngle;
-    private float rotationAngle;
-
+    private float directionAngle;
     #endregion
 
+    #region Startup
     void Start()
     {
         SetupVariables();
     }
     private void SetupVariables()
     {
-        rotationAngle = transform.rotation.eulerAngles.z;
+        directionAngle = transform.rotation.eulerAngles.z;
         myRigidbody2D = GetComponent<Rigidbody2D>();
     }
+    #endregion
+
+    #region Public methods
     public void SetInputVector(Vector2 newInputVector)
     {
         inputVector = newInputVector;
     }
+    public void RotateByAngle(float rotation, bool affectedByVelocity)
+    {
+        float deltaAngle = CalculateDeltaAngle(rotation, affectedByVelocity);
+        ModifyDirection(deltaAngle);
+    }
+    public void RotateTowardsVector(Vector2 targetDirection, bool affectedByVelocity)
+    {
+        float deltaAngle = CalculateDeltaAngle(targetDirection, affectedByVelocity);
+        ModifyDirection(deltaAngle);
+    }
+    #region Helper methods
+    private float CalculateDeltaAngle(float rotation, bool affectedByVelocity)
+    {
+        if (affectedByVelocity)
+        {
+            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
+            return rotation * Time.fixedDeltaTime * maxSpeedPercentage;
+        }
+        return rotation * Time.fixedDeltaTime;
+    }
+    private float CalculateDeltaAngle(Vector2 targetDirection, bool affectedByVelocity)
+    {
+        float directionVector = HelperMethods.VectorUtils.VectorDirection(targetDirection);
+        float directionVectorClamped = HelperMethods.AngleUtils.ClampAngle180(directionVector);
+        float rotation = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
+        float deltaAngle = HelperMethods.AngleUtils.ClampAngle180(directionVectorClamped - rotation);
 
+        float deltaStep = Mathf.Sign(deltaAngle) * maxTurningSpeed * Time.fixedDeltaTime;
+
+        //0.1 is a good multiplier that avoids the counter torque from overshooting and creating wiggle
+        bool angleIsSmall = Mathf.Abs(deltaAngle) < maxTurningSpeed * 0.1;
+        if (angleIsSmall)
+        {
+            return deltaAngle * Time.fixedDeltaTime;
+        }
+
+        if (affectedByVelocity)
+        {
+            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
+            return deltaStep * maxSpeedPercentage;
+        }
+        return deltaStep;
+    }
+    private void ModifyDirection(float deltaDirection)
+    {
+        float minRotation = previousRotationAngle - maxTurningSpeed * Time.fixedDeltaTime;
+        float maxRotation = previousRotationAngle + maxTurningSpeed * Time.fixedDeltaTime;
+        directionAngle = Mathf.Clamp(directionAngle + deltaDirection, minRotation, maxRotation);
+    }
+    #endregion
+    #endregion
+
+    #region Update
     void FixedUpdate()
     {
         KillSidewayVelocity();
@@ -50,27 +105,10 @@ public class EntityMover : MonoBehaviour, IEntityMover
     }
     private void HoldRotation()
     {
-        myRigidbody2D.MoveRotation(rotationAngle);
-        previousRotationAngle = rotationAngle;
+        myRigidbody2D.MoveRotation(directionAngle);
+        previousRotationAngle = directionAngle;
     }
-    public void RotateByAngle(float rotation, bool affectedByVelocity)
-    {
-        rotationAngle -= CalculateDeltaAngle(rotation, affectedByVelocity);
-
-        float minRotation = previousRotationAngle - maxTurningSpeed * Time.fixedDeltaTime;
-        float maxRotation = previousRotationAngle + maxTurningSpeed * Time.fixedDeltaTime;
-        rotationAngle = Mathf.Clamp(rotationAngle, minRotation, maxRotation);
-    }
-
-    private float CalculateDeltaAngle(float rotation, bool affectedByVelocity)
-    {
-        if (affectedByVelocity)
-        {
-            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
-            return rotation * Time.fixedDeltaTime * maxSpeedPercentage;
-        }
-        return rotation * Time.fixedDeltaTime;
-    }
+    #endregion
 
     #region Accessor methods
     private Vector2 GetSidewayVelocity()
@@ -88,6 +126,10 @@ public class EntityMover : MonoBehaviour, IEntityMover
     public float GetMinSpeed()
     {
         return minSpeed;
+    }
+    public float GetMaxTurningSpeed()
+    {
+        return maxTurningSpeed;
     }
     #endregion
 }
