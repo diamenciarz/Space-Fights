@@ -74,6 +74,7 @@ public class CameraPositionController : MonoBehaviour
     }
     private Vector2 CountMiddlePoint()
     {
+        RemoveNullElements();
         return GetSummedPos() / follow.Count;
     }
     private Vector2 CountClampedPosition()
@@ -88,6 +89,16 @@ public class CameraPositionController : MonoBehaviour
     private Vector2 GetSummedPos()
     {
         Vector2 summedPos = Vector2.zero;
+        RemoveNullElements();
+        for (int i = 0; i < follow.Count; i++)
+        {
+            GameObject obj = follow[i];
+            summedPos += (Vector2)obj.transform.position;
+        }
+        return summedPos;
+    }
+    private void RemoveNullElements()
+    {
         for (int i = follow.Count - 1; i >= 0; i--)
         {
             GameObject obj = follow[i];
@@ -96,10 +107,7 @@ public class CameraPositionController : MonoBehaviour
                 follow.RemoveAt(i);
                 continue;
             }
-            summedPos += (Vector2)obj.transform.position;
-
         }
-        return summedPos;
     }
     #endregion
 

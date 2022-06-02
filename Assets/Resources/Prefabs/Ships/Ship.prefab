@@ -1070,10 +1070,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.00000004371139, y: -0.5}
@@ -1281,8 +1281,8 @@ MonoBehaviour:
   barHealth: 20
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -1797,8 +1797,8 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -1953,10 +1953,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 2000
-  m_BreakTorque: 2000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.25000003, y: -0.49999997}
@@ -2420,8 +2420,8 @@ MonoBehaviour:
   barHealth: 20
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -2656,8 +2656,8 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -2812,10 +2812,10 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 2000
-  m_BreakTorque: 2000
-  m_MaxForce: 10000
-  m_MaxTorque: 1000
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.24999996, y: -0.5}

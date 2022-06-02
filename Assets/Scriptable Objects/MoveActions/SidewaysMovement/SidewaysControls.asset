@@ -31,5 +31,5 @@ MonoBehaviour:
     shootingControllers: []
   - key: 0
     type: 13
-    action: {fileID: 11400000, guid: 5bf30d48b5cbe2b41a2e2f89fbdace86, type: 2}
+    action: {fileID: 11400000, guid: b61868928035a2545a865381751eceef, type: 2}
     shootingControllers: []

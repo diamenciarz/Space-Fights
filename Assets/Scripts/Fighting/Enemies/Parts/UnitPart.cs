@@ -26,6 +26,8 @@ public class UnitPart : SpriteUpdater, IDamageable
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
     [Header("On hit")]
+    private static GameObject damagePopup;
+    private static bool damagePopupUpdated = false;
     private static Color onHitColor = new Color(255, 140, 140, 255);
     private float hitColorChangeDuration = 0.5f;
     private static Color defaultColor = Color.white;
@@ -61,7 +63,12 @@ public class UnitPart : SpriteUpdater, IDamageable
         }
         damageReceiver = GetComponentInParent<DamageReceiver>();
         onDeathTriggers = GetComponentsInChildren<TriggerOnDeath>(); // On death trigger
-
+        if (!damagePopupUpdated)
+        {
+            damagePopupUpdated = true;
+            damagePopup = HelperMethods.ObjectUtils.FindObjectWithName("Assets/Resources/Prefabs/UI/", "DamagePopup");
+        }
+        //Math
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
         barToPartRatio = barHealth / partHealth;
@@ -170,12 +177,24 @@ public class UnitPart : SpriteUpdater, IDamageable
         bool damageDealt = damage > 0 && !isDestroyed;
         if (damageDealt)
         {
+            CreateDamagePopup(damage);
             LowerHealthBy(damage);
             CheckHP();
             ChangeColorOnHit();
             return true;
         }
         return false;
+    }
+    private void CreateDamagePopup(int damage)
+    {
+        GameObject poup = Instantiate(damagePopup, transform.position, Quaternion.Euler(0,0,0));
+        DamagePopup damagePopupScript = poup.GetComponent<DamagePopup>();
+        damagePopupScript.Start();
+        if (damagePopupScript)
+        {
+            damagePopupScript.SetMaxDamage((int)maxPartHealth);
+            damagePopupScript.SetDamageDisplayed(damage);
+        }
     }
     #endregion
 
@@ -281,12 +300,16 @@ public class UnitPart : SpriteUpdater, IDamageable
     {
         Debug.Log("Changed color");
         mySpriteRenderer.color = onHitColor;
-        float endTime = Time.time + hitColorChangeDuration;
         float startTime = Time.time;
+        float endTime = Time.time + hitColorChangeDuration;
         while (Time.time < endTime)
         {
             float percentage = (Time.time - startTime) / hitColorChangeDuration;
-            Color.Lerp(onHitColor, defaultColor, percentage);
+            if (mySpriteRenderer == null)
+            {
+                return;
+            }
+            mySpriteRenderer.color = Color.Lerp(onHitColor, defaultColor, percentage);
             await Task.Yield();
         }
     }
