@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageReceiver : ListUpdater, IParent, ITeamable
+public class HealthManager : ListUpdater, IParent, ITeamable
 {
     [Header("Basic Stats")]
     [SerializeField] int team;
@@ -17,12 +17,12 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     private GameObject healthBarInstance;
     private float health;
     private float maxHealth;
-    public List<UnitPart> parts = new List<UnitPart>();
+    private List<DamageReceiver> parts = new List<DamageReceiver>();
     private GameObject createdBy;
     /// <summary>
     /// This is the additional damage received from parts being destroyed
     /// </summary>
-    public float additionalDamage;
+    private float additionalDamage;
     protected ProgressionBarController healthBarScript;
 
     #region Startup
@@ -46,8 +46,8 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     }
     private void FindParts()
     {
-        parts = new List<UnitPart>();
-        UnitPart[] partsFound = GetComponentsInChildren<UnitPart>();
+        parts = new List<DamageReceiver>();
+        DamageReceiver[] partsFound = GetComponentsInChildren<DamageReceiver>();
         if (partsFound.Length > 0)
         {
             parts.AddRange(partsFound);
@@ -56,7 +56,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     private void UpdateMaxHP()
     {
         maxHealth = 0;
-        foreach (UnitPart part in parts)
+        foreach (DamageReceiver part in parts)
         {
             maxHealth += part.GetMaxBarHealth();
         }
@@ -89,7 +89,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     private float CountHP()
     {
         float hp = 0;
-        foreach (UnitPart part in parts)
+        foreach (DamageReceiver part in parts)
         {
             hp += part.GetBarHealth();
         }
@@ -178,7 +178,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
         UpdateHealthBar();
         CheckHP();
     }
-    public void RemovePart(UnitPart part)
+    public void RemovePart(DamageReceiver part)
     {
         parts.Remove(part);
         additionalDamage += part.GetDestroyDamage();
@@ -189,7 +189,7 @@ public class DamageReceiver : ListUpdater, IParent, ITeamable
     /// </summary>
     public void DoFullHeal()
     {
-        foreach (UnitPart part in parts)
+        foreach (DamageReceiver part in parts)
         {
             part.DoFullHeal();
         }

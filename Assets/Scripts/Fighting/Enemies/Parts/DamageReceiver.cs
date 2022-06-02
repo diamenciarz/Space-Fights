@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class UnitPart : SpriteUpdater, IDamageable
+public class DamageReceiver : SpriteUpdater, IDamageable
 {
     [Header("Health")]
     [Tooltip("The amount of damage that this part can receive, before it is destroyed")]
-    [SerializeField] float partHealth;
+    [SerializeField] float partHealth = 50;
     [Tooltip("The share of health that this part contributes to the HP bar")]
-    [SerializeField] float barHealth;
+    [SerializeField] float barHealth = 50;
     [Tooltip("The additional damage that is dealt to the unit, when this part is destroyed")]
-    [SerializeField] float destroyDamage;
+    [SerializeField] float destroyDamage = 20;
     [SerializeField] List<DamageCalculator.Immunity> immunities = new List<DamageCalculator.Immunity>();
 
     [Header("Collisions")]
     [Tooltip("The collision velocity, above which this ship part will start taking damage")]
-    [SerializeField] float minKineticEnergy = 10;
-    [SerializeField] float collisionDamageModifier = 0.5f;
+    [SerializeField] float minKineticEnergy = 20;
+    [SerializeField] float collisionDamageModifier = 0.25f;
 
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
@@ -33,7 +33,7 @@ public class UnitPart : SpriteUpdater, IDamageable
     private static Color defaultColor = Color.white;
 
     //Private variables
-    private DamageReceiver damageReceiver;
+    private HealthManager damageReceiver;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
 
@@ -57,7 +57,7 @@ public class UnitPart : SpriteUpdater, IDamageable
         {
             myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         }
-        damageReceiver = GetComponentInParent<DamageReceiver>();
+        damageReceiver = GetComponentInParent<HealthManager>();
         if (!damagePopupUpdated)
         {
             damagePopupUpdated = true;
@@ -200,8 +200,8 @@ public class UnitPart : SpriteUpdater, IDamageable
     }
     private void BreakOff()
     {
-        UnitPart[] children = GetComponentsInChildren<UnitPart>();
-        foreach (UnitPart child in children)
+        DamageReceiver[] children = GetComponentsInChildren<DamageReceiver>();
+        foreach (DamageReceiver child in children)
         {
             child.ParentBrokeOff();
         }

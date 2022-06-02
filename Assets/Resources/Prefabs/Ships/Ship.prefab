@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 85665179381217666}
   - component: {fileID: 2664050767297345441}
-  - component: {fileID: 7182946479378704666}
   - component: {fileID: 4646124888540696105}
+  - component: {fileID: 6151871211460468964}
   m_Layer: 0
   m_Name: RightArmor
   m_TagString: Untagged
@@ -166,34 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7182946479378704666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161992438742806062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: -1
-  sprites:
-  - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
-  - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
-  partHealth: 50
-  barHealth: 15
-  destroyDamage: 10
-  immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hitSounds: []
-  hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!60 &4646124888540696105
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -227,6 +199,30 @@ PolygonCollider2D:
       - {x: 0.44256032, y: -0.7452835}
       - {x: 0.27383906, y: -0.75593513}
       - {x: -0.037538167, y: -0.1508441}
+--- !u!114 &6151871211460468964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161992438742806062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  sprites: []
+  partHealth: 100
+  barHealth: 100
+  destroyDamage: 20
+  immunities: []
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
 --- !u!1 &1143466193118479298
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,8 +369,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2522728260603260505}
   - component: {fileID: 8602573373574342804}
-  - component: {fileID: 1237265917649008849}
   - component: {fileID: 8704885623182008994}
+  - component: {fileID: 84601112019320437}
   m_Layer: 0
   m_Name: Cabin
   m_TagString: Untagged
@@ -452,32 +448,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1237265917649008849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5004513072726312593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: -1
-  sprites: []
-  partHealth: 50
-  barHealth: 50
-  destroyDamage: 5000
-  immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hitSounds: []
-  hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!60 &8704885623182008994
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -507,6 +477,30 @@ PolygonCollider2D:
       - {x: 0.4639607, y: -0.22004503}
       - {x: 0.5712312, y: 0.8340239}
       - {x: -0.56475675, y: 0.85323596}
+--- !u!114 &84601112019320437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004513072726312593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  sprites: []
+  partHealth: 500
+  barHealth: 100
+  destroyDamage: 10000
+  immunities: []
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
 --- !u!1 &5240635708381860907
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,8 +511,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3448088417298955336}
   - component: {fileID: 597981991798496538}
-  - component: {fileID: 5658236472919251325}
   - component: {fileID: 3862922706345355818}
+  - component: {fileID: 3053305423686384990}
   m_Layer: 0
   m_Name: LeftArmor
   m_TagString: Untagged
@@ -592,34 +586,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5658236472919251325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5240635708381860907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: -1
-  sprites:
-  - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
-  - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
-  partHealth: 50
-  barHealth: 15
-  destroyDamage: 10
-  immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hitSounds: []
-  hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!60 &3862922706345355818
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -653,6 +619,30 @@ PolygonCollider2D:
       - {x: -0.44993582, y: -0.74006414}
       - {x: -0.27418488, y: -0.76637363}
       - {x: 0.040750977, y: -0.16650191}
+--- !u!114 &3053305423686384990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240635708381860907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  sprites: []
+  partHealth: 100
+  barHealth: 100
+  destroyDamage: 20
+  immunities: []
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
 --- !u!1 &5330567886002227178
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +739,7 @@ GameObject:
   - component: {fileID: 6441913592109276575}
   - component: {fileID: 6441913592109276641}
   - component: {fileID: 6441913592109276640}
-  - component: {fileID: 150306887083321031}
+  - component: {fileID: 5853195764477435998}
   m_Layer: 0
   m_Name: RightWing
   m_TagString: Untagged
@@ -893,7 +883,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.08838835, y: -0.79549515}
   m_AngularOffset: 2.3561945
---- !u!114 &150306887083321031
+--- !u!114 &5853195764477435998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -902,25 +892,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592109276572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
-  - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
-  partHealth: 40
-  barHealth: 10
-  destroyDamage: 10
+  sprites: []
+  partHealth: 50
+  barHealth: 20
+  destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913592164531680
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +920,7 @@ GameObject:
   - component: {fileID: 6441913592164531683}
   - component: {fileID: 6441913592164531685}
   - component: {fileID: 6441913592164531684}
-  - component: {fileID: 499978558431784088}
+  - component: {fileID: 1043526973371437154}
   m_Layer: 0
   m_Name: BackCone
   m_TagString: Untagged
@@ -1078,7 +1064,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.00000004371139, y: -0.5}
   m_AngularOffset: -3.1415927
---- !u!114 &499978558431784088
+--- !u!114 &1043526973371437154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1087,23 +1073,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592164531680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
-  partHealth: 40
-  barHealth: 15
-  destroyDamage: 10
+  partHealth: 50
+  barHealth: 20
+  destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913592222990131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1101,7 @@ GameObject:
   - component: {fileID: 6441913592222990134}
   - component: {fileID: 6441913592222990136}
   - component: {fileID: 6441913592222990135}
-  - component: {fileID: 5726154762509764180}
+  - component: {fileID: 7777640078348625372}
   m_Layer: 0
   m_Name: RightArm
   m_TagString: Untagged
@@ -1262,7 +1246,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.50000006, y: 0.37499997}
   m_AngularOffset: -3.1415927
---- !u!114 &5726154762509764180
+--- !u!114 &7777640078348625372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1271,14 +1255,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592222990131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: d222450d090a8e4458784de63169f065, type: 3}
+  sprites: []
   partHealth: 50
-  barHealth: 20
+  barHealth: 50
   destroyDamage: 20
   immunities: []
   minKineticEnergy: 20
@@ -1287,8 +1270,6 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913592454232510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1283,7 @@ GameObject:
   - component: {fileID: 6441913592454232449}
   - component: {fileID: 6441913592454232450}
   - component: {fileID: 6441913592454232451}
-  - component: {fileID: 5350038369014034529}
+  - component: {fileID: 2530165110294813862}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Untagged
@@ -1447,7 +1428,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.3348234, y: 0.06809226}
   m_AngularOffset: -1.8036276
---- !u!114 &5350038369014034529
+--- !u!114 &2530165110294813862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1456,25 +1437,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592454232510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: 988254853a746f949a1d4082d7f16ac1, type: 3}
-  - {fileID: 21300000, guid: 9d27531a9da0ed742adc10d992343a92, type: 3}
+  sprites: []
   partHealth: 100
-  barHealth: 20
+  barHealth: 100
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 2
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,8 +1463,8 @@ GameObject:
   - component: {fileID: 6441913592538751966}
   - component: {fileID: 6441913592538751777}
   - component: {fileID: 6441913592538751967}
-  - component: {fileID: 6441913592538751778}
   - component: {fileID: 1630741118}
+  - component: {fileID: 5166552632043362251}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -1547,26 +1524,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &6441913592538751778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592538751965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e72e9ba4e45cf4bab3528c6f197f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 02000000
-  team: 1
-  healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
-  turnHealthBarOn: 1
-  breakingSounds: []
-  breakingSoundVolume: 1
-  parts: []
-  additionalDamage: 0
 --- !u!114 &1630741118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,6 +1556,24 @@ MonoBehaviour:
     type: 0
     action: {fileID: 0}
     shootingControllers: []
+--- !u!114 &5166552632043362251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
+  team: 1
+  healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
+  turnHealthBarOn: 0
+  breakingSounds: []
+  breakingSoundVolume: 1
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,7 +1588,7 @@ GameObject:
   - component: {fileID: 6441913592834814981}
   - component: {fileID: 6441913592834814982}
   - component: {fileID: 6441913592834814980}
-  - component: {fileID: 388712303085179194}
+  - component: {fileID: 5535518891970203682}
   m_Layer: 0
   m_Name: LeftGun
   m_TagString: Untagged
@@ -1778,7 +1753,7 @@ MonoBehaviour:
   basicGunRotation: 180
   targetEnemies: 0
   reloadingBarOn: 1
---- !u!114 &388712303085179194
+--- !u!114 &5535518891970203682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1787,15 +1762,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592834815039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: e981e947f546f364f9d305d9a5845bb1, type: 3}
-  partHealth: 25
-  barHealth: 10
-  destroyDamage: 10
+  sprites: []
+  partHealth: 50
+  barHealth: 30
+  destroyDamage: 20
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -1803,8 +1777,6 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1790,7 @@ GameObject:
   - component: {fileID: 6441913592912191837}
   - component: {fileID: 6441913592912191839}
   - component: {fileID: 6441913592912191838}
-  - component: {fileID: 2083487983885887712}
+  - component: {fileID: 2089844514390813114}
   m_Layer: 0
   m_Name: LeftEngine
   m_TagString: Untagged
@@ -1961,7 +1933,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.25000003, y: -0.49999997}
   m_AngularOffset: -3.1415927
---- !u!114 &2083487983885887712
+--- !u!114 &2089844514390813114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1970,23 +1942,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913592912191834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
-  partHealth: 25
-  barHealth: 10
+  partHealth: 50
+  barHealth: 25
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913593705025610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,7 +1970,7 @@ GameObject:
   - component: {fileID: 6441913593705025613}
   - component: {fileID: 6441913593705025615}
   - component: {fileID: 6441913593705025614}
-  - component: {fileID: 28915839474252319}
+  - component: {fileID: 3506797295022249945}
   m_Layer: 0
   m_Name: LeftWing
   m_TagString: Untagged
@@ -2144,7 +2114,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.08838686, y: -0.795514}
   m_AngularOffset: -2.3561945
---- !u!114 &28915839474252319
+--- !u!114 &3506797295022249945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2153,25 +2123,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913593705025610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
-  - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
-  partHealth: 40
-  barHealth: 10
-  destroyDamage: 10
+  sprites: []
+  partHealth: 50
+  barHealth: 20
+  destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913593890035337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,7 +2222,7 @@ GameObject:
   - component: {fileID: 6441913594073557298}
   - component: {fileID: 6441913594073557300}
   - component: {fileID: 6441913594073557299}
-  - component: {fileID: 6441913594135921058}
+  - component: {fileID: 4357380861355621637}
   m_Layer: 0
   m_Name: LeftArm
   m_TagString: Untagged
@@ -2401,7 +2367,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.49999997, y: 0.37500003}
   m_AngularOffset: -3.1415927
---- !u!114 &6441913594135921058
+--- !u!114 &4357380861355621637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2410,14 +2376,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913594073557295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
-  sprites:
-  - {fileID: 21300000, guid: d222450d090a8e4458784de63169f065, type: 3}
+  team: -1
+  sprites: []
   partHealth: 50
-  barHealth: 20
+  barHealth: 50
   destroyDamage: 20
   immunities: []
   minKineticEnergy: 20
@@ -2426,8 +2391,6 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913594105931013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2435,7 @@ GameObject:
   - component: {fileID: 6441913594127976652}
   - component: {fileID: 6441913594127976651}
   - component: {fileID: 6441913594127976653}
-  - component: {fileID: 1861423738692203681}
+  - component: {fileID: 5812251090777440677}
   m_Layer: 0
   m_Name: RightGun
   m_TagString: Untagged
@@ -2637,7 +2600,7 @@ MonoBehaviour:
   basicGunRotation: 180
   targetEnemies: 0
   reloadingBarOn: 1
---- !u!114 &1861423738692203681
+--- !u!114 &5812251090777440677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2646,15 +2609,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913594127976646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
-  sprites:
-  - {fileID: 21300000, guid: e981e947f546f364f9d305d9a5845bb1, type: 3}
-  partHealth: 25
-  barHealth: 10
-  destroyDamage: 10
+  sprites: []
+  partHealth: 50
+  barHealth: 30
+  destroyDamage: 20
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -2662,8 +2624,6 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2637,7 @@ GameObject:
   - component: {fileID: 6441913594190072067}
   - component: {fileID: 6441913594190072069}
   - component: {fileID: 6441913594190072068}
-  - component: {fileID: 2265164786527116680}
+  - component: {fileID: 8520602108167705266}
   m_Layer: 0
   m_Name: RightEngine
   m_TagString: Untagged
@@ -2820,7 +2780,7 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.24999996, y: -0.5}
   m_AngularOffset: -3.1415927
---- !u!114 &2265164786527116680
+--- !u!114 &8520602108167705266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2829,23 +2789,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6441913594190072064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7774b32fa625bd44c88686c6a2af679e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: -1
   sprites: []
-  partHealth: 25
-  barHealth: 10
+  partHealth: 50
+  barHealth: 25
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.5
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  onDeathTriggers: []
-  damageReceiver: {fileID: 0}
 --- !u!1 &6533934170034619756
 GameObject:
   m_ObjectHideFlags: 0

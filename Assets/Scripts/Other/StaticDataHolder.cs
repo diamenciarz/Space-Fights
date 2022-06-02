@@ -352,7 +352,7 @@ public static class StaticDataHolder
     {
         for (int i = inputList.Count - 1; i >= 0; i--)
         {
-            DamageReceiver damageReceiver = inputList[i].GetComponent<DamageReceiver>();
+            HealthManager damageReceiver = inputList[i].GetComponent<HealthManager>();
             if (damageReceiver != null)
             {
                 if (damageReceiver.GetTeam() == myTeam)
@@ -367,7 +367,7 @@ public static class StaticDataHolder
     {
         for (int i = inputList.Count - 1; i >= 0; i--)
         {
-            DamageReceiver damageReceiver = inputList[i].GetComponent<DamageReceiver>();
+            HealthManager damageReceiver = inputList[i].GetComponent<HealthManager>();
             if (damageReceiver != null)
             {
                 if (damageReceiver.GetTeam() != myTeam)

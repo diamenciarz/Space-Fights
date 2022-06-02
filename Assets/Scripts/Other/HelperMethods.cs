@@ -422,7 +422,7 @@ public static class HelperMethods
         }
         public static bool IsObjectAnEntityPart(GameObject collisionObject)
         {
-            UnitPart unitPart = collisionObject.GetComponent<UnitPart>();
+            DamageReceiver unitPart = collisionObject.GetComponent<DamageReceiver>();
             if (unitPart)
             {
                 return true;
@@ -445,7 +445,7 @@ public static class HelperMethods
         }
         public static int GetObjectTeam(GameObject collisionObject)
         {
-            DamageReceiver damageReceiver = collisionObject.GetComponentInChildren<DamageReceiver>();
+            HealthManager damageReceiver = collisionObject.GetComponentInChildren<HealthManager>();
             if (damageReceiver)
             {
                 return damageReceiver.GetTeam();
