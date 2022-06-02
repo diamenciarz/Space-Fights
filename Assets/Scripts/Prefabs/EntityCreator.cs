@@ -1,4 +1,5 @@
 using UnityEngine;
+using static TeamUpdater;
 
 public class EntityCreator : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class EntityCreator : MonoBehaviour
         SummonedEntityData newData = new SummonedEntityData();
         newData.summonPosition = data.summonPosition;
         newData.summonRotation = data.summonRotation * CountDeltaRotation(data, i);
-        newData.team = data.team;
+        newData.SetTeam(data.GetTeam());
         newData.createdBy = data.createdBy;
         newData.target = data.target;
 
@@ -167,12 +168,12 @@ public class EntityCreator : MonoBehaviour
         GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
         CheckForRocket(summonedEntity, data);
 
-        SetupStartingValues(summonedEntity, data.team, data.createdBy);
+        SetupStartingValues(summonedEntity, data.GetTeam(), data.createdBy);
     }
     #endregion
 
     #region Helper methods
-    private static void SetupStartingValues(GameObject summonedObject, int team, GameObject parent)
+    private static void SetupStartingValues(GameObject summonedObject, Team team, GameObject parent)
     {
         IParent teamUpdater = summonedObject.GetComponent<IParent>();
         if (teamUpdater == null)
@@ -231,21 +232,36 @@ public class SummonedShotData
     public SingleShotScriptableObject shot;
     public Vector3 summonPosition;
     public Quaternion summonRotation;
-    public int team;
+    private Team team;
     public GameObject createdBy;
     [Tooltip("If null, will shoot forward")]
     public GameObject target;
+    public Team GetTeam()
+    {
+        return team;
+    }
+    public void SetTeam(Team team)
+    {
+        this.team = team;
+    }
 }
 public class SummonedEntityData
 {
     public EntityCreator.EntityTypes entityType;
     public Vector3 summonPosition;
     public Quaternion summonRotation;
-    public int team;
+    private Team team;
     public GameObject createdBy;
     [Tooltip("If null, will shoot forward")]
     public GameObject target;
-
+    public Team GetTeam()
+    {
+        return team;
+    }
+    public void SetTeam(Team team)
+    {
+        this.team = team;
+    }
 }
 #endregion
 

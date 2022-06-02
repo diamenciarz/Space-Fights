@@ -29,7 +29,7 @@ public class ShootOnDeath : TriggerOnDeath
         SummonedShotData data = new SummonedShotData();
         data.summonRotation = transform.rotation;
         data.summonPosition = transform.position;
-        data.team = team;
+        data.SetTeam(team);
         data.createdBy = createdBy;
         data.shot = shot;
         data.target = GetShotTarget();

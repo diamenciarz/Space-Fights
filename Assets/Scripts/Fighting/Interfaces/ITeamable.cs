@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using static TeamUpdater;
 
 public interface ITeamable
 {
-    public abstract int GetTeam();
+    public abstract Team GetTeam();
 }

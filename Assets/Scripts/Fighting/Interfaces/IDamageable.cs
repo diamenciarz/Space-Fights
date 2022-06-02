@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TeamUpdater;
 
 public interface IDamageable
 {
     #region Accessor methods
-    public abstract int GetTeam();
+    public abstract Team GetTeam();
     public abstract int GetHealth();
     public abstract GameObject GetCreatedBy();
     public abstract GameObject GetGameObject();

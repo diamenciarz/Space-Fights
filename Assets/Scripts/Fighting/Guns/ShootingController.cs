@@ -150,7 +150,7 @@ public class ShootingController : TeamUpdater
         SummonedShotData data = new SummonedShotData();
         data.summonRotation = transform.rotation * Quaternion.Euler(0,0,basicGunRotation);
         data.summonPosition = shootingPoint.position;
-        data.team = team;
+        data.SetTeam(team);
         data.createdBy = createdBy;
         data.shot = salvo.shots[shotIndex];
         data.target = GetShotTarget();

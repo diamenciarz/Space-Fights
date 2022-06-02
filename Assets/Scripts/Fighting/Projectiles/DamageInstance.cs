@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static TeamUpdater;
 
 /// <summary>
 /// A data storing class used to conduct information about a shot to the DamageCalculator
 /// </summary>
 public class DamageInstance
 {
-    public int team = -1;
+    private Team team;
     public bool isAProjectile = false;
     public bool isPiercing = false;
     public bool hurtsAllies = false;
@@ -39,6 +40,15 @@ public class DamageInstance
             }
         }
         return null;
+    }
+
+    public void SetTeam(Team team)
+    {
+        this.team = new Team(team);
+    }
+    public Team GetTeam()
+    {
+        return team;
     }
     
     [Serializable]

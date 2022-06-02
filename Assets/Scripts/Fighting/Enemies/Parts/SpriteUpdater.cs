@@ -36,12 +36,26 @@ public class SpriteUpdater : TeamUpdater
         {
             return;
         }
-
-        int spriteCount = sprites.Length;
-        bool isInBounds = spriteCount > 0 && team > 0 && team <= spriteCount;
-        if (isInBounds)
+        if (team.teamInstance == TeamInstance.Team1)
         {
-            mySpriteRenderer.sprite = sprites[team - 1];
+            if (sprites.Length >= 1)
+            {
+                mySpriteRenderer.sprite = sprites[0];
+            }
+        }
+        if (team.teamInstance == TeamInstance.Team2)
+        {
+            if (sprites.Length >= 2)
+            {
+                mySpriteRenderer.sprite = sprites[1];
+            }
+        }
+        if (team.teamInstance == TeamInstance.Team3)
+        {
+            if (sprites.Length >= 3)
+            {
+                mySpriteRenderer.sprite = sprites[2];
+            }
         }
     }
 }

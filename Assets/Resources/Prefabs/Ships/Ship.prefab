@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2664050767297345441}
   - component: {fileID: 4646124888540696105}
   - component: {fileID: 6151871211460468964}
+  - component: {fileID: 7641353743839565424}
   m_Layer: 0
   m_Name: RightArmor
   m_TagString: Untagged
@@ -211,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 100
   barHealth: 100
@@ -223,6 +223,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &7641353743839565424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161992438742806062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &1143466193118479298
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,8 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 2
-  salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
+  salvo: {fileID: 11400000, guid: dee9789f39f30c045b592563c5d03c08, type: 2}
   shootingPoint: {fileID: 445601161007613364}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
   reloadingBarPosition: {fileID: 1143466193118479298}
@@ -489,7 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 500
   barHealth: 100
@@ -513,6 +524,7 @@ GameObject:
   - component: {fileID: 597981991798496538}
   - component: {fileID: 3862922706345355818}
   - component: {fileID: 3053305423686384990}
+  - component: {fileID: 8445481373217568892}
   m_Layer: 0
   m_Name: LeftArmor
   m_TagString: Untagged
@@ -631,7 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 100
   barHealth: 100
@@ -643,6 +654,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &8445481373217568892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240635708381860907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &5330567886002227178
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +764,7 @@ GameObject:
   - component: {fileID: 6441913592109276641}
   - component: {fileID: 6441913592109276640}
   - component: {fileID: 5853195764477435998}
+  - component: {fileID: 6701698553508886421}
   m_Layer: 0
   m_Name: RightWing
   m_TagString: Untagged
@@ -895,7 +920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 20
@@ -907,6 +931,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &6701698553508886421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592109276572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913592164531680
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +958,7 @@ GameObject:
   - component: {fileID: 6441913592164531685}
   - component: {fileID: 6441913592164531684}
   - component: {fileID: 1043526973371437154}
+  - component: {fileID: 4691310009605776348}
   m_Layer: 0
   m_Name: BackCone
   m_TagString: Untagged
@@ -1076,7 +1114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 20
@@ -1088,6 +1125,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &4691310009605776348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913592222990131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1152,7 @@ GameObject:
   - component: {fileID: 6441913592222990136}
   - component: {fileID: 6441913592222990135}
   - component: {fileID: 7777640078348625372}
+  - component: {fileID: 6878370843787619903}
   m_Layer: 0
   m_Name: RightArm
   m_TagString: Untagged
@@ -1258,7 +1309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 50
@@ -1270,6 +1320,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &6878370843787619903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592222990131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913592454232510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1347,7 @@ GameObject:
   - component: {fileID: 6441913592454232450}
   - component: {fileID: 6441913592454232451}
   - component: {fileID: 2530165110294813862}
+  - component: {fileID: 8786691315742761047}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Untagged
@@ -1440,7 +1504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 100
   barHealth: 100
@@ -1452,6 +1515,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &8786691315742761047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592454232510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 02000000
-  team: 1
+  unchangeableTeam: 0
+  team:
+    teamInstance: 0
   healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
   turnHealthBarOn: 0
   breakingSounds: []
@@ -1589,6 +1667,7 @@ GameObject:
   - component: {fileID: 6441913592834814982}
   - component: {fileID: 6441913592834814980}
   - component: {fileID: 5535518891970203682}
+  - component: {fileID: 212362505441456787}
   m_Layer: 0
   m_Name: LeftGun
   m_TagString: Untagged
@@ -1745,7 +1824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   salvo: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
@@ -1765,7 +1843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 30
@@ -1777,6 +1854,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &212362505441456787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592834815039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,6 +1881,7 @@ GameObject:
   - component: {fileID: 6441913592912191839}
   - component: {fileID: 6441913592912191838}
   - component: {fileID: 2089844514390813114}
+  - component: {fileID: 9053003173177597814}
   m_Layer: 0
   m_Name: LeftEngine
   m_TagString: Untagged
@@ -1945,7 +2036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 25
@@ -1957,6 +2047,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &9053003173177597814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592912191834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913593705025610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,6 +2074,7 @@ GameObject:
   - component: {fileID: 6441913593705025615}
   - component: {fileID: 6441913593705025614}
   - component: {fileID: 3506797295022249945}
+  - component: {fileID: 4049046681727661406}
   m_Layer: 0
   m_Name: LeftWing
   m_TagString: Untagged
@@ -2126,7 +2230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 20
@@ -2138,6 +2241,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &4049046681727661406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913593705025610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913593890035337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2339,7 @@ GameObject:
   - component: {fileID: 6441913594073557300}
   - component: {fileID: 6441913594073557299}
   - component: {fileID: 4357380861355621637}
+  - component: {fileID: 3361010296158313404}
   m_Layer: 0
   m_Name: LeftArm
   m_TagString: Untagged
@@ -2379,7 +2496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 50
@@ -2391,6 +2507,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &3361010296158313404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594073557295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913594105931013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,6 +2565,7 @@ GameObject:
   - component: {fileID: 6441913594127976651}
   - component: {fileID: 6441913594127976653}
   - component: {fileID: 5812251090777440677}
+  - component: {fileID: 5191196131033383256}
   m_Layer: 0
   m_Name: RightGun
   m_TagString: Untagged
@@ -2592,7 +2722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
@@ -2612,7 +2741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 30
@@ -2624,6 +2752,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &5191196131033383256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594127976646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2779,7 @@ GameObject:
   - component: {fileID: 6441913594190072069}
   - component: {fileID: 6441913594190072068}
   - component: {fileID: 8520602108167705266}
+  - component: {fileID: 5873663910185833245}
   m_Layer: 0
   m_Name: RightEngine
   m_TagString: Untagged
@@ -2792,7 +2934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
   partHealth: 50
   barHealth: 25
@@ -2804,6 +2945,19 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &5873663910185833245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594190072064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &6533934170034619756
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,8 +28,8 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     [Header("On hit")]
     private static GameObject damagePopup;
     private static bool damagePopupUpdated = false;
-    private static Color onHitColor = new Color(255, 140, 140, 255);
-    private float hitColorChangeDuration = 0.5f;
+    private static Color onHitColor = new Color(1, 140f/255f, 140f/255f, 1);
+    private float hitColorChangeDuration = 2f;
     private static Color defaultColor = Color.white;
 
     //Private variables
@@ -216,7 +216,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
 
         transform.SetParent(null);
         TurnOffGuns();
-        SetTeam(-1); //Everyone can shoot destroyed parts
+        SetTeam(Team.GetEnemyToAllTeam()); //Everyone can destroy detached parts
     }
     private void TurnOffGuns()
     {
@@ -304,7 +304,9 @@ public class DamageReceiver : SpriteUpdater, IDamageable
             {
                 return;
             }
-            mySpriteRenderer.color = Color.Lerp(onHitColor, defaultColor, percentage);
+            Color newColor = Color.Lerp(onHitColor, defaultColor, percentage);
+            Debug.Log("Color: " + newColor);
+            mySpriteRenderer.color = newColor;
             await Task.Yield();
         }
     }

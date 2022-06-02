@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TeamUpdater;
 
 public static class StaticDataHolder
 {
@@ -194,48 +195,48 @@ public static class StaticDataHolder
     #region Get Contents
 
     #region Enemies
-    public static GameObject GetClosestEnemyInSightAngleWise(Vector3 positionVector, int myTeam)
+    public static GameObject GetClosestEnemyInSightAngleWise(Vector3 positionVector, Team myTeam)
     {
         return GetClosestObjectInSightAngleWise(GetEnemyList(myTeam), positionVector);
     }
-    public static GameObject GetClosestEnemyAngleWise(Vector3 positionVector, int myTeam)
+    public static GameObject GetClosestEnemyAngleWise(Vector3 positionVector, Team myTeam)
     {
         return GetClosestObjectAngleWise(GetEnemyList(myTeam), positionVector);
     }
-    public static GameObject GetClosestEnemyInSight(Vector3 positionVector, int myTeam)
+    public static GameObject GetClosestEnemyInSight(Vector3 positionVector, Team myTeam)
     {
         return GetClosestObjectInSight(GetEnemyList(myTeam), positionVector);
     }
-    public static GameObject GetClosestEnemy(Vector3 positionVector, int myTeam)
+    public static GameObject GetClosestEnemy(Vector3 positionVector, Team myTeam)
     {
         return GetClosestObject(GetEnemyList(myTeam), positionVector);
     }
-    public static List<GameObject> GetEnemyList(int myTeam)
+    public static List<GameObject> GetEnemyList(Team myTeam)
     {
-        return SubtractAllies(GetEntityList(), myTeam);
+        return SubtractNeutrals(SubtractAllies(GetEntityList(), myTeam), myTeam);
     }
     #endregion
 
     #region Allies
-    public static GameObject GetClosestAllyInSightAngleWise(Vector3 positionVector, int myTeam, GameObject gameObjectToIgnore)
+    public static GameObject GetClosestAllyInSightAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
     {
         return GetClosestObjectInSightAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
     }
-    public static GameObject GetClosestAllyAngleWise(Vector3 positionVector, int myTeam, GameObject gameObjectToIgnore)
+    public static GameObject GetClosestAllyAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
     {
         return GetClosestObjectAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
     }
-    public static GameObject GetClosestAllyInSight(Vector3 positionVector, int myTeam, GameObject gameObjectToIgnore)
+    public static GameObject GetClosestAllyInSight(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
     {
         return GetClosestObjectInSight(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
     }
-    public static GameObject GetClosestAlly(Vector3 positionVector, int myTeam, GameObject gameObjectToIgnore)
+    public static GameObject GetClosestAlly(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
     {
         return GetClosestObject(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
     }
-    public static List<GameObject> GetAllyList(int myTeam, GameObject gameObjectToIgnore)
+    public static List<GameObject> GetAllyList(Team myTeam, GameObject gameObjectToIgnore)
     {
-        return SubtractMeAndEnemies(GetEntityList(), myTeam, gameObjectToIgnore);
+        return SubtractNeutrals(SubtractMeAndEnemies(GetEntityList(), myTeam, gameObjectToIgnore), myTeam);
     }
     #endregion
 
@@ -348,14 +349,14 @@ public static class StaticDataHolder
     #endregion
 
     #region Modify List Contents
-    public static List<GameObject> SubtractAllies(List<GameObject> inputList, int myTeam)
+    public static List<GameObject> SubtractAllies(List<GameObject> inputList, Team myTeam)
     {
         for (int i = inputList.Count - 1; i >= 0; i--)
         {
-            HealthManager damageReceiver = inputList[i].GetComponent<HealthManager>();
-            if (damageReceiver != null)
+            HealthManager healthManager = inputList[i].GetComponent<HealthManager>();
+            if (healthManager != null)
             {
-                if (damageReceiver.GetTeam() == myTeam)
+                if (healthManager.GetTeam().IsAlly(myTeam))
                 {
                     inputList.Remove(inputList[i]);
                 }
@@ -363,19 +364,34 @@ public static class StaticDataHolder
         }
         return inputList;
     }
-    public static List<GameObject> SubtractMeAndEnemies(List<GameObject> inputList, int myTeam, GameObject gameObjectToIgnore)
+    public static List<GameObject> SubtractMeAndEnemies(List<GameObject> inputList, Team myTeam, GameObject gameObjectToIgnore)
     {
         for (int i = inputList.Count - 1; i >= 0; i--)
         {
             HealthManager damageReceiver = inputList[i].GetComponent<HealthManager>();
             if (damageReceiver != null)
             {
-                if (damageReceiver.GetTeam() != myTeam)
+                if (damageReceiver.GetTeam().IsEnemy(myTeam))
                 {
                     inputList.Remove(inputList[i]);
                 }
                 //Remove itself from ally list
                 if (inputList[i] == gameObjectToIgnore)
+                {
+                    inputList.Remove(inputList[i]);
+                }
+            }
+        }
+        return inputList;
+    }
+    public static List<GameObject> SubtractNeutrals(List<GameObject> inputList, Team myTeam)
+    {
+        for (int i = inputList.Count - 1; i >= 0; i--)
+        {
+            HealthManager healthManager = inputList[i].GetComponent<HealthManager>();
+            if (healthManager != null)
+            {
+                if (healthManager.GetTeam().IsNeutral(myTeam))
                 {
                     inputList.Remove(inputList[i]);
                 }

@@ -62,7 +62,7 @@ public class RocketController : BasicProjectileController
     }
     private void CheckForTarget()
     {
-        if (team != 0)
+        if (team.teamInstance != TeamInstance.Neutral)
         {
             if (targetGameObject == null)
             {

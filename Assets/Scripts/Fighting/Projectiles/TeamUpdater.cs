@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 public class TeamUpdater : MonoBehaviour, ITeamable
@@ -7,8 +7,16 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     /// If equal to -1 - this object is an enemy to everyone
     /// </summary>
     [HideInInspector]
-    public int team = -1;
+    public Team team;
     protected GameObject createdBy;
+    public enum TeamInstance
+    {
+        EnemyToAll,
+        Neutral,
+        Team1,
+        Team2,
+        Team3
+    }
 
     protected virtual void Awake()
     {
@@ -32,7 +40,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     #endregion
 
     #region Accessor methods
-    public int GetTeam()
+    public Team GetTeam()
     {
         return team;
     }
@@ -50,13 +58,71 @@ public class TeamUpdater : MonoBehaviour, ITeamable
             createdBy = parent;
         }
     }
+    /// <summary>
+    /// This is called by the parent to override the teams of all of its children
+    /// </summary>
+    /// <param name="parent"></param>
     public virtual void UpdateTeam(IParent parent)
     {
         team = parent.GetTeam();
     }
-    public void SetTeam(int newTeam)
+    /// <summary>
+    /// This is called on the parent to change its team and off of its childrens team
+    /// </summary>
+    /// <param name="newTeam"></param>
+    public void SetTeam(Team newTeam)
     {
-        team = newTeam;
+        team = new Team(newTeam);
     }
     #endregion
+    [Serializable]
+    public class Team
+    {
+        public Team(TeamInstance teamInstance)
+        {
+            this.teamInstance = teamInstance;
+        }
+        public Team(Team team)
+        {
+            this.teamInstance = team.teamInstance;
+        }
+        public TeamInstance teamInstance;
+
+        public static Team GetNeutralTeam()
+        {
+            return new Team(TeamInstance.Neutral);
+        }
+        public static Team GetEnemyToAllTeam()
+        {
+            return new Team(TeamInstance.EnemyToAll);
+        }
+        public bool IsEnemy(Team otherTeam)
+        {
+            if (teamInstance == TeamInstance.Neutral || otherTeam.teamInstance == TeamInstance.Neutral)
+            {
+                return false;
+            }
+            if (teamInstance == TeamInstance.EnemyToAll || otherTeam.teamInstance == TeamInstance.EnemyToAll)
+            {
+                return true;
+            }
+            return teamInstance != otherTeam.teamInstance;
+        }
+        public bool IsAlly(Team otherTeam)
+        {
+            if (teamInstance == otherTeam.teamInstance)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsNeutral(Team otherTeam)
+        {
+            if (teamInstance == TeamInstance.Neutral || otherTeam.teamInstance == TeamInstance.Neutral)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
 }

@@ -70,7 +70,7 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
         damageInstance.createdBy = createdBy;
         damageInstance.damageCategories = damageCategories;
         damageInstance.dealtBy = gameObject;
-        damageInstance.team = team;
+        damageInstance.SetTeam(team);
         damageInstance.hurtsAllies = hurtsAllies;
         damageInstance.lifetime = Time.time - creationTime;
 

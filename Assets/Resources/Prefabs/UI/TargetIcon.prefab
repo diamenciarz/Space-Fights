@@ -102,8 +102,9 @@ MonoBehaviour:
   scaleFactor: 6
   spriteScale: 1
   screenEdgeOffset: 0
-  allyColor: {r: 0.40784317, g: 0.48235297, b: 1, a: 0}
+  allyColor: {r: 0, g: 0.5568628, b: 0.11372549, a: 0}
   enemyColor: {r: 1, g: 0.23137257, b: 0, a: 0}
+  neutralColor: {r: 0.40784314, g: 0.48235294, b: 1, a: 0}
 --- !u!1 &6263192383216903975
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TeamUpdater;
 
 public class ObjectMissingIcon : MonoBehaviour
 {
@@ -18,49 +19,66 @@ public class ObjectMissingIcon : MonoBehaviour
     [SerializeField] float screenEdgeOffset = 0.5f;
     [SerializeField] Color allyColor;
     [SerializeField] Color enemyColor;
+    [SerializeField] Color neutralColor;
 
 
     //Private variables
     Camera mainCamera;
     SpriteRenderer[] mySpriteRenderers;
     private bool isVisible;
+    private Team followedObjectTeam;
 
+    #region Initialization
     void Start()
     {
         SetupStartingVariables();
+        UpdateSpriteColor();
     }
-
-    #region Initialization
     private void SetupStartingVariables()
     {
         mySpriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         mainCamera = Camera.main;
+        followedObjectTeam = GetFollowedObjectTeam();
     }
+    private Team GetFollowedObjectTeam()
+    {
+        ITeamable teamable = objectToFollow.GetComponent<ITeamable>();
+        if (teamable == null)
+        {
+            return null;
+        }
+        return teamable.GetTeam();
+    }
+    #endregion
+
+    #region Mutator Methods
     public void TryFollowThisObject(GameObject followThis)
     {
         if (followThis == null)
         {
             Destroy(gameObject);
         }
-
         objectToFollow = followThis;
-        UpdateSpriteColor(followThis);
     }
-    private void UpdateSpriteColor(GameObject objectToFollow)
+    private void UpdateSpriteColor()
     {
-        ITeamable teamable = objectToFollow.GetComponent<ITeamable>();
-        if (teamable == null)
+        if (followedObjectTeam == null)
         {
             return;
         }
-        if (teamable.GetTeam() == 1)
+        if (followedObjectTeam.teamInstance == TeamInstance.Team1)
         {
             GetComponent<SpriteRenderer>().color = allyColor;
             return;
         }
-        if (teamable.GetTeam() == 2)
+        if (followedObjectTeam.IsEnemy(new Team(TeamInstance.Team2)))
         {
             GetComponent<SpriteRenderer>().color = enemyColor;
+            return;
+        }
+        if (followedObjectTeam.IsNeutral(new Team(TeamInstance.Team2)))
+        {
+            GetComponent<SpriteRenderer>().color = neutralColor;
             return;
         }
     }

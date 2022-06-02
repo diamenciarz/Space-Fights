@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   shot: {fileID: 11400000, guid: bfd5b912d38da30488c39d493aae983e, type: 2}
   targetEnemies: 0
 --- !u!114 &1773797774739811279
@@ -168,9 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 03000000
-  team: -1
+  unchangeableTeam: 1
+  team:
+    teamInstance: 0
   healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
-  turnHealthBarOn: 1
+  turnHealthBarOn: 0
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!114 &7169724224806529152
@@ -185,14 +186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
   sprites: []
-  partHealth: 5
-  barHealth: 5
+  partHealth: 20
+  barHealth: 20
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
-  collisionDamageModifier: 0.25
+  minKineticEnergy: 5
+  collisionDamageModifier: 0.75
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []

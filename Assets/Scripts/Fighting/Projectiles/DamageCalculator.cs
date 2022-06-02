@@ -30,7 +30,7 @@ public class DamageCalculator : MonoBehaviour
         {
             return false;
         }
-        bool canDealDamage = damageInstance.hurtsAllies || damageable.GetTeam() != damageInstance.team;
+        bool canDealDamage = damageInstance.hurtsAllies || damageable.GetTeam().IsEnemy(damageInstance.GetTeam());
         if (!canDealDamage)
         {
             return false;

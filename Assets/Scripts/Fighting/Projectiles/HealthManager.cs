@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TeamUpdater;
 
 public class HealthManager : ListUpdater, IParent, ITeamable
 {
     [Header("Basic Stats")]
-    [SerializeField] int team;
+    [Tooltip("If this is set to true, summoned copies of this object will have the same team as is defined in the editor")]
+    [SerializeField] bool unchangeableTeam;
+    [SerializeField] Team team;
     [SerializeField] GameObject healthBarPrefab;
     [SerializeField] bool turnHealthBarOn;
 
@@ -140,8 +143,12 @@ public class HealthManager : ListUpdater, IParent, ITeamable
     /// Change team of this object and all its children. Use SetTeam() to change team of the whole gameObject
     /// </summary>
     /// <param name="newTeam"></param>
-    public void SetTeam(int newTeam)
+    public void SetTeam(Team newTeam)
     {
+        if (unchangeableTeam)
+        {
+            return;
+        }
         team = newTeam;
         UpdateTeam();
     }
@@ -156,7 +163,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable
     #endregion
 
     #region Accessor methods
-    public int GetTeam()
+    public Team GetTeam()
     {
         return team;
     }

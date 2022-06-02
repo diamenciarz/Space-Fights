@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using static TeamUpdater;
 
 public static class HelperMethods
 {
@@ -443,20 +444,6 @@ public static class HelperMethods
             }
             return false;
         }
-        public static int GetObjectTeam(GameObject collisionObject)
-        {
-            HealthManager damageReceiver = collisionObject.GetComponentInChildren<HealthManager>();
-            if (damageReceiver)
-            {
-                return damageReceiver.GetTeam();
-            }
-            TeamUpdater teamUpdater = collisionObject.GetComponentInChildren<TeamUpdater>();
-            if (teamUpdater)
-            {
-                return teamUpdater.GetTeam();
-            }
-            return -1;
-        }
         public static GameObject FindObjectWithName(string path, string name)
         {
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -490,7 +477,7 @@ public static class HelperMethods
         /// <param name="collidingObject"></param>
         /// <param name="team">The team of the object that the collidingObject collides with</param>
         /// <returns></returns>
-        public static List<BreakOnCollision.BreaksOn> GetCollisionProperties(GameObject collidingObject, int team)
+        public static List<BreakOnCollision.BreaksOn> GetCollisionProperties(GameObject collidingObject, Team team)
         {
             List<BreakOnCollision.BreaksOn> collisionPropertyList = new List<BreakOnCollision.BreaksOn>();
             CheckObstacle(collidingObject, collisionPropertyList);
@@ -501,21 +488,22 @@ public static class HelperMethods
 
             return collisionPropertyList;
         }
-        private static bool IsAlly(GameObject collidingObject, int team)
-        {
-            int collidingObjectTeam = ObjectUtils.GetObjectTeam(collidingObject);
-            if (collidingObjectTeam == -1 || team == -1)
-            {
-                return false;
-            }
-            return collidingObjectTeam == team;
-        }
         private static void CheckObstacle(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList)
         {
-            if (HelperMethods.ObjectUtils.IsAnObstacle(collisionObject))
+            if (ObjectUtils.IsAnObstacle(collisionObject))
             {
                 collisionPropertyList.Add(BreakOnCollision.BreaksOn.Obstacles);
             }
+        }
+        private static bool IsAlly(GameObject collidingObject, Team team)
+        {
+            ITeamable teamable = collidingObject.GetComponent<ITeamable>();
+            if (teamable == null)
+            {
+                return false;
+            }
+            Team objectTeam = teamable.GetTeam();
+            return objectTeam.IsAlly(team);
         }
         private static void CheckDamageDealers(GameObject collisionObject, List<BreakOnCollision.BreaksOn> collisionPropertyList, bool isAlly)
         {
