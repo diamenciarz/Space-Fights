@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4759831457538317555}
   - component: {fileID: 7063885092318526906}
   - component: {fileID: 8730830146734266329}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DamagePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
       outWeight: 0.19583334
     - serializedVersion: 3
       time: 1
-      value: 2
+      value: 1
       inSlope: 2.759661
       outSlope: 2.759661
       tangentMode: 0
@@ -195,7 +195,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8730830146734266329
 MonoBehaviour:

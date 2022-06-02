@@ -32,12 +32,8 @@ public class UnitPart : SpriteUpdater, IDamageable
     private float hitColorChangeDuration = 0.5f;
     private static Color defaultColor = Color.white;
 
-    [Header("When destroyed")]
-    [Tooltip("Actions to call on death")]
-    public TriggerOnDeath[] onDeathTriggers;
-
     //Private variables
-    public DamageReceiver damageReceiver;
+    private DamageReceiver damageReceiver;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
 
@@ -62,7 +58,6 @@ public class UnitPart : SpriteUpdater, IDamageable
             myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         }
         damageReceiver = GetComponentInParent<DamageReceiver>();
-        onDeathTriggers = GetComponentsInChildren<TriggerOnDeath>(); // On death trigger
         if (!damagePopupUpdated)
         {
             damagePopupUpdated = true;

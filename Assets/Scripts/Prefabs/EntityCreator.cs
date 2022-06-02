@@ -14,7 +14,9 @@ public class EntityCreator : MonoBehaviour
         Grenade,
         Grenade_Explosion,
         Bouncy_Laser,
-        Ship
+        Ship,
+        SmallRock,
+        TinyRock
     }
     private void Awake()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5103664233417085914}
   - component: {fileID: 4837763911399099555}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3960326518632193621}
   - component: {fileID: 6537271912519148142}
   - component: {fileID: 7266462052977259521}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RocketMissingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,12 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 0}
-  xMin: 0
-  xMax: 0
-  yMin: 0
-  yMax: 0
   minimumSpriteSize: 0.4
   scaleFactor: 6
   spriteScale: 1
+  screenEdgeOffset: 0.5
   allyColor: {r: 0.40784317, g: 0.48235297, b: 1, a: 1}
   enemyColor: {r: 1, g: 0, b: 0.007843138, a: 1}

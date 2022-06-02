@@ -888,7 +888,7 @@ RelativeJoint2D:
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
-  m_MaxTorque: 500
+  m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.08838835, y: -0.79549515}
@@ -1073,7 +1073,7 @@ RelativeJoint2D:
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
-  m_MaxTorque: 500
+  m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.00000004371139, y: -0.5}
@@ -1956,7 +1956,7 @@ RelativeJoint2D:
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
-  m_MaxTorque: 500
+  m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.25000003, y: -0.49999997}
@@ -2139,7 +2139,7 @@ RelativeJoint2D:
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
-  m_MaxTorque: 500
+  m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.08838686, y: -0.795514}
@@ -2815,7 +2815,7 @@ RelativeJoint2D:
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
-  m_MaxTorque: 500
+  m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.24999996, y: -0.5}

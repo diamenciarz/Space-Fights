@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3960326518632193621}
   - component: {fileID: 3062658290673438456}
   - component: {fileID: 1437697990563623582}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TargetIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 0.42, y: 0.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1437697990563623582
@@ -102,7 +102,6 @@ MonoBehaviour:
   scaleFactor: 6
   spriteScale: 1
   screenEdgeOffset: 0
-  deltaRotation: 0
   allyColor: {r: 0.40784317, g: 0.48235297, b: 1, a: 0}
   enemyColor: {r: 1, g: 0.23137257, b: 0, a: 0}
 --- !u!1 &6263192383216903975
@@ -115,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3400234099962009486}
   - component: {fileID: 8865192197013644556}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SecondSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +184,6 @@ SpriteRenderer:
   m_Size: {x: 0.46, y: 0.46}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

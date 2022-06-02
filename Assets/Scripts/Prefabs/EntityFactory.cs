@@ -9,6 +9,7 @@ public static class EntityFactory
     private static bool initialized = false;
     private static string projectilePath = "Prefabs/Projectiles";
     private static string entityPath = "Prefabs/Ships";
+    private static string obstaclePath = "Prefabs/Obstacles";
 
     #region Initialization
     public static void InitializeFactory()
@@ -19,6 +20,7 @@ public static class EntityFactory
             entitiesByName = new Dictionary<string, GameObject>();
             FillDictionaryWithEntities(projectilePath);
             FillDictionaryWithEntities(entityPath);
+            FillDictionaryWithEntities(obstaclePath);
         }
     }
     private static void FillDictionaryWithEntities(string path)
