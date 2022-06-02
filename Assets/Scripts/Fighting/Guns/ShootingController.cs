@@ -45,7 +45,7 @@ public class ShootingController : TeamUpdater
     {
         parent = transform.parent.gameObject;
         lastShotTime = Time.time;
-        shootingTimeBank = GetSalvoTimeSum();
+        shootingTimeBank = salvo.GetSalvoTimeSum();
         shotAmount = salvo.shots.Length;
         canShoot = true;
         shotIndex = 0;
@@ -102,11 +102,11 @@ public class ShootingController : TeamUpdater
     }
     private void TryReloadAllAmmo()
     {
-        float reloadCooldown = salvo.additionalReloadTime + GetSalvoTimeSum(shotIndex - 1);
+        float reloadCooldown = salvo.additionalReloadTime + salvo.GetSalvoTimeSum(shotIndex - 1);
         float timeSinceLastShot = Time.time - lastShotTime;
         if (timeSinceLastShot >= reloadCooldown)
         {
-            shootingTimeBank = GetSalvoTimeSum();
+            shootingTimeBank = salvo.GetSalvoTimeSum();
             shotIndex = 0;
             UpdateTimeBetweenEachShot();
         }
@@ -115,7 +115,7 @@ public class ShootingController : TeamUpdater
     {
         if (shotIndex > 0)
         {
-            float previousShotDelay = salvo.reloadDelays[shotIndex - 1];
+            float previousShotDelay = salvo.shots[shotIndex - 1].reloadDelay;
             float reloadCooldown = salvo.additionalReloadTime + previousShotDelay;
             float timeSinceLastShot = Time.time - lastShotTime;
 
@@ -130,7 +130,7 @@ public class ShootingController : TeamUpdater
     }
     IEnumerator WaitForNextShotCooldown(int index)
     {
-        float delay = salvo.delayAfterEachShot[index];
+        float delay = salvo.shots[index].delayAfterShot;
         yield return new WaitForSeconds(delay);
         canShoot = true;
     }
@@ -139,7 +139,7 @@ public class ShootingController : TeamUpdater
     #region Shot Methods
     private void DoOneShot(int shotIndex)
     {
-        currentShotSO = salvo.shots[shotIndex];
+        currentShotSO = salvo.shots[shotIndex].shot;
         PlayShotSound();
         CreateShot(shotIndex);
         //Update time bank
@@ -152,7 +152,7 @@ public class ShootingController : TeamUpdater
         data.summonPosition = shootingPoint.position;
         data.SetTeam(team);
         data.createdBy = createdBy;
-        data.shot = salvo.shots[shotIndex];
+        data.shot = salvo.shots[shotIndex].shot;
         data.target = GetShotTarget();
 
         EntityCreator.SummonShot(data);
@@ -183,56 +183,16 @@ public class ShootingController : TeamUpdater
     #endregion
 
     #region Helper Functions
-    private float GetSalvoTimeSum()
-    {
-        float timeSum = 0;
-        foreach (var item in salvo.reloadDelays)
-        {
-            timeSum += item;
-        }
-        return timeSum;
-
-    }
-    /// <summary>
-    /// Summes the time for the amount of shots. Starts counting from the last index. Amount starts from 0.
-    /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
-    private float GetSalvoTimeSum(int amount)
-    {
-        amount = ClampInputIndex(amount);
-        float timeSum = 0;
-
-        for (int i = 0; i < amount; i++)
-        {
-            timeSum += salvo.reloadDelays[i];
-        }
-        return timeSum;
-    }
     private void DecreaseShootingTime()
     {
         lastShotTime = Time.time;
         shootingTimeBank -= currentTimeBetweenEachShot;
     }
-    private int ClampInputIndex(int index)
-    {
-        int shotAmount = salvo.shots.Length;
-        if (index < 0)
-        {
-            index = 0;
-        }
-        else
-        if (index >= shotAmount)
-        {
-            index = shotAmount - 1;
-        }
-        return index;
-    }
     private void UpdateTimeBetweenEachShot()
     {
-        if (shotIndex < salvo.reloadDelays.Count)
+        if (shotIndex < salvo.shots.Length)
         {
-            currentTimeBetweenEachShot = salvo.reloadDelays[shotIndex];
+            currentTimeBetweenEachShot = salvo.shots[shotIndex].reloadDelay;
         }
         else
         {
@@ -281,7 +241,7 @@ public class ShootingController : TeamUpdater
     {
         if (gunReloadingBarScript != null)
         {
-            gunReloadingBarScript.UpdateProgressionBar(shootingTimeBank, GetSalvoTimeSum());
+            gunReloadingBarScript.UpdateProgressionBar(shootingTimeBank, salvo.GetSalvoTimeSum());
         }
 
     }

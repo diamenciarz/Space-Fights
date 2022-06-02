@@ -1,50 +1,59 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Single Shot", menuName = "Shots/Salvo")]
-public class SalvoScriptableObject : ScriptableObject, ISerializationCallbackReceiver
+public class SalvoScriptableObject : ScriptableObject
 {
     public float additionalReloadTime;
     [Tooltip("True - the gun waits the full time to reload all ammo at once. False - the ammo reolads gradually")]
     public bool reloadAllAtOnce = true;
+    public Shot[] shots;
 
-    public SingleShotScriptableObject[] shots;
-    public List<float> delayAfterEachShot;
-    public List<float> reloadDelays;
-
-    #region Serialization
-    public void OnAfterDeserialize()
+    [Serializable]
+    public class Shot
     {
-
+        public SingleShotScriptableObject shot;
+        public float delayAfterShot;
+        public float reloadDelay;
     }
+    public float GetSalvoTimeSum()
+    {
+        float timeSum = 0;
+        foreach (var shot in shots)
+        {
+            timeSum += shot.reloadDelay;
+        }
+        return timeSum;
+    }
+    /// <summary>
+    /// Summes the time for the amount of shots. Starts counting from the last index. Amount starts from 0.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    public float GetSalvoTimeSum(int amount)
+    {
+        amount = ClampInputIndex(amount);
+        float timeSum = 0;
 
-    public void OnBeforeSerialize()
-    {
-        controlShotDelayLength();
-        controlReloadDelayLength();
+        for (int i = 0; i < amount; i++)
+        {
+            timeSum += shots[i].reloadDelay;
+        }
+        return timeSum;
     }
-    private void controlShotDelayLength()
+    private int ClampInputIndex(int index)
     {
-        if (delayAfterEachShot.Count < shots.Length)
+        int shotAmount = shots.Length;
+        if (index < 0)
         {
-            delayAfterEachShot.Add(0);
+            index = 0;
         }
-        if (delayAfterEachShot.Count > shots.Length)
+        else
+        if (index >= shotAmount)
         {
-            delayAfterEachShot.RemoveAt(delayAfterEachShot.Count - 1);
+            index = shotAmount - 1;
         }
-    }
-    private void controlReloadDelayLength()
-    {
-        if (reloadDelays.Count < shots.Length)
-        {
-            reloadDelays.Add(0);
-        }
-        if (reloadDelays.Count > shots.Length)
-        {
-            reloadDelays.RemoveAt(reloadDelays.Count - 1);
-        }
+        return index;
     }
 }
-    #endregion

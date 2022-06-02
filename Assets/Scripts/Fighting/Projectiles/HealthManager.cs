@@ -130,6 +130,10 @@ public class HealthManager : ListUpdater, IParent, ITeamable
     }
     private void UpdateHealthBar()
     {
+        if (!healthBarPrefab)
+        {
+            return;
+        }
         if (healthBarScript == null)
         {
             CreateHealthBar();

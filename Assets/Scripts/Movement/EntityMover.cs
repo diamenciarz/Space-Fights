@@ -21,7 +21,7 @@ public class EntityMover : MonoBehaviour, IEntityMover
     private Vector2 inputVector;
 
     private float previousRotationAngle;
-    private float directionAngle;
+    public float directionAngle;
     #endregion
 
     #region Startup
@@ -32,6 +32,7 @@ public class EntityMover : MonoBehaviour, IEntityMover
     private void SetupVariables()
     {
         directionAngle = transform.rotation.eulerAngles.z;
+        previousRotationAngle = directionAngle;
         myRigidbody2D = GetComponent<Rigidbody2D>();
     }
     #endregion

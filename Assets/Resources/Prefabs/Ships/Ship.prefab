@@ -212,10 +212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 100
-  barHealth: 100
-  destroyDamage: 20
+  barHealth: 50
+  destroyDamage: 50
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -260,15 +262,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143466193118479298}
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.014, y: -1.06, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0.78927404, w: 0.6140411}
+  m_LocalPosition: {x: 0.30818892, y: -0.098203294, z: -0.7983153}
+  m_LocalScale: {x: 1.6447754, y: 1.3476828, z: 2}
   m_Children:
   - {fileID: 445601161007613364}
   - {fileID: 1755812733425512762}
-  m_Father: {fileID: 2522728260603260505}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 6441913592454232511}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -104.235}
 --- !u!114 &7551173842708764306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   salvo: {fileID: 11400000, guid: dee9789f39f30c045b592563c5d03c08, type: 2}
   shootingPoint: {fileID: 445601161007613364}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
@@ -404,7 +408,6 @@ Transform:
   - {fileID: 570610393704541274}
   - {fileID: 1951474391844682403}
   - {fileID: 5555816698910325487}
-  - {fileID: 7473346116619749278}
   m_Father: {fileID: 6441913594026728078}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -501,9 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
-  partHealth: 500
-  barHealth: 100
+  partHealth: 50
+  barHealth: 50
   destroyDamage: 10000
   immunities: []
   minKineticEnergy: 20
@@ -643,10 +648,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 100
-  barHealth: 100
-  destroyDamage: 20
+  barHealth: 50
+  destroyDamage: 50
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -920,6 +927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 20
@@ -1114,10 +1123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 20
-  destroyDamage: 20
+  destroyDamage: 30
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -1309,6 +1320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 50
@@ -1367,6 +1380,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.2, z: 1}
   m_Children:
   - {fileID: 616818912}
+  - {fileID: 7473346116619749278}
   m_Father: {fileID: 6441913594026728078}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -76.66}
@@ -1504,10 +1518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 100
-  barHealth: 100
-  destroyDamage: 20
+  barHealth: 10
+  destroyDamage: 0
   immunities: []
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
@@ -1579,6 +1595,7 @@ MonoBehaviour:
   minSpeed: -4
   maxTurningSpeed: 180
   driftFactor: 1
+  directionAngle: 0
 --- !u!50 &6441913592538751967
 Rigidbody2D:
   serializedVersion: 4
@@ -1824,6 +1841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   salvo: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
@@ -1843,6 +1862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 30
@@ -2036,6 +2057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 25
@@ -2230,6 +2253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 20
@@ -2496,6 +2521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 50
@@ -2722,6 +2749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
   gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
@@ -2741,6 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 30
@@ -2934,6 +2965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
   sprites: []
   partHealth: 50
   barHealth: 25

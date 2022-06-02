@@ -29,7 +29,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     private static GameObject damagePopup;
     private static bool damagePopupUpdated = false;
     private static Color onHitColor = new Color(1, 140f/255f, 140f/255f, 1);
-    private float hitColorChangeDuration = 2f;
+    private float hitColorChangeDuration = 1f;
     private static Color defaultColor = Color.white;
 
     //Private variables
@@ -293,7 +293,6 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     }
     private async void ChangeColorOnHit()
     {
-        Debug.Log("Changed color");
         mySpriteRenderer.color = onHitColor;
         float startTime = Time.time;
         float endTime = Time.time + hitColorChangeDuration;
@@ -305,7 +304,6 @@ public class DamageReceiver : SpriteUpdater, IDamageable
                 return;
             }
             Color newColor = Color.Lerp(onHitColor, defaultColor, percentage);
-            Debug.Log("Color: " + newColor);
             mySpriteRenderer.color = newColor;
             await Task.Yield();
         }
