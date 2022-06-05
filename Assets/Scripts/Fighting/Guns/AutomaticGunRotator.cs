@@ -342,13 +342,15 @@ public class AutomaticGunRotator : TeamUpdater
         //Debug.Log(startAngle + ", " + endAngle);
         if (angleSize < 0)
         {
-            debugZoneScript.UpdateProgressionBar(-angleSize, 360);
+            float ratio = -angleSize/ 360f;
+            debugZoneScript.UpdateProgressionBar(ratio);
             float shootingZoneRotation = endAngle - parentAngle;
             debugZoneScript.SetDeltaRotationToObject(Quaternion.Euler(0, 0, shootingZoneRotation));
         }
         else
         {
-            debugZoneScript.UpdateProgressionBar(angleSize, 360);
+            float ratio = angleSize / 360f;
+            debugZoneScript.UpdateProgressionBar(ratio);
             float shootingZoneRotation = startAngle - parentAngle;
             debugZoneScript.SetDeltaRotationToObject(Quaternion.Euler(0, 0, shootingZoneRotation));
         }

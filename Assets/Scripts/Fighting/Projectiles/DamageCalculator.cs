@@ -6,20 +6,24 @@ public class DamageCalculator : MonoBehaviour
 {
     private const float INVULNERABILITY_TIME = 0.25f;
 
-    public static void ApplyDamage(IDamageable damageable, DamageInstance damageInstance)
+    public static void DealDamage(IDamageable damageable, DamageInstance damageInstance)
     {
         if (!CanDealDamage(damageable, damageInstance))
         {
             return;
         }
         int totalDamage = GetTotalDamage(damageable, damageInstance);
-
-        if (totalDamage > 0)
+        ApplyDamage(damageable, damageInstance, totalDamage);
+    }
+    private static void ApplyDamage(IDamageable damageable, DamageInstance damageInstance, int totalDamage)
+    {
+        if (totalDamage <= 0)
         {
-            damageable.DealDamage(totalDamage);
-            damageable.NotifyAboutDamage(damageInstance.dealtBy);
-            HandlePiercing(damageable, damageInstance);
+            return;
         }
+        damageable.DealDamage(totalDamage);
+        damageable.NotifyAboutDamage(damageInstance.dealtBy);
+        HandlePiercing(damageable, damageInstance);
     }
 
     #region Can deal damage
@@ -83,6 +87,9 @@ public class DamageCalculator : MonoBehaviour
         }
         return 0;
     }
+    #endregion
+    
+    #region OnHit effects
     private static void HandlePiercing(IDamageable damageable, DamageInstance damageInstance)
     {
         if (!damageInstance.isPiercing)

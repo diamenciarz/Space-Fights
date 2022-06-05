@@ -1,14 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShootingController : TeamUpdater
+public class ShootingController : TeamUpdater, IProgressionBarCompatible
 {
     [Header("Instances")]
     [SerializeField] SalvoScriptableObject salvo;
     [Tooltip("Game Object, which will act as the creation point for the bullets")]
     [SerializeField] Transform shootingPoint;
-    [SerializeField] GameObject gunReloadingBarPrefab;
-    [SerializeField] GameObject reloadingBarPosition;
 
     [Header("Settings")]
     [Tooltip("The direction of bullets coming out of the gun pipe")]
@@ -17,7 +15,7 @@ public class ShootingController : TeamUpdater
     [SerializeField] protected bool targetEnemies;
     [Header("Mouse Steering")]
     bool isControlledByMouse;
-    [SerializeField] bool reloadingBarOn = true;
+    [SerializeField] bool reloadingBarAlwaysOn = true;
 
     private bool isDetached = false;
 
@@ -34,6 +32,7 @@ public class ShootingController : TeamUpdater
     private int shotIndex;
     private bool canShoot;
     private int shotAmount;
+    private float salvoTimeSum;
 
     #region Initialization
     protected void Start()
@@ -45,7 +44,8 @@ public class ShootingController : TeamUpdater
     {
         parent = transform.parent.gameObject;
         lastShotTime = Time.time;
-        shootingTimeBank = salvo.GetSalvoTimeSum();
+        salvoTimeSum = salvo.GetSalvoTimeSum();
+        shootingTimeBank = salvoTimeSum;
         shotAmount = salvo.shots.Length;
         canShoot = true;
         shotIndex = 0;
@@ -57,11 +57,11 @@ public class ShootingController : TeamUpdater
     }
     #endregion
 
+    #region Update
     protected virtual void Update()
     {
         CheckTimeBank();
         TryShoot();
-        UpdateAmmoBar();
     }
     private void TryShoot()
     {
@@ -85,8 +85,10 @@ public class ShootingController : TeamUpdater
             StartCoroutine(WaitForNextShotCooldown(shotIndex));
             shotIndex++;
             UpdateTimeBetweenEachShot();
+            UpdateAmmoBar();
         }
     }
+    #endregion
 
     #region Reloading
     private void CheckTimeBank()
@@ -106,9 +108,10 @@ public class ShootingController : TeamUpdater
         float timeSinceLastShot = Time.time - lastShotTime;
         if (timeSinceLastShot >= reloadCooldown)
         {
-            shootingTimeBank = salvo.GetSalvoTimeSum();
+            shootingTimeBank = salvoTimeSum;
             shotIndex = 0;
             UpdateTimeBetweenEachShot();
+            UpdateAmmoBar();
         }
     }
     private void TryReloadOneBullet()
@@ -119,12 +122,14 @@ public class ShootingController : TeamUpdater
             float reloadCooldown = salvo.additionalReloadTime + previousShotDelay;
             float timeSinceLastShot = Time.time - lastShotTime;
 
-            if ((timeSinceLastShot >= reloadCooldown) && (shotIndex > 0))
+            bool canReloadOneBullet = (timeSinceLastShot >= reloadCooldown) && (shotIndex > 0);
+            if (canReloadOneBullet)
             {
                 shootingTimeBank += previousShotDelay;
                 shotIndex--;
                 lastShotTime += previousShotDelay;
                 UpdateTimeBetweenEachShot();
+                UpdateAmmoBar();
             }
         }
     }
@@ -148,7 +153,7 @@ public class ShootingController : TeamUpdater
     private void CreateShot(int shotIndex)
     {
         SummonedShotData data = new SummonedShotData();
-        data.summonRotation = transform.rotation * Quaternion.Euler(0,0,basicGunRotation);
+        data.summonRotation = transform.rotation * Quaternion.Euler(0, 0, basicGunRotation);
         data.summonPosition = shootingPoint.position;
         data.SetTeam(team);
         data.createdBy = createdBy;
@@ -196,7 +201,7 @@ public class ShootingController : TeamUpdater
         }
         else
         {
-            currentTimeBetweenEachShot = 1000;
+            currentTimeBetweenEachShot = 100000;
         }
     }
     #endregion
@@ -204,59 +209,32 @@ public class ShootingController : TeamUpdater
     #region UI
     private void UpdateUIState()
     {
-        if (isControlledByMouse || reloadingBarOn)
+        bool barOn = !isDetached && (isControlledByMouse || reloadingBarAlwaysOn);
+        if (barOn)
         {
-            CreateUI();
+            StaticProgressionBarUpdater.CreateProgressionBar(this);
         }
         else
         {
-            DeleteUI();
-        }
-    }
-    private void CreateUI()
-    {
-        if (gunReloadingBarScript == null)
-        {
-            CreateGunReloadingBar();
-        }
-    }
-    private void DeleteUI()
-    {
-        if (gunReloadingBarScript != null)
-        {
-            Destroy(gunReloadingBarScript.gameObject);
-        }
-    }
-    private void CreateGunReloadingBar()
-    {
-        if (isDetached || gunReloadingBarPrefab != null)
-        {
-            GameObject newReloadingBarGO = Instantiate(gunReloadingBarPrefab, transform.position, transform.rotation);
-            gunReloadingBarScript = newReloadingBarGO.GetComponent<ProgressionBarController>();
-            gunReloadingBarScript.SetObjectToFollow(reloadingBarPosition);
-            lastShotTime = Time.time;
+            StaticProgressionBarUpdater.DeleteProgressionBar(this);
         }
     }
     private void UpdateAmmoBar()
     {
-        if (gunReloadingBarScript != null)
-        {
-            gunReloadingBarScript.UpdateProgressionBar(shootingTimeBank, salvo.GetSalvoTimeSum());
-        }
-
+        StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
+    #endregion
+
+    #region Mutator methods
     public void SetIsControlledByMouse(bool isTrue)
     {
         isControlledByMouse = isTrue;
         UpdateUIState();
     }
-    #endregion
-
-    #region Mutator methods
     public void Detach()
     {
         isDetached = true;
-        DeleteUI();
+        UpdateUIState();
     }
     public void SetShoot(bool set)
     {
@@ -264,4 +242,14 @@ public class ShootingController : TeamUpdater
     }
     #endregion
 
+    #region Accessor methods
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+    public float GetBarRatio()
+    {
+        return shootingTimeBank / salvoTimeSum;
+    }
+    #endregion
 }

@@ -234,12 +234,12 @@ public class VisualDetector : TeamUpdater
             if (isTargetInSight)
             {
                 //Make the light orange bar disappear
-                shootingZoneScript.SetIsVisible(false);
+                shootingZoneScript.SetIsAlwaysVisible(false);
             }
             else
             {
                 //Make the light orange bar show up
-                shootingZoneScript.SetIsVisible(true);
+                shootingZoneScript.SetIsAlwaysVisible(true);
             }
         }
     }
@@ -279,11 +279,12 @@ public class VisualDetector : TeamUpdater
         shootingZoneScript = newShootingZoneGo.GetComponent<ProgressionBarController>();
         if (hasRotationLimits)
         {
-            shootingZoneScript.UpdateProgressionBar((leftMaxRotationLimit + rightMaxRotationLimit), 360);
+            float ratio = (leftMaxRotationLimit + rightMaxRotationLimit) / 360f;
+            shootingZoneScript.UpdateProgressionBar(ratio);
         }
         else
         {
-            shootingZoneScript.UpdateProgressionBar(1, 1);
+            shootingZoneScript.UpdateProgressionBar(1);
         }
         shootingZoneScript.SetObjectToFollow(visualZoneTransform.gameObject);
         float shootingZoneRotation = basicGunDirection + leftMaxRotationLimit;

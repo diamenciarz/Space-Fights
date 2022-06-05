@@ -9,8 +9,9 @@ public class SpriteUpdater : TeamUpdater
     protected SpriteRenderer mySpriteRenderer;
 
     #region Startup
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         SetupStartingVariables();
     }
     private void SetupStartingVariables()

@@ -146,7 +146,9 @@ MonoBehaviour:
   hurtsAllies: 1
   damageCategories:
   - damageType: 0
-    damage: 1
+    damage: 4
+  - damageType: 2
+    damage: 6
   startingSpeed: 0
   timeToExpire: 0.2
   expandRate: 6

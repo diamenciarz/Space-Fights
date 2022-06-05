@@ -5,8 +5,6 @@ using static TeamUpdater;
 
 public static class StaticDataHolder
 {
-    [SerializeField] static AudioClip[] soundArray;
-
     public static List<GameObject> dashableObjectList = new List<GameObject>();
 
     private static List<GameObject> obstacleList = new List<GameObject>();

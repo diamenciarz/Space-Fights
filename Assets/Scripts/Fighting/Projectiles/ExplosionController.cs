@@ -81,19 +81,22 @@ public class ExplosionController : BasicProjectileController
     #region OnCollision
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        HandleExplosion(collision.gameObject);
+        ContactPoint2D[] contacts = new ContactPoint2D[1];
+        collision.GetContacts(contacts);
+
+        HandleExplosion(collision.gameObject, contacts);
         base.OnTriggerEnter2D(collision);
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        HandleExplosion(collision.gameObject);
+        HandleExplosion(collision.gameObject, collision.contacts);
         base.OnCollisionEnter2D(collision);
     }
-    private void HandleExplosion(GameObject collisionObject)
+    private void HandleExplosion(GameObject collisionObject, ContactPoint2D[] contacts)
     {
         if (CanPush(collisionObject))
         {
-            PushObject(collisionObject);
+            PushObject(collisionObject, contacts);
         }
     }
     private bool CanPush(GameObject collisionObject)
@@ -111,16 +114,17 @@ public class ExplosionController : BasicProjectileController
         }
         return true;
     }
-    private void PushObject(GameObject collisionObject)
+    private void PushObject(GameObject collisionObject, ContactPoint2D[] contacts)
     {
         IPushable iPushable = collisionObject.GetComponent<IPushable>();
-        Vector2 pushingForce = CountForce(collisionObject);
+        Vector2 pushingForce = CountForce(collisionObject, contacts);
 
         iPushable.Push(pushingForce);
     }
     #region Helper methods
-    private Vector2 CountForce(GameObject collisionObject)
+    private Vector2 CountForce(GameObject collisionObject, ContactPoint2D[] contacts)
     {
+        Vector2 collisionPosition = FindTheClosestCollisionPoint(contacts);
         Vector2 explosionPosition = transform.position;
         Vector2 obstaclePosition = collisionObject.transform.position;
         Vector2 deltaPosition = HelperMethods.VectorUtils.DeltaPosition(explosionPosition, obstaclePosition);
@@ -128,11 +132,25 @@ public class ExplosionController : BasicProjectileController
         float maxRadius = startingRadius * expandRate;
 
         float maxForcePercentage = Mathf.Clamp((maxRadius - distance), 0, maxRadius) / maxRadius;
-        Debug.Log("Max radius: " + maxRadius + " percentage: " + maxForcePercentage);
+        //Debug.Log("Max radius: " + maxRadius + " percentage: " + maxForcePercentage);
         float forceStrength = maxPushingForce * maxForcePercentage;
         Vector2 force = deltaPosition.normalized * forceStrength;
 
         return force;
+    }
+    private Vector2 FindTheClosestCollisionPoint(ContactPoint2D[] contacts)
+    {
+        ContactPoint2D closestPoint = contacts[0];
+        Vector2 explosionPosition = transform.position;
+        foreach (ContactPoint2D contactPoint in contacts)
+        {
+            bool foundCloserPoint = HelperMethods.VectorUtils.Distance(explosionPosition, contactPoint.point) < HelperMethods.VectorUtils.Distance(explosionPosition, closestPoint.point);
+            if (foundCloserPoint)
+            {
+                closestPoint = contactPoint;
+            }
+        }
+        return closestPoint.point;
     }
     #endregion
     #endregion

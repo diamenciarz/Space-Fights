@@ -11,54 +11,57 @@ public class ProgressionBarController : MonoBehaviour
     [SerializeField] GameObject objectToFollow;
 
     [Header("Display Settings")]
-    [SerializeField] Vector3 deltaPositionToObject;
     [SerializeField] bool useGradient = true;
     [SerializeField] Gradient barColorGradient;
     [SerializeField] [Range(0, 1)] float originalAlfa = 1f;
-    /// <summary>
-    /// After not receiving damage for this amount of time, the health bar will disappear
-    /// </summary>
-    [SerializeField] protected float hideOverTime = 0.5f;
-    [Tooltip("Time, after which the bar will disappear, after being shown (-1 for never)")]
-    [SerializeField] [Range(0, 100)] private float hideDelay = 0;
-
     [Header("Transform Settings")]
     [SerializeField] bool rotateSameAsParent;
 
+
+    private Vector3 deltaPositionToObject;
     private Quaternion deltaRotationFromParent;
-    private bool isDestroyed;
-    Color currentColor;
     /// <summary>
     /// The current state of the bar. For internal use only
     /// </summary>
-    private bool isShown = true;
+    public bool isShown;
     /// <summary>
-    /// If false, the bar is never visible. If true, the bar can still hide after a delay
+    /// If true, the bar is always visible. If false, the bar will hide after a delay
     /// </summary>
-    private bool isVisible;
+    private bool isAlwaysVisible;
     private double lastUsedTime;
     private float visibilityChangeRate;
+    private bool isDestroyed;
+    /// <summary>
+    /// After not receiving damage for this amount of time, the health bar will disappear
+    /// </summary>
+    private float hideDelay;
+    private const float HIDE_OVER_TIME = 0.5f;
 
+    #region Initialization
     void Start()
+    {
+        SetStartingVariables();
+    }
+    private void SetStartingVariables()
     {
         transform.rotation = Quaternion.Euler(0, 1, 0);
         //originalAlfa = healthBarImage.color.a;
-        visibilityChangeRate = originalAlfa / hideOverTime;
-
+        visibilityChangeRate = originalAlfa / HIDE_OVER_TIME;
         GetComponent<Canvas>().worldCamera = Camera.main;
     }
+    #endregion
 
     #region Update
-    void Update()
+    private void Update()
     {
-        CheckForParent();
+        HandleParent();
 
         CheckHideDelay();
         ChangeBarVisibility();
     }
 
     #region Transform
-    private void CheckForParent()
+    private void HandleParent()
     {
         if (objectToFollow != null)
         {
@@ -91,8 +94,31 @@ public class ProgressionBarController : MonoBehaviour
     #endregion
 
     #region Change visibility
+    private void ShowAllImages()
+    {
+        foreach (Image image in imagesToHide)
+        {
+            SetAlfaTo(image, originalAlfa);
+        }
+    }
+    private void HideAllImages()
+    {
+        foreach (Image image in imagesToHide)
+        {
+            SetAlfaTo(image, 0);
+        }
+    }
+    private void SetAlfaTo(Image image, float newAlfa)
+    {
+        Color newColor = new Color(image.color.r, image.color.g, image.color.b, newAlfa);
+        SetColor(image, newColor);
+    }
     private void ChangeBarVisibility()
     {
+        if (isAlwaysVisible)
+        {
+            return;
+        }
         foreach (Image image in imagesToHide)
         {
             ChangeImageVisibility(image);
@@ -100,7 +126,7 @@ public class ProgressionBarController : MonoBehaviour
     }
     private void ChangeImageVisibility(Image image)
     {
-        if (isShown && isVisible)
+        if (isShown)
         {
             MoveAlfaTowards(image, originalAlfa);
         }
@@ -114,7 +140,7 @@ public class ProgressionBarController : MonoBehaviour
         float colorAlfa = image.color.a;
         if (colorAlfa != targetAlfa)
         {
-            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, CountNewAlfa(image, targetAlfa));
+            Color newColor = new Color(image.color.r, image.color.g, image.color.b, CountNewAlfa(image, targetAlfa));
             SetColor(image, newColor);
         }
     }
@@ -133,12 +159,12 @@ public class ProgressionBarController : MonoBehaviour
 
     private void CheckHideDelay()
     {
-        if (!isVisible)
+        if (isAlwaysVisible)
         {
             return;
         }
 
-        bool pastHideCooldown = Time.time > lastUsedTime + hideDelay;
+        bool pastHideCooldown = Time.time >= lastUsedTime + hideDelay + HIDE_OVER_TIME;
         if (pastHideCooldown)
         {
             isShown = false;
@@ -169,7 +195,6 @@ public class ProgressionBarController : MonoBehaviour
             Color newColor = barColorGradient.Evaluate(ratio);
             newColor.a = originalAlfa;
             healthBarImage.color = newColor;
-            currentColor = newColor;
         }
     }
     #endregion
@@ -195,23 +220,25 @@ public class ProgressionBarController : MonoBehaviour
     {
         deltaRotationFromParent = newDeltaRotation;
     }
-    public void SetIsVisible(bool isTrue)
+    public void SetIsAlwaysVisible(bool isTrue)
     {
-        isVisible = isTrue;
+        isAlwaysVisible = isTrue;
+        if (isTrue)
+        {
+            lastUsedTime = Time.time;
+            ShowAllImages();
+        }
+        else
+        {
+            lastUsedTime = Time.time - hideDelay - HIDE_OVER_TIME;
+            HideAllImages();
+        }
     }
-    public void UpdateProgressionBar(float newHP, float maxHP)
+    public void UpdateProgressionBar(float newRatio)
     {
         if (!isDestroyed)
         {
-            if (maxHP == 0)
-            {
-                Debug.LogError("MaxHP was 0 and the ratio was NaN! Followed object: " + objectToFollow);
-                return;
-            }
-
-            float newRatio = newHP / maxHP;
             newRatio = Mathf.Clamp(newRatio, 0, 1);
-
             UpdateBarRatio(newRatio);
         }
     }

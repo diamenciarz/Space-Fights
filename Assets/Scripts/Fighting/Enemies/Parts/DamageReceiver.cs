@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class DamageReceiver : SpriteUpdater, IDamageable
+public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompatible
 {
     [Header("Health")]
     [Tooltip("The amount of damage that this part can receive, before it is destroyed")]
@@ -33,7 +33,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     private static Color defaultColor = Color.white;
 
     //Private variables
-    private HealthManager damageReceiver;
+    private HealthManager healthManager;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
 
@@ -47,7 +47,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     {
         base.Awake();
         SetupStartingVariables();
-        UpdateTeam(damageReceiver);
+        UpdateTeam(healthManager);
     }
     private void SetupStartingVariables()
     {
@@ -57,7 +57,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
         {
             myRigidbody2D = GetComponentInParent<Rigidbody2D>();
         }
-        damageReceiver = GetComponentInParent<HealthManager>();
+        healthManager = GetComponentInParent<HealthManager>();
         if (!damagePopupUpdated)
         {
             damagePopupUpdated = true;
@@ -67,6 +67,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
         barToPartRatio = barHealth / partHealth;
+        mySpriteRenderer.color = defaultColor;
     }
     #endregion
 
@@ -130,6 +131,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     {
         return gameObject;
     }
+    public float GetBarRatio()
+    {
+        return barHealth / maxBarHealth;
+    }
     public float GetBarHealth()
     {
         return barHealth;
@@ -176,6 +181,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable
             LowerHealthBy(damage);
             CheckHP();
             ChangeColorOnHit();
+            StaticProgressionBarUpdater.UpdateProgressionBar(this);
             return true;
         }
         return false;
@@ -208,10 +214,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     }
     public void ParentBrokeOff()
     {
-        if (damageReceiver != null)
+        if (healthManager != null)
         {
-            damageReceiver.RemovePart(this);
-            damageReceiver = null;
+            healthManager.RemovePart(this);
+            healthManager = null;
         }
 
         transform.SetParent(null);
@@ -248,9 +254,9 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     }
     private void CheckHP()
     {
-        if (damageReceiver != null)
+        if (healthManager != null)
         {
-            damageReceiver.UpdateHealth();
+            healthManager.UpdateHealth();
         }
         if (partHealth <= 0)
         {
@@ -280,9 +286,9 @@ public class DamageReceiver : SpriteUpdater, IDamageable
     {
         BreakOff();
         HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
-        if (damageReceiver)
+        if (healthManager)
         {
-            damageReceiver.RemovePart(this);
+            healthManager.RemovePart(this);
         }
         StartCoroutine(DestroyAtTheEndOfFrame());
     }
@@ -298,6 +304,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable
         float endTime = Time.time + hitColorChangeDuration;
         while (Time.time < endTime)
         {
+            if (isDestroyed)
+            {
+                return;
+            }
             float percentage = (Time.time - startTime) / hitColorChangeDuration;
             if (mySpriteRenderer == null)
             {

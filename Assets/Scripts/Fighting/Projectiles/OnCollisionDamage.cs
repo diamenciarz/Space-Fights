@@ -60,7 +60,7 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
     {
         dealtDamageTo.Add(collisionObject);
         IDamageable iDamageable = collisionObject.GetComponent<IDamageable>();
-        DamageCalculator.ApplyDamage(iDamageable, GetDamageInstance());
+        DamageCalculator.DealDamage(iDamageable, GetDamageInstance());
     }
     #endregion
 

@@ -340,7 +340,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6701576795160655256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,6 @@ MonoBehaviour:
   - {fileID: 8171773382570708086}
   - {fileID: 7707198878164533950}
   objectToFollow: {fileID: 0}
-  deltaPositionToObject: {x: 0, y: 1.5, z: 0}
   useGradient: 1
   barColorGradient:
     serializedVersion: 2
@@ -391,6 +390,4 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   originalAlfa: 1
-  hideOverTime: 0.1
-  hideDelay: 3
   rotateSameAsParent: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1773797774739811279}
   - component: {fileID: 7169724224806529152}
   - component: {fileID: 3678744313637120050}
+  - component: {fileID: -5180988641478020551}
   m_Layer: 0
   m_Name: SmallRock
   m_TagString: Obstacle
@@ -173,8 +174,6 @@ MonoBehaviour:
   unchangeableTeam: 1
   team:
     teamInstance: 0
-  healthBarPrefab: {fileID: 0}
-  turnHealthBarOn: 0
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!114 &7169724224806529152
@@ -216,3 +215,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5180988641478020551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressionBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
+  barDeltaPosition: {x: 0, y: 1.5}
+  isAlwaysOn: 0
+  hideDelay: 1
