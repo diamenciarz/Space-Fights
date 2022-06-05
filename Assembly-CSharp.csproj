@@ -108,6 +108,8 @@
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\HealthManager.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\DamageReceiver.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IPushable.cs" />
+    <Compile Include="Assets\Scripts\Movement\PushableProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

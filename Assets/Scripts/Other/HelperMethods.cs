@@ -30,6 +30,16 @@ public static class HelperMethods
             return DeltaPosition(firstPosition, secondPosition).magnitude;
         }
         /// <summary>
+        /// Get distance between positions in 2D.
+        /// </summary>
+        /// <param name="firstPosition"></param>
+        /// <param name="secondPosition"></param>
+        /// <returns></returns>
+        public static float Distance(Vector2 firstPosition, Vector2 secondPosition)
+        {
+            return DeltaPosition(firstPosition, secondPosition).magnitude;
+        }
+        /// <summary>
         /// Get delta position in 2D. Z position values are ignored. Starts from the first object. 
         /// </summary>
         /// <param name="startingObject"></param>
@@ -55,6 +65,16 @@ public static class HelperMethods
             startingVector.z = 0;
             targetPosition.z = 0;
 
+            return (targetPosition - startingVector);
+        }
+        /// <summary>
+        /// Get delta position in 2D. Starts from the first position. 
+        /// </summary>
+        /// <param name="startingVector"></param>
+        /// <param name="targetPosition"></param>
+        /// <returns></returns>
+        public static Vector2 DeltaPosition(Vector2 startingVector, Vector2 targetPosition)
+        {
             return (targetPosition - startingVector);
         }
         /// <summary>

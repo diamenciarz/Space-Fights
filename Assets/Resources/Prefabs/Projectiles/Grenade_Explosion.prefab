@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebd032f4f5b13540ae023ed67610dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   sprites:
   - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
   - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
@@ -152,3 +153,5 @@ MonoBehaviour:
   timeToExpire: 0.3
   expandRate: 10
   rotateDuringLifetime: 90
+  maxPushingForce: 0
+  startingRadius: 0.16

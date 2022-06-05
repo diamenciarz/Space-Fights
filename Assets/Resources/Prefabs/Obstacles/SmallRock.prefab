@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3598053457957266730}
   - component: {fileID: 1773797774739811279}
   - component: {fileID: 7169724224806529152}
+  - component: {fileID: 3678744313637120050}
   m_Layer: 0
   m_Name: SmallRock
   m_TagString: Obstacle
@@ -104,7 +105,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -197,9 +198,21 @@ MonoBehaviour:
   immunities:
   - damageType: 2
     immunityPercentage: 1
-  minKineticEnergy: 5
+  minKineticEnergy: 10
   collisionDamageModifier: 0.75
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+--- !u!114 &3678744313637120050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

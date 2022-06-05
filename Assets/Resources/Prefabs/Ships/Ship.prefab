@@ -891,7 +891,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1087,7 +1087,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1284,7 +1284,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1482,7 +1482,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1557,6 +1557,7 @@ GameObject:
   - component: {fileID: 6441913592538751967}
   - component: {fileID: 1630741118}
   - component: {fileID: 5166552632043362251}
+  - component: {fileID: -4586166943237408770}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -1669,6 +1670,18 @@ MonoBehaviour:
   turnHealthBarOn: 0
   breakingSounds: []
   breakingSoundVolume: 1
+--- !u!114 &-4586166943237408770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,7 +1818,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2021,7 +2034,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2217,7 +2230,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2485,7 +2498,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2713,7 +2726,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2929,7 +2942,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

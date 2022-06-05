@@ -56,7 +56,7 @@ public class UserEntityController : MonoBehaviour
     private void DoMouseInput()
     {
         Vector2 mousePos = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
-        Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition(transform.position, mousePos);
+        Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition((Vector2) transform.position, mousePos);
         Vector2 forwardVector = transform.right;
 
         float deltaAngle = Vector2.SignedAngle(forwardVector, deltaMousePos);

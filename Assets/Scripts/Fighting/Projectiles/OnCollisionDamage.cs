@@ -9,7 +9,7 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
     [Header("Damage type")]
     [SerializeField] protected List<DamageInstance.DamageCategory> damageCategories = new List<DamageInstance.DamageCategory>();
 
-    private List<GameObject> dealtDamageTo = new List<GameObject>();
+    protected List<GameObject> dealtDamageTo = new List<GameObject>();
 
     public enum TypeOfDamage
     {
@@ -49,7 +49,8 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
         {
             return false;
         }
-        if (dealtDamageTo.Contains(collisionObject))
+        bool alreadyDealtDamageToThisObject = dealtDamageTo.Contains(collisionObject);
+        if (alreadyDealtDamageToThisObject)
         {
             return false;
         }
