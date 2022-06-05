@@ -158,15 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 2
+  team:
+    teamInstance: 0
   salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
   shootingPoint: {fileID: 6271903174717107740}
-  gunReloadingBarPrefab: {fileID: 8395912166832606940, guid: 8e09ea130e6998f4c9a04c20952aa1f5, type: 3}
-  reloadingBarPosition: {fileID: 8017394203629097686}
   basicGunRotation: 0
   targetEnemies: 0
-  reloadingBarOn: 1
-  isDetached: 0
+  reloadingBarAlwaysOn: 1
 --- !u!1 &6869262952838426057
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0978a099a259e5f4b861071502b3381c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   basicGunDirection: 0
   hasRotationLimits: 1
   leftMaxRotationLimit: 90
@@ -266,9 +265,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7005096668549435608}
   - component: {fileID: 3265342980880550919}
-  - component: {fileID: 6269684437887618048}
   - component: {fileID: 6493010151437119125}
   - component: {fileID: 9173923930102967529}
+  - component: {fileID: 738298233024687435}
   m_Layer: 6
   m_Name: Tower
   m_TagString: Untagged
@@ -310,26 +309,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!114 &6269684437887618048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8017394203629097686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e72e9ba4e45cf4bab3528c6f197f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 02000000
-  team: 2
-  healthBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
-  turnHealthBarOn: 1
-  breakingSounds: []
-  breakingSoundVolume: 1
-  parts: []
-  additionalDamage: 0
 --- !u!50 &6493010151437119125
 Rigidbody2D:
   serializedVersion: 4
@@ -363,9 +342,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
   targetEnemies: 0
+--- !u!114 &738298233024687435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017394203629097686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites: []
+  partHealth: 50
+  barHealth: 50
+  destroyDamage: 20
+  immunities: []
+  minKineticEnergy: 10
+  collisionDamageModifier: 0.25
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
 --- !u!1 &8041327027955548429
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8a9ab8aafb4fe458d94fbeb9343148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 2
+  team:
+    teamInstance: 0
   basicGunDirection: 0
   gunRotationSpeed: 120
   hasRotationLimits: 1

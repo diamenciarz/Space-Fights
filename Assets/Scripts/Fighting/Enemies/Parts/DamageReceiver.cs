@@ -25,14 +25,17 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     [SerializeField] protected List<AudioClip> hitSounds;
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
-    [Header("On hit")]
+    [Header("Progression bar usage")]
+    [SerializeField] bool dontUseProgressionBar;
+
+
+    //Private variables
     private static GameObject damagePopup;
     private static bool damagePopupUpdated = false;
     private static Color onHitColor = new Color(1, 140f/255f, 140f/255f, 1);
     private float hitColorChangeDuration = 1f;
     private static Color defaultColor = Color.white;
 
-    //Private variables
     private HealthManager healthManager;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
@@ -62,6 +65,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         {
             damagePopupUpdated = true;
             damagePopup = HelperMethods.ObjectUtils.FindObjectWithName("Assets/Resources/Prefabs/UI/", "DamagePopup");
+            if (damagePopup == null)
+            {
+                Debug.LogError("DamagePopup not found in UI folder!");
+            }
         }
         //Math
         maxPartHealth = partHealth;
@@ -181,7 +188,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
             LowerHealthBy(damage);
             CheckHP();
             ChangeColorOnHit();
-            StaticProgressionBarUpdater.UpdateProgressionBar(this);
+            UpdateHealthBar();
             return true;
         }
         return false;
@@ -317,6 +324,14 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
             mySpriteRenderer.color = newColor;
             await Task.Yield();
         }
+    }
+    private void UpdateHealthBar()
+    {
+        if (dontUseProgressionBar)
+        {
+            return;
+        }
+        StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
     #endregion
 }

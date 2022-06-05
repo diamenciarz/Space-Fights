@@ -13,6 +13,8 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
+    [Header("Progression bar usage")]
+    [SerializeField] bool dontUseProgressionBar;
 
     //Private variables
     private float health;
@@ -115,6 +117,10 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
     #region UI
     private void UpdateHealthBar()
     {
+        if (dontUseProgressionBar)
+        {
+            return;
+        }
         StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
     #endregion

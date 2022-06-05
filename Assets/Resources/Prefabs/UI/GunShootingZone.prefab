@@ -226,7 +226,6 @@ MonoBehaviour:
   healthBarImage: {fileID: 8492177007195057068}
   imagesToHide: []
   objectToFollow: {fileID: 0}
-  deltaPositionToObject: {x: 0, y: 0, z: 0}
   useGradient: 1
   barColorGradient:
     serializedVersion: 2
@@ -258,9 +257,8 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   originalAlfa: 0.15
-  hideOverTime: 0.5
-  hideDelay: 0
   rotateSameAsParent: 1
+  isShown: 0
 --- !u!114 &6266471521723400712
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   sprites:
   - {fileID: 21300000, guid: 8f1c4fe59212bd34ca8036985f1ffaeb, type: 3}
   - {fileID: 21300000, guid: c560136ccd162704f82f7a9609a5fb69, type: 3}
@@ -151,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
   targetEnemies: 0
 --- !u!114 &-553088433232255719

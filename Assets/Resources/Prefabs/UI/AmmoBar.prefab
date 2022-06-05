@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 5084526107050442707}
   - component: {fileID: 2235478053852688192}
   m_Layer: 5
-  m_Name: ReloadingBar
+  m_Name: AmmoBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

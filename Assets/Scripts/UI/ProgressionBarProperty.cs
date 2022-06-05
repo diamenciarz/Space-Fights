@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ProgressionBarProperty : MonoBehaviour, IProgressionBar
 {
-    /// <summary>
-    /// Add progression bar factory
-    /// </summary>
-    [SerializeField] GameObject progressionBarPrefab;
+    [SerializeField] EntityCreator.UIComponents bar;
     [SerializeField] Vector2 barDeltaPosition;
     [SerializeField] bool isAlwaysOn;
     [Tooltip("Time, after which the bar will disappear, after being shown")]
@@ -23,11 +20,8 @@ public class ProgressionBarProperty : MonoBehaviour, IProgressionBar
 
     public void CreateProgressionBar(GameObject parent)
     {
-        if (progressionBarPrefab == null)
-        {
-            return;
-        }
-        progressionBar = Instantiate(progressionBarPrefab, parent.transform.position, parent.transform.rotation);
+        GameObject barToInstantiate = EntityFactory.GetPrefab(bar);
+        progressionBar = Instantiate(barToInstantiate, parent.transform.position, parent.transform.rotation);
         barScript = progressionBar.GetComponent<ProgressionBarController>();
         barScript.SetDeltaPositionToObject(barDeltaPosition);
         barScript.SetHideDelay(hideDelay);

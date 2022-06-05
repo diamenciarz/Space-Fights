@@ -17,7 +17,13 @@ public class EntityCreator : MonoBehaviour
         Bouncy_Laser,
         Ship,
         SmallRock,
-        TinyRock
+        TinyRock,
+        Invisible_Explosion
+    }
+    public enum UIComponents
+    {
+        HealthBar,
+        AmmoBar
     }
     private void Awake()
     {

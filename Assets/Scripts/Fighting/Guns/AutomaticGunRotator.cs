@@ -39,6 +39,10 @@ public class AutomaticGunRotator : TeamUpdater
     }
     protected void Update()
     {
+        if (!parentGameObject)
+        {
+            return;
+        }
         LookForTarget();
         Rotate();
     }

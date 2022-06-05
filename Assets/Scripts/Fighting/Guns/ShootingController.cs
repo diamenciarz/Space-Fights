@@ -16,9 +16,10 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     [Header("Mouse Steering")]
     bool isControlledByMouse;
     [SerializeField] bool reloadingBarAlwaysOn = true;
+    [Header("Progression bar usage")]
+    [SerializeField] bool dontUseProgressionBar;
 
     private bool isDetached = false;
-
     //The gun tries to shoot, if this is set to true
     protected bool shoot;
     //Private variables
@@ -221,6 +222,10 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     }
     private void UpdateAmmoBar()
     {
+        if (dontUseProgressionBar)
+        {
+            return;
+        }
         StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
     #endregion
