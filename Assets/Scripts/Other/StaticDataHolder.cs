@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static TeamUpdater;
@@ -45,14 +44,13 @@ public static class StaticDataHolder
         {
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
-                HealthManager healthManager = inputList[i].GetComponent<HealthManager>();
-                if (healthManager = null)
+                ITeamable teamable = inputList[i].GetComponent<ITeamable>();
+                if (teamable != null)
                 {
-                    continue;
-                }
-                if (healthManager.GetTeam().IsAlly(myTeam))
-                {
-                    inputList.Remove(inputList[i]);
+                    if (teamable.GetTeam().IsAlly(myTeam))
+                    {
+                        inputList.Remove(inputList[i]);
+                    }
                 }
             }
             return inputList;
@@ -61,12 +59,12 @@ public static class StaticDataHolder
         {
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
-                HealthManager damageReceiver = inputList[i].GetComponent<HealthManager>();
-                if (damageReceiver == null)
+                ITeamable teamable = inputList[i].GetComponent<ITeamable>();
+                if (teamable == null)
                 {
                     continue;
                 }
-                if (damageReceiver.GetTeam().IsEnemy(myTeam))
+                if (teamable.GetTeam().IsEnemy(myTeam))
                 {
                     inputList.Remove(inputList[i]);
                 }
@@ -82,17 +80,32 @@ public static class StaticDataHolder
         {
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
-                HealthManager healthManager = inputList[i].GetComponent<HealthManager>();
-                if (healthManager == null)
+                ITeamable teamable = inputList[i].GetComponent<ITeamable>();
+                if (teamable == null)
                 {
                     continue;
                 }
-                if (healthManager.GetTeam().IsNeutral(myTeam))
+                if (teamable.GetTeam().IsNeutral(myTeam))
                 {
                     inputList.Remove(inputList[i]);
                 }
             }
             return inputList;
+        }
+        public static List<GameObject> SubtractNeutralsAndAllies(List<GameObject> inputList, Team myTeam)
+        {
+            return SubtractAllies(SubtractNeutrals(inputList, myTeam), myTeam);
+        }
+        public static List<GameObject> DeleteObstacles(List<GameObject> list)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                if (HelperMethods.ObjectUtils.IsAnObstacle(list[i]))
+                {
+                    list.RemoveAt(i);
+                }
+            }
+            return list;
         }
     }
     public static class ListContents
@@ -145,15 +158,26 @@ public static class StaticDataHolder
         }
         public static class Generic
         {
+            public static bool ListContainsNonObstacle(List<GameObject> list)
+            {
+                foreach (var item in list)
+                {
+                    if (!HelperMethods.ObjectUtils.IsAnObstacle(item))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
             public static List<GameObject> GetEntityList()
             {
                 List<GameObject> entityList;
                 listDictionary.TryGetValue(ObjectTypes.Entity, out entityList);
-                return entityList;
+                return HelperMethods.ListUtils.CloneList(entityList);
             }
             public static GameObject GetClosestObject(List<GameObject> possibleTargetList, Vector3 positionVector)
             {
-                if (possibleTargetList.Count > 0)
+                if (possibleTargetList.Count == 0)
                 {
                     return null;
                 }
@@ -175,7 +199,7 @@ public static class StaticDataHolder
             }
             public static GameObject GetClosestObjectInSight(List<GameObject> possibleTargetList, Vector3 positionVector)
             {
-                if (possibleTargetList.Count > 0)
+                if (possibleTargetList.Count == 0)
                 {
                     return null;
                 }
@@ -200,7 +224,7 @@ public static class StaticDataHolder
             }
             public static GameObject GetClosestObjectAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle = 0)
             {
-                if (targetList.Count > 0)
+                if (targetList.Count == 0)
                 {
                     return null;
                 }
@@ -224,7 +248,7 @@ public static class StaticDataHolder
             }
             public static GameObject GetClosestObjectInSightAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle = 0)
             {
-                if (targetList.Count > 0)
+                if (targetList.Count == 0)
                 {
                     return null;
                 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -553088433232255719}
   - component: {fileID: 5409658927449349606}
   - component: {fileID: -8346593562546245867}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000
 --- !u!58 &5409658927449349606
 CircleCollider2D:
   m_ObjectHideFlags: 0

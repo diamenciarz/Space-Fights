@@ -84,9 +84,8 @@ public class VisualDetector : TeamUpdater
     #endregion
     private void DoChecks()
     {
-        //Get all targets list
         targetsInSightList = FindAllEnemiesInSight();
-        //The closest target
+        TryRemoveObstacles();
         currentTarget = StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle());
         //Are there any targets in sight (edge case for mouse cursor)
         CheckForAnyTargetInSight();
@@ -99,9 +98,9 @@ public class VisualDetector : TeamUpdater
         List<GameObject> targetList = StaticDataHolder.ListContents.Enemies.GetEnemyList(team);
         if (targetObstacles)
         {
-            targetList.AddRange(StaticDataHolder.ListContents.Generic.GetObjectList(StaticDataHolder.ObjectTypes.Obstacle));
+            List<GameObject> allObstacles = StaticDataHolder.ListContents.Generic.GetObjectList(StaticDataHolder.ObjectTypes.Obstacle);
+            targetList.AddRange(StaticDataHolder.ListModification.SubtractNeutralsAndAllies(allObstacles, team));
         }
-        Debug.Log("Target list: " + targetList.Count + " my team: " + team.teamInstance);
         if (targetList.Count == 0)
         {
             return null;
@@ -118,23 +117,24 @@ public class VisualDetector : TeamUpdater
         }
         return targetsInSight;
     }
+    /// <summary>
+    /// If you see a target that is not an obstacle, focus that target.
+    /// </summary>
+    private void TryRemoveObstacles()
+    {
+        if (StaticDataHolder.ListContents.Generic.ListContainsNonObstacle(targetsInSightList))
+        {
+            StaticDataHolder.ListModification.DeleteObstacles(targetsInSightList);
+        }
+    }
     private void CheckForAnyTargetInSight()
     {
         if (controlledByMouse)
         {
             isTargetInSight = IsMouseInSight();
+            return;
         }
-        else
-        {
-            if (targetsInSightList.Count > 0)
-            {
-                isTargetInSight = true;
-            }
-            else
-            {
-                isTargetInSight = false;
-            }
-        }
+        isTargetInSight = targetsInSightList.Count > 0;
     }
     private bool IsMouseInSight()
     {

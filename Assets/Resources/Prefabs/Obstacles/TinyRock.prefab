@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 49335754480182673}
   - component: {fileID: 477665981838516455}
   - component: {fileID: -1679978452556403992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TinyRock
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -152,14 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 03000000
+  putInLists: 00000000
   unchangeableTeam: 1
   team:
     teamInstance: 0
-  healthBarPrefab: {fileID: 0}
-  turnHealthBarOn: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &477665981838516455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +184,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &-1679978452556403992
 MonoBehaviour:
   m_ObjectHideFlags: 0

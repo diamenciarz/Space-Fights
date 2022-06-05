@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 133220287009352267}
   - component: {fileID: 1594040755141738852}
   - component: {fileID: -1584809002072738734}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Invisible_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

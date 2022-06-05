@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1773797774739811279}
   - component: {fileID: 7169724224806529152}
   - component: {fileID: 3678744313637120050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallRock
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -169,12 +169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 03000000
+  putInLists: 00000000
   unchangeableTeam: 1
   team:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &7169724224806529152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &3678744313637120050
 MonoBehaviour:
   m_ObjectHideFlags: 0

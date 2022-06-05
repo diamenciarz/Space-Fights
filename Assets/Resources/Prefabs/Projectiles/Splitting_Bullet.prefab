@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772904740918751643}
   - component: {fileID: 9032151664788439083}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3278521563504507919}
   - component: {fileID: -1566152343811300086}
   - component: {fileID: 5411452294418001787}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Splitting_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   sprites:
   - {fileID: 21300000, guid: f8887aa7e07d9b54b945a0286d775326, type: 3}
   - {fileID: 21300000, guid: 7090487e8efd833498e1a0ae3367222e, type: 3}
@@ -198,7 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   shot: {fileID: 11400000, guid: 1b8859275a9420b4c9d2a045f141c0af, type: 2}
   targetEnemies: 0
 --- !u!114 &5411452294418001787
@@ -213,4 +215,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000

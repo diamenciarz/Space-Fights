@@ -320,30 +320,28 @@ public static class HelperMethods
         /// <returns></returns>
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target)
         {
-            if (target)
-            {
-                int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles");
-                Vector2 direction = target.transform.position - originalPos;
-                Debug.DrawRay(originalPos, direction, Color.red, 0.1f);
-
-                RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, Mathf.Infinity, obstacleLayerMask);
-
-                if (raycastHit2D)
-                {
-                    GameObject objectHit = raycastHit2D.collider.gameObject;
-
-                    bool hitTargetDirectly = objectHit == target;
-                    if (hitTargetDirectly)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else
+            if (target == null)
             {
                 return false;
             }
+            int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles", "Projectiles");
+            Vector2 direction = target.transform.position - originalPos;
+            Debug.DrawRay(originalPos, direction, Color.red, 0.1f);
+
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, Mathf.Infinity, obstacleLayerMask);
+
+            if (!raycastHit2D)
+            {
+                return false;
+            }
+            GameObject objectHit = raycastHit2D.collider.gameObject;
+
+            bool hitTargetDirectly = objectHit == target;
+            if (hitTargetDirectly)
+            {
+                return true;
+            }
+            return false;
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position. The default layer names are "Actors" and "Obstacles".
@@ -456,7 +454,11 @@ public static class HelperMethods
             {
                 return true;
             }
-
+            bool objectIsOnObstacleLayerMask = collisionObject.layer == 6;
+            if (objectIsOnObstacleLayerMask)
+            {
+                return true;
+            }
             ListUpdater listUpdater = collisionObject.GetComponent<ListUpdater>();
             if (listUpdater)
             {

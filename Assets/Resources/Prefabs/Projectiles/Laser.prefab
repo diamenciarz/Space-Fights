@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8989033578331711026}
   - component: {fileID: 5399962572158842332}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5329267400732313886}
   - component: {fileID: 8884412361962455790}
   - component: {fileID: 7426536192320844466}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
+  team:
+    teamInstance: 0
   sprites:
   - {fileID: 21300000, guid: 76282dc5313948f4895b9dd54857a55a, type: 3}
   - {fileID: 21300000, guid: 2716a4593a30a3346ab2c3aef4d3d22d, type: 3}
@@ -145,7 +146,7 @@ MonoBehaviour:
   isPiercing: 0
   destroyDelay: -1
   destroyDistance: -1
-  minAngleToReflect: 60
+  minAngleToReflect: 30
   maxReflectionNumber: 3
   timeAddedUponReflection: 0
 --- !u!114 &5329267400732313886
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000
 --- !u!50 &8884412361962455790
 Rigidbody2D:
   serializedVersion: 4
@@ -173,7 +174,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -192,7 +193,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -2.4868996e-14, y: -0.00000020861629}

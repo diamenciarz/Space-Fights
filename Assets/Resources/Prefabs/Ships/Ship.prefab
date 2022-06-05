@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 616818912}
   - component: {fileID: 616818914}
   - component: {fileID: 616818913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7641353743839565424}
   - component: {fileID: 8530353260921314641}
   - component: {fileID: 5699753045744380763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 7473346116619749278}
   - component: {fileID: 7551173842708764306}
   - component: {fileID: 4803716611508904443}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Gun (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 570610393704541274}
   - component: {fileID: 1762953410760316399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftCabin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8671073499299282293}
   - component: {fileID: 7472136560962297160}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Gun rotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2228277450419226497}
   - component: {fileID: 863468948743332297}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
+  salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
   basicGunRotation: 0
   targetEnemies: 0
@@ -570,7 +570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3628950189056374314}
   - component: {fileID: 8448464666150114285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,8 @@ GameObject:
   - component: {fileID: 84601112019320437}
   - component: {fileID: 7864284901952902704}
   - component: {fileID: 8959465588056255553}
-  m_Layer: 0
+  - component: {fileID: 7386377890576602311}
+  m_Layer: 7
   m_Name: Cabin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,6 +820,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7386377890576602311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004513072726312593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
 --- !u!1 &5240635708381860907
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +849,7 @@ GameObject:
   - component: {fileID: 8445481373217568892}
   - component: {fileID: 1231799642429314598}
   - component: {fileID: 3596412584512391778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1951474391844682403}
   - component: {fileID: 4326357092008326502}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightCabin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1145,7 @@ GameObject:
   - component: {fileID: 5853195764477435998}
   - component: {fileID: 6701698553508886421}
   - component: {fileID: 4459400678555094893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1355,7 @@ GameObject:
   - component: {fileID: 1043526973371437154}
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 3841279664770106543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,7 +1568,7 @@ GameObject:
   - component: {fileID: 7777640078348625372}
   - component: {fileID: 6878370843787619903}
   - component: {fileID: 7796459174614336819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1765,7 +1779,7 @@ GameObject:
   - component: {fileID: 2530165110294813862}
   - component: {fileID: 8786691315742761047}
   - component: {fileID: 8026648952637378061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1977,7 +1991,7 @@ GameObject:
   - component: {fileID: -4586166943237408770}
   - component: {fileID: 2488323260018361336}
   - component: {fileID: -6443159064478190265}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2149,7 +2163,7 @@ GameObject:
   - component: {fileID: 212362505441456787}
   - component: {fileID: 1534948260965662698}
   - component: {fileID: 9061659452382011625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2396,7 +2410,7 @@ GameObject:
   - component: {fileID: 2089844514390813114}
   - component: {fileID: 9053003173177597814}
   - component: {fileID: 6587909483155747334}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2605,7 +2619,7 @@ GameObject:
   - component: {fileID: 3506797295022249945}
   - component: {fileID: 4049046681727661406}
   - component: {fileID: 9029741089157854403}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2808,7 +2822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6441913593890035338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2838,7 +2852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6441913594026728078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2886,7 +2900,7 @@ GameObject:
   - component: {fileID: 4357380861355621637}
   - component: {fileID: 3361010296158313404}
   - component: {fileID: 3886860846784145867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3090,7 +3104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6441913594105931014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3129,7 +3143,7 @@ GameObject:
   - component: {fileID: 5191196131033383256}
   - component: {fileID: 5946914918922663050}
   - component: {fileID: 3374443023517916694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3376,7 +3390,7 @@ GameObject:
   - component: {fileID: 8520602108167705266}
   - component: {fileID: 5873663910185833245}
   - component: {fileID: 5063551696868088704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3579,7 +3593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755812733425512762}
   - component: {fileID: 7522543992026808738}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3662,7 +3676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4983609260625092799}
   - component: {fileID: 3859532738179350865}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3744,7 +3758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3503175393803492294}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ChaingunShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3774,7 +3788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2394063691835432234}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ZoneTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3805,7 +3819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5555816698910325487}
   - component: {fileID: 4436133665367051665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3887,7 +3901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445601161007613364}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ChaingunShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
