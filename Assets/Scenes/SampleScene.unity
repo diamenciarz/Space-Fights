@@ -176,6 +176,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &23667148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &23667149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -359,6 +361,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &69886700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +393,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &69886701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -542,6 +546,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &109344343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +578,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &109344344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -725,6 +731,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &146364065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +763,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &146364066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -908,6 +916,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &158259804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +948,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &158259805
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1091,6 +1101,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &162524899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,6 +1133,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &162524900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1274,6 +1286,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &191416498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,6 +1318,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &191416499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1429,11 +1443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.54901963
+      value: 0.98426265
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.54901963
+      value: 0.98426265
       objectReference: {fileID: 0}
     - target: {fileID: 780042279433663500, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Distance
@@ -1679,6 +1693,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -22.548
       objectReference: {fileID: 0}
+    - target: {fileID: 6441913592834814977, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.b
+      value: 0.98426265
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592834814977, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.g
+      value: 0.98426265
+      objectReference: {fileID: 0}
     - target: {fileID: 6441913592834814982, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
       value: 0.00000008940697
@@ -1729,11 +1751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557297, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.54901963
+      value: 0.99870104
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557297, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.54901963
+      value: 0.99870104
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557299, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_BreakForce
@@ -1890,6 +1912,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &229607415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,6 +1944,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &229607416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2146,6 +2170,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &235142210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2202,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &235142211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2329,6 +2355,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &264093801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,6 +2387,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &264093802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2512,6 +2540,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &267253980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,6 +2572,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &267253981
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2796,6 +2826,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &323624783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2827,6 +2858,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &323624784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2979,6 +3011,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &333165053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,6 +3043,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &333165054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3162,6 +3196,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &351271409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,6 +3228,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &351271410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3449,6 +3485,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &480381703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3480,6 +3517,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!1 &496877538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,6 +3571,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &496877541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3564,6 +3603,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &496877542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3760,11 +3800,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.b
-      value: 0.9992669
+      value: 0.98560685
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.g
-      value: 0.9992669
+      value: 0.98560685
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181436, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Name
@@ -4001,6 +4041,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &551108739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4032,6 +4073,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &551108740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4184,6 +4226,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &623423612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,6 +4258,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &623423613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4367,6 +4411,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &747998015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4398,6 +4443,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &747998016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4555,6 +4601,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &779472865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4586,6 +4633,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &779472866
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4738,6 +4786,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &858424663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4769,6 +4818,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &858424664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4921,6 +4971,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &872019936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,6 +5003,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &872019937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5137,6 +5189,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &922191737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5168,6 +5221,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &922191738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5320,6 +5374,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1005495400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,6 +5406,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1005495401
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6011,6 +6067,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1246373250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6042,6 +6099,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1246373251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6194,6 +6252,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1252837789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6225,6 +6284,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1252837790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6377,6 +6437,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1293466210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6408,6 +6469,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1293466211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6630,6 +6692,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1408427512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6661,6 +6724,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1408427513
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6813,6 +6877,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1421694586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6844,6 +6909,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1421694587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6996,6 +7062,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1454321183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7027,6 +7094,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1454321184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7179,6 +7247,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1470488155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7210,6 +7279,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1470488156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7432,6 +7502,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1570640184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7463,6 +7534,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1570640185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7615,6 +7687,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1591775594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7646,6 +7719,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1591775595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7878,6 +7952,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1702958926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7909,6 +7984,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1702958927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8061,6 +8137,7 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!114 &1720267733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8092,6 +8169,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 0
 --- !u!61 &1720267734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8422,7 +8500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressionBarPrefab: {fileID: 8395912166832606940, guid: b99e89717e60aad41a544dd09039b2b7, type: 3}
+  bar: 0
   barDeltaPosition: {x: 0, y: 1}
   isAlwaysOn: 0
   hideDelay: 1
@@ -8543,11 +8621,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.99770033
+      value: 0.99151325
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.99770033
+      value: 0.99151325
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276640, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -8771,11 +8849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.98193175
+      value: 0.98392826
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.98193175
+      value: 0.98392826
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072068, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
@@ -8994,7 +9072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1231799642429314598, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.04999997
+      value: 0.04999854
       objectReference: {fileID: 0}
     - target: {fileID: 1793507441863008458, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -9066,11 +9144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276640, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 0.088388294
+      value: 0.0883984
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276640, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: -0.79549503
+      value: -0.79548496
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531684, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -9078,11 +9156,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531684, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: -0.00000008146034
+      value: -0.00000008145972
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531684, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: -0.5
+      value: -0.4999857
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592222990133, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
@@ -9106,7 +9184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592222990135, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.37499997
+      value: 0.374989
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232448, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
@@ -9122,11 +9200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232451, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: -0.33482343
+      value: -0.33776382
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232451, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.06809226
+      value: 0.06878951
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751965, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Name
@@ -9150,19 +9228,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.7071017
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.002685563
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.0026855639
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: -0.7071017
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9170,7 +9248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.435
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -9198,11 +9276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592834814982, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 0.00000026027428
+      value: 0.00000026027362
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592834814982, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.50000024
+      value: 0.49998546
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592912191838, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -9214,7 +9292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592912191838, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: -0.5
+      value: -0.4999857
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025614, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -9222,11 +9300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025614, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: -0.08838713
+      value: -0.088397115
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025614, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: -0.795514
+      value: -0.795504
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557299, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -9238,7 +9316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557299, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.37500003
+      value: 0.3749893
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976648, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
@@ -9254,11 +9332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976651, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 0.00000008146034
+      value: 0.00000008145972
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976651, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.5
+      value: 0.4999857
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976653, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: salvo
@@ -9278,7 +9356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072068, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: -0.5
+      value: -0.4999857
       objectReference: {fileID: 0}
     - target: {fileID: 7241090550447501298, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Target.x
@@ -9310,11 +9388,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7864284901952902704, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 0.0000000021855673
+      value: 0.0000000021855049
       objectReference: {fileID: 0}
     - target: {fileID: 7864284901952902704, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.049999952
+      value: 0.04999852
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: mouseRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: controlledByMouse
@@ -9330,7 +9416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530353260921314641, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0.049999934
+      value: 0.049998503
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c74be53125e8cd34397280103da5c428, type: 3}

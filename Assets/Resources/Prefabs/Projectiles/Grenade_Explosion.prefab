@@ -153,5 +153,5 @@ MonoBehaviour:
   timeToExpire: 0.3
   expandRate: 10
   rotateDuringLifetime: 90
-  maxPushingForce: 0
+  maxPushingForce: 650
   startingRadius: 0.16

@@ -227,7 +227,7 @@ public class EntityCreator : MonoBehaviour
         }
 
         AudioClip sound = shotSO.shotSounds[UnityEngine.Random.Range(0, shotSO.shotSounds.Length)];
-        StaticDataHolder.PlaySound(sound, data.summonPosition, shotSO.shotSoundVolume);
+        StaticDataHolder.Sounds.PlaySound(sound, data.summonPosition, shotSO.shotSoundVolume);
     }
     #endregion
 }

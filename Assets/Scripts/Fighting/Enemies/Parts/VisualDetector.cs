@@ -32,7 +32,7 @@ public class VisualDetector : TeamUpdater
     [SerializeField] Transform visualZoneTransform;
     #endregion
 
-    private GameObject currentTarget;
+    public GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private ProgressionBarController shootingZoneScript;
 
@@ -87,7 +87,7 @@ public class VisualDetector : TeamUpdater
         //Get all targets list
         targetsInSightList = FindAllEnemiesInSight();
         //The closest target
-        currentTarget = StaticDataHolder.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle());
+        currentTarget = StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle());
         //Are there any targets in sight (edge case for mouse cursor)
         CheckForAnyTargetInSight();
     }
@@ -96,11 +96,12 @@ public class VisualDetector : TeamUpdater
     #region Checks
     private List<GameObject> FindAllEnemiesInSight()
     {
-        List<GameObject> targetList = StaticDataHolder.GetEnemyList(team);
+        List<GameObject> targetList = StaticDataHolder.ListContents.Enemies.GetEnemyList(team);
         if (targetObstacles)
         {
-            targetList.AddRange(StaticDataHolder.GetObstacleList());
+            targetList.AddRange(StaticDataHolder.ListContents.Generic.GetObjectList(StaticDataHolder.ObjectTypes.Obstacle));
         }
+        Debug.Log("Target list: " + targetList.Count + " my team: " + team.teamInstance);
         if (targetList.Count == 0)
         {
             return null;
@@ -187,20 +188,11 @@ public class VisualDetector : TeamUpdater
     #region Count values
     private float GetMiddleAngle()
     {
-        float middleAngle = transform.rotation.eulerAngles.z + basicGunDirection;
-        return middleAngle;
+        return transform.rotation.eulerAngles.z + basicGunDirection;
     }
     private float GetGunAngle()
     {
-        Quaternion gunRotation = transform.rotation;
-        float gunAngle = gunRotation.eulerAngles.z;
-
-        if (gunAngle > 180)
-        {
-            gunAngle -= 360;
-        }
-
-        return gunAngle;
+        return HelperMethods.AngleUtils.ClampAngle180(transform.rotation.eulerAngles.z);
     }
     #endregion
 

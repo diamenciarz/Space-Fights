@@ -44,7 +44,7 @@ public class ShootOnDeath : TriggerOnDeath
         }
         else
         {
-            return StaticDataHolder.GetClosestEnemyInSight(transform.position, team);
+            return StaticDataHolder.ListContents.Enemies.GetClosestEnemyInSight(transform.position, team);
         }
     }
     #endregion

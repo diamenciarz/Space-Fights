@@ -171,7 +171,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         }
         else
         {
-            return StaticDataHolder.GetClosestEnemyInSight(transform.position, team);
+            return StaticDataHolder.ListContents.Enemies.GetClosestEnemyInSight(transform.position, team);
         }
     }
     #endregion
@@ -183,7 +183,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         if (currentShotSO.shotSounds.Length != 0)
         {
             AudioClip sound = currentShotSO.shotSounds[Random.Range(0, currentShotSO.shotSounds.Length)];
-            StaticDataHolder.PlaySound(sound, transform.position, currentShotSO.shotSoundVolume);
+            StaticDataHolder.Sounds.PlaySound(sound, transform.position, currentShotSO.shotSoundVolume);
         }
     }
     #endregion

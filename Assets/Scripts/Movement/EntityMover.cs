@@ -19,7 +19,7 @@ public class EntityMover : MonoBehaviour, IEntityMover
     private Vector2 inputVector;
 
     private float previousRotationAngle;
-    public float directionAngle;
+    private float directionAngle;
     #endregion
 
     #region Startup

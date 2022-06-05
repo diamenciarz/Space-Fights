@@ -146,10 +146,12 @@ MonoBehaviour:
   hurtsAllies: 1
   damageCategories:
   - damageType: 0
+    damage: 4
+  - damageType: 1
     damage: 8
   startingSpeed: 0
   timeToExpire: 0.2
   expandRate: 4
   rotateDuringLifetime: 90
-  maxPushingForce: 0
+  maxPushingForce: 300
   startingRadius: 0.16

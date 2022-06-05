@@ -61,7 +61,7 @@ public class AutomaticGunRotator : TeamUpdater
     private void LookForTarget()
     {
         List<GameObject> targets = GetDetectedTargets();
-        closestTarget = StaticDataHolder.GetClosestObjectAngleWise(targets, transform.position, GetGunAngle());
+        closestTarget = StaticDataHolder.ListContents.Generic.GetClosestObjectAngleWise(targets, transform.position, GetGunAngle());
         if (closestTarget)
         {
             areTargetsInRange = true;

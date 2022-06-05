@@ -324,7 +324,7 @@ public static class HelperMethods
             {
                 int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles");
                 Vector2 direction = target.transform.position - originalPos;
-                //Debug.DrawRay(originalPos, direction, Color.red, 0.1f);
+                Debug.DrawRay(originalPos, direction, Color.red, 0.1f);
 
                 RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, Mathf.Infinity, obstacleLayerMask);
 
@@ -437,7 +437,7 @@ public static class HelperMethods
             ListUpdater listUpdater = collisionObject.GetComponent<ListUpdater>();
             if (listUpdater)
             {
-                return listUpdater.ListContains(ListUpdater.AddToLists.Entity);
+                return listUpdater.ListContains(StaticDataHolder.ObjectTypes.Entity);
             }
             return false;
         }
@@ -460,7 +460,7 @@ public static class HelperMethods
             ListUpdater listUpdater = collisionObject.GetComponent<ListUpdater>();
             if (listUpdater)
             {
-                return listUpdater.ListContains(ListUpdater.AddToLists.Obstacle);
+                return listUpdater.ListContains(StaticDataHolder.ObjectTypes.Obstacle);
             }
             return false;
         }

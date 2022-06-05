@@ -66,7 +66,7 @@ public class RocketController : BasicProjectileController
         {
             if (targetGameObject == null)
             {
-                targetGameObject = StaticDataHolder.GetClosestEnemy(transform.position, team);
+                targetGameObject = StaticDataHolder.ListContents.Enemies.GetClosestEnemy(transform.position, team);
             }
         }
     }

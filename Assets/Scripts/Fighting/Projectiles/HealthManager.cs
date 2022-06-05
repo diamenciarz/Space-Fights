@@ -87,7 +87,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         if (!isDestroyed)
         {
             isDestroyed = true;
-            StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
+            StaticDataHolder.Sounds.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
             DisconnectAllParts();
             DestroyObject();
         }

@@ -281,13 +281,13 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
             barHealth = 0;
             partHealth = 0;
             isDestroyed = true;
-            StaticDataHolder.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
+            StaticDataHolder.Sounds.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
             DestroyObject();
         }
     }
     protected void HandleHit()
     {
-        StaticDataHolder.PlaySound(GetHitSound(), transform.position, hitSoundVolume);
+        StaticDataHolder.Sounds.PlaySound(GetHitSound(), transform.position, hitSoundVolume);
     }
     private void DestroyObject()
     {

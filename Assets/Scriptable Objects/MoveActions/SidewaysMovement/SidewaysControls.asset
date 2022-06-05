@@ -30,6 +30,6 @@ MonoBehaviour:
     action: {fileID: 11400000, guid: fe854d128dda04d4cb8eb0f36566aba8, type: 2}
     shootingControllers: []
   - key: 0
-    type: 13
+    type: 15
     action: {fileID: 11400000, guid: b61868928035a2545a865381751eceef, type: 2}
     shootingControllers: []
