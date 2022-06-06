@@ -281,6 +281,18 @@ public static class StaticDataHolder
                 listDictionary.TryGetValue(objectType, out objectList);
                 return HelperMethods.ListUtils.CloneList(objectList);
             }
+            public static List<GameObject> GetObjectList(ObjectTypes[] objectType)
+            {
+                InstantiateAllLists();
+                List<GameObject> allObjectList = new List<GameObject>();
+                foreach (var type in objectType)
+                {
+                    List<GameObject> objectList;
+                    listDictionary.TryGetValue(type, out objectList);
+                    allObjectList.AddRange(objectList);
+                }
+                return HelperMethods.ListUtils.CloneList(allObjectList);
+            }
             #region Helper methods
             public static void InstantiateAllLists()
             {

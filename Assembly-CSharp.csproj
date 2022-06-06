@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIconProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\IModifiableStartingSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

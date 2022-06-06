@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class RocketController : BasicProjectileController
 {
@@ -10,20 +11,18 @@ public class RocketController : BasicProjectileController
     [SerializeField] float rocketRotationSpeed = 120;
     [Header("Explosion Settings")]
     public float timeToExpire = 30;
-
+    [Header("Targeting settings")]
+    [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
+    [SerializeField] Transform rocketEyeTransform;
     //Private variables
     private float currentRocketSpeed;
     private GameObject targetGameObject;
 
     #region Startup
-    protected override void Awake()
-    {
-        base.Awake();
-        SetupStartingSpeed();
-    }
     protected override void Start()
     {
         base.Start();
+        SetupStartingSpeed();
     }
     private void SetupStartingSpeed()
     {
@@ -52,9 +51,18 @@ public class RocketController : BasicProjectileController
         {
             if (targetGameObject == null)
             {
-                targetGameObject = StaticDataHolder.ListContents.Enemies.GetClosestEnemy(transform.position, team);
+                targetGameObject = FindNewTarget();
+                Debug.Log("New target: " + targetGameObject);
             }
         }
+    }
+    private GameObject FindNewTarget()
+    {
+        List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
+        StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
+        Quaternion deltaRotation = Quaternion.Euler(0, 0, -90); // Weird thing with rockets
+        float direction = (transform.rotation * deltaRotation).eulerAngles.z;
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, rocketEyeTransform.position, direction);
     }
     private void IncreaseSpeed()
     {
@@ -68,7 +76,7 @@ public class RocketController : BasicProjectileController
         Vector3 newVelocity = HelperMethods.VectorUtils.DirectionVectorNormalized(transform.eulerAngles.z) * currentRocketSpeed;
         SetVelocityVector(newVelocity);
     }
-    public override void SetVelocityVector(Vector3 newVelocityVector)
+    protected override void SetVelocityVector(Vector3 newVelocityVector)
     {
         velocityVector = newVelocityVector;
         myRigidbody2D.velocity = newVelocityVector;

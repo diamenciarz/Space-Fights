@@ -17,12 +17,14 @@ public class VisualDetector : TeamUpdater
     [Tooltip("The click range of the camera if overridden by mouse cursor. Choose 0 for infinite range")]
     [SerializeField] float mouseRange = 10f;
     [SerializeField] float refreshRate = 0.1f;
-    [SerializeField] bool targetObstacles = false;
 
     [Header("Mouse Steering")]
     [SerializeField] bool controlledByMouse;
     [SerializeField] bool isShootingZoneOn;
     [SerializeField] bool ignoreMouseCollisions;
+
+    [Header("Targeting settings")]
+    [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
 
     [Header("Instances")]
     [SerializeField] ShootingController[] shootingControllers;
@@ -32,7 +34,7 @@ public class VisualDetector : TeamUpdater
     [SerializeField] Transform visualZoneTransform;
     #endregion
 
-    public GameObject currentTarget;
+    private GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private ProgressionBarController shootingZoneScript;
 
@@ -79,6 +81,7 @@ public class VisualDetector : TeamUpdater
         foreach (var item in shootingControllers)
         {
             item.SetShoot(shoot);
+            item.SetTarget(currentTarget);
         }
     }
     #endregion
@@ -95,19 +98,15 @@ public class VisualDetector : TeamUpdater
     #region Checks
     private List<GameObject> FindAllEnemiesInSight()
     {
-        List<GameObject> targetList = StaticDataHolder.ListContents.Enemies.GetEnemyList(team);
-        if (targetObstacles)
-        {
-            List<GameObject> allObstacles = StaticDataHolder.ListContents.Generic.GetObjectList(StaticDataHolder.ObjectTypes.Obstacle);
-            targetList.AddRange(StaticDataHolder.ListModification.SubtractNeutralsAndAllies(allObstacles, team));
-        }
-        if (targetList.Count == 0)
+        List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
+        StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
+        if (potentialTargets.Count == 0)
         {
             return null;
         }
 
         List<GameObject> targetsInSight = new List<GameObject>();
-        foreach (GameObject target in targetList)
+        foreach (GameObject target in potentialTargets)
         {
             //I expect enemyList to never have a single null value
             if (CanSeeTarget(target))

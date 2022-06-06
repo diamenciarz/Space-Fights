@@ -135,7 +135,7 @@ MonoBehaviour:
     damage: 2
   startingSpeed: 6
   isPiercing: 0
-  destroyDelay: -1
+  destroyDelay: 30
   destroyDistance: -1
   minAngleToReflect: 0
   maxReflectionNumber: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   team:
     teamInstance: 0
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
+  directionOffset: 0
   targetEnemies: 0
 --- !u!114 &-553088433232255719
 MonoBehaviour:

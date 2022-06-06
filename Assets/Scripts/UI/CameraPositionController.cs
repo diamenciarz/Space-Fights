@@ -75,6 +75,10 @@ public class CameraPositionController : MonoBehaviour
     private Vector2 CountMiddlePoint()
     {
         RemoveNullElements();
+        if (follow.Count == 0)
+        {
+            return transform.position;
+        }
         return GetSummedPos() / follow.Count;
     }
     private Vector2 CountClampedPosition()

@@ -182,7 +182,7 @@ MonoBehaviour:
     damage: 6
   startingSpeed: 6
   isPiercing: 0
-  destroyDelay: -1
+  destroyDelay: 30
   destroyDistance: -1
   minAngleToReflect: 60
   maxReflectionNumber: 3

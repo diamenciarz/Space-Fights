@@ -17,7 +17,9 @@ public class EntityCreator : MonoBehaviour
         Bouncy_Laser,
         SmallRock,
         TinyRock,
-        Invisible_Explosion
+        Invisible_Explosion,
+        AntiRocket,
+        AntiBomb_Explosion
     }
     public enum Entities
     {
@@ -76,29 +78,41 @@ public class EntityCreator : MonoBehaviour
 
     private static void CreateProjectile(SummonedShotData data, int i)
     {
+        GameObject bulletToSummon = GetBulletToSummon(data, i);
+        if (bulletToSummon == null)
+        {
+            return;
+        }
+
         SummonedEntityData newData = new SummonedEntityData();
         newData.summonPosition = data.summonPosition;
-        newData.summonRotation = data.summonRotation * CountDeltaRotation(data, i);
+        newData.summonRotation = CountSummonRotation(data, i);
         newData.SetTeam(data.GetTeam());
         newData.createdBy = data.createdBy;
         newData.target = data.target;
 
-        Projectiles bulletType = data.shot.projectilesToCreateList[i];
+        SummonEntity(newData, bulletToSummon);
+    }
 
-        Summon(newData, bulletType);
+    private static GameObject GetBulletToSummon(SummonedShotData data, int i)
+    {
+        Projectiles bulletType = data.shot.projectilesToCreateList[i];
+        GameObject bulletToSummon = EntityFactory.GetPrefab(bulletType);
+        if (IsEntityNull(bulletToSummon, bulletType))
+        {
+            return null;
+        }
+        return bulletToSummon;
     }
 
     #region Count shot rotation
-    private static Quaternion CountDeltaRotation(SummonedShotData data, int index)
+    private static Quaternion CountSummonRotation(SummonedShotData data, int i)
     {
         if (data.target)
         {
-            return ShootAtTarget(data, index);
+            return ShootAtTarget(data, i);
         }
-        else
-        {
-            return ShootAtNoTarget(data, index);
-        }
+        return data.summonRotation * ShootAtNoTarget(data, i);
     }
     private static Quaternion ShootAtTarget(SummonedShotData data, int i)
     {
@@ -144,22 +158,13 @@ public class EntityCreator : MonoBehaviour
         float bulletOffset = (data.shot.spreadDegrees * (index - (data.shot.projectilesToCreateList.Count - 1f) / 2));
         Quaternion deltaRotation = Quaternion.Euler(0, 0, bulletOffset);
         Quaternion rotationToTarget = HelperMethods.RotationUtils.DeltaPositionRotation(data.summonPosition, data.target.transform.position);
+        Debug.Log("Rotation to target: " + rotationToTarget.eulerAngles.z);
         return deltaRotation * rotationToTarget;
     }
     #endregion
-
     #endregion
 
     #region Entities
-    public static void Summon(SummonedEntityData data, Projectiles entityType)
-    {
-        GameObject entityToSummon = EntityFactory.GetPrefab(entityType);
-        if (IsEntityNull(entityToSummon, entityType))
-        {
-            return;
-        }
-        SummonEntity(data, entityToSummon);
-    }
 
     #region Null Check
     private static bool IsEntityNull(GameObject entityToSummon, Projectiles entityType)
@@ -183,20 +188,24 @@ public class EntityCreator : MonoBehaviour
         GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
         CheckForRocket(summonedEntity, data);
 
-        SetupStartingValues(summonedEntity, data.GetTeam(), data.createdBy);
+        SetupStartingValues(summonedEntity, data);
     }
     #endregion
 
     #region Helper methods
-    private static void SetupStartingValues(GameObject summonedObject, Team team, GameObject parent)
+    private static void SetupStartingValues(GameObject summonedObject, SummonedEntityData data)
+    {
+        SetTeam(summonedObject, data);
+        SetCreatedBy(summonedObject, data.createdBy);
+        ModifyStartingSpeed(summonedObject, data);
+    }
+    private static void SetTeam(GameObject summonedObject, SummonedEntityData data)
     {
         IParent teamUpdater = summonedObject.GetComponent<IParent>();
-        if (teamUpdater == null)
+        if (teamUpdater != null)
         {
-            return;
+            teamUpdater.SetTeam(data.GetTeam());
         }
-        teamUpdater.SetTeam(team);
-        SetCreatedBy(summonedObject, parent);
     }
     private static void SetCreatedBy(GameObject summonedObject, GameObject createdBy)
     {
@@ -208,6 +217,31 @@ public class EntityCreator : MonoBehaviour
         else
         {
             iParent.SetCreatedBy(summonedObject.gameObject);
+        }
+    }
+    private static void ModifyStartingSpeed(GameObject summonedObject, SummonedEntityData data)
+    {
+        if (data.createdBy == null)
+        {
+            return;
+        }
+        IModifiableStartingSpeed iSpeed = summonedObject.GetComponent<IModifiableStartingSpeed>();
+        Rigidbody2D parentRB2D = data.createdBy.GetComponent<Rigidbody2D>();
+        if (iSpeed != null && parentRB2D != null)
+        {
+            if (iSpeed.ShouldModifyVelocity())
+            {
+                Vector2 parentVelocity = parentRB2D.velocity;
+                Vector2 summonDirection = HelperMethods.VectorUtils.DirectionVectorNormalized(data.summonRotation.eulerAngles.z);
+                Vector2 velocityInObjectDirection = HelperMethods.VectorUtils.ProjectVector(parentVelocity, summonDirection);
+                float deltaVelocity = velocityInObjectDirection.magnitude;
+                if (Vector2.Dot(parentVelocity, summonDirection) < 0)
+                {
+                    return;
+                    //deltaVelocity *= -1;
+                }
+                iSpeed.IncreaseStartingSpeed(deltaVelocity);
+            }
         }
     }
     private static void CheckForRocket(GameObject summonedObject, SummonedEntityData data)

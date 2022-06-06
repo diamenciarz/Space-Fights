@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2606908615114059205
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1070908890487506755}
-  m_Layer: 8
-  m_Name: RocketEye
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1070908890487506755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2606908615114059205}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.403, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7700761372939823443}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6603927837569778551
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 6c469d7fff4f2d34e81241b4a657e2a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 791fb6a554ccd4049a593e94884be367, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +100,7 @@ GameObject:
   - component: {fileID: 9162897449671734551}
   - component: {fileID: 4526067873477398424}
   m_Layer: 8
-  m_Name: Rocket
+  m_Name: AntiRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5953393413085095053}
-  - {fileID: 1070908890487506755}
+  - {fileID: 5447275333531231939}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -222,10 +192,10 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites:
-  - {fileID: 21300000, guid: 6c469d7fff4f2d34e81241b4a657e2a0, type: 3}
-  - {fileID: 21300000, guid: 899773e3db456df4188c23327a130961, type: 3}
-  - {fileID: 21300000, guid: f538ddf0a8df3ab4d898d945689d94b2, type: 3}
-  breakEnum: 00000000010000000600000004000000050000000200000003000000
+  - {fileID: 21300000, guid: 791fb6a554ccd4049a593e94884be367, type: 3}
+  - {fileID: 21300000, guid: 3ccbab60d351c6b4cb6ed3d0798be637, type: 3}
+  - {fileID: 21300000, guid: 24a36797275cd534283b79bf5a3f28be, type: 3}
+  breakEnum: 01000000060000000500000003000000
   breakingSounds: []
   breakingSoundVolume: 1
   hurtsAllies: 1
@@ -238,8 +208,8 @@ MonoBehaviour:
   speedChangeRatePerSecond: 5
   rocketRotationSpeed: 80
   timeToExpire: 60
-  targetTypes: 0200000000000000
-  rocketEyeTransform: {fileID: 1070908890487506755}
+  targetTypes: 020000000000000001000000
+  rocketEyeTransform: {fileID: 5447275333531231939}
 --- !u!114 &7748659938827264479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  shot: {fileID: 11400000, guid: 8499d9b2b736f714098049b4d609c21d, type: 2}
+  shot: {fileID: 11400000, guid: 2132ca5a2d514564b91dd4a5d3fb53d8, type: 2}
   directionOffset: 0
   targetEnemies: 0
 --- !u!114 &-776891561322186458
@@ -391,3 +361,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: 0
+--- !u!1 &8479812763967634279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5447275333531231939}
+  m_Layer: 8
+  m_Name: RocketEye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5447275333531231939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479812763967634279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7700761372939823443}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

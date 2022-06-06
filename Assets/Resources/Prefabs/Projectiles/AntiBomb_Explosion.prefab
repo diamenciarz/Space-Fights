@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7700761372939823443}
   - component: {fileID: 7700761372939823442}
   - component: {fileID: 7700761372939823440}
-  - component: {fileID: 133220287009352267}
   - component: {fileID: 1594040755141738852}
+  - component: {fileID: 8429027808116891036}
   m_Layer: 8
-  m_Name: Bomb_Explosion
+  m_Name: AntiBomb_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 748fbfef85d5dad46946432fa71412bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,22 +107,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &133220287009352267
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e782e5b19ac414042a2688cf19680076, type: 2}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0004696923, y: -0.0048275925}
-  serializedVersion: 2
-  m_Radius: 0.22
 --- !u!114 &1594040755141738852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,21 +122,53 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites:
-  - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
-  - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
+  - {fileID: 21300000, guid: 748fbfef85d5dad46946432fa71412bc, type: 3}
+  - {fileID: 21300000, guid: 221fbc015bad9774097589ec43fcf567, type: 3}
+  - {fileID: 21300000, guid: 3554072c5da9b274bb7a95256a1d4923, type: 3}
   breakEnum: 
   breakingSounds: []
   breakingSoundVolume: 1
   hurtsAllies: 1
   damageCategories:
   - damageType: 0
-    damage: 4
-  - damageType: 2
-    damage: 6
+    damage: 2
   startingSpeed: 0
   addCreatorVelocity: 0
-  timeToExpire: 0.2
-  expandRate: 6
-  rotateDuringLifetime: 90
-  maxPushingForce: 500
-  startingRadius: 0.22
+  timeToExpire: 0.4
+  expandRate: 4
+  rotateDuringLifetime: 180
+  maxPushingForce: 250
+  startingRadius: 0.2
+--- !u!60 &8429027808116891036
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.46}
+    newSize: {x: 0.13, y: 0.37}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.07042694, y: -0.06716347}
+      - {x: 0.24113846, y: -0.0030708313}
+      - {x: 0.07040787, y: 0.063770294}
+      - {x: 0.0020367429, y: 0.24029204}
+      - {x: -0.06467438, y: 0.066991806}
+      - {x: -0.24146867, y: 0.0044239014}
+      - {x: -0.065475464, y: -0.066532135}
+      - {x: -0.0014846772, y: -0.22999999}

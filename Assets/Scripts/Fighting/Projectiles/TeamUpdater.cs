@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class TeamUpdater : MonoBehaviour, ITeamable
 {
-    /// <summary>
-    /// If equal to -1 - this object is an enemy to everyone
-    /// </summary>
-    //[HideInInspector]
+    [HideInInspector]
     public Team team;
     protected GameObject createdBy;
     public enum TeamInstance
@@ -26,7 +23,6 @@ public class TeamUpdater : MonoBehaviour, ITeamable
             return;
         }
         UpdateCreatedBy(parent);
-        //Debug.Log("Parent: " + gameObject.name);
         UpdateTeam(parent);
     }
     #region Set parent

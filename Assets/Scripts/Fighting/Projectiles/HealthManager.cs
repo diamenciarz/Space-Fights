@@ -45,6 +45,15 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         {
             createdBy = gameObject;
         }
+        UpdateCreatorInChildren();
+    }
+    private void UpdateCreatorInChildren()
+    {
+        TeamUpdater[] teamUpdaters = GetComponentsInChildren<TeamUpdater>();
+        foreach (var teamUpdater in teamUpdaters)
+        {
+            teamUpdater.SetCreatedBy(createdBy);
+        }
     }
     private void FindParts()
     {

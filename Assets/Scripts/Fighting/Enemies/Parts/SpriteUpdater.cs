@@ -20,6 +20,7 @@ public class SpriteUpdater : TeamUpdater
         if (mySpriteRenderer == null)
         {
             mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            //Debug.Log(mySpriteRenderer + " in " + gameObject.name);
         }
     }
     #endregion

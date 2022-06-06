@@ -105,7 +105,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  createdBy: {fileID: 0}
   sprites: []
   partHealth: 5
   barHealth: 5

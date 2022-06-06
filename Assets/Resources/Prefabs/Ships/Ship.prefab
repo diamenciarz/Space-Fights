@@ -187,7 +187,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -615,15 +615,14 @@ MonoBehaviour:
   range: 5
   mouseRange: 5
   refreshRate: 0.1
-  targetObstacles: 1
   controlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
+  targetTypes: 020000000000000001000000
   shootingControllers:
   - {fileID: 863468948743332297}
   visualZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
   visualZoneTransform: {fileID: 6441913592164531681}
-  currentTarget: {fileID: 0}
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +732,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -942,7 +941,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1271,7 +1270,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1487,7 +1486,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1698,7 +1697,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1910,7 +1909,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -2058,7 +2057,7 @@ Rigidbody2D:
   m_AngularDrag: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -2156,6 +2155,7 @@ MonoBehaviour:
   team:
     teamInstance: 0
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
+  directionOffset: 0
   targetEnemies: 0
 --- !u!1 &6441913592834815039
 GameObject:
@@ -2296,7 +2296,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -2541,7 +2541,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -2751,7 +2751,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -2852,7 +2852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6441913593890035337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.75, z: 0}
+  m_LocalPosition: {x: -0, y: -0.765, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6441913592834814976}
@@ -3036,7 +3036,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -3134,7 +3134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6441913594105931013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.75, z: 0}
+  m_LocalPosition: {x: 0, y: -0.765, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6441913594127976647}
@@ -3279,7 +3279,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -3524,7 +3524,7 @@ Rigidbody2D:
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ece1c67ee825baf40b2bdb4d496766aa, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0

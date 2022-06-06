@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class BasicProjectileController : OnCollisionDamage, IParent
+public abstract class BasicProjectileController : OnCollisionDamage, IParent, IModifiableStartingSpeed
 {
     [Header("Projectile Properties")]
     [SerializeField] protected float startingSpeed = 2f;
-
+    [Tooltip("If true, the projectiles velocity is modified by the velocity of the object that created it. Only the projection in the projectile's direction is added.")]
+    [SerializeField] bool addCreatorVelocity;
     //Private variables
     protected Rigidbody2D myRigidbody2D;
-
     protected Vector2 velocityVector;
 
 
@@ -20,23 +20,27 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
         base.Awake();
         SetupStartingValues();
     }
-    protected override void Start()
-    {
-        base.Start();
-        float dir = transform.rotation.eulerAngles.z;
-        Vector3 newVelocity = HelperMethods.VectorUtils.DirectionVector(startingSpeed, dir);
-        SetVelocityVector(newVelocity);
-    }
     private void SetupStartingValues()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
 
         creationTime = Time.time;
     }
+    protected override void Start()
+    {
+        base.Start();
+        SetStartingVelocityVector();
+    }
+    private void SetStartingVelocityVector()
+    {
+        float dir = transform.rotation.eulerAngles.z;
+        Vector3 newVelocity = HelperMethods.VectorUtils.DirectionVector(startingSpeed, dir);
+        SetVelocityVector(newVelocity);
+    }
     #endregion
 
-    #region Mutator methods
-    public virtual void SetVelocityVector(Vector3 newVelocityVector)
+    #region Movement
+    protected virtual void SetVelocityVector(Vector3 newVelocityVector)
     {
         velocityVector = newVelocityVector;
         myRigidbody2D.velocity = newVelocityVector;
@@ -49,22 +53,11 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
     }
     #endregion
 
-    #region Accessor methods
-    public Vector2 GetVelocityVector2()
+    #region Mutator methods
+    public void IncreaseStartingSpeed(float deltaSpeed)
     {
-        return velocityVector;
+        startingSpeed += deltaSpeed;
     }
-    public Vector3 GetVelocityVector3()
-    {
-        return myRigidbody2D.velocity;
-    }
-    public override DamageInstance GetDamageInstance()
-    {
-        DamageInstance damageInstance = base.GetDamageInstance();
-        damageInstance.isAProjectile = true;
-        return damageInstance;
-    }
-    #endregion
 
     #region Team
     /// <summary>
@@ -85,4 +78,27 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
         }
     }
     #endregion
+    #endregion
+
+    #region Accessor methods
+    public bool ShouldModifyVelocity()
+    {
+        return addCreatorVelocity;
+    }
+    public Vector2 GetVelocityVector2()
+    {
+        return velocityVector;
+    }
+    public Vector3 GetVelocityVector3()
+    {
+        return myRigidbody2D.velocity;
+    }
+    public override DamageInstance GetDamageInstance()
+    {
+        DamageInstance damageInstance = base.GetDamageInstance();
+        damageInstance.isAProjectile = true;
+        return damageInstance;
+    }
+    #endregion
+
 }

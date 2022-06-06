@@ -19,14 +19,15 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     [Header("Progression bar usage")]
     [SerializeField] bool dontUseProgressionBar;
 
-    private bool isDetached = false;
-    //The gun tries to shoot, if this is set to true
-    protected bool shoot;
-    //Private variables
-    private ProgressionBarController gunReloadingBarScript;
-    private SingleShotScriptableObject currentShotSO;
-    private GameObject parent;
 
+    //Private variables
+    private SingleShotScriptableObject currentShotSO;
+    private GameObject currentTarget;
+    /// <summary>
+    ///The gun tries to shoot, if this is set to true
+    /// </summary>
+    protected bool shoot;
+    private bool isDetached = false;
     private float shootingTimeBank;
     private float currentTimeBetweenEachShot;
     private float lastShotTime;
@@ -43,7 +44,6 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     }
     private void InitializeStartingVariables()
     {
-        parent = transform.parent.gameObject;
         lastShotTime = Time.time;
         salvoTimeSum = salvo.GetSalvoTimeSum();
         shootingTimeBank = salvoTimeSum;
@@ -159,20 +159,11 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         data.SetTeam(team);
         data.createdBy = createdBy;
         data.shot = salvo.shots[shotIndex].shot;
-        data.target = GetShotTarget();
-
+        if (targetEnemies)
+        {
+            data.target = currentTarget;
+        }
         EntityCreator.SummonShot(data);
-    }
-    private GameObject GetShotTarget()
-    {
-        if (!targetEnemies)
-        {
-            return null;
-        }
-        else
-        {
-            return StaticDataHolder.ListContents.Enemies.GetClosestEnemyInSight(transform.position, team);
-        }
     }
     #endregion
 
@@ -231,6 +222,10 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     #endregion
 
     #region Mutator methods
+    public void SetTarget(GameObject newTarget)
+    {
+        currentTarget = newTarget;
+    }
     public void SetIsControlledByMouse(bool isTrue)
     {
         isControlledByMouse = isTrue;
