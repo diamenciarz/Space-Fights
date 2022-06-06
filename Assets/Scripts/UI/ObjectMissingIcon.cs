@@ -5,13 +5,12 @@ using static TeamUpdater;
 
 public class ObjectMissingIcon : MonoBehaviour
 {
-    public GameObject objectToFollow;
 
     [Tooltip("Fraction of the full size")]
     [SerializeField] [Range(0.1f, 1)] float minimumSpriteSize = 0.4f;
     [SerializeField]
     [Tooltip("If the followed object is further from the screen edge, than scaleFactor (in map units), the icon will disappear")]
-    float scaleFactor = 6f;
+    float hideDistance = 6f;
 
     [Tooltip("The full size of the sprite. This will be used in the transform of the game object")]
     [SerializeField] float spriteScale = 1;
@@ -23,16 +22,19 @@ public class ObjectMissingIcon : MonoBehaviour
 
 
     //Private variables
-    Camera mainCamera;
-    SpriteRenderer[] mySpriteRenderers;
-    private bool isVisible;
+    public GameObject objectToFollow;
+    private Camera mainCamera;
+    private SpriteRenderer[] mySpriteRenderers;
     private Team followedObjectTeam;
+    private bool isVisible = true;
+    private bool isDestroyed = false;
 
     #region Initialization
     void Start()
     {
         SetupStartingVariables();
         UpdateSpriteColor();
+        SetSpriteVisibility(false);
     }
     private void SetupStartingVariables()
     {
@@ -71,12 +73,12 @@ public class ObjectMissingIcon : MonoBehaviour
             GetComponent<SpriteRenderer>().color = allyColor;
             return;
         }
-        if (followedObjectTeam.IsEnemy(new Team(TeamInstance.Team2)))
+        if (followedObjectTeam.IsEnemy(new Team(TeamInstance.Team1)))
         {
             GetComponent<SpriteRenderer>().color = enemyColor;
             return;
         }
-        if (followedObjectTeam.IsNeutral(new Team(TeamInstance.Team2)))
+        if (followedObjectTeam.IsNeutral(new Team(TeamInstance.Team1)))
         {
             GetComponent<SpriteRenderer>().color = neutralColor;
             return;
@@ -87,15 +89,19 @@ public class ObjectMissingIcon : MonoBehaviour
     #region Update
     void Update()
     {
-        CheckDestroy();
+        if (!isDestroyed)
+        {
+            UpdateVisibility();
+            UpdateTransform();
 
-        UpdateVisibility();
-        UpdateTransform();
+            CheckDestroy();
+        }
     }
     private void CheckDestroy()
     {
         if (objectToFollow == null)
         {
+            isDestroyed = true;
             Destroy(gameObject);
         }
     }
@@ -103,6 +109,10 @@ public class ObjectMissingIcon : MonoBehaviour
     #region Transform
     private void UpdateTransform()
     {
+        if (!objectToFollow)
+        {
+            return;
+        }
         if (isVisible)
         {
             UpdateRotation();
@@ -122,7 +132,7 @@ public class ObjectMissingIcon : MonoBehaviour
     {
         float distanceToObject = Mathf.Abs((transform.position - objectToFollow.transform.position).magnitude);
         //Sets the new scale ilamped in between <0,4;1>
-        float newScale = (1 - (Mathf.Clamp((distanceToObject / scaleFactor), 0, 1f) * (1 - minimumSpriteSize))) * spriteScale;
+        float newScale = (1 - (Mathf.Clamp((distanceToObject / hideDistance), 0, 1f) * (1 - minimumSpriteSize))) * spriteScale;
         Vector3 newScaleVector3 = new Vector3(newScale, newScale, 0);
 
         transform.localScale = newScaleVector3;
@@ -132,13 +142,19 @@ public class ObjectMissingIcon : MonoBehaviour
     #region Visibility
     private void UpdateVisibility()
     {
-        if (!CameraInformation.IsPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset))
+        if (!objectToFollow)
+        {
+            return;
+        }
+        if (CameraInformation.IsPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset))
         {
             SetSpriteVisibility(false);
+            return;
         }
+        UpdatePosition();
         //If the followed object is further from the screen edge, than scaleFactor (in map units), the icon will disappear
         float distanceToFollowedObject = (transform.position - objectToFollow.transform.position).magnitude;
-        bool objectIsTooFar = (distanceToFollowedObject / scaleFactor > 1f);
+        bool objectIsTooFar = (distanceToFollowedObject / hideDistance > 1f);
         if (objectIsTooFar)
         {
             SetSpriteVisibility(false);

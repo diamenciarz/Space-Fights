@@ -1535,11 +1535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.99770033
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.99770033
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276640, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -1731,11 +1731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025612, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.54901963
+      value: 0.8147794
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025612, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.54901963
+      value: 0.8147794
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025614, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -1787,11 +1787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.98193175
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.98193175
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072068, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -2691,7 +2691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &281974615
 Transform:
   m_ObjectHideFlags: 0
@@ -5671,11 +5671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592222990133, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.98203266
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592222990133, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.98203266
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592222990135, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_BreakForce
@@ -5873,6 +5873,14 @@ PrefabInstance:
       propertyPath: m_LinearOffset.y
       value: 0.37499988
       objectReference: {fileID: 0}
+    - target: {fileID: 6441913594127976648, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913594127976648, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
+      objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976651, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
       value: 0.00000010430813
@@ -5964,11 +5972,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.b
-      value: 0.9866967
+      value: 0.9842322
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.g
-      value: 0.9866967
+      value: 0.9842322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181436, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Name
@@ -7867,11 +7879,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.b
-      value: 0.9992669
+      value: 0.988677
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.g
-      value: 0.9992669
+      value: 0.988677
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181436, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Name
@@ -8306,11 +8318,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181434, guid: 61192a92cd9394d42b290025f1b30bac, type: 3}
       propertyPath: m_Color.r
@@ -8575,6 +8587,10 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 5.1134825
       objectReference: {fileID: 0}
+    - target: {fileID: 863468948743332297, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: salvo
+      value: 
+      objectReference: {fileID: 11400000, guid: bbe47b64528148f4f9e30a90748c8249, type: 2}
     - target: {fileID: 1231799642429314598, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
       value: -3.1415927
@@ -8657,11 +8673,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.99151325
+      value: 0.99555725
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276574, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.99151325
+      value: 0.99555725
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592109276640, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -8677,11 +8693,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531682, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.9886807
+      value: 0.98534477
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531682, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.9886807
+      value: 0.98534477
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592164531684, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
@@ -8817,11 +8833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592912191836, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.9910522
+      value: 0.98913455
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592912191836, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.9910522
+      value: 0.98913455
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592912191838, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
@@ -8833,11 +8849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025612, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.54901963
+      value: 0.97632515
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025612, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.54901963
+      value: 0.97632515
       objectReference: {fileID: 0}
     - target: {fileID: 6441913593705025614, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -8875,6 +8891,14 @@ PrefabInstance:
       propertyPath: m_LinearOffset.y
       value: 0.37500003
       objectReference: {fileID: 0}
+    - target: {fileID: 6441913594127976648, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913594127976648, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
+      objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976651, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
       value: 0.000000021855694
@@ -8885,11 +8909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.98392826
+      value: 0.98873854
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072066, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.98392826
+      value: 0.98873854
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594190072068, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_LinearOffset.x
@@ -9232,11 +9256,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232448, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.98552966
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232448, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.98552966
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592454232451, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -9385,7 +9409,7 @@ PrefabInstance:
     - target: {fileID: 6441913594127976653, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: salvo
       value: 
-      objectReference: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
+      objectReference: {fileID: 11400000, guid: bbe47b64528148f4f9e30a90748c8249, type: 2}
     - target: {fileID: 6441913594127976653, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -9448,7 +9472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: controlledByMouse
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8530353260921314641, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset

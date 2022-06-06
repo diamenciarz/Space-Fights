@@ -67,7 +67,7 @@ public class CameraInformation : MonoBehaviour
     public static bool IsPositionOnScreen(Vector2 position, float leftOffset, float rightOffset, float topOffset, float bottomOffset)
     {
         return position.x > xMin + leftOffset && position.x < xMax - rightOffset
-            && position.y > yMin - bottomOffset && position.y < yMax + topOffset;
+            && position.y > yMin + bottomOffset && position.y < yMax - topOffset;
     }
     public static Vector2 ClampPositionOnScreen(Vector2 position)
     {

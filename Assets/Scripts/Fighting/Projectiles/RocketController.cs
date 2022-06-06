@@ -17,8 +17,8 @@ public class RocketController : BasicProjectileController
     public float timeToExpire = 30;
 
     //Private variables
-    public float currentRocketSpeed;
-    public GameObject targetGameObject;
+    private float currentRocketSpeed;
+    private GameObject targetGameObject;
 
     #region Startup
     protected override void Awake()
