@@ -18,11 +18,6 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
         Fire
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
     #region Collisions
     protected override void OnCollisionEnter2D(Collision2D collision)
     {

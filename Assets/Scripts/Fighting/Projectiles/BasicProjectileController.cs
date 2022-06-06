@@ -65,4 +65,24 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent
         return damageInstance;
     }
     #endregion
+
+    #region Team
+    /// <summary>
+    /// Change team of this object and all its children. Use SetTeam() to change team of the whole gameObject
+    /// </summary>
+    /// <param name="newTeam"></param>
+    public override void SetTeam(Team newTeam)
+    {
+        base.SetTeam(newTeam);
+        UpdateTeam();
+    }
+    private void UpdateTeam()
+    {
+        TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
+        foreach (TeamUpdater item in teamUpdater)
+        {
+            item.UpdateTeam(this);
+        }
+    }
+    #endregion
 }

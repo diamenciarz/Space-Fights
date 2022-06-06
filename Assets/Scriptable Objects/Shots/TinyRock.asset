@@ -16,6 +16,6 @@ MonoBehaviour:
   spreadDegrees: 360
   leftBulletSpread: 180
   rightBulletSpread: 180
-  projectilesToCreateList: 0c0000000c000000
+  projectilesToCreateList: 0b0000000b000000
   shotSounds: []
   shotSoundVolume: 0

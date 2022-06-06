@@ -1,12 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RocketController : BasicProjectileController
 {
-
-    [Header("Rocket target")]
-    [SerializeField] GameObject objectMissingIconGameObject;
 
     [Header("Rocket Flight Settings")]
     [SerializeField] float maxRocketSpeed = 5f;
@@ -29,15 +24,6 @@ public class RocketController : BasicProjectileController
     protected override void Start()
     {
         base.Start();
-        CreateMiaIcon();
-    }
-    private void CreateMiaIcon()
-    {
-        if (objectMissingIconGameObject != null)
-        {
-            GameObject miaGameObject = Instantiate(objectMissingIconGameObject, transform.position, Quaternion.identity);
-            miaGameObject.GetComponent<ObjectMissingIcon>().TryFollowThisObject(gameObject);
-        }
     }
     private void SetupStartingSpeed()
     {

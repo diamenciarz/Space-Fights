@@ -238,7 +238,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
+  - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
+  - {fileID: 21300000, guid: 8d3a2e4df259c994ba34114076786c64, type: 3}
   partHealth: 100
   barHealth: 50
   destroyDamage: 50
@@ -344,7 +347,7 @@ MonoBehaviour:
     teamInstance: 0
   salvo: {fileID: 11400000, guid: dee9789f39f30c045b592563c5d03c08, type: 2}
   shootingPoint: {fileID: 445601161007613364}
-  basicGunRotation: 0
+  forwardGunRotation: 180
   targetEnemies: 0
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
@@ -556,7 +559,7 @@ MonoBehaviour:
     teamInstance: 0
   salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
-  basicGunRotation: 0
+  forwardGunRotation: 0
   targetEnemies: 0
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
@@ -990,7 +993,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 53ce3e7416cf64542a6808a580282e42, type: 3}
+  - {fileID: 21300000, guid: 314b6fb1e6d09854ab3ec29bc6e27eec, type: 3}
+  - {fileID: 21300000, guid: 8d3a2e4df259c994ba34114076786c64, type: 3}
   partHealth: 100
   barHealth: 50
   destroyDamage: 50
@@ -1302,7 +1308,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
+  - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
+  - {fileID: 21300000, guid: beeeb0ebb1f348549a6a335e5a2ff0c4, type: 3}
   partHealth: 50
   barHealth: 20
   destroyDamage: 20
@@ -1938,7 +1947,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 988254853a746f949a1d4082d7f16ac1, type: 3}
+  - {fileID: 21300000, guid: 9d27531a9da0ed742adc10d992343a92, type: 3}
+  - {fileID: 21300000, guid: c51b578aa26f8354880227f455c477db, type: 3}
   partHealth: 100
   barHealth: 10
   destroyDamage: 0
@@ -2323,7 +2335,7 @@ MonoBehaviour:
     teamInstance: 0
   salvo: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
-  basicGunRotation: 180
+  forwardGunRotation: 180
   targetEnemies: 0
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
@@ -2776,7 +2788,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 119a1fd275b4e39468966d904d51c989, type: 3}
+  - {fileID: 21300000, guid: 458d1d336b24cab499a5076319812b62, type: 3}
+  - {fileID: 21300000, guid: beeeb0ebb1f348549a6a335e5a2ff0c4, type: 3}
   partHealth: 50
   barHealth: 20
   destroyDamage: 20
@@ -3303,7 +3318,7 @@ MonoBehaviour:
     teamInstance: 0
   salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
-  basicGunRotation: 180
+  forwardGunRotation: 180
   targetEnemies: 0
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0

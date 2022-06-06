@@ -21,9 +21,9 @@ public class DamageCalculator : MonoBehaviour
         {
             return;
         }
+        HandlePiercing(damageable, damageInstance);
         damageable.DealDamage(totalDamage);
         damageable.NotifyAboutDamage(damageInstance.dealtBy);
-        HandlePiercing(damageable, damageInstance);
     }
 
     #region Can deal damage
@@ -88,7 +88,7 @@ public class DamageCalculator : MonoBehaviour
         return 0;
     }
     #endregion
-    
+
     #region OnHit effects
     private static void HandlePiercing(IDamageable damageable, DamageInstance damageInstance)
     {
@@ -101,7 +101,9 @@ public class DamageCalculator : MonoBehaviour
         {
             return;
         }
-        damageInstance.iPiercingDamage.LowerDamageBy(GetDamageFromCategory(damageable, category));
+        int categoryDamage = GetDamageFromCategory(damageable, category);
+        int clampedDamage = Mathf.Clamp(categoryDamage, 0, damageable.GetHealth());
+        damageInstance.iPiercingDamage.LowerDamageBy(clampedDamage);
     }
     #endregion
 

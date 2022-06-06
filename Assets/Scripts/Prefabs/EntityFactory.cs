@@ -1,9 +1,9 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 public static class EntityFactory
 {
+    private static Dictionary<string, GameObject> projectilesByName = new Dictionary<string, GameObject>();
     private static Dictionary<string, GameObject> entitiesByName = new Dictionary<string, GameObject>();
     private static Dictionary<string, GameObject> UIByName = new Dictionary<string, GameObject>();
 
@@ -19,9 +19,9 @@ public static class EntityFactory
         if (!initialized)
         {
             initialized = true;
-            FillDictionaryWithEntities(entitiesByName, projectilePath);
+            FillDictionaryWithEntities(projectilesByName, projectilePath);
+            FillDictionaryWithEntities(projectilesByName, obstaclePath);
             FillDictionaryWithEntities(entitiesByName, entityPath);
-            FillDictionaryWithEntities(entitiesByName, obstaclePath);
             FillDictionaryWithEntities(UIByName, UIPath);
         }
     }
@@ -38,7 +38,16 @@ public static class EntityFactory
     #endregion
 
     #region Factory methods
-    public static GameObject GetPrefab(EntityCreator.EntityTypes enumName)
+    public static GameObject GetPrefab(EntityCreator.Projectiles enumName)
+    {
+        string name = enumName.ToString();
+        if (projectilesByName.ContainsKey(name))
+        {
+            return projectilesByName[name];
+        }
+        return null;
+    }
+    public static GameObject GetPrefab(EntityCreator.Entities enumName)
     {
         string name = enumName.ToString();
         if (entitiesByName.ContainsKey(name))
@@ -47,7 +56,16 @@ public static class EntityFactory
         }
         return null;
     }
-    public static GameObject GetPrefab(EntityCreator.UIComponents enumName)
+    public static GameObject GetPrefab(EntityCreator.ProgressionBars enumName)
+    {
+        string name = enumName.ToString();
+        if (UIByName.ContainsKey(name))
+        {
+            return UIByName[name];
+        }
+        return null;
+    }
+    public static GameObject GetPrefab(EntityCreator.ObjectMissingIcons enumName)
     {
         string name = enumName.ToString();
         if (UIByName.ContainsKey(name))

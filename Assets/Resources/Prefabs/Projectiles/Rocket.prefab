@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7748659938827264479}
   - component: {fileID: -776891561322186458}
   - component: {fileID: 9162897449671734551}
+  - component: {fileID: 4526067873477398424}
   m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
@@ -201,7 +202,6 @@ MonoBehaviour:
   - damageType: 1
     damage: 2
   startingSpeed: 2
-  objectMissingIconGameObject: {fileID: 5012750832036236270, guid: 255023bc84a7b2a4a82c0bbefa2e3f08, type: 3}
   maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 60
@@ -343,3 +343,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.05
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &4526067873477398424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98a188fc84d65d409180abf3fbafdd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: 0

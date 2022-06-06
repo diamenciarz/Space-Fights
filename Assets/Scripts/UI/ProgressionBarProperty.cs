@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProgressionBarProperty : MonoBehaviour, IProgressionBar
 {
-    [SerializeField] EntityCreator.UIComponents bar;
+    [SerializeField] EntityCreator.ProgressionBars bar;
     [SerializeField] Vector2 barDeltaPosition;
     [SerializeField] bool isAlwaysOn;
     [Tooltip("Time, after which the bar will disappear, after being shown")]

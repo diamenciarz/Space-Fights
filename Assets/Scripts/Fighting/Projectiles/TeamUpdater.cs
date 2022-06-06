@@ -6,7 +6,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     /// <summary>
     /// If equal to -1 - this object is an enemy to everyone
     /// </summary>
-    [HideInInspector]
+    //[HideInInspector]
     public Team team;
     protected GameObject createdBy;
     public enum TeamInstance
@@ -26,6 +26,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
             return;
         }
         UpdateCreatedBy(parent);
+        //Debug.Log("Parent: " + gameObject.name);
         UpdateTeam(parent);
     }
     #region Set parent
@@ -70,7 +71,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     /// This is called on the parent to change its team and off of its childrens team
     /// </summary>
     /// <param name="newTeam"></param>
-    public void SetTeam(Team newTeam)
+    public virtual void SetTeam(Team newTeam)
     {
         team = new Team(newTeam);
     }

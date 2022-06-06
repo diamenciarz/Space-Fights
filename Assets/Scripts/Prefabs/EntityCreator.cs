@@ -3,7 +3,7 @@ using static TeamUpdater;
 
 public class EntityCreator : MonoBehaviour
 {
-    public enum EntityTypes
+    public enum Projectiles
     {
         Nothing,
         Splitting_Bullet,
@@ -15,15 +15,24 @@ public class EntityCreator : MonoBehaviour
         Grenade,
         Grenade_Explosion,
         Bouncy_Laser,
-        Ship,
         SmallRock,
         TinyRock,
         Invisible_Explosion
     }
-    public enum UIComponents
+    public enum Entities
+    {
+        Ship
+    }
+    public enum ProgressionBars
     {
         HealthBar,
         AmmoBar
+    }
+    public enum ObjectMissingIcons
+    {
+        RocketMissingIcon,
+        ShipMissingIcon,
+        TargetIcon
     }
     private void Awake()
     {
@@ -74,7 +83,7 @@ public class EntityCreator : MonoBehaviour
         newData.createdBy = data.createdBy;
         newData.target = data.target;
 
-        EntityTypes bulletType = data.shot.projectilesToCreateList[i];
+        Projectiles bulletType = data.shot.projectilesToCreateList[i];
 
         Summon(newData, bulletType);
     }
@@ -142,7 +151,7 @@ public class EntityCreator : MonoBehaviour
     #endregion
 
     #region Entities
-    public static void Summon(SummonedEntityData data, EntityTypes entityType)
+    public static void Summon(SummonedEntityData data, Projectiles entityType)
     {
         GameObject entityToSummon = EntityFactory.GetPrefab(entityType);
         if (IsEntityNull(entityToSummon, entityType))
@@ -153,11 +162,11 @@ public class EntityCreator : MonoBehaviour
     }
 
     #region Null Check
-    private static bool IsEntityNull(GameObject entityToSummon, EntityTypes entityType)
+    private static bool IsEntityNull(GameObject entityToSummon, Projectiles entityType)
     {
-        if (entityType == EntityTypes.Nothing)
+        if (entityType == Projectiles.Nothing)
         {
-            return false;
+            return true;
             //This is supposed to be a placeholder that skips one summoning action without returning an error
         }
         if (entityToSummon == null)
@@ -253,7 +262,7 @@ public class SummonedShotData
 }
 public class SummonedEntityData
 {
-    public EntityCreator.EntityTypes entityType;
+    public EntityCreator.Projectiles entityType;
     public Vector3 summonPosition;
     public Quaternion summonRotation;
     private Team team;

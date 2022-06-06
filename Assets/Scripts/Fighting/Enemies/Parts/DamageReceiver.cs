@@ -256,6 +256,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     }
     private void LowerHealthBy(int damage)
     {
+        if (damage > partHealth)
+        {
+            damage = (int) partHealth;
+        }
         partHealth -= damage;
         barHealth -= (float)damage * barToPartRatio;
     }

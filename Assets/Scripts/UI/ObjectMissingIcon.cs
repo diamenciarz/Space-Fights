@@ -8,9 +8,8 @@ public class ObjectMissingIcon : MonoBehaviour
 
     [Tooltip("Fraction of the full size")]
     [SerializeField] [Range(0.1f, 1)] float minimumSpriteSize = 0.4f;
-    [SerializeField]
     [Tooltip("If the followed object is further from the screen edge, than scaleFactor (in map units), the icon will disappear")]
-    float hideDistance = 6f;
+    [SerializeField] float hideDistance = 6f;
 
     [Tooltip("The full size of the sprite. This will be used in the transform of the game object")]
     [SerializeField] float spriteScale = 1;
@@ -22,7 +21,7 @@ public class ObjectMissingIcon : MonoBehaviour
 
 
     //Private variables
-    public GameObject objectToFollow;
+    private GameObject objectToFollow;
     private Camera mainCamera;
     private SpriteRenderer[] mySpriteRenderers;
     private Team followedObjectTeam;
@@ -47,6 +46,7 @@ public class ObjectMissingIcon : MonoBehaviour
         ITeamable teamable = objectToFollow.GetComponent<ITeamable>();
         if (teamable == null)
         {
+            Debug.LogError("Followed object does not have a team");
             return null;
         }
         return teamable.GetTeam();
@@ -54,7 +54,7 @@ public class ObjectMissingIcon : MonoBehaviour
     #endregion
 
     #region Mutator Methods
-    public void TryFollowThisObject(GameObject followThis)
+    public void SetObjectToFollow(GameObject followThis)
     {
         if (followThis == null)
         {

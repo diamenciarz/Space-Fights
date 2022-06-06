@@ -179,7 +179,7 @@ MonoBehaviour:
   hurtsAllies: 0
   damageCategories:
   - damageType: 1
-    damage: 4
+    damage: 6
   startingSpeed: 6
   isPiercing: 0
   destroyDelay: -1
@@ -201,7 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  shot: {fileID: 11400000, guid: 1b8859275a9420b4c9d2a045f141c0af, type: 2}
+  shot: {fileID: 11400000, guid: 5d8f936e6e78a37429faa45340942c47, type: 2}
+  directionOffset: 90
   targetEnemies: 0
 --- !u!114 &5411452294418001787
 MonoBehaviour:

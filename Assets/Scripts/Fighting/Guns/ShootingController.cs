@@ -10,7 +10,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
 
     [Header("Settings")]
     [Tooltip("The direction of bullets coming out of the gun pipe")]
-    [SerializeField] float basicGunRotation;
+    [SerializeField] float forwardGunRotation;
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
     [SerializeField] protected bool targetEnemies;
     [Header("Mouse Steering")]
@@ -154,7 +154,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     private void CreateShot(int shotIndex)
     {
         SummonedShotData data = new SummonedShotData();
-        data.summonRotation = transform.rotation * Quaternion.Euler(0, 0, basicGunRotation);
+        data.summonRotation = transform.rotation * Quaternion.Euler(0, 0, forwardGunRotation);
         data.summonPosition = shootingPoint.position;
         data.SetTeam(team);
         data.createdBy = createdBy;

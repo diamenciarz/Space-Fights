@@ -107,7 +107,6 @@ public class BreakOnCollision : SpriteUpdater
         if (!isDestroyed)
         {
             StaticDataHolder.Sounds.PlaySound(GetBreakSound(), transform.position, breakingSoundVolume);
-
             DestroyObject();
         }
     }

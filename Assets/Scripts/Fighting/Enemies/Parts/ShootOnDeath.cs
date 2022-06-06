@@ -4,16 +4,12 @@ public class ShootOnDeath : TriggerOnDeath
 {
     [Header("Upon Breaking")]
     [SerializeField] SingleShotScriptableObject shot;
+    [Tooltip("The delta direction from the direction that the object had when it got destroyed")]
+    [SerializeField] float directionOffset;
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
     [SerializeField] protected bool targetEnemies;
 
     private bool isDestroyed;
-    protected float deltaRotationToTarget = -90;
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     #region OnDestroy
     public override void DoDestroyAction()
@@ -27,7 +23,7 @@ public class ShootOnDeath : TriggerOnDeath
     private void CreateShot()
     {
         SummonedShotData data = new SummonedShotData();
-        data.summonRotation = transform.rotation;
+        data.summonRotation = transform.rotation * Quaternion.Euler(0,0, directionOffset);
         data.summonPosition = transform.position;
         data.SetTeam(team);
         data.createdBy = createdBy;

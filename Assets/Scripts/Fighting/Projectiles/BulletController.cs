@@ -75,7 +75,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
         }
         else
         {
-            return destroyDistance / myRigidbody2D.velocity.magnitude;
+            return destroyDistance / startingSpeed;
         }
     }
     private float TranslateTimeDelay()
@@ -113,10 +113,6 @@ public class BulletController : BasicProjectileController, IPiercingDamage
         {
             HandleReflection();
         }
-        else
-        {
-            DestroyObject();
-        }
     }
     private bool ShouldReflect(Collision2D collision)
     {
@@ -151,14 +147,13 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     {
         foreach (var category in damageCategories)
         {
-            if (category.damageType != TypeOfDamage.Physical)
+            if (category.damageType == TypeOfDamage.Physical)
             {
-                continue;
-            }
-            category.damage -= change;
-            if (category.damage < 0)
-            {
-                DestroyObject();
+                category.damage -= change;
+                if (category.damage <= 0)
+                {
+                    DestroyObject();
+                }
             }
         }
     }
@@ -168,7 +163,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     public override DamageInstance GetDamageInstance()
     {
         DamageInstance damageInstance = base.GetDamageInstance();
-        damageInstance.isPiercing = true;
+        damageInstance.isPiercing = isPiercing;
         damageInstance.iPiercingDamage = this;
         return damageInstance;
     }
