@@ -34,7 +34,7 @@ public class VisualDetector : TeamUpdater
     [SerializeField] Transform visualZoneTransform;
     #endregion
 
-    private GameObject currentTarget;
+    public   GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private ProgressionBarController shootingZoneScript;
 
@@ -102,7 +102,7 @@ public class VisualDetector : TeamUpdater
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
         if (potentialTargets.Count == 0)
         {
-            return null;
+            return new List<GameObject>();
         }
 
         List<GameObject> targetsInSight = new List<GameObject>();

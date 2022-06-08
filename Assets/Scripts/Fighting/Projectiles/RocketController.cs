@@ -16,7 +16,7 @@ public class RocketController : BasicProjectileController
     [SerializeField] Transform rocketEyeTransform;
     //Private variables
     private float currentRocketSpeed;
-    private GameObject targetGameObject;
+    public GameObject target;
 
     #region Startup
     protected override void Start()
@@ -49,10 +49,19 @@ public class RocketController : BasicProjectileController
     {
         if (team.teamInstance != TeamInstance.Neutral)
         {
-            if (targetGameObject == null)
+            GameObject potentialGameObject = FindNewTarget();
+            if (!potentialGameObject)
             {
-                targetGameObject = FindNewTarget();
-                Debug.Log("New target: " + targetGameObject);
+                return;
+            }
+            if (target == null)
+            {
+                target = potentialGameObject;
+                return;
+            }
+            if (StaticDataHolder.ListContents.Generic.IsFirstCloserToMiddleThanSecond(potentialGameObject, target, rocketEyeTransform.position, GetRocketDirection()))
+            {
+                target = potentialGameObject;
             }
         }
     }
@@ -60,9 +69,8 @@ public class RocketController : BasicProjectileController
     {
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
-        Quaternion deltaRotation = Quaternion.Euler(0, 0, -90); // Weird thing with rockets
-        float direction = (transform.rotation * deltaRotation).eulerAngles.z;
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, rocketEyeTransform.position, direction);
+
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, rocketEyeTransform.position, GetRocketDirection());
     }
     private void IncreaseSpeed()
     {
@@ -85,10 +93,10 @@ public class RocketController : BasicProjectileController
     }
     private void TurnTowardsTarget()
     {
-        if (targetGameObject)
+        if (target)
         {
             Quaternion deltaRotation = Quaternion.Euler(0, 0, -90);// Weird thing with rockets
-            Quaternion targetRotation = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, targetGameObject.transform.position) * deltaRotation;
+            Quaternion targetRotation = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, target.transform.position) * deltaRotation;
             float deltaAngleThisFrame = rocketRotationSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, deltaAngleThisFrame);
@@ -99,7 +107,7 @@ public class RocketController : BasicProjectileController
     #region Accessor/Mutator Methods
     public void SetTarget(GameObject target)
     {
-        targetGameObject = target;
+        this.target = target;
     }
     public float GetMaxRocketSpeed()
     {
@@ -112,6 +120,11 @@ public class RocketController : BasicProjectileController
     public void SetCurrentRocketSpeed(float newSpeed)
     {
         currentRocketSpeed = newSpeed;
+    }
+    private float GetRocketDirection()
+    {
+        Quaternion deltaRotation = Quaternion.Euler(0, 0, 90); // Weird thing with rockets
+        return (transform.rotation * deltaRotation).eulerAngles.z;
     }
     #endregion
 }

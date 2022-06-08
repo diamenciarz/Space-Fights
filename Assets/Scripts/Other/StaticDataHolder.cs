@@ -206,18 +206,19 @@ public static class StaticDataHolder
                 GameObject currentNearestTarget = null;
                 foreach (GameObject target in possibleTargetList)
                 {
-                    if (HelperMethods.LineOfSightUtils.CanSeeDirectly(positionVector, target))
+                    if (!HelperMethods.LineOfSightUtils.CanSeeDirectly(positionVector, target))
                     {
-                        if (currentNearestTarget == null)
-                        {
-                            currentNearestTarget = target;
-                            continue;
-                        }
-                        bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
-                        if (currentTargetIsCloser)
-                        {
-                            currentNearestTarget = target;
-                        }
+                        continue;
+                    }
+                    if (currentNearestTarget == null)
+                    {
+                        currentNearestTarget = target;
+                        continue;
+                    }
+                    bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
+                    if (currentTargetIsCloser)
+                    {
+                        currentNearestTarget = target;
                     }
                 }
                 return currentNearestTarget;
@@ -228,23 +229,20 @@ public static class StaticDataHolder
                 {
                     return null;
                 }
-                GameObject currentClosestEnemy = null;
+                GameObject currentClosestTarget = null;
                 foreach (GameObject target in targetList)
                 {
-                    if (currentClosestEnemy == null)
+                    if (currentClosestTarget == null)
                     {
-                        currentClosestEnemy = target;
+                        currentClosestTarget = target;
+                        continue;
                     }
-                    float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
-                    float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
-                    //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
-                    bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
-                    if (isCloserAngleWise)
+                    if (IsFirstCloserToMiddleThanSecond(target, currentClosestTarget, middlePosition, middleAngle))
                     {
-                        currentClosestEnemy = target;
+                        currentClosestTarget = target;
                     }
                 }
-                return currentClosestEnemy;
+                return currentClosestTarget;
             }
             public static GameObject GetClosestObjectInSightAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle = 0)
             {
@@ -252,26 +250,32 @@ public static class StaticDataHolder
                 {
                     return null;
                 }
-                GameObject currentClosestEnemy = null;
+                GameObject currentClosestTarget = null;
                 foreach (GameObject target in targetList)
                 {
-                    if (HelperMethods.LineOfSightUtils.CanSeeDirectly(middlePosition, target))
+                    if (!HelperMethods.LineOfSightUtils.CanSeeDirectly(middlePosition, target))
                     {
-                        if (currentClosestEnemy == null)
-                        {
-                            currentClosestEnemy = target;
-                        }
-                        float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
-                        float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
-                        //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
-                        bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
-                        if (isCloserAngleWise)
-                        {
-                            currentClosestEnemy = target;
-                        }
+                        continue;
+                    }
+                    if (currentClosestTarget == null)
+                    {
+                        currentClosestTarget = target;
+                        continue;
+                    }
+                    if (IsFirstCloserToMiddleThanSecond(target, currentClosestTarget, middlePosition, middleAngle))
+                    {
+                        currentClosestTarget = target;
                     }
                 }
-                return currentClosestEnemy;
+                return currentClosestTarget;
+            }
+            public static bool IsFirstCloserToMiddleThanSecond(GameObject target, GameObject currentClosestTarget, Vector3 middlePosition, float middleAngle = 0)
+            {
+                float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, currentClosestTarget.transform.position, middleAngle);
+                float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
+                //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
+                bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
+                return isCloserAngleWise;
             }
             public static List<GameObject> GetObjectList(ObjectTypes objectType)
             {

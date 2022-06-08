@@ -313,7 +313,7 @@ public static class HelperMethods
     public class LineOfSightUtils
     {
         /// <summary>
-        /// Checks, if the target is visible from the specified position. The default layer names are "Actors" and "Obstacles".
+        /// Checks, if the target is visible from the specified position. The default layer names are "Actors", "Obstacles" and "Projectiles".
         /// </summary>
         /// <param name="originalPos"></param>
         /// <param name="target"></param>
@@ -326,22 +326,17 @@ public static class HelperMethods
             }
             int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles", "Projectiles");
             Vector2 direction = target.transform.position - originalPos;
-            Debug.DrawRay(originalPos, direction, Color.red, 0.1f);
+            //Debug.DrawRay(originalPos, direction, Color.red, 1f);
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, Mathf.Infinity, obstacleLayerMask);
+            float distance = VectorUtils.Distance(originalPos, target.transform.position);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, distance, obstacleLayerMask);
 
             if (!raycastHit2D)
             {
                 return false;
             }
             GameObject objectHit = raycastHit2D.collider.gameObject;
-
-            bool hitTargetDirectly = objectHit == target;
-            if (hitTargetDirectly)
-            {
-                return true;
-            }
-            return false;
+            return objectHit == target;
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position. The default layer names are "Actors" and "Obstacles".
