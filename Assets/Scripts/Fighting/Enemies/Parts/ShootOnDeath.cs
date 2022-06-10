@@ -8,6 +8,7 @@ public class ShootOnDeath : TriggerOnDeath
     [SerializeField] float directionOffset;
     [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
     [SerializeField] protected bool targetEnemies;
+    [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
 
     private bool isDestroyed;
 

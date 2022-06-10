@@ -347,7 +347,7 @@ MonoBehaviour:
   timeToExpire: 60
   targetTypes: 020000000000000001000000
   rocketEyeTransform: {fileID: 5447275333531231939}
-  targetGameObject: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &7748659938827264479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98a188fc84d65d409180abf3fbafdd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: 0
+  icon: 1
 --- !u!1 &8479812763967634279
 GameObject:
   m_ObjectHideFlags: 0

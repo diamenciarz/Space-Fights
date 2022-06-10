@@ -296,7 +296,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     private void DestroyObject()
     {
         BreakOff();
-        HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
+        HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.HealthDepleted);
         if (healthManager)
         {
             healthManager.RemovePart(this);

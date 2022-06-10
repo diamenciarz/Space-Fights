@@ -59,10 +59,10 @@ public class RocketController : BasicProjectileController
                 target = potentialGameObject;
                 return;
             }
-            if (StaticDataHolder.ListContents.Generic.IsFirstCloserToMiddleThanSecond(potentialGameObject, target, rocketEyeTransform.position, GetRocketDirection()))
-            {
-                target = potentialGameObject;
-            }
+            //if (StaticDataHolder.ListContents.Generic.IsFirstCloserToMiddleThanSecond(potentialGameObject, target, rocketEyeTransform.position, GetRocketDirection()))
+            //{
+            //   target = potentialGameObject;
+            //}
         }
     }
     private GameObject FindNewTarget()

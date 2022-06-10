@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static HelperMethods.LineOfSightUtils;
+using static HelperMethods.VectorUtils;
+using static StaticDataHolder.ListContents;
 
 public class VisualDetector : TeamUpdater
 {
@@ -34,7 +37,7 @@ public class VisualDetector : TeamUpdater
     [SerializeField] Transform visualZoneTransform;
     #endregion
 
-    public   GameObject currentTarget;
+    public GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private ProgressionBarController shootingZoneScript;
 
@@ -89,7 +92,7 @@ public class VisualDetector : TeamUpdater
     {
         targetsInSightList = FindAllEnemiesInSight();
         TryRemoveObstacles();
-        currentTarget = StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle());
+        currentTarget = Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle());
         //Are there any targets in sight (edge case for mouse cursor)
         CheckForAnyTargetInSight();
     }
@@ -98,7 +101,7 @@ public class VisualDetector : TeamUpdater
     #region Checks
     private List<GameObject> FindAllEnemiesInSight()
     {
-        List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
+        List<GameObject> potentialTargets = Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
         if (potentialTargets.Count == 0)
         {
@@ -121,7 +124,7 @@ public class VisualDetector : TeamUpdater
     /// </summary>
     private void TryRemoveObstacles()
     {
-        if (StaticDataHolder.ListContents.Generic.ListContainsNonObstacle(targetsInSightList))
+        if (Generic.ListContainsNonObstacle(targetsInSightList))
         {
             StaticDataHolder.ListModification.DeleteObstacles(targetsInSightList);
         }
@@ -139,48 +142,13 @@ public class VisualDetector : TeamUpdater
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            Vector3 mousePosition = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
+            Vector3 mousePosition = TranslatedMousePosition(transform.position);
             return CanSeePosition(mousePosition, ignoreMouseCollisions);
         }
         else
         {
             return false;
         }
-    }
-    #endregion
-
-    #region Helper methods
-    private bool IsPositionInCone(Vector3 targetPosition, float range)
-    {
-        if (IsPositionInRange(targetPosition, range))
-        {
-            float angleFromZeroToItem = HelperMethods.AngleUtils.AngleFromUpToPosition(transform.position, targetPosition);
-            float angleFromMiddleToItem = Mathf.DeltaAngle(GetMiddleAngle(), angleFromZeroToItem);
-
-            bool isCursorInCone = angleFromMiddleToItem > -(rightMaxRotationLimit) && angleFromMiddleToItem < (leftMaxRotationLimit);
-            if (isCursorInCone)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    private bool IsPositionInRange(Vector3 targetPosition, float range)
-    {
-        float distanceToTarget = HelperMethods.VectorUtils.Distance(transform.position, targetPosition);
-        bool canShoot = range > distanceToTarget || range == 0;
-        if (canShoot)
-        {
-            return true;
-        }
-        return false;
-    }
-    private float CountAngleToPosition(Vector3 targetPosition)
-    {
-        float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(transform.position, targetPosition).eulerAngles.z;
-        float angleFromGunToItem = Mathf.DeltaAngle(GetGunAngle(), angleFromZeroToItem);
-
-        return angleFromGunToItem;
     }
     #endregion
 
@@ -234,7 +202,6 @@ public class VisualDetector : TeamUpdater
             }
         }
     }
-
     #region Create/Delete UI
     private void RefreshGunShootingZone()
     {
@@ -294,31 +261,33 @@ public class VisualDetector : TeamUpdater
     /// <returns></returns>
     public bool CanSeePosition(Vector3 targetPosition, bool ignoreCollisions = false)
     {
-        if (ignoreCollisions || HelperMethods.LineOfSightUtils.CanSeeDirectly(transform.position, targetPosition))
+        if (ignoreCollisions || CanSeeDirectly(transform.position, targetPosition))
         {
             //Mouse can not hide behind a bush
             if (hasRotationLimits)
             {
-                return IsPositionInCone(targetPosition, GetCurrentRange());
+                Cone cone = new Cone(transform.position, GetMiddleAngle(), leftMaxRotationLimit, rightMaxRotationLimit, GetCurrentRange());
+                return IsPositionInCone(targetPosition, cone);
             }
             else
             {
-                return IsPositionInRange(targetPosition, GetCurrentRange());
+                return IsPositionInRange(transform.position, targetPosition, GetCurrentRange());
             }
         }
         return false;
     }
     public bool CanSeeTarget(GameObject target)
     {
-        if (HelperMethods.LineOfSightUtils.CanSeeDirectly(transform.position, target))
+        if (CanSeeDirectly(transform.position, target))
         {
             if (hasRotationLimits)
             {
-                return IsPositionInCone(target.transform.position, GetCurrentRange());
+                Cone cone = new Cone(transform.position, GetMiddleAngle(), leftMaxRotationLimit, rightMaxRotationLimit, range);
+                return IsPositionInCone(target.transform.position, cone);
             }
             else
             {
-                return IsPositionInRange(target.transform.position, GetCurrentRange());
+                return IsPositionInRange(transform.position, target.transform.position, GetCurrentRange());
             }
         }
         return false;
@@ -351,10 +320,18 @@ public class VisualDetector : TeamUpdater
     {
         if (controlledByMouse)
         {
+            if (mouseRange == 0)
+            {
+                return 1000;
+            }
             return mouseRange;
         }
         else
         {
+            if (range == 0)
+            {
+                return 1000;
+            }
             return range;
         }
     }

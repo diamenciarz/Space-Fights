@@ -124,7 +124,7 @@ public class BreakOnCollision : SpriteUpdater
         if (!isDestroyed)
         {
             isDestroyed = true;
-            HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
+            HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.InstantBreak);
             StartCoroutine(DestroyAtTheEndOfFrame());
         }
     }

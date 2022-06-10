@@ -112,7 +112,6 @@ public static class HelperMethods
         {
             return AngleUtils.ClampAngle360(Vector2.SignedAngle(Vector2.up, vector));
         }
-
         /// <summary>
         /// Projects the vector on the left onto the vector on the right
         /// </summary>
@@ -155,6 +154,57 @@ public static class HelperMethods
             returnVector.z = zCoordinateVector.z;
             return returnVector;
 
+        }
+        /// <summary>
+        /// Returns true if the distance between two positions is smaller or equal to range
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsPositionInRange(Vector2 position, Vector2 from, float range)
+        {
+            return range == 0 || Distance(position, from) <= range;
+        }
+        /// <summary>
+        /// Returns true if the distance between two positions is smaller or equal to range
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsPositionInRange(GameObject from, GameObject to, float range)
+        {
+            return range == 0 || Distance(from, to) <= range;
+        }
+        /// <summary>
+        /// Returns true if the target position is inside a given Cone
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsPositionInCone(Vector3 targetPosition, Cone cone)
+        {
+            if (IsPositionInRange(cone.coneOrigin, targetPosition, cone.range))
+            {
+                float angleFromZeroToTarget = AngleUtils.AngleFromUpToPosition(cone.coneOrigin, targetPosition);
+                float angleFromMiddleToTarget = Mathf.DeltaAngle(cone.direction, angleFromZeroToTarget);
+
+                bool isInCone = angleFromMiddleToTarget > -cone.rightAngle && angleFromMiddleToTarget < cone.leftAngle;
+                if (isInCone)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public class Cone
+        {
+            public Cone(Vector2 coneOrigin, float direction, float leftAngle, float rightAngle, float range)
+            {
+                this.coneOrigin = coneOrigin;
+                this.direction = direction;
+                this.leftAngle = leftAngle;
+                this.rightAngle = rightAngle;
+                this.range = range;
+            }
+            public Vector2 coneOrigin;
+            public float direction;
+            public float leftAngle;
+            public float rightAngle;
+            public float range;
         }
     }
     public class RotationUtils
@@ -312,31 +362,34 @@ public static class HelperMethods
     }
     public class LineOfSightUtils
     {
+        public enum LayerNames
+        {
+            Actors,
+            Obstacles,
+            Projectiles
+        }
         /// <summary>
-        /// Checks, if the target is visible from the specified position. The default layer names are "Actors", "Obstacles" and "Projectiles".
+        /// Checks, if the target is visible from the specified position. The default layer names are "Actors", "Obstacles".
         /// </summary>
         /// <param name="originalPos"></param>
         /// <param name="target"></param>
         /// <returns></returns>
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target)
         {
-            if (target == null)
-            {
-                return false;
-            }
-            int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles", "Projectiles");
+            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
+            return CanSeeDirectly(originalPos, target, layers);
+        }
+        public static bool CanSeeDirectly(Vector3 originalPos, GameObject target, LayerNames[] layers)
+        {
             Vector2 direction = target.transform.position - originalPos;
-            //Debug.DrawRay(originalPos, direction, Color.red, 1f);
+            //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
-            float distance = VectorUtils.Distance(originalPos, target.transform.position);
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, distance, obstacleLayerMask);
-
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
             if (!raycastHit2D)
             {
                 return false;
             }
-            GameObject objectHit = raycastHit2D.collider.gameObject;
-            return objectHit == target;
+            return raycastHit2D.collider.gameObject == target;
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position. The default layer names are "Actors" and "Obstacles".
@@ -346,17 +399,30 @@ public static class HelperMethods
         /// <returns></returns>
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition)
         {
-            int obstacleLayerMask = LayerMask.GetMask("Actors", "Obstacles");
+            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
+            return CanSeeDirectly(originalPos, targetPosition, layers);
+        }
+        public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition, LayerNames[] layers)
+        {
             Vector2 direction = targetPosition - originalPos;
             //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, obstacleLayerMask);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
             bool somethingIsInTheWay = raycastHit2D;
             if (somethingIsInTheWay)
             {
                 return false;
             }
             return true;
+        }
+        private static int GetLayerMask(LayerNames[] layers)
+        {
+            string[] names = new string[layers.Length];
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = layers[i].ToString();
+            }
+            return LayerMask.GetMask(names);
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position.
@@ -575,7 +641,7 @@ public static class HelperMethods
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns></returns>
-        public static bool DoDestroyActions(GameObject gameObject)
+        public static bool DoDestroyActions(GameObject gameObject, TriggerOnDeath.DestroyCause destroyCause)
         {
             TriggerOnDeath[] onDeathTriggers = gameObject.GetComponentsInChildren<TriggerOnDeath>();
             if (onDeathTriggers.Length == 0)
@@ -585,7 +651,7 @@ public static class HelperMethods
 
             foreach (TriggerOnDeath trigger in onDeathTriggers)
             {
-                trigger.DoDestroyAction();
+                trigger.CallDestroyAction(destroyCause);
             }
             return true;
         }

@@ -135,7 +135,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 76282dc5313948f4895b9dd54857a55a, type: 3}
   - {fileID: 21300000, guid: 2716a4593a30a3346ab2c3aef4d3d22d, type: 3}
-  breakEnum: 000000000400000005000000
+  breakEnum: 00000000040000000500000006000000
   breakingSounds: []
   breakingSoundVolume: 1
   hurtsAllies: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   - damageType: 1
     damage: 6
   startingSpeed: 10
+  addCreatorVelocity: 0
   isPiercing: 1
   destroyDelay: 30
   destroyDistance: -1

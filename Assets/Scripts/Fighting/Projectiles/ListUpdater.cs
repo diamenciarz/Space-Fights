@@ -25,7 +25,7 @@ public class ListUpdater : MonoBehaviour
     public void DestroyObject()
     {
         RemoveObjectFromLists();
-        HelperMethods.CollisionUtils.DoDestroyActions(gameObject);
+        HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.HealthDepleted);
         Destroy(gameObject);
     }
     #endregion

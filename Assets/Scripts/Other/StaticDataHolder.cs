@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static HelperMethods.VectorUtils;
 using static TeamUpdater;
 
 public static class StaticDataHolder
@@ -106,6 +107,30 @@ public static class StaticDataHolder
                 }
             }
             return list;
+        }
+        public static List<GameObject> GetObjectsInCone(List<GameObject> targetList, Cone cone)
+        {
+            List<GameObject> objectsInCone = new List<GameObject>();
+            foreach (GameObject target in targetList)
+            {
+                if (IsPositionInCone(target.transform.position, cone))
+                {
+                    objectsInCone.Add(target);
+                }
+            }
+            return objectsInCone;
+        }
+        public static List<GameObject> GetObjectsInRange(List<GameObject> targetList, Vector2 position, float range)
+        {
+            List<GameObject> objectsInCone = new List<GameObject>();
+            foreach (GameObject target in targetList)
+            {
+                if (IsPositionInRange(target.transform.position, position, range))
+                {
+                    objectsInCone.Add(target);
+                }
+            }
+            return objectsInCone;
         }
     }
     public static class ListContents
@@ -269,10 +294,10 @@ public static class StaticDataHolder
                 }
                 return currentClosestTarget;
             }
-            public static bool IsFirstCloserToMiddleThanSecond(GameObject target, GameObject currentClosestTarget, Vector3 middlePosition, float middleAngle = 0)
+            public static bool IsFirstCloserToMiddleThanSecond(GameObject first, GameObject second, Vector3 middlePosition, float middleAngle = 0)
             {
-                float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, currentClosestTarget.transform.position, middleAngle);
-                float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, target.transform.position, middleAngle);
+                float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, second.transform.position, middleAngle);
+                float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, first.transform.position, middleAngle);
                 //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
                 bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
                 return isCloserAngleWise;

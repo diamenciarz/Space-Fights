@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static HelperMethods;
 
 public class ShootingController : TeamUpdater, IProgressionBarCompatible
 {
@@ -11,18 +13,26 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     [Header("Settings")]
     [Tooltip("The direction of bullets coming out of the gun pipe")]
     [SerializeField] float forwardGunRotation;
-    [Tooltip("If true, the shot will target the closest enemy. If false, will shoot forward")]
-    [SerializeField] protected bool targetEnemies;
+    [Header("Targeting settings")]
+    [SerializeField] ShootingMode shootingMode;
+    [Tooltip("Used if FindTarget mode is chosen")]
+    [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
     [Header("Mouse Steering")]
-    bool isControlledByMouse;
+    bool isControlledByMouse; // Just in case
     [SerializeField] bool reloadingBarAlwaysOn = true;
     [Header("Progression bar usage")]
     [SerializeField] bool dontUseProgressionBar;
 
+    public enum ShootingMode
+    {
+        Forward,
+        FindTarget,
+        CameraTargeting
+    }
 
     //Private variables
     private SingleShotScriptableObject currentShotSO;
-    private GameObject currentTarget;
+    private GameObject cameraTarget;
     /// <summary>
     ///The gun tries to shoot, if this is set to true
     /// </summary>
@@ -154,16 +164,64 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     private void CreateShot(int shotIndex)
     {
         SummonedShotData data = new SummonedShotData();
-        data.summonRotation = transform.rotation * Quaternion.Euler(0, 0, forwardGunRotation);
+        data.summonRotation = GetRotation();
         data.summonPosition = shootingPoint.position;
         data.SetTeam(team);
         data.createdBy = createdBy;
         data.shot = salvo.shots[shotIndex].shot;
-        if (targetEnemies)
-        {
-            data.target = currentTarget;
-        }
+        data.target = GetTarget();
         EntityCreator.SummonShot(data);
+    }
+    private Quaternion GetRotation()
+    {
+        if (shootingMode == ShootingMode.Forward)
+        {
+            return transform.rotation * GetForwardGunRotation();
+        }
+        if (shootingMode == ShootingMode.CameraTargeting)
+        {
+            if (!cameraTarget)
+            {
+                return transform.rotation * GetForwardGunRotation();
+            }
+            Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
+            return RotationUtils.DeltaPositionRotation(transform.position, cameraTarget.transform.position) * GetForwardGunRotation() * weirdAngle;
+        }
+        {
+            //shootingMode == ShootingMode.FindTarget
+            GameObject foundTarget = FindTarget();
+            if (!foundTarget)
+            {
+                return transform.rotation * GetForwardGunRotation();
+            }
+            Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
+            return RotationUtils.DeltaPositionRotation(transform.position, foundTarget.transform.position) * GetForwardGunRotation() * weirdAngle;
+        }
+    }
+    private GameObject GetTarget()
+    {
+        if (shootingMode == ShootingMode.Forward)
+        {
+            return null;
+        }
+        if (shootingMode == ShootingMode.CameraTargeting)
+        {
+            return cameraTarget;
+        }
+        //shootingMode == ShootingMode.FindTarget
+        return FindTarget();
+    }
+    private GameObject FindTarget()
+    {
+        List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
+        StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
+
+        float direction = transform.rotation.eulerAngles.z;
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, shootingPoint.position, direction);
+    }
+    private Quaternion GetForwardGunRotation()
+    {
+        return Quaternion.Euler(0, 0, forwardGunRotation);
     }
     #endregion
 
@@ -224,7 +282,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     #region Mutator methods
     public void SetTarget(GameObject newTarget)
     {
-        currentTarget = newTarget;
+        cameraTarget = newTarget;
     }
     public void SetIsControlledByMouse(bool isTrue)
     {

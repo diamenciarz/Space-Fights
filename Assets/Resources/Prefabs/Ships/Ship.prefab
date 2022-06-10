@@ -348,7 +348,8 @@ MonoBehaviour:
   salvo: {fileID: 11400000, guid: dee9789f39f30c045b592563c5d03c08, type: 2}
   shootingPoint: {fileID: 445601161007613364}
   forwardGunRotation: 180
-  targetEnemies: 0
+  shootingMode: 0
+  targetTypes: 
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!114 &4803716611508904443
@@ -560,7 +561,8 @@ MonoBehaviour:
   salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
   forwardGunRotation: 0
-  targetEnemies: 0
+  shootingMode: 0
+  targetTypes: 0000000002000000
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!1 &3135078944746659301
@@ -623,6 +625,7 @@ MonoBehaviour:
   - {fileID: 863468948743332297}
   visualZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
   visualZoneTransform: {fileID: 6441913592164531681}
+  currentTarget: {fileID: 0}
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,9 +2157,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  activateOn: 
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
   directionOffset: 0
   targetEnemies: 0
+  targetTypes: 
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2341,8 @@ MonoBehaviour:
   salvo: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
   forwardGunRotation: 180
-  targetEnemies: 0
+  shootingMode: 0
+  targetTypes: 
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!114 &5535518891970203682
@@ -3319,7 +3325,8 @@ MonoBehaviour:
   salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
   forwardGunRotation: 180
-  targetEnemies: 0
+  shootingMode: 0
+  targetTypes: 
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!114 &5812251090777440677

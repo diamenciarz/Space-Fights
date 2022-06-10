@@ -33,6 +33,7 @@ public class EntityCreator : MonoBehaviour
     public enum ObjectMissingIcons
     {
         RocketMissingIcon,
+        AntirocketMissingIcon,
         ShipMissingIcon,
         TargetIcon
     }
@@ -108,10 +109,12 @@ public class EntityCreator : MonoBehaviour
     #region Count shot rotation
     private static Quaternion CountSummonRotation(SummonedShotData data, int i)
     {
+        /*
         if (data.target)
         {
             return ShootAtTarget(data, i);
         }
+        */
         return data.summonRotation * ShootAtNoTarget(data, i);
     }
     private static Quaternion ShootAtTarget(SummonedShotData data, int i)
@@ -138,28 +141,29 @@ public class EntityCreator : MonoBehaviour
     }
 
     //Count rotation
-    private static Quaternion RotForwardRandomSpread(SummonedShotData data)
-    {
-        return HelperMethods.RotationUtils.RandomRotationInRange(data.shot.leftBulletSpread, data.shot.rightBulletSpread);
-    }
     private static Quaternion RotForwardRegularSpread(SummonedShotData data, int index)
     {
         float bulletOffset = (data.shot.spreadDegrees * (index - (data.shot.projectilesToCreateList.Count - 1f) / 2));
         return Quaternion.Euler(0, 0, bulletOffset);
     }
+    private static Quaternion RotForwardRandomSpread(SummonedShotData data)
+    {
+        return HelperMethods.RotationUtils.RandomRotationInRange(data.shot.leftBulletSpread, data.shot.rightBulletSpread);
+    }
     private static Quaternion RotToPosRandomSpread(SummonedShotData data)
     {
         Quaternion randomDeltaRotation = HelperMethods.RotationUtils.RandomRotationInRange(data.shot.leftBulletSpread, data.shot.rightBulletSpread);
         Quaternion rotationToTarget = HelperMethods.RotationUtils.DeltaPositionRotation(data.summonPosition, data.target.transform.position);
-        return randomDeltaRotation * rotationToTarget;
+        Quaternion weirdOffset = Quaternion.Euler(0,0,-90);
+        return randomDeltaRotation * rotationToTarget * weirdOffset;
     }
     private static Quaternion RotToPosRegularSpread(SummonedShotData data, int index)
     {
         float bulletOffset = (data.shot.spreadDegrees * (index - (data.shot.projectilesToCreateList.Count - 1f) / 2));
         Quaternion deltaRotation = Quaternion.Euler(0, 0, bulletOffset);
         Quaternion rotationToTarget = HelperMethods.RotationUtils.DeltaPositionRotation(data.summonPosition, data.target.transform.position);
-        Debug.Log("Rotation to target: " + rotationToTarget.eulerAngles.z);
-        return deltaRotation * rotationToTarget;
+        Quaternion weirdOffset = Quaternion.Euler(0,0,-90);
+        return deltaRotation * rotationToTarget * weirdOffset;
     }
     #endregion
     #endregion

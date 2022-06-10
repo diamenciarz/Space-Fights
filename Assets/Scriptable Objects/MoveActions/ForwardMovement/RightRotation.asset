@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6057e35c0c6aac4894fb2f836f8bfa9, type: 3}
   m_Name: RightRotation
   m_EditorClassIdentifier: 
-  torque: 90
+  torque: -90
   affectedByVelocity: 1
