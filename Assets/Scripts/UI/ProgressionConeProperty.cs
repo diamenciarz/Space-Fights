@@ -11,8 +11,8 @@ public class ProgressionConeProperty : MonoBehaviour, IProgressionCone
     [Tooltip("Time, after which the bar will disappear, after being shown")]
     [SerializeField] [Range(0, 100)] private float hideDelay = 1;
 
-    public GameObject progressionCone;
-    public ProgressionBarController barScript;
+    private GameObject progressionCone;
+    private ProgressionBarController barScript;
 
 
     public void CreateProgressionCone(GameObject parent, float radius, float ratio, float deltaRotationFromParent)

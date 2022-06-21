@@ -1911,11 +1911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.b
-      value: 0.9866638
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Color.g
-      value: 0.9866638
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 780042279433663500, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_Distance
@@ -13741,6 +13741,14 @@ PrefabInstance:
     - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: ignoreMouseCollisions
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: targetTypes.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
+      propertyPath: targetTypes.Array.data[1]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8530353260921314641, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset

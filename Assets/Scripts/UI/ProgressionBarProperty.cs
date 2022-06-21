@@ -10,8 +10,8 @@ public class ProgressionBarProperty : MonoBehaviour, IProgressionBar
     [Tooltip("Time, after which the bar will disappear, after being shown")]
     [SerializeField] [Range(0, 100)] private float hideDelay = 1;
 
-    public GameObject progressionBar;
-    public ProgressionBarController barScript;
+    private GameObject progressionBar;
+    private ProgressionBarController barScript;
 
 
     public void CreateProgressionBar(GameObject parent)

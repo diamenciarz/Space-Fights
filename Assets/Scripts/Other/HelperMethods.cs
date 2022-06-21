@@ -396,10 +396,7 @@ public static class HelperMethods
             {
                 return raycastHit2DWithProjectiles.collider.gameObject == target;
             }
-            //if (!raycastHit2DNoProjectiles)
-            {
-                return raycastHit2DNoProjectiles.collider.gameObject == target;
-            }
+            return raycastHit2DNoProjectiles.collider.gameObject == target;
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position. The default layer names are "Actors" and "Obstacles".
