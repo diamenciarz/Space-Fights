@@ -385,12 +385,21 @@ public static class HelperMethods
             Vector2 direction = target.transform.position - originalPos;
             //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
-            if (!raycastHit2D)
+            RaycastHit2D raycastHit2DWithProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
+            RaycastHit2D raycastHit2DNoProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
+
+            if (!raycastHit2DNoProjectiles && !raycastHit2DWithProjectiles)
             {
                 return false;
             }
-            return raycastHit2D.collider.gameObject == target;
+            if (!raycastHit2DNoProjectiles)
+            {
+                return raycastHit2DWithProjectiles.collider.gameObject == target;
+            }
+            //if (!raycastHit2DNoProjectiles)
+            {
+                return raycastHit2DNoProjectiles.collider.gameObject == target;
+            }
         }
         /// <summary>
         /// Checks, if the target position is visible from the specified position. The default layer names are "Actors" and "Obstacles".
@@ -408,19 +417,28 @@ public static class HelperMethods
             Vector2 direction = targetPosition - originalPos;
             //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
             bool somethingIsInTheWay = raycastHit2D;
-            if (somethingIsInTheWay)
-            {
-                return false;
-            }
-            return true;
+            return !somethingIsInTheWay;
         }
         private static int GetLayerMask(LayerNames[] layers)
         {
             string[] names = new string[layers.Length];
             for (int i = 0; i < names.Length; i++)
             {
+                names[i] = layers[i].ToString();
+            }
+            return LayerMask.GetMask(names);
+        }
+        private static int GetLayerMaskWithoutProjectiles(LayerNames[] layers)
+        {
+            string[] names = new string[layers.Length];
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (layers[i] == LayerNames.Projectiles)
+                {
+                    continue;
+                }
                 names[i] = layers[i].ToString();
             }
             return LayerMask.GetMask(names);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static HelperMethods;
+using static HelperMethods.LineOfSightUtils;
 
 public class ShootingController : TeamUpdater, IProgressionBarCompatible
 {
@@ -182,22 +183,13 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         }
         if (shootingMode == ShootingMode.CameraTargeting)
         {
-            if (!cameraTarget)
-            {
-                return transform.rotation * GetForwardGunRotation();
-            }
-            Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
-            return RotationUtils.DeltaPositionRotation(shootingPoint.position, cameraTarget.transform.position) * weirdAngle;
+            return GetRotationToTarget(cameraTarget);
         }
         {
             //shootingMode == ShootingMode.FindTarget
             GameObject foundTarget = FindTarget();
-            if (!foundTarget)
-            {
-                return transform.rotation * GetForwardGunRotation();
-            }
-            Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
-            return RotationUtils.DeltaPositionRotation(shootingPoint.position, foundTarget.transform.position) * weirdAngle;
+            Debug.Log("Found target:" + foundTarget);
+            return GetRotationToTarget(foundTarget);
         }
     }
     private GameObject GetTarget()
@@ -217,8 +209,8 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     {
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
-
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSight(potentialTargets, shootingPoint.position);
+        LayerNames[] layers = ObjectUtils.GetLayers(targetTypes);
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSight(potentialTargets, shootingPoint.position, layers);
     }
     private Quaternion GetForwardGunRotation()
     {
@@ -239,6 +231,15 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     #endregion
 
     #region Helper Functions
+    private Quaternion GetRotationToTarget(GameObject target)
+    {
+        if (!target)
+        {
+            return transform.rotation * GetForwardGunRotation();
+        }
+        Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
+        return RotationUtils.DeltaPositionRotation(shootingPoint.position, target.transform.position) * weirdAngle;
+    }
     private void DecreaseShootingTime()
     {
         lastShotTime = Time.time;

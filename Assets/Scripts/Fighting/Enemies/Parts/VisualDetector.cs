@@ -9,7 +9,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
 {
     #region Serialization
     [Tooltip("Delta angle from the middle of parent's rotation")]
-    [SerializeField] float basicGunDirection;
+    [SerializeField] float deltaParentRotation;
 
     [Header("Visual Zone")]
     [SerializeField] bool hasRotationLimits;
@@ -162,7 +162,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     #region Count values
     private float GetMiddleAngle()
     {
-        return transform.rotation.eulerAngles.z + basicGunDirection;
+        return transform.rotation.eulerAngles.z + deltaParentRotation;
     }
     private float GetGunAngle()
     {
@@ -176,7 +176,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         bool createBar = hasRotationLimits && isShootingZoneOn;
         if (createBar)
         {
-            float shootingZoneRotation = basicGunDirection + leftMaxRotationLimit;
+            float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
             StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), GetBarRatio(), shootingZoneRotation);
         }
     }
