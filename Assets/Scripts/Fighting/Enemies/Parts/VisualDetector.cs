@@ -177,7 +177,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         if (createBar)
         {
             float shootingZoneRotation = basicGunDirection + leftMaxRotationLimit;
-            StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), shootingZoneRotation);
+            StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), GetBarRatio(), shootingZoneRotation);
         }
     }
     #region Update

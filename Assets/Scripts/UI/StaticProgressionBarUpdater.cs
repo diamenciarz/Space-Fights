@@ -82,7 +82,7 @@ public static class StaticProgressionBarUpdater
         }
         bar.CreateProgressionBar(updater.GetGameObject());
     }
-    public static void CreateProgressionCone(IProgressionBarCompatible updater, float radius)
+    public static void CreateProgressionCone(IProgressionBarCompatible updater, float ratio, float radius)
     {
         IProgressionCone bar;
         try
@@ -93,9 +93,9 @@ public static class StaticProgressionBarUpdater
         {
             return;
         }
-        bar.CreateProgressionCone(updater.GetGameObject(), radius);
+        bar.CreateProgressionCone(updater.GetGameObject(), radius, ratio);
     }
-    public static void CreateProgressionCone(IProgressionBarCompatible updater, float radius, float deltaRotationFromParent)
+    public static void CreateProgressionCone(IProgressionBarCompatible updater, float radius, float ratio, float deltaRotationFromParent)
     {
         IProgressionCone bar;
         try
@@ -106,7 +106,7 @@ public static class StaticProgressionBarUpdater
         {
             return;
         }
-        bar.CreateProgressionCone(updater.GetGameObject(), radius, deltaRotationFromParent);
+        bar.CreateProgressionCone(updater.GetGameObject(), radius, ratio, deltaRotationFromParent);
     }
     public static void DeleteProgressionBar(IProgressionBarCompatible updater)
     {

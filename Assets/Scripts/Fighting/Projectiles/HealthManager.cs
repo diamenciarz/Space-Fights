@@ -79,7 +79,6 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         {
             return;
         }
-        Debug.Log("Created progression bar");
         StaticProgressionBarUpdater.CreateProgressionBar(this);
     }
     #endregion

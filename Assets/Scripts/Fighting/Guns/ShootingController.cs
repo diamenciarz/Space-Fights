@@ -117,7 +117,9 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     {
         float reloadCooldown = salvo.additionalReloadTime + salvo.GetSalvoTimeSum(shotIndex - 1);
         float timeSinceLastShot = Time.time - lastShotTime;
-        if (timeSinceLastShot >= reloadCooldown)
+
+        bool canReloadOneBullet = (timeSinceLastShot >= reloadCooldown) && (shotIndex > 0);
+        if (canReloadOneBullet)
         {
             shootingTimeBank = salvoTimeSum;
             shotIndex = 0;

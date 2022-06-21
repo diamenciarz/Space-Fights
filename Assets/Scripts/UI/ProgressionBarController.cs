@@ -193,7 +193,7 @@ public class ProgressionBarController : MonoBehaviour
         if (useGradient)
         {
             Color newColor = barColorGradient.Evaluate(ratio);
-            newColor.a = originalAlfa;
+            newColor.a = healthBarImage.color.a;
             healthBarImage.color = newColor;
         }
     }

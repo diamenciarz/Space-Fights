@@ -1971,7 +1971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488323260018361336, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: isAlwaysOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2588015833514174397, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -12733,7 +12733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488323260018361336, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: isAlwaysOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2588015833514174397, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
@@ -13740,7 +13740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: ignoreMouseCollisions
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8530353260921314641, guid: c74be53125e8cd34397280103da5c428, type: 3}
       propertyPath: m_AngularOffset
