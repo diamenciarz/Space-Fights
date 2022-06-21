@@ -26,7 +26,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
 
     [Header("Progression bar usage")]
-    [SerializeField] bool dontUseProgressionBar;
+    [SerializeField] bool dontUseProgressionBar = true;
 
 
     //Private variables

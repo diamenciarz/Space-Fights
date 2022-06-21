@@ -28,7 +28,11 @@ public class EntityCreator : MonoBehaviour
     public enum ProgressionBars
     {
         HealthBar,
-        AmmoBar
+        AmmoBar,
+    }
+    public enum ProgressionCones
+    {
+        ShootingZone
     }
     public enum ObjectMissingIcons
     {

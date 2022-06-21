@@ -368,6 +368,8 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 1}
   isAlwaysOn: 0
   hideDelay: 1
+  progressionBar: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!1 &1307999328733431840
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,15 +504,11 @@ MonoBehaviour:
   hasRotationLimits: 0
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
-  parentGameObject: {fileID: 6441913592538751965}
   visualDetectors:
   - {fileID: 8448464666150114285}
   debugZoneOn: 1
   debugZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
   DebugZoneTransform: {fileID: 6441913592164531681}
-  areTargetsInRange: 0
-  invisibleTargetRotation: 0
-  closestTarget: {fileID: 0}
 --- !u!1 &2550649395205867984
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2228277450419226497}
   - component: {fileID: 863468948743332297}
+  - component: {fileID: 7398243765704990038}
   m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
@@ -558,13 +557,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
+  salvo: {fileID: 11400000, guid: afd9273ff80e12b4bab8acb9f3eb2463, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
   forwardGunRotation: 0
   shootingMode: 0
-  targetTypes: 0000000002000000
+  targetTypes: 000000000200000001000000
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
+--- !u!114 &7398243765704990038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550649395205867984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 1
+  barDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  hideDelay: 1
+  progressionBar: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!1 &3135078944746659301
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3628950189056374314}
   - component: {fileID: 8448464666150114285}
+  - component: {fileID: 1796129912916711290}
   m_Layer: 7
   m_Name: Detector
   m_TagString: Untagged
@@ -617,15 +635,34 @@ MonoBehaviour:
   range: 5
   mouseRange: 5
   refreshRate: 0.1
-  controlledByMouse: 0
+  isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
   targetTypes: 020000000000000001000000
   shootingControllers:
   - {fileID: 863468948743332297}
-  visualZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
   visualZoneTransform: {fileID: 6441913592164531681}
   currentTarget: {fileID: 0}
+  wasShootingZoneModified: 0
+--- !u!114 &1796129912916711290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135078944746659301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c013a9b6f4cc345b732a2cf47ef55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cone: 0
+  coneDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  offsetAngle: 0
+  hideDelay: 1
+  progressionCone: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1361,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  dontUseProgressionBar: 0
+  dontUseProgressionBar: 1
 --- !u!114 &6701698553508886421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1963,7 +2000,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  dontUseProgressionBar: 0
+  dontUseProgressionBar: 1
 --- !u!114 &8786691315742761047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,6 +2180,8 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 2}
   isAlwaysOn: 0
   hideDelay: 3
+  progressionBar: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!114 &-6443159064478190265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,8 +2217,8 @@ GameObject:
   - component: {fileID: 6441913592834814980}
   - component: {fileID: 5535518891970203682}
   - component: {fileID: 212362505441456787}
-  - component: {fileID: 1534948260965662698}
   - component: {fileID: 9061659452382011625}
+  - component: {fileID: 2447227821538030239}
   m_Layer: 7
   m_Name: LeftGun
   m_TagString: Untagged
@@ -2338,7 +2377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 3c39815195238604bbabdfd096a0aa1d, type: 2}
+  salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
   forwardGunRotation: 180
   shootingMode: 0
@@ -2384,22 +2423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 02000000
---- !u!114 &1534948260965662698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592834815039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: 1
-  barDeltaPosition: {x: 0, y: 1}
-  isAlwaysOn: 0
-  hideDelay: 1
 --- !u!114 &9061659452382011625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2412,6 +2435,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2447227821538030239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592834815039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 1
+  barDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  hideDelay: 1
+  progressionBar: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,7 +2849,7 @@ MonoBehaviour:
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  dontUseProgressionBar: 0
+  dontUseProgressionBar: 1
 --- !u!114 &4049046681727661406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3162,8 +3203,8 @@ GameObject:
   - component: {fileID: 6441913594127976653}
   - component: {fileID: 5812251090777440677}
   - component: {fileID: 5191196131033383256}
-  - component: {fileID: 5946914918922663050}
   - component: {fileID: 3374443023517916694}
+  - component: {fileID: 824753387179436150}
   m_Layer: 7
   m_Name: RightGun
   m_TagString: Untagged
@@ -3322,7 +3363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
+  salvo: {fileID: 11400000, guid: 3a3c1476892a72d46ade3f0cd87325f6, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
   forwardGunRotation: 180
   shootingMode: 0
@@ -3368,22 +3409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 02000000
---- !u!114 &5946914918922663050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913594127976646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: 1
-  barDeltaPosition: {x: 0, y: 1}
-  isAlwaysOn: 0
-  hideDelay: 1
 --- !u!114 &3374443023517916694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,6 +3421,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &824753387179436150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594127976646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1216b4a0682a0f4081d7cd913935ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 1
+  barDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  hideDelay: 1
+  progressionBar: {fileID: 0}
+  barScript: {fileID: 0}
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0

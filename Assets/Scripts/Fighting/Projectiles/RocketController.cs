@@ -47,30 +47,32 @@ public class RocketController : BasicProjectileController
     }
     private void CheckForTarget()
     {
-        if (team.teamInstance != TeamInstance.Neutral)
+        if (team.teamInstance == TeamInstance.Neutral)
         {
-            GameObject potentialGameObject = FindNewTarget();
-            if (!potentialGameObject)
-            {
-                return;
-            }
-            if (target == null)
-            {
-                target = potentialGameObject;
-                return;
-            }
-            //if (StaticDataHolder.ListContents.Generic.IsFirstCloserToMiddleThanSecond(potentialGameObject, target, rocketEyeTransform.position, GetRocketDirection()))
-            //{
-            //   target = potentialGameObject;
-            //}
+            return;
         }
+        if (target != null)
+        {
+            return;
+        }
+        GameObject potentialGameObject = FindNewTarget();
+        if (potentialGameObject)
+        {
+            target = potentialGameObject;
+            return;
+        }
+        //if (StaticDataHolder.ListContents.Generic.IsFirstCloserToMiddleThanSecond(potentialGameObject, target, rocketEyeTransform.position, GetRocketDirection()))
+        //{
+        //   target = potentialGameObject;
+        //}
     }
     private GameObject FindNewTarget()
     {
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
 
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, rocketEyeTransform.position, GetRocketDirection());
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSight(potentialTargets, rocketEyeTransform.position);
+        //return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, rocketEyeTransform.position, GetRocketDirection());
     }
     private void IncreaseSpeed()
     {

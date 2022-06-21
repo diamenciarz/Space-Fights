@@ -6,6 +6,7 @@ using static TeamUpdater;
 /// </summary>
 public interface IParent
 {
+    public abstract GameObject GetGameObject();
     public abstract Team GetTeam();
     public abstract GameObject GetCreatedBy();
     public abstract void SetTeam(Team team);

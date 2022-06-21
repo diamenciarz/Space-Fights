@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using static HelperMethods.LineOfSightUtils;
 using static TeamUpdater;
 
 public static class HelperMethods
@@ -547,6 +548,26 @@ public static class HelperMethods
                 }
             }
             return null;
+        }
+        public static LayerNames[] GetLayers(StaticDataHolder.ObjectTypes[] targetTypes)
+        {
+            List<LayerNames> layers = new List<LayerNames>();
+            foreach (var type in targetTypes)
+            {
+                if (type == StaticDataHolder.ObjectTypes.Entity)
+                {
+                    layers.Add(LayerNames.Actors);
+                }
+                if (type == StaticDataHolder.ObjectTypes.Obstacle)
+                {
+                    layers.Add(LayerNames.Obstacles);
+                }
+                if (type == StaticDataHolder.ObjectTypes.Projectile)
+                {
+                    layers.Add(LayerNames.Projectiles);
+                }
+            }
+            return layers.ToArray();
         }
     }
     /// <summary>

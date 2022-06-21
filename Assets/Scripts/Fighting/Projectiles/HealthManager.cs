@@ -14,7 +14,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
     [Header("Progression bar usage")]
-    [SerializeField] bool dontUseProgressionBar;
+    [SerializeField] bool dontUseProgressionBar = true;
 
     //Private variables
     private float health;
@@ -38,6 +38,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         FindParts();
         UpdateMaxHP();
         UpdateHealth();
+        HandleHealthBar();
     }
     private void SetupCreatedBy()
     {
@@ -71,6 +72,15 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         {
             maxHealth += part.GetMaxBarHealth();
         }
+    }
+    private void HandleHealthBar()
+    {
+        if (dontUseProgressionBar)
+        {
+            return;
+        }
+        Debug.Log("Created progression bar");
+        StaticProgressionBarUpdater.CreateProgressionBar(this);
     }
     #endregion
 

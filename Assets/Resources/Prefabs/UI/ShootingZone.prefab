@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3073689100527489740}
   - component: {fileID: 6266471521723400712}
   m_Layer: 5
-  m_Name: GunShootingZone
+  m_Name: ShootingZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   healthBarImage: {fileID: 8492177007195057068}
   imagesToHide: []
   objectToFollow: {fileID: 0}
-  useGradient: 1
+  useGradient: 0
   barColorGradient:
     serializedVersion: 2
     key0: {r: 0.3490566, g: 0.14372244, b: 0, a: 1}

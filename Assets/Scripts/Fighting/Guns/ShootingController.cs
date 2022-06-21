@@ -185,7 +185,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
                 return transform.rotation * GetForwardGunRotation();
             }
             Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
-            return RotationUtils.DeltaPositionRotation(transform.position, cameraTarget.transform.position) * GetForwardGunRotation() * weirdAngle;
+            return RotationUtils.DeltaPositionRotation(shootingPoint.position, cameraTarget.transform.position) * weirdAngle;
         }
         {
             //shootingMode == ShootingMode.FindTarget
@@ -195,7 +195,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
                 return transform.rotation * GetForwardGunRotation();
             }
             Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
-            return RotationUtils.DeltaPositionRotation(transform.position, foundTarget.transform.position) * GetForwardGunRotation() * weirdAngle;
+            return RotationUtils.DeltaPositionRotation(shootingPoint.position, foundTarget.transform.position) * weirdAngle;
         }
     }
     private GameObject GetTarget()
@@ -216,8 +216,7 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
 
-        float direction = transform.rotation.eulerAngles.z;
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, shootingPoint.position, direction);
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSight(potentialTargets, shootingPoint.position);
     }
     private Quaternion GetForwardGunRotation()
     {

@@ -81,6 +81,10 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent, IM
     #endregion
 
     #region Accessor methods
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
     public bool ShouldModifyVelocity()
     {
         return addCreatorVelocity;

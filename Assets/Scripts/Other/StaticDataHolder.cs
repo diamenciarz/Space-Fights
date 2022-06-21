@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static HelperMethods.LineOfSightUtils;
 using static HelperMethods.VectorUtils;
 using static TeamUpdater;
 
@@ -137,13 +138,13 @@ public static class StaticDataHolder
     {
         public static class Enemies
         {
-            public static GameObject GetClosestEnemyInSightAngleWise(Vector3 positionVector, Team myTeam)
+            public static GameObject GetClosestEnemyInSightAngleWise(Vector3 positionVector, Team myTeam, float direction)
             {
-                return Generic.GetClosestObjectInSightAngleWise(GetEnemyList(myTeam), positionVector);
+                return Generic.GetClosestObjectInSightAngleWise(GetEnemyList(myTeam), positionVector, direction);
             }
-            public static GameObject GetClosestEnemyAngleWise(Vector3 positionVector, Team myTeam)
+            public static GameObject GetClosestEnemyAngleWise(Vector3 positionVector, Team myTeam, float direction)
             {
-                return Generic.GetClosestObjectAngleWise(GetEnemyList(myTeam), positionVector);
+                return Generic.GetClosestObjectAngleWise(GetEnemyList(myTeam), positionVector, direction);
             }
             public static GameObject GetClosestEnemyInSight(Vector3 positionVector, Team myTeam)
             {
@@ -160,13 +161,13 @@ public static class StaticDataHolder
         }
         public static class Allies
         {
-            public static GameObject GetClosestAllyInSightAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
+            public static GameObject GetClosestAllyInSightAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore, float direction)
             {
-                return Generic.GetClosestObjectInSightAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
+                return Generic.GetClosestObjectInSightAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector, direction);
             }
-            public static GameObject GetClosestAllyAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
+            public static GameObject GetClosestAllyAngleWise(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore, float direction)
             {
-                return Generic.GetClosestObjectAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector);
+                return Generic.GetClosestObjectAngleWise(GetAllyList(myTeam, gameObjectToIgnore), positionVector, direction);
             }
             public static GameObject GetClosestAllyInSight(Vector3 positionVector, Team myTeam, GameObject gameObjectToIgnore)
             {
@@ -214,7 +215,7 @@ public static class StaticDataHolder
                         currentNearestTarget = target;
                         continue;
                     }
-                    bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
+                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
                     if (currentTargetIsCloser)
                     {
                         currentNearestTarget = target;
@@ -231,7 +232,7 @@ public static class StaticDataHolder
                 GameObject currentNearestTarget = null;
                 foreach (GameObject target in possibleTargetList)
                 {
-                    if (!HelperMethods.LineOfSightUtils.CanSeeDirectly(positionVector, target))
+                    if (!CanSeeDirectly(positionVector, target))
                     {
                         continue;
                     }
@@ -240,7 +241,7 @@ public static class StaticDataHolder
                         currentNearestTarget = target;
                         continue;
                     }
-                    bool currentTargetIsCloser = HelperMethods.VectorUtils.Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
+                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < Distance(positionVector, currentNearestTarget.transform.position);
                     if (currentTargetIsCloser)
                     {
                         currentNearestTarget = target;
@@ -248,7 +249,33 @@ public static class StaticDataHolder
                 }
                 return currentNearestTarget;
             }
-            public static GameObject GetClosestObjectAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle = 0)
+            public static GameObject GetClosestObjectInSight(List<GameObject> possibleTargetList, Vector3 positionVector, LayerNames[] layers)
+            {
+                if (possibleTargetList.Count == 0)
+                {
+                    return null;
+                }
+                GameObject currentNearestTarget = null;
+                foreach (GameObject target in possibleTargetList)
+                {
+                    if (!CanSeeDirectly(positionVector, target, layers))
+                    {
+                        continue;
+                    }
+                    if (currentNearestTarget == null)
+                    {
+                        currentNearestTarget = target;
+                        continue;
+                    }
+                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < Distance(positionVector, currentNearestTarget.transform.position);
+                    if (currentTargetIsCloser)
+                    {
+                        currentNearestTarget = target;
+                    }
+                }
+                return currentNearestTarget;
+            }
+            public static GameObject GetClosestObjectAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle)
             {
                 if (targetList.Count == 0)
                 {
@@ -269,7 +296,7 @@ public static class StaticDataHolder
                 }
                 return currentClosestTarget;
             }
-            public static GameObject GetClosestObjectInSightAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle = 0)
+            public static GameObject GetClosestObjectInSightAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle)
             {
                 if (targetList.Count == 0)
                 {
@@ -278,7 +305,32 @@ public static class StaticDataHolder
                 GameObject currentClosestTarget = null;
                 foreach (GameObject target in targetList)
                 {
-                    if (!HelperMethods.LineOfSightUtils.CanSeeDirectly(middlePosition, target))
+                    if (!CanSeeDirectly(middlePosition, target))
+                    {
+                        continue;
+                    }
+                    if (currentClosestTarget == null)
+                    {
+                        currentClosestTarget = target;
+                        continue;
+                    }
+                    if (IsFirstCloserToMiddleThanSecond(target, currentClosestTarget, middlePosition, middleAngle))
+                    {
+                        currentClosestTarget = target;
+                    }
+                }
+                return currentClosestTarget;
+            }
+            public static GameObject GetClosestObjectInSightAngleWise(List<GameObject> targetList, Vector3 middlePosition, float middleAngle, LayerNames[] layers)
+            {
+                if (targetList.Count == 0)
+                {
+                    return null;
+                }
+                GameObject currentClosestTarget = null;
+                foreach (GameObject target in targetList)
+                {
+                    if (!CanSeeDirectly(middlePosition, target, layers))
                     {
                         continue;
                     }

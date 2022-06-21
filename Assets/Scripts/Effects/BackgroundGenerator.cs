@@ -23,7 +23,7 @@ public class BackgroundGenerator : MonoBehaviour, ISerializationCallbackReceiver
     {
         for (int j = 0; j < count; j++)
         {
-            Instantiate(doodad);
+            Instantiate(doodad, transform);
         }
     }
 

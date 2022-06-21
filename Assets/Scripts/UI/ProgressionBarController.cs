@@ -23,7 +23,7 @@ public class ProgressionBarController : MonoBehaviour
     /// <summary>
     /// The current state of the bar. For internal use only
     /// </summary>
-    public bool isShown;
+    private bool isShown;
     /// <summary>
     /// If true, the bar is always visible. If false, the bar will hide after a delay
     /// </summary>
@@ -216,9 +216,9 @@ public class ProgressionBarController : MonoBehaviour
     {
         deltaPositionToObject = newDeltaPosition;
     }
-    public void SetDeltaRotationToObject(Quaternion newDeltaRotation)
+    public void SetDeltaRotationToObject(float deltaRotation)
     {
-        deltaRotationFromParent = newDeltaRotation;
+        deltaRotationFromParent = Quaternion.Euler(0,0, deltaRotation);
     }
     public void SetIsAlwaysVisible(bool isTrue)
     {

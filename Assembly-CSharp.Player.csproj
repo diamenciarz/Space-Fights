@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Movement\MovementModifier.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SingleShotScriptableObject.cs" />
@@ -64,8 +67,10 @@
     <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\MoveAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\IModifiableStartingSpeed.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TeamUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
+    <Compile Include="Assets\Scripts\UI\ObjectMissingIconProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IPiercingDamage.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\TriggerOnDeath.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BasicProjectileController.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Assets\Scripts\Other\StaticDataHolder.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\VisualDetector.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\HealthManager.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionCone.cs" />
     <Compile Include="Assets\Scripts\Effects\BackgroundGenerator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ActiveAction.cs" />
@@ -108,14 +114,13 @@
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantMoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageCalculator.cs" />
+    <Compile Include="Assets\Scripts\UI\ProgressionConeProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IPushable.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarProperty.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
-    <Compile Include="Assets\Scripts\UI\ObjectMissingIconProperty.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\IModifiableStartingSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
