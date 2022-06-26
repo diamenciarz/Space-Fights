@@ -20,6 +20,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     [Tooltip("The click range of the camera if overridden by mouse cursor. Choose 0 for infinite range")]
     [SerializeField] float mouseRange = 10f;
     [SerializeField] float refreshRate = 0.1f;
+    [SerializeField] Transform visualZoneOrigin;
 
     [Header("Mouse Steering")]
     [SerializeField] bool isControlledByMouse;
@@ -31,15 +32,11 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
 
     [Header("Instances")]
     [SerializeField] ShootingController[] shootingControllers;
-
-    [Header("Visual Zone")]
-    [SerializeField] Transform visualZoneTransform;
     #endregion
 
-    public GameObject currentTarget;
+    private GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private bool isTargetInSight;
-    public bool wasShootingZoneModified;
     private Coroutine checkCoroutine;
 
 
@@ -57,7 +54,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
 
     private void Update()
     {
-        UpdateUI();
+        UpdateShootingZoneVisibility();
     }
 
     #region Check coroutine
@@ -66,11 +63,12 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         while (true)
         {
             yield return new WaitForSeconds(refreshRate);
-            FindCurrentTarget();
+            UpdateCurrentTarget();
             CheckForAnyTargetInSight();
             SetShooting();
         }
     }
+
     #region Shooting behaviour
     private void SetShooting()
     {
@@ -92,31 +90,39 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         }
     }
     #endregion
-    private void FindCurrentTarget()
+
+    #region Target search
+    private void UpdateCurrentTarget()
     {
+        if (isControlledByMouse && IsMouseInSight())
+        {
+            currentTarget = Generic.GetClosestMouseCursor(transform.position);
+        }
+        else
+        {
+            currentTarget = FindClosestTarget();
+        }
+    }
+    private GameObject FindClosestTarget()
+    {
+
         targetsInSightList = FindAllEnemiesInSight();
         TryRemoveObstacles();
 
         LayerNames[] layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
-        currentTarget = Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle(), layers);
+        return Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle(), layers);
     }
-    #endregion
-
-    #region Checks
     private List<GameObject> FindAllEnemiesInSight()
     {
         List<GameObject> potentialTargets = Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
-        if (potentialTargets.Count == 0)
-        {
-            return new List<GameObject>();
-        }
 
         List<GameObject> targetsInSight = new List<GameObject>();
+        LayerNames[] layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
         foreach (GameObject target in potentialTargets)
         {
             //I expect enemyList to never have a single null value
-            if (CanSeeTarget(target))
+            if (CanSeeTarget(target, layers))
             {
                 targetsInSight.Add(target);
             }
@@ -124,7 +130,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         return targetsInSight;
     }
     /// <summary>
-    /// If you see a target that is not an obstacle, focus that target.
+    /// Only target obstacles if you only see obstacles.
     /// </summary>
     private void TryRemoveObstacles()
     {
@@ -136,27 +142,34 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     /// <summary>
     ///Are there any targets in sight (edge case for mouse cursor)
     /// </summary>
+    #endregion
+
+    #region Shooting check
     private void CheckForAnyTargetInSight()
     {
-        if (isControlledByMouse)
+        if (isControlledByMouse && IsMouseInSight())
         {
-            isTargetInSight = IsMouseInSight();
-            return;
-        }
-        isTargetInSight = targetsInSightList.Count > 0;
-    }
-    private bool IsMouseInSight()
-    {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            Vector3 mousePosition = TranslatedMousePosition(transform.position);
-            return CanSeePosition(mousePosition, ignoreMouseCollisions);
+            isTargetInSight = IsMouseClickedInSight();
         }
         else
         {
-            return false;
+            isTargetInSight = targetsInSightList.Count > 0;
         }
     }
+    private bool IsMouseClickedInSight()
+    {
+        return IsMouseInSight() && IsMouseClicked();
+    }
+    private bool IsMouseInSight()
+    {
+        Vector3 mousePosition = TranslatedMousePosition(transform.position);
+        return CanSeePosition(mousePosition, ignoreMouseCollisions);
+    }
+    private bool IsMouseClicked()
+    {
+        return Input.GetKey(KeyCode.Mouse0);
+    }
+    #endregion
     #endregion
 
     #region Count values
@@ -173,7 +186,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     #region UI
     private void TryCreateUI()
     {
-        bool createBar = hasRotationLimits && isShootingZoneOn;
+        bool createBar = hasRotationLimits;
         if (createBar)
         {
             float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
@@ -181,43 +194,39 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         }
     }
     #region Update
-    private void UpdateUI()
-    {
-        if (wasShootingZoneModified)
-        {
-            wasShootingZoneModified = false;
-            RefreshUI();
-        }
-        UpdateShootingZoneVisibility();
-    }
     private void RefreshUI()
     {
         StaticProgressionBarUpdater.DeleteProgressionCone(this);
         TryCreateUI();
     }
     #endregion
-   
+
     private void UpdateShootingZoneVisibility()
     {
-        bool barOn = hasRotationLimits && isShootingZoneOn && isControlledByMouse;
+        bool barOn = hasRotationLimits && isControlledByMouse;
         if (!barOn)
         {
             return;
         }
         if (isTargetInSight)
         {
-            //Make the light orange bar disappear
-            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, false);
+            //Debug.Log("Show cone");
+            //Make the light orange bar show up
+            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, true);
         }
         else
         {
-            //Make the light orange bar show up
-            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, true);
+            //Make the light orange bar disappear
+            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, false);
         }
     }
     #endregion
 
     #region Accessor methods
+    public Transform GetFollowTransform()
+    {
+        return visualZoneOrigin;
+    }
     public GameObject GetGameObject()
     {
         return gameObject;
@@ -243,7 +252,6 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     {
         if (ignoreCollisions || CanSeeDirectly(transform.position, targetPosition))
         {
-            //Mouse can not hide behind a bush
             if (hasRotationLimits)
             {
                 Cone cone = new Cone(transform.position, GetMiddleAngle(), leftMaxRotationLimit, rightMaxRotationLimit, GetCurrentRange());
@@ -256,9 +264,9 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
         }
         return false;
     }
-    public bool CanSeeTarget(GameObject target)
+    public bool CanSeeTarget(GameObject target, LayerNames[] layerNames)
     {
-        if (CanSeeDirectly(transform.position, target))
+        if (CanSeeDirectly(transform.position, target, layerNames))
         {
             if (hasRotationLimits)
             {
@@ -321,37 +329,37 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     public void SetIsControlledByMouse(bool set)
     {
         isControlledByMouse = set;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetHasRotationLimits(bool set)
     {
         hasRotationLimits = set;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetLeftRotationLimit(float limit)
     {
         leftMaxRotationLimit = limit;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetRightRotationLimit(float limit)
     {
         rightMaxRotationLimit = limit;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetMouseRange(float range)
     {
         mouseRange = range;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetRange(float range)
     {
         this.range = range;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     public void SetShootingZoneOn(bool isOn)
     {
         isShootingZoneOn = isOn;
-        wasShootingZoneModified = true;
+        RefreshUI();
     }
     #endregion
 }

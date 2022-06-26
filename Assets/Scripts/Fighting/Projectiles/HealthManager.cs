@@ -222,5 +222,10 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
             createdBy = parent;
         }
     }
+
+    public Transform GetFollowTransform()
+    {
+        return transform;
+    }
     #endregion
 }

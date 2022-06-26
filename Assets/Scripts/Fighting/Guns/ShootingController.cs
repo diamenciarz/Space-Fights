@@ -188,7 +188,6 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
         {
             //shootingMode == ShootingMode.FindTarget
             GameObject foundTarget = FindTarget();
-            Debug.Log("Found target:" + foundTarget);
             return GetRotationToTarget(foundTarget);
         }
     }
@@ -303,6 +302,10 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     #endregion
 
     #region Accessor methods
+    public Transform GetFollowTransform()
+    {
+        return transform;
+    }
     public GameObject GetGameObject()
     {
         return gameObject;

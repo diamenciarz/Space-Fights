@@ -191,6 +191,31 @@ public static class HelperMethods
             }
             return false;
         }
+        public static bool IsFirstCloserToMiddleThanSecond(GameObject first, GameObject second, Vector3 middlePosition, float middleAngle = 0)
+        {
+            float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, second.transform.position, middleAngle);
+            float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, first.transform.position, middleAngle);
+            //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
+            bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
+            return isCloserAngleWise;
+        }
+        public static bool IsFirstCloserThanSecond(Vector2 position, GameObject first, GameObject second)
+        {
+            return Distance(position, (Vector2)first.transform.position) < Distance(position, (Vector2)second.transform.position);
+        }
+        public static bool IsFirstCloserThanSecond(Vector2 position, Vector2 first, Vector2 second)
+        {
+            return Distance(position, first) < Distance(position, second);
+        }
+        #region Helper methods
+        private static float CountAngleFromMiddleToPosition(Vector3 middlePosition, Vector3 targetPosition, float middleAngle)
+        {
+            float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(middlePosition, targetPosition).eulerAngles.z;
+            float angleFromGunToItem = Mathf.DeltaAngle(middleAngle, angleFromZeroToItem);
+
+            return angleFromGunToItem;
+        }
+        #endregion
         public class Cone
         {
             public Cone(Vector2 coneOrigin, float direction, float leftAngle, float rightAngle, float range)

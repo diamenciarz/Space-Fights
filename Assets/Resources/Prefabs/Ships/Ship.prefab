@@ -368,8 +368,6 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 1}
   isAlwaysOn: 0
   hideDelay: 1
-  progressionBar: {fileID: 0}
-  barScript: {fileID: 0}
 --- !u!1 &1307999328733431840
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +504,7 @@ MonoBehaviour:
   rightMaxRotationLimit: 90
   visualDetectors:
   - {fileID: 8448464666150114285}
-  debugZoneOn: 1
+  debugZoneOn: 0
   debugZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
   DebugZoneTransform: {fileID: 6441913592164531681}
 --- !u!1 &2550649395205867984
@@ -580,8 +578,6 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 0}
   isAlwaysOn: 0
   hideDelay: 1
-  progressionBar: {fileID: 0}
-  barScript: {fileID: 0}
 --- !u!1 &3135078944746659301
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,22 +624,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  basicGunDirection: 0
+  deltaParentRotation: 0
   hasRotationLimits: 1
   leftMaxRotationLimit: 60
   rightMaxRotationLimit: 60
   range: 5
-  mouseRange: 5
+  mouseRange: 15
   refreshRate: 0.1
+  visualZoneOrigin: {fileID: 2228277450419226497}
   isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
   targetTypes: 020000000000000001000000
   shootingControllers:
   - {fileID: 863468948743332297}
-  visualZoneTransform: {fileID: 6441913592164531681}
-  currentTarget: {fileID: 0}
-  wasShootingZoneModified: 0
 --- !u!114 &1796129912916711290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,8 +655,83 @@ MonoBehaviour:
   isAlwaysOn: 0
   offsetAngle: 0
   hideDelay: 1
-  progressionCone: {fileID: 0}
-  barScript: {fileID: 0}
+--- !u!1 &4306293360209334544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2367281388257510846}
+  - component: {fileID: 8479307751680900301}
+  - component: {fileID: 7106775205535312378}
+  m_Layer: 7
+  m_Name: Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2367281388257510846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306293360209334544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.329, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6441913592834814976}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8479307751680900301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306293360209334544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0978a099a259e5f4b861071502b3381c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  deltaParentRotation: 180
+  hasRotationLimits: 1
+  leftMaxRotationLimit: 5
+  rightMaxRotationLimit: 5
+  range: 10
+  mouseRange: 10
+  refreshRate: 0.1
+  visualZoneOrigin: {fileID: 6441913592834814976}
+  isControlledByMouse: 0
+  isShootingZoneOn: 1
+  ignoreMouseCollisions: 1
+  targetTypes: 0200000000000000
+  shootingControllers:
+  - {fileID: 6441913592834814980}
+--- !u!114 &7106775205535312378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306293360209334544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c013a9b6f4cc345b732a2cf47ef55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cone: 0
+  coneDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  offsetAngle: 0
+  hideDelay: 1
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,23 +2185,24 @@ MonoBehaviour:
   controlledByPlayer: 1
   controlScheme: {fileID: 11400000, guid: 57ca10112f2c77c42a653c0b758874b2, type: 2}
   primaryAction:
-    key: 32
-    type: 14
+    key: 323
+    type: 10
     action: {fileID: 0}
     shootingControllers:
     - {fileID: 6441913592834814980}
     - {fileID: 6441913594127976653}
   secondaryAction:
     key: 304
-    type: 13
+    type: 11
     action: {fileID: 0}
     shootingControllers:
     - {fileID: 7551173842708764306}
   ternaryAction:
-    key: 0
-    type: 0
+    key: 32
+    type: 12
     action: {fileID: 0}
-    shootingControllers: []
+    shootingControllers:
+    - {fileID: 863468948743332297}
 --- !u!114 &5166552632043362251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,8 +2250,6 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 2}
   isAlwaysOn: 0
   hideDelay: 3
-  progressionBar: {fileID: 0}
-  barScript: {fileID: 0}
 --- !u!114 &-6443159064478190265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2238,6 +2306,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 6441913593890035338}
+  - {fileID: 2367281388257510846}
   m_Father: {fileID: 6441913594073557296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2451,8 +2520,6 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 0}
   isAlwaysOn: 0
   hideDelay: 1
-  progressionBar: {fileID: 0}
-  barScript: {fileID: 0}
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3291,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 6441913594105931014}
+  - {fileID: 846410328908534516}
   m_Father: {fileID: 6441913592222990132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3437,8 +3505,6 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 0}
   isAlwaysOn: 0
   hideDelay: 1
-  progressionBar: {fileID: 0}
-  barScript: {fileID: 0}
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3731,6 +3797,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6631297858082756871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846410328908534516}
+  - component: {fileID: 5251593060044086506}
+  - component: {fileID: 1402000334269419592}
+  m_Layer: 7
+  m_Name: Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &846410328908534516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631297858082756871}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.32900003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6441913594127976647}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5251593060044086506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631297858082756871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0978a099a259e5f4b861071502b3381c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  deltaParentRotation: 180
+  hasRotationLimits: 1
+  leftMaxRotationLimit: 5
+  rightMaxRotationLimit: 5
+  range: 10
+  mouseRange: 10
+  refreshRate: 0.1
+  visualZoneOrigin: {fileID: 6441913594127976647}
+  isControlledByMouse: 0
+  isShootingZoneOn: 1
+  ignoreMouseCollisions: 1
+  targetTypes: 0200000000000000
+  shootingControllers:
+  - {fileID: 6441913594127976653}
+--- !u!114 &1402000334269419592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631297858082756871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c013a9b6f4cc345b732a2cf47ef55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cone: 0
+  coneDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  offsetAngle: 0
+  hideDelay: 1
 --- !u!1 &6971968425779371095
 GameObject:
   m_ObjectHideFlags: 0

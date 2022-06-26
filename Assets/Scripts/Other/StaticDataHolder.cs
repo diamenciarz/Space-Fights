@@ -16,7 +16,8 @@ public static class StaticDataHolder
     {
         Obstacle,
         Projectile,
-        Entity
+        Entity,
+        MouseCursor
     }
     private static bool wasInstantiated = false;
 
@@ -267,7 +268,7 @@ public static class StaticDataHolder
                         currentNearestTarget = target;
                         continue;
                     }
-                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < Distance(positionVector, currentNearestTarget.transform.position);
+                    bool currentTargetIsCloser = IsFirstCloserThanSecond(positionVector, target, currentNearestTarget);
                     if (currentTargetIsCloser)
                     {
                         currentNearestTarget = target;
@@ -346,13 +347,22 @@ public static class StaticDataHolder
                 }
                 return currentClosestTarget;
             }
-            public static bool IsFirstCloserToMiddleThanSecond(GameObject first, GameObject second, Vector3 middlePosition, float middleAngle = 0)
+            public static GameObject GetClosestMouseCursor(Vector2 position)
             {
-                float zAngleFromMiddleToCurrentClosestEnemy = CountAngleFromMiddleToPosition(middlePosition, second.transform.position, middleAngle);
-                float zAngleFromMiddleToItem = CountAngleFromMiddleToPosition(middlePosition, first.transform.position, middleAngle);
-                //If the found target is closer to the middle (angle wise) than the current closest target, make is the closest target
-                bool isCloserAngleWise = Mathf.Abs(zAngleFromMiddleToCurrentClosestEnemy) > Mathf.Abs(zAngleFromMiddleToItem);
-                return isCloserAngleWise;
+                List<GameObject> mouseCursors = GetObjectList(ObjectTypes.MouseCursor);
+                GameObject currentClosest = null;
+                foreach (var item in mouseCursors)
+                {
+                    if (currentClosest == null)
+                    {
+                        currentClosest = item;
+                    }
+                    if (IsFirstCloserThanSecond(position, item, currentClosest))
+                    {
+                        currentClosest = item;
+                    }
+                }
+                return currentClosest;
             }
             public static List<GameObject> GetObjectList(ObjectTypes objectType)
             {
@@ -391,13 +401,6 @@ public static class StaticDataHolder
             private static void CreateList(ObjectTypes objectType)
             {
                 listDictionary.Add(objectType, new List<GameObject>());
-            }
-            private static float CountAngleFromMiddleToPosition(Vector3 middlePosition, Vector3 targetPosition, float middleAngle)
-            {
-                float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(middlePosition, targetPosition).eulerAngles.z;
-                float angleFromGunToItem = Mathf.DeltaAngle(middleAngle, angleFromZeroToItem);
-
-                return angleFromGunToItem;
             }
             #endregion
         }

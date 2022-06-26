@@ -134,6 +134,10 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     #endregion
 
     #region Accessor methods
+    public Transform GetFollowTransform()
+    {
+        return transform;
+    }
     public GameObject GetGameObject()
     {
         return gameObject;

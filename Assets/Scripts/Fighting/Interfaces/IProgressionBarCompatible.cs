@@ -6,4 +6,5 @@ public interface IProgressionBarCompatible
 {
     public abstract float GetBarRatio();
     public abstract GameObject GetGameObject();
+    public abstract Transform GetFollowTransform();
 }

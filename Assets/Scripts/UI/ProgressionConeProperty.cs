@@ -15,14 +15,14 @@ public class ProgressionConeProperty : MonoBehaviour, IProgressionCone
     private ProgressionBarController barScript;
 
 
-    public void CreateProgressionCone(GameObject parent, float radius, float ratio, float deltaRotationFromParent)
+    public void CreateProgressionCone(Transform parentTransform, float radius, float ratio, float deltaRotationFromParent)
     {
-        CreateProgressionCone(parent, radius, ratio);
+        CreateProgressionCone(parentTransform, radius, ratio);
         SetDeltaRotation(deltaRotationFromParent + offsetAngle);
     }
-    public void CreateProgressionCone(GameObject parent, float radius, float ratio)
+    public void CreateProgressionCone(Transform parentTransform, float radius, float ratio)
     {
-        CreateProgressionCone(parent, ratio);
+        CreateProgressionCone(parentTransform, ratio);
         SetBarSize(radius);
     }
     public void UpdateProgressionCone(float ratio)
@@ -46,11 +46,10 @@ public class ProgressionConeProperty : MonoBehaviour, IProgressionCone
     }
 
     #region Helper methods
-    private void CreateProgressionCone(GameObject parent, float ratio)
+    private void CreateProgressionCone(Transform parentTransform, float ratio)
     {
         GameObject barToInstantiate = EntityFactory.GetPrefab(cone);
-        Debug.Log("Parent: " + parent);
-        progressionCone = Instantiate(barToInstantiate, parent.transform.position, parent.transform.rotation);
+        progressionCone = Instantiate(barToInstantiate, parentTransform.position, parentTransform.rotation);
         progressionCone.transform.SetParent(StaticProgressionBarUpdater.UIParent.transform, true);
         SetBarScriptValues();
         UpdateProgressionCone(ratio);
