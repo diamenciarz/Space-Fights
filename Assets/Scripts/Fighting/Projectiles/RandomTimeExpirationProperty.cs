@@ -16,13 +16,12 @@ public class RandomTimeExpirationProperty : MonoBehaviour
         float expirationTime = Random.Range(minExpirationTime, maxExpirationTime);
         if (expirationTime >= 0)
         {
-            DestroyDelay(expirationTime);
+            StartCoroutine(DestroyDelay(expirationTime));
         }
     }
-    private async void DestroyDelay(float delay)
+    private IEnumerator DestroyDelay(float delay)
     {
-        int dealyInMiliseconds = (int)(1000 * delay);
-        await Task.Delay(dealyInMiliseconds);
+        yield return new WaitForSeconds(delay);
         DestroyObject();
     }
     #endregion

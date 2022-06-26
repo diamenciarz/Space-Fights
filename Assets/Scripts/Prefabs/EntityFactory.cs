@@ -10,7 +10,7 @@ public static class EntityFactory
     private static bool initialized = false;
     private static string projectilePath = "Prefabs/Projectiles";
     private static string entityPath = "Prefabs/Ships";
-    private static string obstaclePath = "Prefabs/Obstacles";
+    private static string obstaclePath = "Prefabs/Doodads";
     private static string UIPath = "Prefabs/UI";
 
     #region Initialization

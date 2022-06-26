@@ -22,8 +22,6 @@ public class MovementScheme : ScriptableObject
         PRIMARY_ACTION,
         SECONDARY_ACTION,
         TERNARY_ACTION,
-        SHIFT,
-        SPACE,
         ALWAYS_ACTIVE
     }
 

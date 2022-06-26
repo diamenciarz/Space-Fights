@@ -394,6 +394,8 @@ public static class HelperMethods
             Obstacles,
             Projectiles
         }
+
+        #region Can see directly
         /// <summary>
         /// Checks, if the target is visible from the specified position. The default layer names are "Actors", "Obstacles".
         /// </summary>
@@ -443,6 +445,8 @@ public static class HelperMethods
             bool somethingIsInTheWay = raycastHit2D;
             return !somethingIsInTheWay;
         }
+
+        #region Helper methods
         private static int GetLayerMask(LayerNames[] layers)
         {
             string[] names = new string[layers.Length];
@@ -471,6 +475,8 @@ public static class HelperMethods
         /// <param name="originalPos"></param>
         /// <param name="targetPosition"></param>
         /// <returns></returns>
+        #endregion
+
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition, string[] layerNames)
         {
             int obstacleLayerMask = LayerMask.GetMask(layerNames);
@@ -517,6 +523,47 @@ public static class HelperMethods
             }
             return false;
         }
+        #endregion
+
+        public static float EdgeDistance(GameObject from, GameObject to)
+        {
+            return EdgeDeltaPosition(from, to).magnitude;
+        }
+        public static Vector2 EdgeDeltaPosition(GameObject from, GameObject to)
+        {
+            Vector2 fromPosition = from.transform.position;
+            Vector2 toPosition = to.transform.position;
+            Vector2 deltaPosition = to.transform.position - from.transform.position;
+            int layerMask = from.layer + to.layer;
+            RaycastHit2D[] hits = Physics2D.RaycastAll(fromPosition, toPosition, deltaPosition.magnitude, layerMask);
+
+            return ExtractDeltaPosition(hits, from, to);
+        }
+        #region Helper methods
+        private static Vector2 ExtractDeltaPosition(RaycastHit2D[] hits, GameObject from, GameObject to)
+        {
+            if (hits == null)
+            {
+                return Vector2.zero;
+            }
+            Vector2 fromHitPosition = Vector2.zero;
+            Vector2 toHitPosition = Vector2.zero;
+            foreach (var hit in hits)
+            {
+                if (hit.collider.gameObject == from)
+                {
+                    fromHitPosition = hit.point;
+                    Debug.Log(from.name +" hit at: " + fromHitPosition);
+                }
+                if (hit.collider.gameObject == to)
+                {
+                    toHitPosition = hit.point;
+                    Debug.Log(to.name +" hit at: " + toHitPosition);
+                }
+            }
+            return toHitPosition - fromHitPosition;
+        }
+        #endregion
     }
     /// <summary>
     /// Type checks

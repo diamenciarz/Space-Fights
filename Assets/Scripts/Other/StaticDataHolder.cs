@@ -46,6 +46,10 @@ public static class StaticDataHolder
         }
         public static List<GameObject> SubtractAllies(List<GameObject> inputList, Team myTeam)
         {
+            if (inputList.Count == 0)
+            {
+                return inputList;
+            }
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
                 ITeamable teamable = inputList[i].GetComponent<ITeamable>();
@@ -61,6 +65,10 @@ public static class StaticDataHolder
         }
         public static List<GameObject> SubtractMeAndEnemies(List<GameObject> inputList, Team myTeam, GameObject gameObjectToIgnore)
         {
+            if (inputList.Count == 0)
+            {
+                return inputList;
+            }
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
                 ITeamable teamable = inputList[i].GetComponent<ITeamable>();
@@ -71,6 +79,7 @@ public static class StaticDataHolder
                 if (teamable.GetTeam().IsEnemy(myTeam))
                 {
                     inputList.Remove(inputList[i]);
+                    continue;
                 }
                 //Remove itself from ally list
                 if (inputList[i] == gameObjectToIgnore)
@@ -82,6 +91,10 @@ public static class StaticDataHolder
         }
         public static List<GameObject> SubtractNeutrals(List<GameObject> inputList, Team myTeam)
         {
+            if (inputList.Count == 0)
+            {
+                return inputList;
+            }
             for (int i = inputList.Count - 1; i >= 0; i--)
             {
                 ITeamable teamable = inputList[i].GetComponent<ITeamable>();
@@ -102,6 +115,10 @@ public static class StaticDataHolder
         }
         public static List<GameObject> DeleteObstacles(List<GameObject> list)
         {
+            if (list.Count == 0)
+            {
+                return list;
+            }
             for (int i = list.Count - 1; i >= 0; i--)
             {
                 if (HelperMethods.ObjectUtils.IsAnObstacle(list[i]))
@@ -386,6 +403,7 @@ public static class StaticDataHolder
                 }
                 return HelperMethods.ListUtils.CloneList(allObjectList);
             }
+            
             #region Helper methods
             public static void InstantiateAllLists()
             {

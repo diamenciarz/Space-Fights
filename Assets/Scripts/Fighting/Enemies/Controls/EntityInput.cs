@@ -17,29 +17,54 @@ public class EntityInput : MonoBehaviour
     private Rigidbody2D rb2D;
     private EntityMover entityMover;
     private ActionData actionData = new ActionData();
-    
+    private List<ActionTriplet> allActionTriplets = new List<ActionTriplet>();
+
     public class ActionData
     {
         public Rigidbody2D rigidbody2D;
         public EntityMover entityMover;
     }
+
+    #region Startup
     private void Start()
+    {
+        SetupStartingVariables();
+    }
+    private void SetupStartingVariables()
     {
         rb2D = GetComponent<Rigidbody2D>();
         entityMover = GetComponent<EntityMover>();
         actionData.entityMover = entityMover;
         actionData.rigidbody2D = rb2D;
+        SetupAllActionTriplets();
     }
+    private void SetupAllActionTriplets()
+    {
+        allActionTriplets.AddRange(controlScheme.controls);
+        allActionTriplets.Add(primaryAction);
+        allActionTriplets.Add(secondaryAction);
+        allActionTriplets.Add(ternaryAction);
+        RemoveNullActions();
+    }
+    private void RemoveNullActions()
+    {
+        for (int i = allActionTriplets.Count - 1; i >= 0; i--)
+        {
+            if (allActionTriplets[i] == null)
+            {
+                allActionTriplets.RemoveAt(i);
+            }
+        }
+    }
+    #endregion
 
+    #region Update
     private void FixedUpdate()
     {
-        foreach (ActionTriplet controls in controlScheme.controls)
+        foreach (ActionTriplet controls in allActionTriplets)
         {
             CheckIfKeyPressed(controls);
         }
-        CheckIfKeyPressed(primaryAction);
-        CheckIfKeyPressed(secondaryAction);
-        CheckIfKeyPressed(ternaryAction);
     }
 
     private void CheckIfKeyPressed(ActionTriplet actionTriplet)
@@ -56,15 +81,14 @@ public class EntityInput : MonoBehaviour
         bool isActionActive = actionTriplet.type == EntityInputs.ALWAYS_ACTIVE || Input.GetKey(actionTriplet.key);
         if (isActionActive)
         {
-            callAction(actionTriplet, true);
+            CallAction(actionTriplet, true);
         }
         else
         {
-            callAction(actionTriplet, false);
+            CallAction(actionTriplet, false);
         }
     }
-
-    private void callAction(ActionTriplet actionTriplet, bool isOn)
+    private void CallAction(ActionTriplet actionTriplet, bool isOn)
     {
         if (actionTriplet.action && isOn)
         {
@@ -77,4 +101,35 @@ public class EntityInput : MonoBehaviour
             controller.UpdateController(data);
         }
     }
+    #endregion
+
+    #region Mutator methods
+    public void TryCallAction(EntityInputs input, bool isOn)
+    {
+        ActionTriplet action = FindAction(input);
+        if (action != null)
+        {
+            CallAction(action, isOn);
+        }
+    }
+    private ActionTriplet FindAction(EntityInputs input)
+    {
+        try
+        {
+            foreach (ActionTriplet action in allActionTriplets)
+            {
+                if (action.type == input)
+                {
+                    return action;
+                }
+            }
+            return null;
+        }
+        catch (Exception)
+        {
+            Debug.LogError("Action was null!");
+            return null;
+        }
+    }
+    #endregion
 }
