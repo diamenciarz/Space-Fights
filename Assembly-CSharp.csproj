@@ -118,7 +118,8 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
-    <Compile Include="Assets\MouseCursorFollower.cs" />
+    <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\ExpirationProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

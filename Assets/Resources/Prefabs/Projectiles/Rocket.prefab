@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 7748659938827264479}
   - component: {fileID: -776891561322186458}
   - component: {fileID: 4526067873477398424}
+  - component: {fileID: -2278574442033234929}
   m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
@@ -379,7 +380,7 @@ MonoBehaviour:
   timeToExpire: 60
   targetTypes: 0200000000000000
   rocketEyeTransform: {fileID: 1070908890487506755}
-  targetGameObject: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &7748659938827264479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,9 +395,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  activateOn: 
   shot: {fileID: 11400000, guid: 8499d9b2b736f714098049b4d609c21d, type: 2}
   directionOffset: 0
   targetEnemies: 0
+  targetTypes: 
 --- !u!114 &-776891561322186458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,3 +426,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: 0
+--- !u!114 &-2278574442033234929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expirationTime: 60
+  expirationDistance: -1
+  doDestroyActions: 1

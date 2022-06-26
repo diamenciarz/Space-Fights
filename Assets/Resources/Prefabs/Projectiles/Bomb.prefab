@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1082129703195348843}
   - component: {fileID: -553088433232255719}
   - component: {fileID: 4451088827896640096}
+  - component: {fileID: -3896750044507230854}
   m_Layer: 8
   m_Name: Bomb
   m_TagString: Untagged
@@ -134,6 +135,7 @@ MonoBehaviour:
   - damageType: 1
     damage: 2
   startingSpeed: 6
+  addCreatorVelocity: 0
   isPiercing: 0
   destroyDelay: 30
   destroyDistance: -1
@@ -154,9 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  activateOn: 
   shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
   directionOffset: 0
   targetEnemies: 0
+  targetTypes: 
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +190,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15322113
+--- !u!114 &-3896750044507230854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expirationTime: 30
+  expirationDistance: -1
+  doDestroyActions: 1

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7700761372939823447}
   - component: {fileID: 3278521563504507919}
   - component: {fileID: 5534843798056116234}
+  - component: {fileID: -5391318588103268029}
   m_Layer: 8
   m_Name: Bouncy_Laser
   m_TagString: Untagged
@@ -182,6 +183,7 @@ MonoBehaviour:
   - damageType: 2
     damage: 4
   startingSpeed: 10
+  addCreatorVelocity: 0
   isPiercing: 0
   destroyDelay: 5
   destroyDistance: -1
@@ -201,3 +203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 01000000
+--- !u!114 &-5391318588103268029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expirationTime: 5
+  expirationDistance: -1
+  doDestroyActions: 1

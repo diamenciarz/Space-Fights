@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -553088433232255719}
   - component: {fileID: 5409658927449349606}
   - component: {fileID: -8346593562546245867}
+  - component: {fileID: -7255239622593922487}
   m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
@@ -131,6 +132,7 @@ MonoBehaviour:
   hurtsAllies: 0
   damageCategories: []
   startingSpeed: 8
+  addCreatorVelocity: 0
   isPiercing: 0
   destroyDelay: 3
   destroyDistance: -1
@@ -151,8 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  activateOn: 
   shot: {fileID: 11400000, guid: d43f87f347076604ea1f1f0cf8ce7518, type: 2}
+  directionOffset: 0
   targetEnemies: 0
+  targetTypes: 
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +199,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7255239622593922487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expirationTime: 30
+  expirationDistance: -1
+  doDestroyActions: 1

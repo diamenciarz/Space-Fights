@@ -7,12 +7,6 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     [Header("Piercing")]
     [SerializeField] bool isPiercing;
 
-    [Header("Timed destroy")]
-    [Tooltip("Destroy the bullet after it has existed for this long. -1 for infinity")]
-    [SerializeField] float destroyDelay = 5f;
-    [Tooltip("Destroy the bullet after it has travelled this much distance. -1 for infinity")]
-    [SerializeField] float destroyDistance = 1;
-
     [Header("Wall bouncing")]
     [Tooltip("Min angle from the collision's normal to reflect")]
     [SerializeField] float minAngleToReflect = 45;
@@ -21,78 +15,17 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     [Tooltip("How much time to add to the bullet's lifetime after a reflection")]
     [SerializeField] float timeAddedUponReflection = 2f;
 
-    private float destroyTime;
     private int reflections;
-    private bool timedDestroy = false;
-    private float MAX_DESTROY_DELAY = 100f;
 
     #region Startup
     protected override void Start()
     {
         base.Start();
         SetupStartingVariables();
-        if (timedDestroy)
-        {
-            StartCoroutine(CheckDestroyDelay());
-        }
     }
     private void SetupStartingVariables()
     {
         reflections = 0;
-        SetupDestroyTime();
-    }
-    #endregion
-
-    #region Destroy
-    private void SetupDestroyTime()
-    {
-        destroyTime = Time.time + CountDestroyDelay();
-    }
-    private float CountDestroyDelay()
-    {
-        float returnTime = MAX_DESTROY_DELAY;
-        //Sets the destroy delay to the lowest number
-        float distanceDelay = TranslateDistanceDelay();
-        if (distanceDelay < returnTime)
-        {
-            returnTime = distanceDelay;
-            timedDestroy = true;
-        }
-
-        float timeDelay = TranslateTimeDelay();
-        if (timeDelay < returnTime)
-        {
-            returnTime = timeDelay;
-            timedDestroy = true;
-        }
-        return returnTime;
-    }
-    private float TranslateDistanceDelay()
-    {
-        if (destroyDistance == -1)
-        {
-            return MAX_DESTROY_DELAY;
-        }
-        else
-        {
-            return destroyDistance / startingSpeed;
-        }
-    }
-    private float TranslateTimeDelay()
-    {
-        if (destroyDelay == -1)
-        {
-            return MAX_DESTROY_DELAY;
-        }
-        else
-        {
-            return destroyDelay;
-        }
-    }
-    private IEnumerator CheckDestroyDelay()
-    {
-        yield return new WaitUntil(() => destroyTime < Time.time);
-        DestroyObject();
     }
     #endregion
 
@@ -128,7 +61,6 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     private void HandleReflection()
     {
         reflections++;
-        destroyTime += timeAddedUponReflection;
     }
     private IEnumerator WaitAndUpdateRotation()
     {

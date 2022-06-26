@@ -10,7 +10,6 @@ public abstract class TriggerOnDeath : TeamUpdater
         HealthDepleted,
         InstantBreak
     }
-    public abstract void DoDestroyAction();
     public void CallDestroyAction(DestroyCause cause)
     {
         if (activateOn.Length == 0 || ListContains(cause))
@@ -18,6 +17,7 @@ public abstract class TriggerOnDeath : TeamUpdater
             DoDestroyAction();
         }
     }
+    protected abstract void DoDestroyAction();
     private bool ListContains(DestroyCause cause)
     {
         foreach (var reason in activateOn)

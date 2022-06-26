@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3278521563504507919}
   - component: {fileID: -1566152343811300086}
   - component: {fileID: 5411452294418001787}
+  - component: {fileID: -8765544198053044644}
   m_Layer: 8
   m_Name: Splitting_Bullet
   m_TagString: Untagged
@@ -181,6 +182,7 @@ MonoBehaviour:
   - damageType: 1
     damage: 6
   startingSpeed: 6
+  addCreatorVelocity: 0
   isPiercing: 0
   destroyDelay: 30
   destroyDistance: -1
@@ -201,9 +203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  activateOn: 
   shot: {fileID: 11400000, guid: 5d8f936e6e78a37429faa45340942c47, type: 2}
   directionOffset: 90
   targetEnemies: 0
+  targetTypes: 
 --- !u!114 &5411452294418001787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +221,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 01000000
+--- !u!114 &-8765544198053044644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expirationTime: 30
+  expirationDistance: -1
+  doDestroyActions: 1

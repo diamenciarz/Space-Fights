@@ -13,7 +13,7 @@ public class ShootOnDeath : TriggerOnDeath
     private bool isDestroyed;
 
     #region OnDestroy
-    public override void DoDestroyAction()
+    protected override void DoDestroyAction()
     {
         if (!isDestroyed)
         {
