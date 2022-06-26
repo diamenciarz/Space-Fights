@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ActionController;
 using static HelperMethods.LineOfSightUtils;
 using static HelperMethods.VectorUtils;
 using static StaticDataHolder.ListContents;
@@ -31,7 +32,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
 
     [Header("Instances")]
-    [SerializeField] ShootingController[] shootingControllers;
+    [SerializeField] ActionController[] actionControllers;
     #endregion
 
     private GameObject currentTarget;
@@ -83,11 +84,17 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     }
     private void UpdateShootingControllers(bool shoot)
     {
-        foreach (var item in shootingControllers)
+        ActionControllerData data = GetControllerData(shoot);
+        foreach (var item in actionControllers)
         {
-            item.SetShoot(shoot);
-            item.SetTarget(currentTarget);
+            item.UpdateController(data);
         }
+    }
+    private ActionControllerData GetControllerData(bool shoot)
+    {
+        ActionControllerData data = new ActionControllerData(shoot);
+        data.target = currentTarget;
+        return data;
     }
     #endregion
 

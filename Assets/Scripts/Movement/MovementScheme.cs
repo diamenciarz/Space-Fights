@@ -33,6 +33,6 @@ public class MovementScheme : ScriptableObject
         public KeyCode key;
         public EntityInputs type;
         public ShipAction action;
-        public List<ShootingController> shootingControllers;
+        public List<ActionController> actionControllers;
     }
 }

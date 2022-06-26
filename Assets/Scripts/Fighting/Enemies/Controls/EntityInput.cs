@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static ActionController;
 using static MovementScheme;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -70,9 +71,10 @@ public class EntityInput : MonoBehaviour
             actionTriplet.action.callAction(actionData);
         }
 
-        foreach (ShootingController controller in actionTriplet.shootingControllers)
+        ActionControllerData data = new ActionControllerData(isOn);
+        foreach (ActionController controller in actionTriplet.actionControllers)
         {
-            controller.SetShoot(isOn);
+            controller.UpdateController(data);
         }
     }
 }

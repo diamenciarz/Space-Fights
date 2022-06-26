@@ -13,7 +13,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     [Tooltip("-1 for infinite bounces")]
     [SerializeField] int maxReflectionNumber = 3;
     [Tooltip("How much time to add to the bullet's lifetime after a reflection")]
-    [SerializeField] float timeAddedUponReflection = 2f;
+    //[SerializeField] float timeAddedUponReflection = 2f;
 
     private int reflections;
 

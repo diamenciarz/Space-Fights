@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StaticDataHolder;
 
 public class ShipController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] List<ObjectTypes> chaseObjects;
+    [SerializeField] List<ObjectTypes> avoidObjects;
+
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

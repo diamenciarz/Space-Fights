@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 7551173842708764306}
   - component: {fileID: 4803716611508904443}
   m_Layer: 7
-  m_Name: Gun (1)
+  m_Name: FrontMiddleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 863468948743332297}
   - component: {fileID: 7398243765704990038}
   m_Layer: 7
-  m_Name: Gun
+  m_Name: BackGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
   targetTypes: 020000000000000001000000
-  shootingControllers:
+  actionControllers:
   - {fileID: 863468948743332297}
 --- !u!114 &1796129912916711290
 MonoBehaviour:
@@ -713,7 +713,7 @@ MonoBehaviour:
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
   targetTypes: 0200000000000000
-  shootingControllers:
+  actionControllers:
   - {fileID: 6441913592834814980}
 --- !u!114 &7106775205535312378
 MonoBehaviour:
@@ -2188,20 +2188,20 @@ MonoBehaviour:
     key: 323
     type: 10
     action: {fileID: 0}
-    shootingControllers:
+    actionControllers:
     - {fileID: 6441913592834814980}
     - {fileID: 6441913594127976653}
   secondaryAction:
     key: 304
     type: 11
     action: {fileID: 0}
-    shootingControllers:
+    actionControllers:
     - {fileID: 7551173842708764306}
   ternaryAction:
     key: 32
     type: 12
     action: {fileID: 0}
-    shootingControllers:
+    actionControllers:
     - {fileID: 863468948743332297}
 --- !u!114 &5166552632043362251
 MonoBehaviour:
@@ -3855,7 +3855,7 @@ MonoBehaviour:
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
   targetTypes: 0200000000000000
-  shootingControllers:
+  actionControllers:
   - {fileID: 6441913594127976653}
 --- !u!114 &1402000334269419592
 MonoBehaviour:

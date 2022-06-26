@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\ExpirationProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActionController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

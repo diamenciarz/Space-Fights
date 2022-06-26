@@ -15,6 +15,7 @@ public static class StaticDataHolder
     public enum ObjectTypes
     {
         Obstacle,
+        Doodad,
         Projectile,
         Entity,
         MouseCursor
@@ -356,6 +357,7 @@ public static class StaticDataHolder
                     if (currentClosest == null)
                     {
                         currentClosest = item;
+                        continue;
                     }
                     if (IsFirstCloserThanSecond(position, item, currentClosest))
                     {

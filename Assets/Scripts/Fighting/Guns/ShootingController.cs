@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ActionController;
 using static HelperMethods;
 using static HelperMethods.LineOfSightUtils;
 
-public class ShootingController : TeamUpdater, IProgressionBarCompatible
+public class ShootingController : ActionController, IProgressionBarCompatible
 {
     [Header("Instances")]
     [SerializeField] SalvoScriptableObject salvo;
@@ -281,6 +282,11 @@ public class ShootingController : TeamUpdater, IProgressionBarCompatible
     #endregion
 
     #region Mutator methods
+    public override void UpdateController(ActionControllerData data)
+    {
+        SetShoot(data.isOn);
+        SetTarget(data.target);
+    }
     public void SetTarget(GameObject newTarget)
     {
         cameraTarget = newTarget;
