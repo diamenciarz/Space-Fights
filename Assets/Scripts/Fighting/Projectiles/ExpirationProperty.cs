@@ -33,8 +33,11 @@ public class ExpirationProperty : MonoBehaviour
     #region Distance
     private void Update()
     {
-        UpdateDistance();
-        CheckDistance();
+        if (expirationDistance >= 0)
+        {
+            UpdateDistance();
+            CheckDistance();
+        }
     }
     private void UpdateDistance()
     {

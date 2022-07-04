@@ -378,7 +378,7 @@ MonoBehaviour:
   speedChangeRatePerSecond: 5
   rocketRotationSpeed: 80
   timeToExpire: 60
-  targetTypes: 0200000000000000
+  targetTypes: 020000000300000001000000
   rocketEyeTransform: {fileID: 1070908890487506755}
   target: {fileID: 0}
 --- !u!114 &7748659938827264479

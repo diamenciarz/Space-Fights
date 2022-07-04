@@ -29,14 +29,17 @@ public class ShipController : TeamUpdater
         Vector2 proximityVector = Vector2.zero;
         List<GameObject> chaseObjects = ListContents.Enemies.GetEnemyList(team);
         List<GameObject> avoidObjects = GetObjectsToAvoid();
-        Debug.Log("Avoid: " + avoidObjects.Count + " chase: " + chaseObjects.Count);
         foreach (var item in chaseObjects)
         {
-            proximityVector += HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            proximityVector += deltaPositionToItem * multiplier;
         }
         foreach (var item in avoidObjects)
         {
-            proximityVector -= HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            proximityVector -= deltaPositionToItem * multiplier;
         }
 
         return proximityVector.normalized;

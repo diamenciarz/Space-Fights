@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!254 &8530353260921314641
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -500,8 +500,8 @@ MonoBehaviour:
   basicGunDirection: 180
   gunRotationSpeed: 120
   hasRotationLimits: 0
-  leftMaxRotationLimit: 90
-  rightMaxRotationLimit: 90
+  leftMaxRotationLimit: 60
+  rightMaxRotationLimit: 60
   visualDetectors:
   - {fileID: 8448464666150114285}
   debugZoneOn: 0
@@ -635,7 +635,7 @@ MonoBehaviour:
   isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
-  targetTypes: 020000000000000001000000
+  targetTypes: 020000000300000001000000
   actionControllers:
   - {fileID: 863468948743332297}
 --- !u!114 &1796129912916711290
@@ -712,7 +712,7 @@ MonoBehaviour:
   isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
-  targetTypes: 0200000000000000
+  targetTypes: 020000000300000001000000
   actionControllers:
   - {fileID: 6441913592834814980}
 --- !u!114 &7106775205535312378
@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!1 &5240635708381860907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!254 &1231799642429314598
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -1443,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &4459400678555094893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &3841279664770106543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &7796459174614336819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,7 +2082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &8026648952637378061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,6 +2112,7 @@ GameObject:
   - component: {fileID: -4586166943237408770}
   - component: {fileID: 2488323260018361336}
   - component: {fileID: -6443159064478190265}
+  - component: {fileID: 4590534427023860326}
   m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
@@ -2146,8 +2147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06276e58a5afe60438a9da8af67f7d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseObjects: 
-  avoidObjects: 
+  team:
+    teamInstance: 0
 --- !u!114 &6441913592538751777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2230,7 +2231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 03000000
   unchangeableTeam: 0
   team:
     teamInstance: 0
@@ -2284,6 +2285,22 @@ MonoBehaviour:
   directionOffset: 0
   targetEnemies: 0
   targetTypes: 
+--- !u!58 &4590534427023860326
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &6441913592834815039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &9061659452382011625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2731,7 +2748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &6587909483155747334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2944,7 +2961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &9029741089157854403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,7 +3243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &3886860846784145867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,7 +3508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &3374443023517916694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3716,7 +3733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 01000000
 --- !u!114 &5063551696868088704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3869,7 +3886,7 @@ MonoBehaviour:
   isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 1
-  targetTypes: 0200000000000000
+  targetTypes: 020000000300000001000000
   actionControllers:
   - {fileID: 6441913594127976653}
 --- !u!114 &1402000334269419592

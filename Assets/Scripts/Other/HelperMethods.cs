@@ -404,8 +404,7 @@ public static class HelperMethods
         /// <returns></returns>
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target)
         {
-            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
-            return CanSeeDirectly(originalPos, target, layers);
+            return CanSeeDirectly(originalPos, target, GetDefaultLayerMask());
         }
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target, LayerNames[] layers)
         {
@@ -433,20 +432,24 @@ public static class HelperMethods
         /// <returns></returns>
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition)
         {
-            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
-            return CanSeeDirectly(originalPos, targetPosition, layers);
+            return CanSeeDirectly(originalPos, targetPosition, GetDefaultLayerMask());
         }
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition, LayerNames[] layers)
         {
             Vector2 direction = targetPosition - originalPos;
             //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
-            bool somethingIsInTheWay = raycastHit2D;
-            return !somethingIsInTheWay;
+            RaycastHit2D raycastHit2DNoProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
+
+            return !raycastHit2DNoProjectiles;
         }
 
         #region Helper methods
+        private static LayerNames[] GetDefaultLayerMask()
+        {
+            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
+            return layers;
+        }
         private static int GetLayerMask(LayerNames[] layers)
         {
             string[] names = new string[layers.Length];
@@ -525,6 +528,7 @@ public static class HelperMethods
         }
         #endregion
 
+        #region Edge distance
         public static float EdgeDistance(GameObject from, GameObject to)
         {
             return EdgeDeltaPosition(from, to).magnitude;
@@ -534,33 +538,49 @@ public static class HelperMethods
             Vector2 fromPosition = from.transform.position;
             Vector2 toPosition = to.transform.position;
             Vector2 deltaPosition = to.transform.position - from.transform.position;
-            int layerMask = from.layer + to.layer;
-            RaycastHit2D[] hits = Physics2D.RaycastAll(fromPosition, toPosition, deltaPosition.magnitude, layerMask);
 
-            return ExtractDeltaPosition(hits, from, to);
+            RaycastHit2D[] toHits = Physics2D.RaycastAll(fromPosition, toPosition, deltaPosition.magnitude, CalculateLayerMask(to));
+            RaycastHit2D[] fromHits = Physics2D.RaycastAll(toPosition, fromPosition, deltaPosition.magnitude, CalculateLayerMask(from));
+            return ExtractDeltaPosition(fromHits, toHits, from, to);
         }
+        #endregion
+
         #region Helper methods
-        private static Vector2 ExtractDeltaPosition(RaycastHit2D[] hits, GameObject from, GameObject to)
+        private static int CalculateLayerMask(GameObject layerObject)
         {
-            if (hits == null)
+            return 1 << layerObject.layer;
+        }
+        private static Vector2 ExtractDeltaPosition(RaycastHit2D[] fromHits, RaycastHit2D[] toHits, GameObject from, GameObject to)
+        {
+            if (fromHits == null || toHits == null)
             {
                 return Vector2.zero;
             }
             Vector2 fromHitPosition = Vector2.zero;
             Vector2 toHitPosition = Vector2.zero;
-            foreach (var hit in hits)
+            foreach (var hit in fromHits)
             {
                 if (hit.collider.gameObject == from)
                 {
                     fromHitPosition = hit.point;
-                    Debug.Log(from.name +" hit at: " + fromHitPosition);
+                    break;
                 }
+            }
+            foreach (var hit in toHits)
+            {
                 if (hit.collider.gameObject == to)
                 {
                     toHitPosition = hit.point;
-                    Debug.Log(to.name +" hit at: " + toHitPosition);
+                    break;
                 }
             }
+            if (fromHitPosition == Vector2.zero || toHitPosition == Vector2.zero)
+            {
+                return Vector2.zero;
+            }
+            Debug.Log(to.name + " hit at: " + toHitPosition + " out of: " + toHits.Length);
+            Debug.Log(from.name + " hit at: " + fromHitPosition + " out of: " + fromHits.Length);
+            Debug.DrawRay(fromHitPosition, toHitPosition - fromHitPosition, Color.red, 0.1f);
             return toHitPosition - fromHitPosition;
         }
         #endregion
@@ -641,7 +661,7 @@ public static class HelperMethods
             List<LayerNames> layers = new List<LayerNames>();
             foreach (var type in targetTypes)
             {
-                if (type == StaticDataHolder.ObjectTypes.Entity)
+                if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Doodad)
                 {
                     layers.Add(LayerNames.Actors);
                 }
