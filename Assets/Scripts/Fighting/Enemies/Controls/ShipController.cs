@@ -18,7 +18,7 @@ public class ShipController : TeamUpdater
     void Update()
     {
         Vector2 movementVector = CalculateMovementVector();
-        Debug.Log("Movement vector: " + movementVector);
+        Debug.DrawRay(transform.position, (Vector2)transform.position + movementVector, Color.blue, 0.1f);
         EntityInputs[] callActions = CalculateActionsToCall(movementVector);
         CallInputActions(callActions);
     }
@@ -32,14 +32,16 @@ public class ShipController : TeamUpdater
         foreach (var item in chaseObjects)
         {
             Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            Debug.DrawRay(transform.position, (Vector2)transform.position + deltaPositionToItem, Color.red, 0.05f);
             float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
-            proximityVector += deltaPositionToItem * multiplier;
+            proximityVector += deltaPositionToItem.normalized * multiplier;
         }
         foreach (var item in avoidObjects)
         {
             Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+            Debug.DrawRay(transform.position, (Vector2)transform.position + deltaPositionToItem, Color.red, 0.05f);
             float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
-            proximityVector -= deltaPositionToItem * multiplier;
+            proximityVector -= deltaPositionToItem.normalized * multiplier;
         }
 
         return proximityVector.normalized;
@@ -47,8 +49,30 @@ public class ShipController : TeamUpdater
     private List<GameObject> GetObjectsToAvoid()
     {
         List<GameObject> avoidObjects = ListContents.Allies.GetAllyList(team, gameObject);
+        RemoveMyParts(avoidObjects);
         avoidObjects.AddRange(ListContents.Generic.GetObjectList(ObjectTypes.Obstacle));
         return avoidObjects;
+    }
+    private void RemoveMyParts(List<GameObject> avoidObjects)
+    {
+        for (int i = avoidObjects.Count - 1; i >= 0; i--)
+        {
+            if (IsMyPart(avoidObjects[i]))
+            {
+                avoidObjects.RemoveAt(i);
+            }
+        }
+    }
+    private bool IsMyPart(GameObject part)
+    {
+        IParent partParent = part.GetComponentInParent<IParent>();
+        IParent myParent = gameObject.GetComponentInParent<IParent>();
+
+        if (partParent == null || myParent == null)
+        {
+            return false;
+        }
+        return partParent.GetGameObject() == myParent.GetGameObject();
     }
     #endregion
 

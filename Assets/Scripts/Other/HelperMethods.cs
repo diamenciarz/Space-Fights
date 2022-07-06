@@ -537,51 +537,13 @@ public static class HelperMethods
         {
             Vector2 fromPosition = from.transform.position;
             Vector2 toPosition = to.transform.position;
-            Vector2 deltaPosition = to.transform.position - from.transform.position;
 
-            RaycastHit2D[] toHits = Physics2D.RaycastAll(fromPosition, toPosition, deltaPosition.magnitude, CalculateLayerMask(to));
-            RaycastHit2D[] fromHits = Physics2D.RaycastAll(toPosition, fromPosition, deltaPosition.magnitude, CalculateLayerMask(from));
-            return ExtractDeltaPosition(fromHits, toHits, from, to);
-        }
-        #endregion
+            Collider2D toCollider = to.GetComponent<Collider2D>();
+            Collider2D fromCollider = from.GetComponent<Collider2D>();
+            Vector2 closestFromPoint = toCollider.ClosestPoint(fromPosition);
+            Vector2 closestToPoint = fromCollider.ClosestPoint(toPosition);
 
-        #region Helper methods
-        private static int CalculateLayerMask(GameObject layerObject)
-        {
-            return 1 << layerObject.layer;
-        }
-        private static Vector2 ExtractDeltaPosition(RaycastHit2D[] fromHits, RaycastHit2D[] toHits, GameObject from, GameObject to)
-        {
-            if (fromHits == null || toHits == null)
-            {
-                return Vector2.zero;
-            }
-            Vector2 fromHitPosition = Vector2.zero;
-            Vector2 toHitPosition = Vector2.zero;
-            foreach (var hit in fromHits)
-            {
-                if (hit.collider.gameObject == from)
-                {
-                    fromHitPosition = hit.point;
-                    break;
-                }
-            }
-            foreach (var hit in toHits)
-            {
-                if (hit.collider.gameObject == to)
-                {
-                    toHitPosition = hit.point;
-                    break;
-                }
-            }
-            if (fromHitPosition == Vector2.zero || toHitPosition == Vector2.zero)
-            {
-                return Vector2.zero;
-            }
-            Debug.Log(to.name + " hit at: " + toHitPosition + " out of: " + toHits.Length);
-            Debug.Log(from.name + " hit at: " + fromHitPosition + " out of: " + fromHits.Length);
-            Debug.DrawRay(fromHitPosition, toHitPosition - fromHitPosition, Color.red, 0.1f);
-            return toHitPosition - fromHitPosition;
+            return closestFromPoint - closestToPoint;
         }
         #endregion
     }
