@@ -24,7 +24,7 @@ public class ConstantMoveAction : MoveAction
     }
     private float CalculateForceMultiplier(ActionData actionData, Vector2 appliedForce)
     {
-        Vector2 forceInWorldspace = CalculateAppliedForce(actionData,appliedForce);
+        Vector2 forceInWorldspace = CalculateAppliedForce(actionData, appliedForce);
         Vector2 velocityInForceDirection = HelperMethods.VectorUtils.ProjectVector(actionData.rigidbody2D.velocity, forceInWorldspace);
         float dot = Vector2.Dot(actionData.rigidbody2D.velocity, forceInWorldspace);
 

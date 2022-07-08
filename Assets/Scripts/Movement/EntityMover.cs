@@ -130,5 +130,9 @@ public class EntityMover : MonoBehaviour, IEntityMover
     {
         return maxTurningSpeed;
     }
+    public float GetDirectionAngle()
+    {
+        return directionAngle;
+    }
     #endregion
 }

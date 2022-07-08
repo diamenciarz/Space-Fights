@@ -210,7 +210,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
         LayerNames[] layers = ObjectUtils.GetLayers(targetTypes);
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSight(potentialTargets, shootingPoint.position, layers);
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, shootingPoint.position, GetForwardGunRotation().eulerAngles.z, layers);
     }
     private Quaternion GetForwardGunRotation()
     {

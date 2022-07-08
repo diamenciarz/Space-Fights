@@ -207,6 +207,16 @@ public static class HelperMethods
         {
             return Distance(position, first) < Distance(position, second);
         }
+        /// <summary>
+        /// Rotate vector by angle in degrees clockwise
+        /// </summary>
+        public static Vector2 RotateVector(Vector3 vector, float angle)
+        {
+            float angleInRadians = -angle * Mathf.Deg2Rad;
+            float newX = (vector.x * Mathf.Cos(angleInRadians)) + (vector.y * Mathf.Sin(angleInRadians));
+            float newY = (vector.x * Mathf.Sin(angleInRadians)) + (vector.y * Mathf.Cos(angleInRadians));
+            return new Vector2(newX, newY);
+        }
         #region Helper methods
         private static float CountAngleFromMiddleToPosition(Vector3 middlePosition, Vector3 targetPosition, float middleAngle)
         {
@@ -612,7 +622,7 @@ public static class HelperMethods
                     if (fileName == name)
                     {
                         string filePath = path + fileName + fileExtension;
-                        return AssetDatabase.LoadMainAssetAtPath(filePath) as GameObject;
+                        return UnityEditor.AssetDatabase.LoadMainAssetAtPath(filePath) as GameObject;
                     }
                 }
             }

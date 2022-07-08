@@ -7,20 +7,56 @@ using static StaticDataHolder;
 [RequireComponent(typeof(EntityInput))]
 public class ShipController : TeamUpdater
 {
-    private EntityInput entityInput;
+    [SerializeField] float chaseRange;
+    [SerializeField] float avoidRange;
+    [SerializeField] bool isForceGlobal;
 
+    private EntityInput entityInput;
+    private Rigidbody2D rb2D;
+
+    #region Startup
     void Start()
     {
         entityInput = GetComponent<EntityInput>();
+        rb2D = GetComponent<Rigidbody2D>();
+        fixRange();
     }
+    private void fixRange()
+    {
+        if (chaseRange < avoidRange)
+        {
+            chaseRange = avoidRange;
+        }
+    }
+    #endregion
 
     #region Update
     void Update()
     {
         Vector2 movementVector = CalculateMovementVector();
-        Debug.DrawRay(transform.position, (Vector2)transform.position + movementVector, Color.blue, 0.1f);
-        EntityInputs[] callActions = CalculateActionsToCall(movementVector);
+        Debug.DrawRay(transform.position, movementVector, Color.blue, 0.1f);
+        EntityInputs[] callActions = CalculateActionsToCall(TranslateMovementVector(movementVector));
         CallInputActions(callActions);
+    }
+    private Vector2 TranslateMovementVector(Vector2 globalForce)
+    {
+        if (isForceGlobal)
+        {
+            return globalForce;
+        }
+        else
+        {
+            return TranslateToLocalForce(globalForce);
+        }
+    }
+    private Vector2 TranslateToLocalForce(Vector2 globalForce)
+    {
+        float entityGlobalAngle = rb2D.gameObject.transform.rotation.eulerAngles.z;
+        Vector2 rotatedVector = HelperMethods.VectorUtils.RotateVector(globalForce, entityGlobalAngle);
+        Debug.Log("Rotate by angle: " + entityGlobalAngle);
+        Debug.DrawRay(transform.position, rotatedVector, Color.green, 0.1f);
+
+        return rotatedVector;
     }
 
     #region Movement vector
@@ -29,22 +65,69 @@ public class ShipController : TeamUpdater
         Vector2 proximityVector = Vector2.zero;
         List<GameObject> chaseObjects = ListContents.Enemies.GetEnemyList(team);
         List<GameObject> avoidObjects = GetObjectsToAvoid();
+
         foreach (var item in chaseObjects)
         {
-            Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
-            Debug.DrawRay(transform.position, (Vector2)transform.position + deltaPositionToItem, Color.red, 0.05f);
-            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
-            proximityVector += deltaPositionToItem.normalized * multiplier;
+            Vector2 deltaPositionToItem = countDeltaPositionToItem(item);
+            if (!IsInChaseRange(deltaPositionToItem))
+            {
+                continue;
+            }
+
+            proximityVector += HandleChaseObject(deltaPositionToItem);
         }
         foreach (var item in avoidObjects)
         {
             Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
-            Debug.DrawRay(transform.position, (Vector2)transform.position + deltaPositionToItem, Color.red, 0.05f);
-            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
-            proximityVector -= deltaPositionToItem.normalized * multiplier;
-        }
+            bool isInChaseRange = deltaPositionToItem.magnitude < chaseRange;
+            if (!IsInChaseRange(deltaPositionToItem))
+            {
+                continue;
+            }
 
+            proximityVector += HandleAvoidObject(deltaPositionToItem);
+        }
         return proximityVector.normalized;
+    }
+    private Vector2 countDeltaPositionToItem(GameObject item)
+    {
+        return HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
+    }
+    private bool IsInChaseRange(Vector2 deltaPositionToItem)
+    {
+        return deltaPositionToItem.magnitude < chaseRange;
+
+    }
+    private Vector2 HandleChaseObject(Vector2 deltaPositionToItem)
+    {
+        float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+        bool isInAvoidRange = deltaPositionToItem.magnitude < avoidRange;
+        if (!isInAvoidRange)
+        {
+            Debug.DrawRay(transform.position, deltaPositionToItem, Color.red, 0.05f);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.yellow, 0.05f);
+            multiplier *= -1;
+        }
+        return deltaPositionToItem.normalized * multiplier;
+    }
+    private Vector2 HandleAvoidObject(Vector2 deltaPositionToItem)
+    {
+        float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+        bool isInAvoidRange = deltaPositionToItem.magnitude < avoidRange;
+        if (!isInAvoidRange)
+        {
+            //Debug.DrawRay(transform.position, deltaPositionToItem, Color.red, 0.05f);
+            multiplier = 0;
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.yellow, 0.05f);
+            multiplier *= -1;
+        }
+        return deltaPositionToItem.normalized * multiplier;
     }
     private List<GameObject> GetObjectsToAvoid()
     {
