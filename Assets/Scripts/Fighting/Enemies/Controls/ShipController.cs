@@ -68,7 +68,7 @@ public class ShipController : TeamUpdater
 
         foreach (var item in chaseObjects)
         {
-            Vector2 deltaPositionToItem = countDeltaPositionToItem(item);
+            Vector2 deltaPositionToItem = CountDeltaPositionToItem(item);
             if (!IsInChaseRange(deltaPositionToItem))
             {
                 continue;
@@ -89,7 +89,7 @@ public class ShipController : TeamUpdater
         }
         return proximityVector.normalized;
     }
-    private Vector2 countDeltaPositionToItem(GameObject item)
+    private Vector2 CountDeltaPositionToItem(GameObject item)
     {
         return HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
     }

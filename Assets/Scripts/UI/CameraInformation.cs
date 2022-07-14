@@ -55,11 +55,9 @@ public class CameraInformation : MonoBehaviour
         return IsPositionOnScreen(position, 0);
     }
     /// <summary>
-    /// 
-    /// </summary>
     /// <param name="position"></param>
     /// <param name="offsetToCenter">The distance from the edge of the screen that is considered to be outside</param>
-    /// <returns></returns>
+    /// </summary>
     public static bool IsPositionOnScreen(Vector2 position, float offsetToCenter)
     {
         return IsPositionOnScreen(position, offsetToCenter, offsetToCenter, offsetToCenter, offsetToCenter);

@@ -140,22 +140,22 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     }
     private ActionTriplet FindAction(EntityInputs input)
     {
-        try
+        //try
+        //{
+        foreach (ActionTriplet action in allActionTriplets)
         {
-            foreach (ActionTriplet action in allActionTriplets)
+            if (action.type == input)
             {
-                if (action.type == input)
-                {
-                    return action;
-                }
+                return action;
             }
-            return null;
         }
+        return null;
+        /*}
         catch (Exception)
         {
             Debug.LogError("Action was null!");
             return null;
-        }
+        }*/
     }
     #endregion
 
@@ -163,20 +163,13 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     public bool IsOn(EntityInputs input)
     {
         ActionTriplet actionTriplet = FindAction(input);
-        Debug.Log(actionTriplet.key.ToString() + " checking");
         if (IsManualInputOff(actionTriplet))
         {
             return false;
         }
 
-        bool isOn = IsActionActive(actionTriplet);
-        if (isOn)
-        {
-            Debug.Log(input.ToString() + " is active");
-        }
-        return isOn;
+        return IsActionActive(actionTriplet);
     }
-
     public ActionControllerData GetData()
     {
         return new ActionControllerData();
