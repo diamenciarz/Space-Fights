@@ -74,7 +74,18 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     protected virtual void Update()
     {
         CheckTimeBank();
+        UpdateController();
         TryShoot();
+    }
+    private void UpdateController()
+    {
+        bool isOn = IsControllerOn();
+        SetShoot(isOn);
+
+        if (isOn)
+        {
+            SetTarget(GetActionControllerData().target);
+        }
     }
     private void TryShoot()
     {
@@ -282,11 +293,6 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     #endregion
 
     #region Mutator methods
-    public override void UpdateController(ActionControllerData data)
-    {
-        SetShoot(data.isOn);
-        SetTarget(data.target);
-    }
     public void SetTarget(GameObject newTarget)
     {
         cameraTarget = newTarget;

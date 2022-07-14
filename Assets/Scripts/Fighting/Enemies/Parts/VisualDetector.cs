@@ -6,7 +6,7 @@ using static HelperMethods.LineOfSightUtils;
 using static HelperMethods.VectorUtils;
 using static StaticDataHolder.ListContents;
 
-public class VisualDetector : TeamUpdater, IProgressionBarCompatible
+public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionControllerCaller
 {
     #region Serialization
     [Tooltip("Delta angle from the middle of parent's rotation")]
@@ -45,11 +45,19 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
     void Start()
     {
         SetStartingVariables();
+        AddToListeners();
         checkCoroutine = StartCoroutine(VisualCheckCoroutine());
     }
     private void SetStartingVariables()
     {
         TryCreateUI();
+    }
+    private void AddToListeners()
+    {
+        foreach (ActionController controller in actionControllers)
+        {
+            controller.AddActionCaller(this);
+        }
     }
     #endregion
 
@@ -66,35 +74,13 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
             yield return new WaitForSeconds(refreshRate);
             UpdateCurrentTarget();
             CheckForAnyTargetInSight();
-            SetShooting();
         }
     }
 
     #region Shooting behaviour
-    private void SetShooting()
+    private ActionControllerData GetControllerData()
     {
-        if (isTargetInSight)
-        {
-            UpdateShootingControllers(true);
-        }
-        else
-        {
-            UpdateShootingControllers(false);
-        }
-    }
-    private void UpdateShootingControllers(bool shoot)
-    {
-        ActionControllerData data = GetControllerData(shoot);
-        foreach (var item in actionControllers)
-        {
-            item.UpdateController(data);
-        }
-    }
-    private ActionControllerData GetControllerData(bool shoot)
-    {
-        ActionControllerData data = new ActionControllerData(shoot);
-        data.target = currentTarget;
-        return data;
+        return new ActionControllerData(currentTarget);
     }
     #endregion
 
@@ -329,6 +315,15 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible
             }
             return range;
         }
+    }
+    public bool IsOn(MovementScheme.EntityInputs input)
+    {
+        return CanSeeTargets();
+    }
+
+    public ActionControllerData GetData()
+    {
+        return GetControllerData();
     }
     #endregion
 

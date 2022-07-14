@@ -2,9 +2,9 @@ using static EntityInput;
 
 public abstract class ActiveAction : ShipAction
 {
-    public abstract void applyAction(ActionData actionData);
-    public override void callAction(ActionData actionData)
+    public abstract void ApplyAction(ActionData actionData);
+    public override void CallAction(ActionData actionData)
     {
-        applyAction(actionData);
+        ApplyAction(actionData);
     }
 }

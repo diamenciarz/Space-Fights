@@ -53,7 +53,7 @@ public class ShipController : TeamUpdater
     {
         float entityGlobalAngle = rb2D.gameObject.transform.rotation.eulerAngles.z;
         Vector2 rotatedVector = HelperMethods.VectorUtils.RotateVector(globalForce, entityGlobalAngle);
-        Debug.Log("Rotate by angle: " + entityGlobalAngle);
+        //Debug.Log("Rotate by angle: " + entityGlobalAngle);
         Debug.DrawRay(transform.position, rotatedVector, Color.green, 0.1f);
 
         return rotatedVector;

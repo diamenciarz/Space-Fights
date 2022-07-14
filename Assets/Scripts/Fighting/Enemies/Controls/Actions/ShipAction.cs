@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static EntityInput;
 
 public abstract class ShipAction : ScriptableObject
 {
-    public abstract void callAction(ActionData actionData);
+    /// <summary>
+    /// Applies the action's effect to the ship given in "Action Data".
+    /// </summary>
+    /// <param name="actionData"></param>
+    public abstract void CallAction(ActionData actionData);
 }

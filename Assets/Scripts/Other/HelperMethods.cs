@@ -622,7 +622,7 @@ public static class HelperMethods
                     if (fileName == name)
                     {
                         string filePath = path + fileName + fileExtension;
-                        return UnityEditor.AssetDatabase.LoadMainAssetAtPath(filePath) as GameObject;
+                        return AssetDatabase.LoadMainAssetAtPath(filePath) as GameObject;
                     }
                 }
             }

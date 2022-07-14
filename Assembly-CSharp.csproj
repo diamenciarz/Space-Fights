@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RandomTimeExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IActionControllerCaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

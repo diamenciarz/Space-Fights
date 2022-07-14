@@ -6,7 +6,7 @@ using static MovementScheme;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(EntityMover))]
-public class EntityInput : MonoBehaviour
+public class EntityInput : MonoBehaviour, IActionControllerCaller
 {
     public bool controlledByPlayer;
     public MovementScheme controlScheme;
@@ -16,7 +16,7 @@ public class EntityInput : MonoBehaviour
 
     private Rigidbody2D rb2D;
     private EntityMover entityMover;
-    private ActionData actionData = new ActionData();
+    private ActionData actionData;
     private List<ActionTriplet> allActionTriplets = new List<ActionTriplet>();
 
     public class ActionData
@@ -29,14 +29,20 @@ public class EntityInput : MonoBehaviour
     private void Start()
     {
         SetupStartingVariables();
+        AddToListeners();
     }
     private void SetupStartingVariables()
     {
         rb2D = GetComponent<Rigidbody2D>();
         entityMover = GetComponent<EntityMover>();
+        DefineActionData();
+        SetupAllActionTriplets();
+    }
+    private void DefineActionData()
+    {
+        actionData = new ActionData();
         actionData.entityMover = entityMover;
         actionData.rigidbody2D = rb2D;
-        SetupAllActionTriplets();
     }
     private void SetupAllActionTriplets()
     {
@@ -56,30 +62,41 @@ public class EntityInput : MonoBehaviour
             }
         }
     }
+    private void AddToListeners()
+    {
+        AddToListener(primaryAction);
+        AddToListener(secondaryAction);
+        AddToListener(ternaryAction);
+    }
+    private void AddToListener(ActionTriplet actionTriplet)
+    {
+        foreach (ActionController controller in actionTriplet.actionControllers)
+        {
+            controller.AddActionCaller(this, actionTriplet.type);
+        }
+    }
     #endregion
 
     #region Update
     private void FixedUpdate()
+    {
+        CheckKeyPresses();
+    }
+    private void CheckKeyPresses()
     {
         foreach (ActionTriplet controls in allActionTriplets)
         {
             CheckIfKeyPressed(controls);
         }
     }
-
     private void CheckIfKeyPressed(ActionTriplet actionTriplet)
     {
-        if (actionTriplet == null)
-        {
-            return;
-        }
-        if (!controlledByPlayer)
+        if (IsManualInputOff(actionTriplet))
         {
             return;
         }
 
-        bool isActionActive = actionTriplet.type == EntityInputs.ALWAYS_ACTIVE || Input.GetKey(actionTriplet.key);
-        if (isActionActive)
+        if (IsActionActive(actionTriplet))
         {
             CallAction(actionTriplet, true);
         }
@@ -88,22 +105,31 @@ public class EntityInput : MonoBehaviour
             CallAction(actionTriplet, false);
         }
     }
+    private bool IsManualInputOff(ActionTriplet actionTriplet)
+    {
+        return actionTriplet == null || !controlledByPlayer;
+    }
+    private bool IsActionActive(ActionTriplet actionTriplet)
+    {
+        return actionTriplet.type == EntityInputs.ALWAYS_ACTIVE || Input.GetKey(actionTriplet.key);
+    }
     private void CallAction(ActionTriplet actionTriplet, bool isOn)
     {
-        if (actionTriplet.action && isOn)
+        bool actionIsOn = actionTriplet.action != null && isOn;
+        if (actionIsOn)
         {
-            actionTriplet.action.callAction(actionData);
+            actionTriplet.action.CallAction(actionData);
         }
-
-        ActionControllerData data = new ActionControllerData(isOn);
-        foreach (ActionController controller in actionTriplet.actionControllers)
-        {
-            controller.UpdateController(data);
-        }
+        //The Action controllers are calling themselves using the listener pattern
     }
     #endregion
 
     #region Mutator methods
+    /// <summary>
+    /// Action caller used by Ship controller. 
+    /// It tries to call all actions compatible with the movement vector but only some of them are defined for the ship.
+    /// This might be changed into a strategy pattern for calling actions based on the movement vector differently for each implementation.
+    /// </summary>
     public void TryCallAction(EntityInputs input, bool isOn)
     {
         ActionTriplet action = FindAction(input);
@@ -130,6 +156,30 @@ public class EntityInput : MonoBehaviour
             Debug.LogError("Action was null!");
             return null;
         }
+    }
+    #endregion
+
+    #region Accessor methods
+    public bool IsOn(EntityInputs input)
+    {
+        ActionTriplet actionTriplet = FindAction(input);
+        Debug.Log(actionTriplet.key.ToString() + " checking");
+        if (IsManualInputOff(actionTriplet))
+        {
+            return false;
+        }
+
+        bool isOn = IsActionActive(actionTriplet);
+        if (isOn)
+        {
+            Debug.Log(input.ToString() + " is active");
+        }
+        return isOn;
+    }
+
+    public ActionControllerData GetData()
+    {
+        return new ActionControllerData();
     }
     #endregion
 }
