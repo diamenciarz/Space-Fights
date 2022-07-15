@@ -68,13 +68,13 @@
     <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\MoveAction.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\IModifiableStartingSpeed.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\TeamUpdater.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Interfaces\IModifiableStartingSpeed.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\TeamUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIconProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IPiercingDamage.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\TriggerOnDeath.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\TriggerOnDeath.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BasicProjectileController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\ShootingController.cs" />
     <Compile Include="Assets\Scripts\Movement\UserEntityController.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="Assets\Scripts\Movement\IEntityMover.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BreakOnCollision.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageInstance.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Damage\DamageInstance.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\OnCollisionDamage.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantRotationAction.cs" />
@@ -107,25 +107,26 @@
     <Compile Include="Assets\Scripts\Movement\EntityMover.cs" />
     <Compile Include="Assets\Scripts\UI\CameraPositionController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\EntityInput.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\ListUpdater.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionBarCompatible.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\RotateInMouseDirectionAction.cs" />
     <Compile Include="Assets\Scripts\UI\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\ExpirationProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantMoveAction.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\DamageCalculator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Damage\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionConeProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IPushable.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarProperty.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\EntityProperties.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\EntityProperties.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\RandomTimeExpirationProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\RandomTimeExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IActionControllerCaller.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnDisconnect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
