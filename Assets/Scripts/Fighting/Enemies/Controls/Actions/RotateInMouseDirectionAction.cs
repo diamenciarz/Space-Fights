@@ -3,7 +3,7 @@ using static EntityInput;
 
 [CreateAssetMenu(fileName = "RotateInMouseDirection", menuName = "Moves/RotateInMouseDirection")]
 
-public class RotateInMouseDirectionAction : MoveAction
+public class RotateInMouseDirectionAction : AbstractMoveAction
 {
     [Tooltip("Positive values rotate clockwise")]
     [SerializeField] bool affectedByVelocity;

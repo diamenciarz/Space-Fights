@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7641353743839565424}
   - component: {fileID: 8530353260921314641}
   - component: {fileID: 5699753045744380763}
+  - component: {fileID: 4678151132839442301}
   m_Layer: 7
   m_Name: RightArmor
   m_TagString: Untagged
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!254 &8530353260921314641
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -299,6 +300,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4678151132839442301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161992438742806062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &1143466193118479298
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +770,7 @@ GameObject:
   - component: {fileID: 7864284901952902704}
   - component: {fileID: 8959465588056255553}
   - component: {fileID: 7386377890576602311}
+  - component: {fileID: 3415557106310415077}
   m_Layer: 7
   m_Name: Cabin
   m_TagString: Untagged
@@ -952,6 +967,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  putInLists: 03000000
+--- !u!114 &3415557106310415077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004513072726312593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   putInLists: 01000000
 --- !u!1 &5240635708381860907
 GameObject:
@@ -969,6 +997,7 @@ GameObject:
   - component: {fileID: 8445481373217568892}
   - component: {fileID: 1231799642429314598}
   - component: {fileID: 3596412584512391778}
+  - component: {fileID: 8634896179821027948}
   m_Layer: 7
   m_Name: LeftArmor
   m_TagString: Untagged
@@ -1138,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!254 &1231799642429314598
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -1170,6 +1199,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8634896179821027948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240635708381860907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &5330567886002227178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1312,7 @@ GameObject:
   - component: {fileID: 5853195764477435998}
   - component: {fileID: 6701698553508886421}
   - component: {fileID: 4459400678555094893}
+  - component: {fileID: 8523799297667140121}
   m_Layer: 7
   m_Name: RightWing
   m_TagString: Untagged
@@ -1455,7 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &4459400678555094893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1511,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8523799297667140121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592109276572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913592164531680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,6 +1540,7 @@ GameObject:
   - component: {fileID: 1043526973371437154}
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 3841279664770106543}
+  - component: {fileID: 6277392765285528697}
   m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
@@ -1669,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &3841279664770106543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1682,6 +1739,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6277392765285528697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913592222990131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,6 +1768,7 @@ GameObject:
   - component: {fileID: 7777640078348625372}
   - component: {fileID: 6878370843787619903}
   - component: {fileID: 7796459174614336819}
+  - component: {fileID: 6846691201955435316}
   m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
@@ -1881,7 +1952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &7796459174614336819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,6 +1965,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6846691201955435316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592222990131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913592454232510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1994,7 @@ GameObject:
   - component: {fileID: 2530165110294813862}
   - component: {fileID: 8786691315742761047}
   - component: {fileID: 8026648952637378061}
+  - component: {fileID: 7591081900006578315}
   m_Layer: 7
   m_Name: Bumper
   m_TagString: Untagged
@@ -2097,7 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &8026648952637378061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,6 +2195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7591081900006578315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592454232510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledByPlayer: 1
-  controlScheme: {fileID: 11400000, guid: 57ca10112f2c77c42a653c0b758874b2, type: 2}
+  controlScheme: {fileID: 11400000, guid: 801deeb60ec89374cb8bec8ca190296c, type: 2}
   primaryAction:
     key: 323
     type: 10
@@ -2352,6 +2450,7 @@ GameObject:
   - component: {fileID: 212362505441456787}
   - component: {fileID: 9061659452382011625}
   - component: {fileID: 2447227821538030239}
+  - component: {fileID: 8359169267604548254}
   m_Layer: 7
   m_Name: LeftGun
   m_TagString: Untagged
@@ -2557,7 +2656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &9061659452382011625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,6 +2685,19 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 0}
   isAlwaysOn: 0
   hideDelay: 1
+--- !u!114 &8359169267604548254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592834815039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,6 +2714,7 @@ GameObject:
   - component: {fileID: 2089844514390813114}
   - component: {fileID: 9053003173177597814}
   - component: {fileID: 6587909483155747334}
+  - component: {fileID: 8694115087449935496}
   m_Layer: 7
   m_Name: LeftEngine
   m_TagString: Untagged
@@ -2783,7 +2896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &6587909483155747334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2796,6 +2909,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8694115087449935496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592912191834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913593705025610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,6 +2938,7 @@ GameObject:
   - component: {fileID: 3506797295022249945}
   - component: {fileID: 4049046681727661406}
   - component: {fileID: 9029741089157854403}
+  - component: {fileID: 3186012606726292373}
   m_Layer: 7
   m_Name: LeftWing
   m_TagString: Untagged
@@ -2997,7 +3124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &9029741089157854403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,6 +3137,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3186012606726292373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913593705025610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913593890035337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,6 +3239,7 @@ GameObject:
   - component: {fileID: 4357380861355621637}
   - component: {fileID: 3361010296158313404}
   - component: {fileID: 3886860846784145867}
+  - component: {fileID: 2684357815117090102}
   m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
@@ -3282,7 +3423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &3886860846784145867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3295,6 +3436,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2684357815117090102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594073557295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913594105931013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3498,7 @@ GameObject:
   - component: {fileID: 5191196131033383256}
   - component: {fileID: 3374443023517916694}
   - component: {fileID: 824753387179436150}
+  - component: {fileID: 739014247957442759}
   m_Layer: 7
   m_Name: RightGun
   m_TagString: Untagged
@@ -3549,7 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &3374443023517916694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3578,6 +3733,19 @@ MonoBehaviour:
   barDeltaPosition: {x: 0, y: 0}
   isAlwaysOn: 0
   hideDelay: 1
+--- !u!114 &739014247957442759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594127976646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3594,6 +3762,7 @@ GameObject:
   - component: {fileID: 8520602108167705266}
   - component: {fileID: 5873663910185833245}
   - component: {fileID: 5063551696868088704}
+  - component: {fileID: 5267737260283441228}
   m_Layer: 7
   m_Name: RightEngine
   m_TagString: Untagged
@@ -3775,7 +3944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  putInLists: 03000000
 --- !u!114 &5063551696868088704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3788,6 +3957,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5267737260283441228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594190072064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011feb922db6a6c4cb6f0bb613b24d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &6533934170034619756
 GameObject:
   m_ObjectHideFlags: 0

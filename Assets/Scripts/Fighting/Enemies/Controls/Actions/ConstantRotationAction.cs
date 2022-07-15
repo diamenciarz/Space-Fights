@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ConstantRotation", menuName = "Moves/ConstantRotation")]
 
-public class ConstantRotationAction : MoveAction
+public class ConstantRotationAction : AbstractMoveAction
 {
     [Tooltip("Positive values rotate clockwise")]
     [SerializeField] float torque;
@@ -10,6 +10,6 @@ public class ConstantRotationAction : MoveAction
 
     public override void ApplyAction(EntityInput.ActionData actionData)
     {
-        actionData.entityMover.RotateByAngle(torque, affectedByVelocity);
+        actionData.entityMover.RotateByAngle(torque * actionData.percentage, affectedByVelocity);
     }
 }

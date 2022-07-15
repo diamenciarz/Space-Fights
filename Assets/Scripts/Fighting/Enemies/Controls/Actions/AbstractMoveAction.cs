@@ -1,7 +1,7 @@
 using UnityEngine;
 using static EntityInput;
 
-public abstract class MoveAction : ShipAction
+public abstract class AbstractMoveAction : AbstractShipAction
 {
     public abstract void ApplyAction(ActionData actionData);
 

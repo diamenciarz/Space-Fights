@@ -1,7 +1,7 @@
 using UnityEngine;
 using static EntityInput;
 
-public abstract class ShipAction : ScriptableObject
+public abstract class AbstractShipAction : ScriptableObject
 {
     /// <summary>
     /// Applies the action's effect to the ship given in "Action Data".

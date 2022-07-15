@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static StaticDataHolder;
 
 public class ListUpdater : MonoBehaviour
 {
     [Header("Add to lists")]
-    [SerializeField] List<StaticDataHolder.ObjectTypes> putInLists = new List<StaticDataHolder.ObjectTypes>();
+    [SerializeField] List<ObjectTypes> putInLists = new List<ObjectTypes>();
 
     #region Activations
     protected void OnEnable()
@@ -24,7 +25,6 @@ public class ListUpdater : MonoBehaviour
     #region Destroy
     public void DestroyObject()
     {
-        RemoveObjectFromLists();
         HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.HealthDepleted);
         Destroy(gameObject);
     }
@@ -35,19 +35,27 @@ public class ListUpdater : MonoBehaviour
     {
         foreach (var list in putInLists)
         {
-            StaticDataHolder.ListModification.AddObject(list, gameObject);
+            ListModification.AddObject(list, gameObject);
         }
     }
     private void RemoveObjectFromLists()
     {
         foreach (var list in putInLists)
         {
-            StaticDataHolder.ListModification.RemoveObject(list, gameObject);
+            ListModification.RemoveObject(list, gameObject);
         }
     }
-    public bool ListContains(StaticDataHolder.ObjectTypes element)
+    public bool ListContains(ObjectTypes element)
     {
         return putInLists.Contains(element);
     }
+    public void SetList(List<ObjectTypes> newList)
+    {
+        putInLists = newList;
+    }
     #endregion
+    public List<ObjectTypes> GetList()
+    {
+        return putInLists;
+    }
 }

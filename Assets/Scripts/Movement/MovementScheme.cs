@@ -6,6 +6,7 @@ using UnityEngine;
 public class MovementScheme : ScriptableObject
 {
     public List<ActionTriplet> controls;
+    public AbstractActionCalculator actionCalculator;
 
     public enum EntityInputs
     {
@@ -30,7 +31,7 @@ public class MovementScheme : ScriptableObject
     {
         public KeyCode key;
         public EntityInputs type;
-        public ShipAction action;
+        public AbstractShipAction action;
         public List<ActionController> actionControllers;
     }
 }

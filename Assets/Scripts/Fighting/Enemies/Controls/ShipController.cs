@@ -35,7 +35,7 @@ public class ShipController : TeamUpdater
     {
         Vector2 movementVector = CalculateMovementVector();
         Debug.DrawRay(transform.position, movementVector, Color.blue, 0.1f);
-        EntityInputs[] callActions = CalculateActionsToCall(TranslateMovementVector(movementVector));
+        ActionCallData[] callActions = entityInput.controlScheme.actionCalculator.CalculateActionsToCall(TranslateMovementVector(movementVector));
         CallInputActions(callActions);
     }
     private Vector2 TranslateMovementVector(Vector2 globalForce)
@@ -192,7 +192,7 @@ public class ShipController : TeamUpdater
         bool backwardRight = entityInputs.Contains(EntityInputs.BACKWARD) && entityInputs.Contains(EntityInputs.RIGHT);
         TryAddAction(entityInputs, backwardRight, EntityInputs.BACKWARD_RIGHT);
     }
-    private void CallInputActions(EntityInputs[] callActions)
+    private void CallInputActions(ActionCallData[] callActions)
     {
         foreach (var action in callActions)
         {
@@ -201,5 +201,12 @@ public class ShipController : TeamUpdater
     }
     #endregion
     #endregion
-
+}
+public class ActionCallData
+{
+    public EntityInputs input;
+    /// <summary>
+    /// The Percentage of max force that the action should be called with
+    /// </summary>
+    public float percentage;
 }

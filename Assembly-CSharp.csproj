@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IOnDamageDealt.cs" />
     <Compile Include="Assets\Scripts\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectMissingIcon.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\MoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IModifiableStartingSpeed.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\TeamUpdater.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
@@ -95,8 +94,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionCone.cs" />
     <Compile Include="Assets\Scripts\Effects\BackgroundGenerator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ActiveAction.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ShipAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\AbstractActiveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\RotateInMovementDirectionAction.cs" />
     <Compile Include="Assets\Scripts\Effects\DoodadFlicker.cs" />
     <Compile Include="Assets\Scripts\Movement\MovementScheme.cs" />
@@ -126,7 +124,11 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\RandomTimeExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IActionControllerCaller.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnDisconnect.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnJointBreak.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActionCalculators\AbstractActionCalculator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActionCalculators\ForwardActionCalculator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\AbstractShipAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\AbstractMoveAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

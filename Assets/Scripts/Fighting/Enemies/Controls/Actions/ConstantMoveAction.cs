@@ -3,7 +3,7 @@ using static EntityInput;
 
 [CreateAssetMenu(fileName = "ConstantForce", menuName = "Moves/ConstantMove")]
 
-public class ConstantMoveAction : MoveAction
+public class ConstantMoveAction : AbstractMoveAction
 {
     [SerializeField] Vector2 force;
     [SerializeField] bool isForceGlobal;
@@ -15,11 +15,10 @@ public class ConstantMoveAction : MoveAction
     }
     private Vector2 GetRelativeForce(ActionData actionData)
     {
-        Vector2 forceInTime = force * Time.fixedDeltaTime;
+        Vector2 forceInTime = force * Time.fixedDeltaTime * actionData.percentage;
         float forceMultiplier = CalculateForceMultiplier(actionData, forceInTime);
         Vector2 clampedForce = forceInTime * forceMultiplier;
 
-        //Debug.Log(" multiplier: " + forceMultiplier);
         return clampedForce / Time.fixedDeltaTime;
     }
     private float CalculateForceMultiplier(ActionData actionData, Vector2 appliedForce)
@@ -54,7 +53,7 @@ public class ConstantMoveAction : MoveAction
         Vector2 perpendicularVelocity = velocity - velocityInForceDirection;
 
         float maxSpeed = actionData.entityMover.GetMaxSpeed();
-        float maxPerpendicularSpeed = Mathf.Sqrt(maxSpeed * maxSpeed - velocityInForceDirection.magnitude * velocityInForceDirection.magnitude);
+        float maxPerpendicularSpeed = Mathf.Sqrt(maxSpeed * maxSpeed - velocityInForceDirection.sqrMagnitude);
         Vector2 allowedPerpendicularVelocity = Vector2.ClampMagnitude(perpendicularVelocity, maxPerpendicularSpeed);
         actionData.rigidbody2D.velocity = allowedPerpendicularVelocity + velocityInForceDirection;
     }

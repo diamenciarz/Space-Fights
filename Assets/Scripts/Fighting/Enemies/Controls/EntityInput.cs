@@ -23,6 +23,7 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     {
         public Rigidbody2D rigidbody2D;
         public EntityMover entityMover;
+        public float percentage;
     }
 
     #region Startup
@@ -98,11 +99,11 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
 
         if (IsActionActive(actionTriplet))
         {
-            CallAction(actionTriplet, true);
+            CallAction(actionTriplet, true, 1);
         }
         else
         {
-            CallAction(actionTriplet, false);
+            CallAction(actionTriplet, false, 1);
         }
     }
     private bool IsManualInputOff(ActionTriplet actionTriplet)
@@ -113,11 +114,12 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     {
         return actionTriplet.type == EntityInputs.ALWAYS_ACTIVE || Input.GetKey(actionTriplet.key);
     }
-    private void CallAction(ActionTriplet actionTriplet, bool isOn)
+    private void CallAction(ActionTriplet actionTriplet, bool isOn, float percentage)
     {
         bool actionIsOn = actionTriplet.action != null && isOn;
         if (actionIsOn)
         {
+            actionData.percentage = percentage;
             actionTriplet.action.CallAction(actionData);
         }
         //The Action controllers are calling themselves using the listener pattern
@@ -130,12 +132,12 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     /// It tries to call all actions compatible with the movement vector but only some of them are defined for the ship.
     /// This might be changed into a strategy pattern for calling actions based on the movement vector differently for each implementation.
     /// </summary>
-    public void TryCallAction(EntityInputs input, bool isOn)
+    public void TryCallAction(ActionCallData data, bool isOn)
     {
-        ActionTriplet action = FindAction(input);
+        ActionTriplet action = FindAction(data.input);
         if (action != null)
         {
-            CallAction(action, isOn);
+            CallAction(action, isOn, data.percentage);
         }
     }
     private ActionTriplet FindAction(EntityInputs input)

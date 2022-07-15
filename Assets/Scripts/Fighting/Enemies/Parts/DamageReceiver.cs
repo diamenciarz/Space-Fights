@@ -32,7 +32,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     //Private variables
     private static GameObject damagePopup;
     private static bool damagePopupUpdated = false;
-    private static Color onHitColor = new Color(1, 140f/255f, 140f/255f, 1);
+    private static Color onHitColor = new Color(1, 140f / 255f, 140f / 255f, 1);
     private float hitColorChangeDuration = 1f;
     private static Color defaultColor = Color.white;
 
@@ -199,7 +199,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     }
     private void CreateDamagePopup(int damage)
     {
-        GameObject poup = Instantiate(damagePopup, transform.position, Quaternion.Euler(0,0,0));
+        GameObject poup = Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, 0));
         DamagePopup damagePopupScript = poup.GetComponent<DamagePopup>();
         damagePopupScript.Start();
         if (damagePopupScript)
@@ -234,6 +234,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         transform.SetParent(null);
         TurnOffGuns();
         SetTeam(Team.GetEnemyToAllTeam()); //Everyone can destroy detached parts
+        SwitchLists();
     }
     private void TurnOffGuns()
     {
@@ -241,6 +242,14 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         foreach (var controller in shootingControllers)
         {
             controller.Detach();
+        }
+    }
+    private void SwitchLists()
+    {
+        ListUpdaterOnJointBreak updater = GetComponent<ListUpdaterOnJointBreak>();
+        if (updater != null)
+        {
+            updater.SwitchObjectInLists();
         }
     }
     #endregion
@@ -262,7 +271,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     {
         if (damage > partHealth)
         {
-            damage = (int) partHealth;
+            damage = (int)partHealth;
         }
         partHealth -= damage;
         barHealth -= (float)damage * barToPartRatio;
