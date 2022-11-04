@@ -9,31 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92b203f04a7b9b418b666d20ad3ab84, type: 3}
+  m_Script: {fileID: 11500000, guid: bc4bd4177a88ebe4390b3d2bcc5d1777, type: 3}
   m_Name: ForwardControls
   m_EditorClassIdentifier: 
   controls:
   - key: 119
     type: 0
-    action: {fileID: 11400000, guid: 29704074f4e239747ac32c9f5a1d245a, type: 2}
-    shootingControllers: []
+    action: {fileID: 11400000, guid: 126e78166df0d5a4788978fbc08066e3, type: 2}
+    actionControllers: []
   - key: 115
     type: 1
-    action: {fileID: 11400000, guid: c1e473c06c286814280e1269c3acedf0, type: 2}
-    shootingControllers: []
-  - key: 113
-    type: 2
-    action: {fileID: 11400000, guid: 97c12476fe496dd49b788d8c383b025b, type: 2}
-    shootingControllers: []
-  - key: 101
-    type: 3
-    action: {fileID: 11400000, guid: a39b87a497491134cb7ae03584f40b53, type: 2}
-    shootingControllers: []
+    action: {fileID: 11400000, guid: c2680c5bac43626499638311f340fce1, type: 2}
+    actionControllers: []
   - key: 97
-    type: 8
-    action: {fileID: 11400000, guid: b0f597fb8530ecb429f96b113a53dd4c, type: 2}
-    shootingControllers: []
+    type: 2
+    action: {fileID: 11400000, guid: 5369b8e63ff9f4c439853e58f8685108, type: 2}
+    actionControllers: []
   - key: 100
-    type: 9
-    action: {fileID: 11400000, guid: bc141bfb9056e36458225a4064f23a14, type: 2}
-    shootingControllers: []
+    type: 3
+    action: {fileID: 11400000, guid: 99f073854e6274d42bb8040504363400, type: 2}
+    actionControllers: []
+  - key: 113
+    type: 6
+    action: {fileID: 11400000, guid: 8b32fbaf6e49f184ca1ae4b4cc266db1, type: 2}
+    actionControllers: []
+  - key: 101
+    type: 7
+    action: {fileID: 11400000, guid: d27aca3f95bf7ec47adc5ac721075bb9, type: 2}
+    actionControllers: []
+  actionCalculator: {fileID: 0}

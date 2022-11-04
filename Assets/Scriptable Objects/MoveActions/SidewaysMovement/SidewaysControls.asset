@@ -9,27 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92b203f04a7b9b418b666d20ad3ab84, type: 3}
+  m_Script: {fileID: 11500000, guid: bc4bd4177a88ebe4390b3d2bcc5d1777, type: 3}
   m_Name: SidewaysControls
   m_EditorClassIdentifier: 
   controls:
-  - key: 119
+  - key: 0
     type: 0
-    action: {fileID: 11400000, guid: 40304473ff46a1b4894ab76520544e8d, type: 2}
-    actionControllers: []
-  - key: 115
-    type: 1
-    action: {fileID: 11400000, guid: 3d83d9935b5f99349821dea644c42664, type: 2}
-    actionControllers: []
-  - key: 97
-    type: 2
-    action: {fileID: 11400000, guid: 17647c825d3ec52418ceda555141c839, type: 2}
-    actionControllers: []
-  - key: 100
-    type: 3
-    action: {fileID: 11400000, guid: fe854d128dda04d4cb8eb0f36566aba8, type: 2}
+    action: {fileID: 0}
     actionControllers: []
   - key: 0
-    type: 13
-    action: {fileID: 11400000, guid: b61868928035a2545a865381751eceef, type: 2}
+    type: 0
+    action: {fileID: 0}
     actionControllers: []
+  - key: 0
+    type: 0
+    action: {fileID: 0}
+    actionControllers: []
+  actionCalculator: {fileID: 0}

@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.456151, y: 2.8935552, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,13 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6676668502653053867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6684a7dc90ec684192cc42b1285f507, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 550
-  maxDistance: 850
-  recalculateOffScreen: 0
-  changeSpriteOnRecalculation: 0
+  minDistance: 0
+  maxDistance: 0
+  recalculateOffScreen: 1
+  changeSpriteOnRecalculation: 1
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,16 +111,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6676668502653053867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f95cc9a7ea9d8742a461be70db609ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks:
-  - {fileID: 21300000, guid: ef3f907626217164fb1dfe1e93b4765b, type: 3}
-  - {fileID: 21300000, guid: 04f9200e058e05f4fa2aac8bd09ee61b, type: 3}
-  - {fileID: 21300000, guid: 605189a7778f13942a237e1154219b09, type: 3}
-  - {fileID: 21300000, guid: 2441388b061a16648a8cce0bdf1b4506, type: 3}
-  - {fileID: 21300000, guid: 23d54f716aa184b4aadf8a89141ede65, type: 3}
-  - {fileID: 21300000, guid: 03d35a8c772f7f0479f0def0c31e6fae, type: 3}
-  - {fileID: 21300000, guid: 4d067ec227d1a4c43b8d79b38ddefee2, type: 3}
-  spriteProbabilities: 01000000010000000100000001000000000000000000000000000000
+  alternativeLooks: []
+  spriteProbabilities: 
   spriteRenderer: {fileID: 0}

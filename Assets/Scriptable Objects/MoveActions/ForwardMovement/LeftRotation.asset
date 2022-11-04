@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6057e35c0c6aac4894fb2f836f8bfa9, type: 3}
+  m_Script: {fileID: 11500000, guid: 081ae9bc7ed593a4e9526f4afa2e3970, type: 3}
   m_Name: LeftRotation
   m_EditorClassIdentifier: 
-  torque: 90
+  torque: -1000
   affectedByVelocity: 1

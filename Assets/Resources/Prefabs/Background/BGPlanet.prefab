@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.456151, y: 2.8935552, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6676668502653053866
@@ -94,13 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6676668502653053867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6684a7dc90ec684192cc42b1285f507, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 650
-  maxDistance: 900
-  recalculateOffScreen: 0
-  changeSpriteOnRecalculation: 0
+  minDistance: 0
+  maxDistance: 0
+  recalculateOffScreen: 1
+  changeSpriteOnRecalculation: 1
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,28 +111,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6676668502653053867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f95cc9a7ea9d8742a461be70db609ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks:
-  - {fileID: -5604200098444175960, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -3703221630480555103, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -5510263347434974468, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 5222440933352637307, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 3063632579146304234, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -6424854391670353488, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 5797544926004223581, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 3468291875856589132, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -2046004268581231320, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -7218676642450861439, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -1364796922409724430, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 4253813508118605016, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 8559699718263859144, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 6306292350668676776, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 2851469514816108018, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 1202228717298624824, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 838394340253666563, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: 5840461513092595890, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  - {fileID: -1770555016707256924, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
-  spriteProbabilities: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  alternativeLooks: []
+  spriteProbabilities: 
   spriteRenderer: {fileID: 0}

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a558405f6fc7840448f31db607dfbca6, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c11280e042d924fb2bea46547d8cf4, type: 3}
   m_Name: RocketExplosion
   m_EditorClassIdentifier: 
-  spreadProjectilesEvenly: 1
-  spreadDegrees: 15
+  spreadProjectilesEvenly: 0
+  spreadDegrees: 0
   leftBulletSpread: 0
   rightBulletSpread: 0
   projectilesToCreateList: 04000000

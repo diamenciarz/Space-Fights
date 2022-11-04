@@ -9,39 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0dbfcd4c70cd7f4f8148eee44d81992, type: 3}
+  m_Script: {fileID: 11500000, guid: a0f1c0af6882b4c45bae2ff3e96be7ce, type: 3}
   m_Name: 10x1Laser
   m_EditorClassIdentifier: 
   additionalReloadTime: 1
   reloadAllAtOnce: 0
   shots:
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
-  - shot: {fileID: 11400000, guid: 687d17360bda88d469e2df4735f96027, type: 2}
+    reloadDelay: 0.05
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
     delayAfterShot: 0.1
-    reloadDelay: 0.1
+    reloadDelay: 0.05

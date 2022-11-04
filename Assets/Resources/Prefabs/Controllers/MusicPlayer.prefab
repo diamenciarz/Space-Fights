@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9702176, y: -5.418151, z: -7.436517}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -138,17 +139,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3294367439693613450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a21e5fd7ab690d4782dd4c9a524287f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ba20c407f5d6504e8674d3f0ec8b5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   musicClips: []
-  musicVolume: 1
+  musicVolume: 0
   interMusicDelay: 1
   musicWobbleOn: 0
   musicWobbleLength: 2
   musicWobbleSpeed: 0.01
   alwaysWowWow: 0
-  myAudioSource: {fileID: 414373394836704871}
+  myAudioSource: {fileID: 0}
 --- !u!82 &414373394836704871
 AudioSource:
   m_ObjectHideFlags: 0

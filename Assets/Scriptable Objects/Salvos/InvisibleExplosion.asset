@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0dbfcd4c70cd7f4f8148eee44d81992, type: 3}
+  m_Script: {fileID: 11500000, guid: a0f1c0af6882b4c45bae2ff3e96be7ce, type: 3}
   m_Name: InvisibleExplosion
   m_EditorClassIdentifier: 
   additionalReloadTime: 1
   reloadAllAtOnce: 0
   shots:
-  - shot: {fileID: 11400000, guid: b4ffe44603570d542b6cbf6a93e19afe, type: 2}
-    delayAfterShot: 0.1
-    reloadDelay: 0.1
+  - shot: {fileID: 11400000, guid: beb9a9c2490cbc74095ddd5cc6b94b79, type: 2}
+    delayAfterShot: 1
+    reloadDelay: 0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f1c0af6882b4c45bae2ff3e96be7ce, type: 3}
+  m_Name: 5x1Bomb
+  m_EditorClassIdentifier: 
+  additionalReloadTime: 1
+  reloadAllAtOnce: 0
+  shots:
+  - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
+    delayAfterShot: 0.3
+    reloadDelay: 0.3
+  - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
+    delayAfterShot: 0.3
+    reloadDelay: 0.3
+  - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
+    delayAfterShot: 0.3
+    reloadDelay: 0.3
+  - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
+    delayAfterShot: 0.3
+    reloadDelay: 0.3
+  - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
+    delayAfterShot: 0.3
+    reloadDelay: 0.3

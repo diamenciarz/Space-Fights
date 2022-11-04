@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0dbfcd4c70cd7f4f8148eee44d81992, type: 3}
+  m_Script: {fileID: 11500000, guid: a0f1c0af6882b4c45bae2ff3e96be7ce, type: 3}
   m_Name: 3x1SmallRock
   m_EditorClassIdentifier: 
-  additionalReloadTime: 1
+  additionalReloadTime: 2
   reloadAllAtOnce: 0
   shots:
-  - shot: {fileID: 11400000, guid: a167a7343ceee184795c58737cb52c76, type: 2}
-    delayAfterShot: 0.5
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
+    delayAfterShot: 1
     reloadDelay: 0.5
-  - shot: {fileID: 11400000, guid: a167a7343ceee184795c58737cb52c76, type: 2}
-    delayAfterShot: 0.5
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
+    delayAfterShot: 1
     reloadDelay: 0.5
-  - shot: {fileID: 11400000, guid: a167a7343ceee184795c58737cb52c76, type: 2}
-    delayAfterShot: 0.5
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
+    delayAfterShot: 1
     reloadDelay: 0.5
