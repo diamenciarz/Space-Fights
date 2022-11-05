@@ -10,8 +10,6 @@ public class RocketController : BasicProjectileController
     [SerializeField] float speedChangeRatePerSecond = 3f;
     [Tooltip("In degrees per second")]
     [SerializeField] float rocketRotationSpeed = 120;
-    [Header("Explosion Settings")]
-    public float timeToExpire = 30;
     [Header("Targeting settings")]
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
     [SerializeField] Transform rocketEyeTransform;
