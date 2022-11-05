@@ -17,6 +17,9 @@ public class DamageInstance
     public List<DamageCategory> damageCategories;
     public GameObject createdBy;
     public GameObject dealtBy;
+    /// <summary>
+    /// Used to lower the damage of a bullet if it pierced through its target
+    /// </summary>
     public IPiercingDamage iPiercingDamage;
 
     public bool ContainsTypeOfDamage(OnCollisionDamage.TypeOfDamage typeOfDamage)

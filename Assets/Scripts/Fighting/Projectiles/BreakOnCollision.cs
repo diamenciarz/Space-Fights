@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakOnCollision : SpriteUpdater
+public class BreakOnCollision : TeamUpdater
 {
     [Header("Collision Settings")]
     public List<BreaksOn> breakEnum = new List<BreaksOn>();
@@ -14,7 +14,6 @@ public class BreakOnCollision : SpriteUpdater
     protected const float INVULNERABILITY_TIME = 0.25f;
     protected GameObject objectThatCreatedThisProjectile;
     protected bool isDestroyed = false;
-    protected float creationTime;
 
     /// <summary>
     /// This entity should break if it collides with one of these types of objects
@@ -30,21 +29,12 @@ public class BreakOnCollision : SpriteUpdater
         Obstacles
     }
 
-    protected virtual void Start()
-    {
-        UpdateStartingVariables();
-    }
-    private void UpdateStartingVariables()
-    {
-        creationTime = Time.time;
-    }
-
     #region Collisions
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision.gameObject);
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         HandleCollision(collision.gameObject);
     }
@@ -89,7 +79,7 @@ public class BreakOnCollision : SpriteUpdater
     /// </summary>
     /// <param name="collisionObject"></param>
     /// <returns>Whether the collisionObject is invulnerable to this game object</returns>
-    protected bool IsInvulnerableTo(GameObject collisionObject)
+    public bool IsInvulnerableTo(GameObject collisionObject)
     {
         bool isTouchingParent = createdBy == collisionObject;
         bool isStillInvulnerable = Time.time < creationTime + INVULNERABILITY_TIME; //The shooting object should be immune to its own projectiles for a split second

@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700761372939823443}
   m_RootOrder: 0
@@ -110,6 +111,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.201, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700761372939823443}
   m_RootOrder: 2
@@ -235,9 +237,11 @@ GameObject:
   - component: {fileID: 7847874424909462462}
   - component: {fileID: 8049664115235684150}
   - component: {fileID: 7748659938827264479}
-  - component: {fileID: -776891561322186458}
   - component: {fileID: 4526067873477398424}
   - component: {fileID: 1820846645502725830}
+  - component: {fileID: 6572667855001212798}
+  - component: {fileID: 281774058446491775}
+  - component: {fileID: 662213920967089266}
   m_Layer: 8
   m_Name: AntiRocket
   m_TagString: Untagged
@@ -255,6 +259,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5953393413085095053}
   - {fileID: 5447275333531231939}
@@ -324,29 +329,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10031c4bdd1ad084aa497c43a7292277, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e10e9292de035846a0c7a2d64327202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: 791fb6a554ccd4049a593e94884be367, type: 3}
-  - {fileID: 21300000, guid: 3ccbab60d351c6b4cb6ed3d0798be637, type: 3}
-  - {fileID: 21300000, guid: 24a36797275cd534283b79bf5a3f28be, type: 3}
-  breakEnum: 01000000060000000500000003000000
+  sprites: []
+  breakEnum: 000000000100000006000000040000000500000003000000
   breakingSounds: []
   breakingSoundVolume: 1
-  hurtsAllies: 1
+  hurtsAllies: 0
   damageCategories:
-  - damageType: 1
-    damage: 2
+  - damageType: 0
+    damage: 4
   startingSpeed: 2
-  addCreatorVelocity: 1
-  maxRocketSpeed: 12
-  speedChangeRatePerSecond: 5
-  rocketRotationSpeed: 80
-  timeToExpire: 15
-  targetTypes: 020000000300000001000000
+  addCreatorVelocity: 0
+  maxRocketSpeed: 5
+  speedChangeRatePerSecond: 3
+  rocketRotationSpeed: 120
+  targetTypes: 
   rocketEyeTransform: {fileID: 5447275333531231939}
   target: {fileID: 0}
 --- !u!114 &7748659938827264479
@@ -358,29 +359,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
+  m_Script: {fileID: 11500000, guid: f6c96032ba1e3764cabb488d26812485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   activateOn: 
-  shot: {fileID: 11400000, guid: 2132ca5a2d514564b91dd4a5d3fb53d8, type: 2}
+  shot: {fileID: 11400000, guid: 3ab405868f2016644af33dbbbcb27160, type: 2}
   directionOffset: 0
   targetEnemies: 0
   targetTypes: 
---- !u!114 &-776891561322186458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 01000000
 --- !u!114 &4526067873477398424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,10 +378,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a98a188fc84d65d409180abf3fbafdd8, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: 1
+  team:
+    teamInstance: 0
+  sprites: []
 --- !u!114 &1820846645502725830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,12 +393,79 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Script: {fileID: 11500000, guid: dcf20d0596d885143a00bac9277fad1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expirationTime: 15
-  expirationDistance: -1
+  team:
+    teamInstance: 0
+  deltaParentRotation: 0
+  hasRotationLimits: 0
+  leftMaxRotationLimit: 0
+  rightMaxRotationLimit: 0
+  range: 10
+  mouseRange: 10
+  refreshRate: 0.1
+  visualZoneOrigin: {fileID: 5447275333531231939}
+  isControlledByMouse: 0
+  isShootingZoneOn: 0
+  ignoreMouseCollisions: 0
+  targetTypes: 00000000
+  actionControllers: []
+--- !u!114 &6572667855001212798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites: []
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1
+--- !u!114 &281774058446491775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41dadf275c7240d468fd7e7437803618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites: []
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hurtsAllies: 0
+  damageCategories:
+  - damageType: 0
+    damage: 4
+--- !u!114 &662213920967089266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a2cc892d000a4a814d83ed9eb3905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   doDestroyActions: 1
+  expirationTime: 30
+  expirationDistance: -1
 --- !u!1 &8479812763967634279
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +492,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700761372939823443}
   m_RootOrder: 1

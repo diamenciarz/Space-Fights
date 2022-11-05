@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionDamage : BreakOnCollision, IDamageDealer
+public class OnCollisionDamage : TeamUpdater, IDamageDealer
 {
     [Header("Basic Stats")]
     [SerializeField] protected bool hurtsAllies;
@@ -19,14 +19,12 @@ public class OnCollisionDamage : BreakOnCollision, IDamageDealer
     }
 
     #region Collisions
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
         HandleCollision(collision.gameObject);
     }
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
         HandleCollision(collision.gameObject);
     }
     private void HandleCollision(GameObject collisionObject)

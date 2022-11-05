@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteUpdater))]
-[RequireComponent(typeof(OnCollisionDamage))]
 [RequireComponent(typeof(BreakOnCollision))]
 public abstract class BasicProjectileController : OnCollisionDamage, IParent, IModifiableStartingSpeed
 {

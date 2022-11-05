@@ -130,6 +130,7 @@
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ExpirationProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\BounceProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

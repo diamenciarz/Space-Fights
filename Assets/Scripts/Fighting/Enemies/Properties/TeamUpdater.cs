@@ -5,6 +5,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
 {
     [HideInInspector]
     public Team team;
+    protected float creationTime;
     protected GameObject createdBy;
     public enum TeamInstance
     {
@@ -15,6 +16,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         Team3
     }
 
+    #region Startup
     protected virtual void Awake()
     {
         IParent parent = GetComponentInParent<IParent>();
@@ -25,6 +27,17 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         UpdateCreatedBy(parent);
         UpdateTeam(parent);
     }
+
+    protected virtual void Start()
+    {
+        UpdateStartingVariables();
+    }
+
+    private void UpdateStartingVariables()
+    {
+        creationTime = Time.time;
+    }
+
     #region Set parent
     private void UpdateCreatedBy(IParent parent)
     {
@@ -72,6 +85,8 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         team = new Team(newTeam);
     }
     #endregion
+    #endregion
+
     [Serializable]
     public class Team
     {
