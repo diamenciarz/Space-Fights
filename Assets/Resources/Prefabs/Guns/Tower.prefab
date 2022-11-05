@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7005096668549435608}
   m_RootOrder: 1
@@ -57,6 +58,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4296519749683544341}
   m_RootOrder: 1
@@ -140,6 +142,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6271903174717107740}
   - {fileID: 7532569394902331451}
@@ -155,16 +158,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6275599121277092949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d968f83ac718e54e961bce3a32e2f55, type: 3}
+  m_Script: {fileID: 11500000, guid: 0954461248f562549ae818dee29ca3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: bbda01f95a5041a449e6e0f0c935629f, type: 2}
-  shootingPoint: {fileID: 6271903174717107740}
-  basicGunRotation: 0
-  targetEnemies: 0
+  salvo: {fileID: 0}
+  shootingPoint: {fileID: 0}
+  forwardGunRotation: 0
+  shootingMode: 0
+  targetTypes: 
   reloadingBarAlwaysOn: 1
+  dontUseProgressionBar: 0
 --- !u!1 &6869262952838426057
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +197,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7005096668549435608}
   m_RootOrder: 2
@@ -205,26 +211,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6869262952838426057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0978a099a259e5f4b861071502b3381c, type: 3}
+  m_Script: {fileID: 11500000, guid: dcf20d0596d885143a00bac9277fad1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  basicGunDirection: 0
-  hasRotationLimits: 1
-  leftMaxRotationLimit: 90
-  rightMaxRotationLimit: 90
-  range: 5
-  mouseRange: 5
+  deltaParentRotation: 0
+  hasRotationLimits: 0
+  leftMaxRotationLimit: 0
+  rightMaxRotationLimit: 0
+  range: 10
+  mouseRange: 10
   refreshRate: 0.1
-  targetObstacles: 0
-  controlledByMouse: 0
-  isShootingZoneOn: 1
-  ignoreMouseCollisions: 1
-  shootingControllers:
-  - {fileID: 8021823894982714015}
-  visualZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
-  visualZoneTransform: {fileID: 7371173148479189348}
+  visualZoneOrigin: {fileID: 0}
+  isControlledByMouse: 0
+  isShootingZoneOn: 0
+  ignoreMouseCollisions: 0
+  targetTypes: 
+  actionControllers: []
 --- !u!1 &7725359952001599400
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +255,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4296519749683544341}
   m_RootOrder: 0
@@ -285,6 +290,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7002466400094574582}
   - {fileID: 7371173148479189348}
@@ -339,13 +345,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8017394203629097686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
+  m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  putInLists: 
+  unchangeableTeam: 0
   team:
     teamInstance: 0
-  shot: {fileID: 11400000, guid: 1454bd60f7fa1e74aa8415ed14dd23b1, type: 2}
-  targetEnemies: 0
+  breakingSounds: []
+  breakingSoundVolume: 1
+  dontUseProgressionBar: 1
 --- !u!114 &738298233024687435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8017394203629097686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Script: {fileID: 11500000, guid: ba588690b076d22468ac28e5c4b9efd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
@@ -365,12 +374,13 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 10
+  minKineticEnergy: 20
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
+  dontUseProgressionBar: 1
 --- !u!1 &8041327027955548429
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +408,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7005096668549435608}
   m_RootOrder: 3
@@ -481,6 +492,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4296519749683544341}
   m_Father: {fileID: 7005096668549435608}
@@ -495,22 +507,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8630683373646473597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8a9ab8aafb4fe458d94fbeb9343148, type: 3}
+  m_Script: {fileID: 11500000, guid: dda2318ca3b028246b6e489f30a77d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   basicGunDirection: 0
-  gunRotationSpeed: 120
-  hasRotationLimits: 1
-  leftMaxRotationLimit: 90
-  rightMaxRotationLimit: 90
-  parentGameObject: {fileID: 8017394203629097686}
-  visualDetectors:
-  - {fileID: 7480479330725694337}
+  gunRotationSpeed: 0
+  hasRotationLimits: 0
+  leftMaxRotationLimit: 0
+  rightMaxRotationLimit: 0
+  visualDetectors: []
   debugZoneOn: 1
-  debugZonePrefab: {fileID: 8395912166832606940, guid: f3d668e1204dd294192cc086baa6c8f4, type: 3}
-  DebugZoneTransform: {fileID: 7371173148479189348}
-  areTargetsInRange: 0
-  invisibleTargetRotation: 0
-  closestTarget: {fileID: 0}
+  debugZonePrefab: {fileID: 0}
+  DebugZoneTransform: {fileID: 0}

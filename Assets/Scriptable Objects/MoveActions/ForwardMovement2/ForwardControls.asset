@@ -9,23 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92b203f04a7b9b418b666d20ad3ab84, type: 3}
+  m_Script: {fileID: 11500000, guid: bc4bd4177a88ebe4390b3d2bcc5d1777, type: 3}
   m_Name: ForwardControls
   m_EditorClassIdentifier: 
   controls:
   - key: 119
     type: 0
-    action: {fileID: 11400000, guid: c8cb1dc4b22a28b48907a47b706a598b, type: 2}
+    action: {fileID: 0}
     actionControllers: []
   - key: 115
     type: 1
-    action: {fileID: 11400000, guid: 295d21b62f19fd740b22f1306c989f9d, type: 2}
+    action: {fileID: 0}
     actionControllers: []
   - key: 97
-    type: 8
-    action: {fileID: 11400000, guid: aa2804ce9c92b5f4a8da21444a0f83d6, type: 2}
+    type: 2
+    action: {fileID: 0}
     actionControllers: []
   - key: 100
-    type: 9
-    action: {fileID: 11400000, guid: 4135f7e038a9ef94f9c94ea97e35a51c, type: 2}
+    type: 3
+    action: {fileID: 0}
     actionControllers: []
+  actionCalculator: {fileID: 0}

@@ -5,12 +5,10 @@ using static EntityInput;
 
 public class RotateInMovementDirectionAction : AbstractMoveAction
 {
-    [Tooltip("Positive values rotate clockwise")]
-    [SerializeField] bool affectedByVelocity;
-    /// <summary>
-    /// The minimum percentage of max speed that the ship should move at for the action to take effect
-    /// </summary>
+    [Tooltip("The minimum percentage of max speed that the ship should move at for the action to take effect and rotate the ship")]
     [SerializeField] [Range(0, 1)] float maxSpeedPercentage;
+    [Tooltip("If true, the torque is proportional to the percentage of maximum speed that the ship is travelling at. No torque limits otherwise")]
+    [SerializeField] bool affectedByVelocity;
 
     public override void ApplyAction(ActionData actionData)
     {

@@ -73,7 +73,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionCone.cs" />
     <Compile Include="Assets\Scripts\Movement\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IModifiableStartingSpeed.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\RotateInMoveMentDirectionAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\RotateInMovementDirectionAction.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActionCalculators\AbstractActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Effects\ParallaxScroller.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
     <Compile Include="Assets\Scripts\UI\DamagePopup.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ExpirationProperty.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ActionController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\TeamUpdater.cs" />
@@ -129,6 +129,7 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ExpirationProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

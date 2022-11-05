@@ -70,7 +70,8 @@ public class EntityMover : MonoBehaviour, IEntityMover
         float deltaStep = Mathf.Sign(deltaAngle) * maxTurningSpeed * Time.fixedDeltaTime;
 
         //0.1 is a good multiplier that avoids the counter torque from overshooting and creating wiggle
-        bool angleIsSmall = Mathf.Abs(deltaAngle) < maxTurningSpeed * 0.1;
+        const float WIGGLE_DAMPER = 0.1f;
+        bool angleIsSmall = Mathf.Abs(deltaAngle) < maxTurningSpeed * WIGGLE_DAMPER;
         if (angleIsSmall)
         {
             return deltaAngle * Time.fixedDeltaTime;

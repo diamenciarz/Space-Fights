@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RandomTimeExpirationProperty : MonoBehaviour
+public class RandomTimeExpirationProperty : ExpirationProperty
 {
-    [Tooltip("Destroy the bullet after it has existed for this long. -1 for infinity")]
+    [Tooltip("Destroy the bullet after it has existed for this long.")]
     [SerializeField] [Range(0, 500)] float minExpirationTime = 0;
     [SerializeField] [Range(0, 500)] float maxExpirationTime = 5;
     [SerializeField] bool doDestroyActions = true;
@@ -23,22 +23,6 @@ public class RandomTimeExpirationProperty : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         DestroyObject();
-    }
-    #endregion
-
-    #region Destroy methods
-    private void DestroyObject()
-    {
-        if (doDestroyActions)
-        {
-            HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.InstantBreak);
-        }
-        StartCoroutine(DestroyAtTheEndOfFrame());
-    }
-    private IEnumerator DestroyAtTheEndOfFrame()
-    {
-        yield return new WaitForEndOfFrame();
-        Destroy(gameObject);
     }
     #endregion
 }

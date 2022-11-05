@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db425d0c4a24c3048a2d82378517b199, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6ebd592abfb86479a35bee84a72490, type: 3}
   m_Name: ForwardForce
   m_EditorClassIdentifier: 
-  force: {x: 0, y: 500}
+  force: {x: 0, y: 1000}
   isForceGlobal: 0

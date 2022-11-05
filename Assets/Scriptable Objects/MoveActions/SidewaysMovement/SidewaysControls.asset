@@ -13,16 +13,24 @@ MonoBehaviour:
   m_Name: SidewaysControls
   m_EditorClassIdentifier: 
   controls:
-  - key: 0
+  - key: 119
     type: 0
-    action: {fileID: 0}
+    action: {fileID: 11400000, guid: 83a7f11d7ab1923468e5073356d161c0, type: 2}
+    actionControllers: []
+  - key: 115
+    type: 1
+    action: {fileID: 11400000, guid: 2de4031ba81eff944b7b18a9fc50962a, type: 2}
+    actionControllers: []
+  - key: 97
+    type: 2
+    action: {fileID: 11400000, guid: 27a0e573c4e02e4448d6406c8f3d5478, type: 2}
+    actionControllers: []
+  - key: 100
+    type: 3
+    action: {fileID: 11400000, guid: 3f409ff7f392fee499d3687ecf18c065, type: 2}
     actionControllers: []
   - key: 0
-    type: 0
-    action: {fileID: 0}
-    actionControllers: []
-  - key: 0
-    type: 0
-    action: {fileID: 0}
+    type: 13
+    action: {fileID: 11400000, guid: df212cee521ada84d85a591653d57132, type: 2}
     actionControllers: []
   actionCalculator: {fileID: 0}

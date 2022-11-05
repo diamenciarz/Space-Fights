@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0904bc47f18d52e41b76948a75dd6398, type: 3}
+  m_Script: {fileID: 11500000, guid: 50d86ddd9c2bc134b8e1191330e1eac6, type: 3}
   m_Name: RotateInMoveDirection
   m_EditorClassIdentifier: 
-  affectedByVelocity: 0
-  maxSpeedPercentage: 0.1
+  maxSpeedPercentage: 0.2
+  affectedByVelocity: 1

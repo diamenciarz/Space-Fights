@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0f90b08d0f6504a92535896623b2da, type: 3}
   m_Name: MouseRotation
   m_EditorClassIdentifier: 
+  minSpeedToRotate: 1
   affectedByVelocity: 1
-  maxSpeedPercentage: 0.5
