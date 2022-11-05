@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class DeterministicExpirationProperty : ExpirationProperty
 {
-    [Tooltip("Destroy the bullet after it has existed for this long.")]
-    [SerializeField] [Range(0, 500)] float expirationTime = -1;
-    [Tooltip("Destroy the bullet after it has travelled this much distance.")]
-    [SerializeField] [Range(0, 500)] float expirationDistance = -1;
+    [Tooltip("Destroy the bullet after it has existed for this long. -1 for infinite time")]
+    [SerializeField] float expirationTime = -1;
+    [Tooltip("Destroy the bullet after it has travelled this much distance. -1 for infinite distance")]
+    [SerializeField] float expirationDistance = -1;
 
     private float travelledDistance;
     private Vector2 lastFramePosition;

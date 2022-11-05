@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7493213699246723096}
   - component: {fileID: 7493213699246723097}
   - component: {fileID: 7493213699246723102}
-  - component: {fileID: 7493213699246723098}
   - component: {fileID: 7493213699246723099}
-  - component: {fileID: 7493213699246723093}
+  - component: {fileID: 7493213699246723098}
   m_Layer: 6
   m_Name: SquareWall
   m_TagString: Obstacle
@@ -32,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 8.97, y: -3.86, z: 20}
   m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -135,38 +135,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84, y: 0.84}
   m_EdgeRadius: 0
---- !u!114 &7493213699246723098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7493213699246723100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites: []
-  partHealth: 50
-  barHealth: 50
-  destroyDamage: 20
-  immunities:
-  - damageType: 0
-    immunityPercentage: 1
-  - damageType: 2
-    immunityPercentage: 1
-  - damageType: 1
-    immunityPercentage: 1
-  minKineticEnergy: 20
-  collisionDamageModifier: 0.5
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hitSounds: []
-  hitSoundVolume: 1
-  dontUseProgressionBar: 1
 --- !u!114 &7493213699246723099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,17 +144,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7493213699246723100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
+  m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 00000000
   unchangeableTeam: 1
   team:
-    teamInstance: 1
+    teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
   dontUseProgressionBar: 1
---- !u!114 &7493213699246723093
+--- !u!114 &7493213699246723098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +163,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7493213699246723100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Script: {fileID: 11500000, guid: ba588690b076d22468ac28e5c4b9efd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  team:
+    teamInstance: 0
+  sprites: []
+  partHealth: 50
+  barHealth: 50
+  destroyDamage: 20
+  immunities: []
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
+  dontUseProgressionBar: 1

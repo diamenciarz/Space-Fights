@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DeterministicExpirationProperty))]
 public class RocketController : BasicProjectileController
 {
 
