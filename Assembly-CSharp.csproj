@@ -133,6 +133,7 @@
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\CenteredPushingForce.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractActionOnCollision.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\MovementDataProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

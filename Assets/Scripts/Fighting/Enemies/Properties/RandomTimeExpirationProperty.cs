@@ -8,7 +8,6 @@ public class RandomTimeExpirationProperty : ExpirationProperty
     [Tooltip("Destroy the bullet after it has existed for this long.")]
     [SerializeField] [Range(0, 500)] float minExpirationTime = 0;
     [SerializeField] [Range(0, 500)] float maxExpirationTime = 5;
-    [SerializeField] bool doDestroyActions = true;
 
     #region Delay
     private void Start()
