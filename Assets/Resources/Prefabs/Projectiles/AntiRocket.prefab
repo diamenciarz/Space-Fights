@@ -334,10 +334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
-  breakEnum: 000000000100000006000000040000000500000003000000
-  breakingSounds: []
-  breakingSoundVolume: 1
   hurtsAllies: 0
   damageCategories:
   - damageType: 0
@@ -425,7 +421,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
   breakEnum: 
   breakingSounds: []
   breakingSoundVolume: 1
@@ -443,10 +438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
-  breakEnum: 
-  breakingSounds: []
-  breakingSoundVolume: 1
   hurtsAllies: 0
   damageCategories:
   - damageType: 0

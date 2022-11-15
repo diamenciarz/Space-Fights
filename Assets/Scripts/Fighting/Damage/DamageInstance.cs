@@ -22,7 +22,7 @@ public class DamageInstance
     /// </summary>
     public IPiercingDamage iPiercingDamage;
 
-    public bool ContainsTypeOfDamage(OnCollisionDamage.TypeOfDamage typeOfDamage)
+    public bool ContainsTypeOfDamage(TypeOfDamage typeOfDamage)
     {
         foreach (var category in damageCategories)
         {
@@ -33,7 +33,7 @@ public class DamageInstance
         }
         return false;
     }
-    public DamageCategory GetCategoryWithDamageOfType(OnCollisionDamage.TypeOfDamage typeOfDamage)
+    public DamageCategory GetCategoryWithDamageOfType(TypeOfDamage typeOfDamage)
     {
         foreach (var category in damageCategories)
         {
@@ -57,7 +57,13 @@ public class DamageInstance
     [Serializable]
     public class DamageCategory
     {
-        public OnCollisionDamage.TypeOfDamage damageType;
+        public TypeOfDamage damageType;
         public int damage;
+    }
+    public enum TypeOfDamage
+    {
+        Explosion,
+        Physical,
+        Fire
     }
 }

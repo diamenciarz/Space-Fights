@@ -10,5 +10,5 @@ public interface IDamageDealer
     /// <param name="damageReceiver"></param>
     /// <returns></returns>
     public abstract DamageInstance GetDamageInstance();
-    public abstract bool DamageCategoryContains(OnCollisionDamage.TypeOfDamage typeOfDamage);
+    public abstract bool DamageCategoryContains(DamageInstance.TypeOfDamage typeOfDamage);
 }

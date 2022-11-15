@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnCollisionDamage : TeamUpdater, IDamageDealer
+public class OnCollisionDamage : AbstractActionOnCollision, IDamageDealer
 {
     [Header("Basic Stats")]
     [SerializeField] protected bool hurtsAllies;
@@ -9,49 +9,34 @@ public class OnCollisionDamage : TeamUpdater, IDamageDealer
     [Header("Damage type")]
     [SerializeField] protected List<DamageInstance.DamageCategory> damageCategories = new List<DamageInstance.DamageCategory>();
 
-    protected List<GameObject> dealtDamageTo = new List<GameObject>();
-
-    public enum TypeOfDamage
-    {
-        Explosion,
-        Physical,
-        Fire
-    }
 
     #region Collisions
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected override void HandleExit(GameObject collisionObject)
     {
-        HandleCollision(collision.gameObject);
+        //Leave empty
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected override void HandleCollision(Collision2D collision)
     {
-        HandleCollision(collision.gameObject);
-    }
-    private void HandleCollision(GameObject collisionObject)
-    {
-        if (CanDealDamage(collisionObject))
+        if (CanDealDamage(collision.gameObject))
         {
-            DealDamageToObject(collisionObject);
+            DealDamageToObject(collision.gameObject);
+        }
+    }
+    protected override void HandleTriggerEnter(Collider2D trigger)
+    {
+        if (CanDealDamage(trigger.gameObject))
+        {
+            DealDamageToObject(trigger.gameObject);
         }
     }
     private bool CanDealDamage(GameObject collisionObject)
     {
         IDamageable iDamageReceiver = collisionObject.GetComponent<IDamageable>();
         bool objectCanReceiveDamage = iDamageReceiver != null;
-        if (!objectCanReceiveDamage)
-        {
-            return false;
-        }
-        bool alreadyDealtDamageToThisObject = dealtDamageTo.Contains(collisionObject);
-        if (alreadyDealtDamageToThisObject)
-        {
-            return false;
-        }
-        return true;
+        return objectCanReceiveDamage;
     }
     private void DealDamageToObject(GameObject collisionObject)
     {
-        dealtDamageTo.Add(collisionObject);
         IDamageable iDamageable = collisionObject.GetComponent<IDamageable>();
         DamageCalculator.DealDamage(iDamageable, GetDamageInstance());
     }
@@ -71,7 +56,7 @@ public class OnCollisionDamage : TeamUpdater, IDamageDealer
         return damageInstance;
     }
 
-    public bool DamageCategoryContains(TypeOfDamage typeOfDamage)
+    public bool DamageCategoryContains(DamageInstance.TypeOfDamage typeOfDamage)
     {
         foreach (var category in damageCategories)
         {

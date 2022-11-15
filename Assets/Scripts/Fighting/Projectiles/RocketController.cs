@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(DeterministicExpirationProperty))]
-public class RocketController : BasicProjectileController
+public class RocketController : AbstractProjectileController
 {
 
     [Header("Rocket Flight Settings")]

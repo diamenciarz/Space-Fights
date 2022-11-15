@@ -706,7 +706,7 @@ public static class HelperMethods
                     collisionPropertyList.Add(BreakOnCollision.BreaksOn.EnemyProjectiles);
                 }
             }
-            if (damageReceiver.DamageCategoryContains(OnCollisionDamage.TypeOfDamage.Explosion))
+            if (damageReceiver.DamageCategoryContains(DamageInstance.TypeOfDamage.Explosion))
             {
                 if (isAlly)
                 {

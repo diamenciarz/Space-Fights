@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : BasicProjectileController, IPiercingDamage
+public class BulletController : AbstractProjectileController, IPiercingDamage
 {
     [Header("Piercing")]
     [SerializeField] bool isPiercing;
@@ -16,7 +16,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
     {
         foreach (var category in damageCategories)
         {
-            if (category.damageType == TypeOfDamage.Physical)
+            if (category.damageType == DamageInstance.TypeOfDamage.Physical)
             {
                 category.damage -= change;
                 if (category.damage <= 0)

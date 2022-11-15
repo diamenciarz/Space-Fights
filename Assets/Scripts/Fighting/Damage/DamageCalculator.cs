@@ -96,7 +96,7 @@ public class DamageCalculator : MonoBehaviour
         {
             return;
         }
-        DamageInstance.DamageCategory category = damageInstance.GetCategoryWithDamageOfType(OnCollisionDamage.TypeOfDamage.Physical);
+        DamageInstance.DamageCategory category = damageInstance.GetCategoryWithDamageOfType(DamageInstance.TypeOfDamage.Physical);
         if (category == null)
         {
             return;
@@ -110,7 +110,7 @@ public class DamageCalculator : MonoBehaviour
     [Serializable]
     public class Immunity
     {
-        public OnCollisionDamage.TypeOfDamage damageType;
+        public DamageInstance.TypeOfDamage damageType;
         /// <summary>
         /// The higher the value, the less damage will be taken
         /// </summary>

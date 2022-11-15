@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteUpdater))]
 [RequireComponent(typeof(BreakOnCollision))]
-public abstract class BasicProjectileController : OnCollisionDamage, IParent, IModifiableStartingSpeed
+public abstract class AbstractProjectileController : OnCollisionDamage, IParent, IModifiableStartingSpeed
 {
     [Header("Projectile Properties")]
     [SerializeField] protected float startingSpeed = 2f;

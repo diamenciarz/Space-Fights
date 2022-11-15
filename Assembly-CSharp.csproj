@@ -59,7 +59,7 @@
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionBar.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\BasicProjectileController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractProjectileController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\AbstractActiveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnJointBreak.cs" />
@@ -131,6 +131,8 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\CenteredPushingForce.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractActionOnCollision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

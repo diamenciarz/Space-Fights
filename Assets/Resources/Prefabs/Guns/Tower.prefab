@@ -163,11 +163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 0}
-  shootingPoint: {fileID: 0}
+  salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
+  shootingPoint: {fileID: 6271903174717107740}
   forwardGunRotation: 0
   shootingMode: 0
-  targetTypes: 
+  targetTypes: 0100000003000000
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!1 &6869262952838426057
