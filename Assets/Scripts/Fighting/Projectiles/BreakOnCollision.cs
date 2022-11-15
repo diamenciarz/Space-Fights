@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class BreakOnCollision : TeamUpdater
 {
@@ -109,19 +110,27 @@ public class BreakOnCollision : TeamUpdater
         }
         return null;
     }
-    protected void DestroyObject()
+    public void DestroyObject()
     {
         if (!isDestroyed)
         {
             isDestroyed = true;
             HelperMethods.CollisionUtils.DoDestroyActions(gameObject, TriggerOnDeath.DestroyCause.InstantBreak);
-            StartCoroutine(DestroyAtTheEndOfFrame());
+            DestroyAtTheEndOfFrame();
         }
     }
+    private async void DestroyAtTheEndOfFrame()
+    {
+        await Task.Yield();
+        Destroy(gameObject);
+    }
+    /* OLD
     private IEnumerator DestroyAtTheEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
         Destroy(gameObject);
     }
+    */
+
     #endregion
 }

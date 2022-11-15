@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static StaticDataHolder.ListContents;
 
@@ -34,11 +35,11 @@ public class AutomaticGunRotator : TeamUpdater
     private IParent parent;
     private GameObject parentGameObject;
     private GameObject closestTarget;
-
-
+    
     #region Startup
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetStartingVariables();
         CreateDebugZone();
     }

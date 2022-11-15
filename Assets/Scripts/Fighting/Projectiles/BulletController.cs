@@ -21,7 +21,7 @@ public class BulletController : BasicProjectileController, IPiercingDamage
                 category.damage -= change;
                 if (category.damage <= 0)
                 {
-                    DestroyObject();
+                    breakOnCollision.DestroyObject();
                 }
             }
         }

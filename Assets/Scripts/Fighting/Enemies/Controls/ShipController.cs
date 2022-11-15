@@ -15,8 +15,9 @@ public class ShipController : TeamUpdater
     private Rigidbody2D rb2D;
 
     #region Startup
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         entityInput = GetComponent<EntityInput>();
         rb2D = GetComponent<Rigidbody2D>();
         fixRange();

@@ -11,13 +11,14 @@ public class ExplosionController : BasicProjectileController
     [SerializeField] float expandRate; // Sprite scale
     [SerializeField] float rotateDuringLifetime;
     [Tooltip("How strong the pushing force of this explosion should be at its strongest point, which is the middle. The force decreases with as distance from the middle gets lower")]
-    [SerializeField] [Range(0, 1000)] float maxPushingForce;
+    [SerializeField][Range(0, 1000)] float maxPushingForce;
     [Header("Info")]
-    [SerializeField] float startingRadius;
+    [SerializeField][Range(0.01f, 100)] float startingRadius;
 
     //Private variables
     private float originalSize;
     private float originalZRotation;
+    private bool isDestroyed = false;
 
     #region Initialization
     protected override void Awake()
@@ -63,18 +64,12 @@ public class ExplosionController : BasicProjectileController
         if (Time.time - creationTime > timeToExpire)
         {
             SetSizeToMax();
-            DestroyAtTheEndOfFrame();
+            breakOnCollision.DestroyObject();
         }
     }
     private void SetSizeToMax()
     {
         gameObject.transform.localScale = new Vector3(expandRate * originalSize, expandRate * originalSize, 0);
-    }
-    private async void DestroyAtTheEndOfFrame()
-    {
-        isDestroyed = true;
-        await Task.Yield();
-        Destroy(gameObject);
     }
     #endregion
 

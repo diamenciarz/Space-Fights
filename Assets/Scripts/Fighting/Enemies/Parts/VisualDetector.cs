@@ -42,8 +42,9 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
 
 
     #region Startup
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         SetStartingVariables();
         AddToListeners();
         checkCoroutine = StartCoroutine(VisualCheckCoroutine());

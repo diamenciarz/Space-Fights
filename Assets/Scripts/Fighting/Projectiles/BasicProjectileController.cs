@@ -13,6 +13,8 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent, IM
     [SerializeField] bool addCreatorVelocity;
     //Private variables
     protected Rigidbody2D myRigidbody2D;
+    protected SpriteRenderer spriteRenderer;
+    protected BreakOnCollision breakOnCollision;
     protected Vector2 velocityVector;
 
 
@@ -25,8 +27,8 @@ public abstract class BasicProjectileController : OnCollisionDamage, IParent, IM
     private void SetupStartingValues()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
-
-        creationTime = Time.time;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        breakOnCollision = GetComponent<BreakOnCollision>();
     }
     protected override void Start()
     {

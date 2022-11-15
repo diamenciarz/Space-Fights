@@ -23,7 +23,7 @@ public class OnCollisionDamage : TeamUpdater, IDamageDealer
     {
         HandleCollision(collision.gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         HandleCollision(collision.gameObject);
     }

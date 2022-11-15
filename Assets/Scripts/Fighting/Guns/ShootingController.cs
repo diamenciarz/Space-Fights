@@ -49,8 +49,9 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     private float salvoTimeSum;
 
     #region Initialization
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         InitializeStartingVariables();
         CallStartingMethods();
     }
