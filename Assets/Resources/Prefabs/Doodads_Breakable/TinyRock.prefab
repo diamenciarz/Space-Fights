@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5121285997641913254}
   - component: {fileID: 49335754480182673}
   - component: {fileID: 477665981838516455}
-  - component: {fileID: 5596533227586906024}
+  - component: {fileID: 3162747271885406307}
   m_Layer: 6
   m_Name: TinyRock
   m_TagString: Obstacle
@@ -186,7 +186,7 @@ MonoBehaviour:
   hitSounds: []
   hitSoundVolume: 1
   dontUseProgressionBar: 1
---- !u!114 &5596533227586906024
+--- !u!114 &3162747271885406307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,14 +195,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456331406175181436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41dadf275c7240d468fd7e7437803618, type: 3}
+  m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites: []
-  breakEnum: 
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hurtsAllies: 0
-  damageCategories: []

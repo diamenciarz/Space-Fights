@@ -234,7 +234,7 @@ public static class StaticDataHolder
                         currentNearestTarget = target;
                         continue;
                     }
-                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < HelperMethods.VectorUtils.Distance(positionVector, currentNearestTarget.transform.position);
+                    bool currentTargetIsCloser = Distance(positionVector, target.transform.position) < Distance(positionVector, currentNearestTarget.transform.position);
                     if (currentTargetIsCloser)
                     {
                         currentNearestTarget = target;

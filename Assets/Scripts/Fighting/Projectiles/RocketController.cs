@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BreakOnCollision))]
 [RequireComponent(typeof(DeterministicExpirationProperty))]
 public class RocketController : AbstractProjectileController
 {

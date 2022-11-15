@@ -10,6 +10,7 @@ public class ExplosionController : AbstractProjectileController
     public float timeToExpire;
     [Tooltip("How many times larger should the explosion get than the starting size")]
     [SerializeField] float expandRate; // Sprite scale
+    [Tooltip("The total rotation that the explosion will do during its lifetime in degrees")]
     [SerializeField] float rotateDuringLifetime;
 
     //Private variables

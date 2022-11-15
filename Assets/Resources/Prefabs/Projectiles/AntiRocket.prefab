@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 791fb6a554ccd4049a593e94884be367, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e94d85c41692be042a1a3705b4c1641a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.37}
+  m_Size: {x: 0.32, y: 0.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -238,9 +238,7 @@ GameObject:
   - component: {fileID: 8049664115235684150}
   - component: {fileID: 7748659938827264479}
   - component: {fileID: 4526067873477398424}
-  - component: {fileID: 1820846645502725830}
   - component: {fileID: 6572667855001212798}
-  - component: {fileID: 281774058446491775}
   - component: {fileID: 662213920967089266}
   m_Layer: 8
   m_Name: AntiRocket
@@ -334,7 +332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  hurtsAllies: 0
+  affectObjectOnce: 1
+  hurtsAllies: 1
   damageCategories:
   - damageType: 0
     damage: 4
@@ -343,7 +342,7 @@ MonoBehaviour:
   maxRocketSpeed: 5
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 120
-  targetTypes: 
+  targetTypes: 010000000200000003000000
   rocketEyeTransform: {fileID: 5447275333531231939}
   target: {fileID: 0}
 --- !u!114 &7748659938827264479
@@ -379,34 +378,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
---- !u!114 &1820846645502725830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf20d0596d885143a00bac9277fad1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  deltaParentRotation: 0
-  hasRotationLimits: 0
-  leftMaxRotationLimit: 0
-  rightMaxRotationLimit: 0
-  range: 10
-  mouseRange: 10
-  refreshRate: 0.1
-  visualZoneOrigin: {fileID: 5447275333531231939}
-  isControlledByMouse: 0
-  isShootingZoneOn: 0
-  ignoreMouseCollisions: 0
-  targetTypes: 00000000
-  actionControllers: []
+  sprites:
+  - {fileID: 21300000, guid: e94d85c41692be042a1a3705b4c1641a, type: 3}
+  - {fileID: 21300000, guid: 6d545f99a7f61ac43b924de542185a66, type: 3}
+  - {fileID: 21300000, guid: 9b641f6751560554ea35675ece62d7fe, type: 3}
 --- !u!114 &6572667855001212798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,27 +396,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 
+  breakEnum: 05000000040000000000000001000000020000000300000006000000
   breakingSounds: []
   breakingSoundVolume: 1
---- !u!114 &281774058446491775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41dadf275c7240d468fd7e7437803618, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  hurtsAllies: 0
-  damageCategories:
-  - damageType: 0
-    damage: 4
 --- !u!114 &662213920967089266
 MonoBehaviour:
   m_ObjectHideFlags: 0

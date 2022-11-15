@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : AbstractProjectileController, IPiercingDamage
+[RequireComponent(typeof(BreakOnCollision))]
+public class ProjectileController : AbstractProjectileController, IPiercingDamage
 {
     [Header("Piercing")]
     [SerializeField] bool isPiercing;
+    [SerializeReference] 
 
     #region Mutator methods
     /// <summary>

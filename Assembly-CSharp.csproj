@@ -98,7 +98,7 @@
     <Compile Include="Assets\Scripts\Fighting\Damage\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantMoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\BulletController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\UI\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />
@@ -138,36 +138,25 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Assets\Kenney\Space Shooter Visual Assets\Spritesheet\sheet.xml" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\Assets\kenney_spaceshooterextension\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_tiles.xml" />
-    <None Include="Assets\Assets\Kenney\Space Shooter Visual Assets\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_complete.xml" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_enemies.xml" />
     <None Include="Assets\Sprites\Shaders\Blur.shader" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_players.xml" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_other.xml" />
-    <None Include="Assets\Assets\kenney_spaceshooterextension\Spritesheet\spaceShooter2_spritesheet.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Assets\Kenney\Spritesheet\spritesheet_items.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\Assets\kenney_spaceshooterextension\Spritesheet\spaceShooter2_spritesheet_2X.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
   </ItemGroup>
   <ItemGroup>

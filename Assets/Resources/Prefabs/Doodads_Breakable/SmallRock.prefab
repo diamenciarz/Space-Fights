@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 4456331406175181434}
   - component: {fileID: 4456331406175181435}
   - component: {fileID: 4456331406175181432}
-  - component: {fileID: -3598053457957266730}
   - component: {fileID: 1773797774739811279}
   - component: {fileID: 7169724224806529152}
   - component: {fileID: 3678744313637120050}
+  - component: {fileID: -3598053457957266730}
   m_Layer: 6
   m_Name: SmallRock
   m_TagString: Obstacle
@@ -33,6 +33,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.9999367, w: 0.011253023}
   m_LocalPosition: {x: 4.99, y: -1.64, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -141,25 +142,6 @@ PolygonCollider2D:
       - {x: -0.48999998, y: -0.09399046}
       - {x: -0.19599767, y: -0.47299877}
       - {x: 0.2954958, y: -0.4219951}
---- !u!114 &-3598053457957266730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4456331406175181436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  activateOn: 
-  shot: {fileID: 11400000, guid: bfd5b912d38da30488c39d493aae983e, type: 2}
-  directionOffset: 0
-  targetEnemies: 0
-  targetTypes: 
 --- !u!114 &1773797774739811279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,11 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456331406175181436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62bfc40eb460be141b0095d4b7eea602, type: 3}
+  m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
-  unchangeableTeam: 1
+  putInLists: 
+  unchangeableTeam: 0
   team:
     teamInstance: 0
   breakingSounds: []
@@ -188,25 +170,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456331406175181436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf0165ee4bb9244a9803cfe90f0b2c4, type: 3}
+  m_Script: {fileID: 11500000, guid: ba588690b076d22468ac28e5c4b9efd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   sprites: []
-  partHealth: 20
-  barHealth: 20
+  partHealth: 50
+  barHealth: 50
   destroyDamage: 20
-  immunities:
-  - damageType: 2
-    immunityPercentage: 1
-  minKineticEnergy: 10
-  collisionDamageModifier: 0.75
+  immunities: []
+  minKineticEnergy: 20
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
-  dontUseProgressionBar: 0
+  dontUseProgressionBar: 1
 --- !u!114 &3678744313637120050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +196,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456331406175181436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
+  m_Script: {fileID: 11500000, guid: f6c96032ba1e3764cabb488d26812485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  activateOn: 
+  shot: {fileID: 11400000, guid: 5da2bde15e6ebbb4381d72189621d232, type: 2}
+  directionOffset: 0
+  targetEnemies: 0
+  targetTypes: 
+--- !u!114 &-3598053457957266730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
