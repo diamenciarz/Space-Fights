@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 133220287009352267}
   - component: {fileID: 1594040755141738852}
   - component: {fileID: -1584809002072738734}
+  - component: {fileID: 9105046196351330134}
+  - component: {fileID: 6721332528289669469}
   m_Layer: 8
   m_Name: Invisible_Explosion
   m_TagString: Untagged
@@ -86,8 +88,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  affectObjectOnce: 0
-  hurtsAllies: 0
+  affectObjectOnce: 1
+  hurtsAllies: 1
   damageCategories:
   - damageType: 0
     damage: 8
@@ -148,3 +150,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9105046196351330134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cb07557e6db494d841de05753676f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 0
+  expandRate: 2
+  timeToExpire: 0.5
+  maxPushingForce: 100
+--- !u!114 &6721332528289669469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites: []

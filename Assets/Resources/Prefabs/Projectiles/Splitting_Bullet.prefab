@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700761372939823443}
   m_RootOrder: 0
@@ -72,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: f8887aa7e07d9b54b945a0286d775326, type: 3}
+  m_Sprite: {fileID: 21300000, guid: abe42b58a399ee94dacad1e2749dfe2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.37}
+  m_Size: {x: 0.09, y: 0.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,10 +95,9 @@ GameObject:
   - component: {fileID: 7700761372939823443}
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 8776004092663047426}
-  - component: {fileID: 3278521563504507919}
-  - component: {fileID: -1566152343811300086}
-  - component: {fileID: 5411452294418001787}
-  - component: {fileID: -8765544198053044644}
+  - component: {fileID: 5598095727471138394}
+  - component: {fileID: 1840522685464473822}
+  - component: {fileID: -6639344204899158849}
   m_Layer: 8
   m_Name: Splitting_Bullet
   m_TagString: Untagged
@@ -115,6 +115,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4772904740918751643}
   m_Father: {fileID: 0}
@@ -157,7 +158,7 @@ CapsuleCollider2D:
   m_Offset: {x: -1.2612134e-13, y: -0.0000010579826}
   m_Size: {x: 0.57000005, y: 0.12565099}
   m_Direction: 1
---- !u!114 &3278521563504507919
+--- !u!114 &5598095727471138394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,30 +167,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   sprites:
-  - {fileID: 21300000, guid: f8887aa7e07d9b54b945a0286d775326, type: 3}
-  - {fileID: 21300000, guid: 7090487e8efd833498e1a0ae3367222e, type: 3}
-  breakEnum: 0000000001000000040000000500000006000000
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hurtsAllies: 0
-  damageCategories:
-  - damageType: 1
-    damage: 6
-  startingSpeed: 6
-  addCreatorVelocity: 0
-  isPiercing: 0
-  destroyDelay: 30
-  destroyDistance: -1
-  minAngleToReflect: 60
-  maxReflectionNumber: 3
-  timeAddedUponReflection: 0
---- !u!114 &-1566152343811300086
+  - {fileID: 21300000, guid: abe42b58a399ee94dacad1e2749dfe2c, type: 3}
+  - {fileID: 21300000, guid: d1bb82e66b619e948aa00c72ad88efae, type: 3}
+  - {fileID: 21300000, guid: d0e63efd8a4d79846bea48650b83ddd2, type: 3}
+--- !u!114 &1840522685464473822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,41 +185,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
+  m_Script: {fileID: 11500000, guid: a621c1f48b78c6c429dc5bf6822f5824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  hurtsAllies: 0
+  damageCategories:
+  - damageType: 1
+    damage: 4
+  startingSpeed: 12
+  addCreatorVelocity: 0
+--- !u!114 &-6639344204899158849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c96032ba1e3764cabb488d26812485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   activateOn: 
-  shot: {fileID: 11400000, guid: 5d8f936e6e78a37429faa45340942c47, type: 2}
-  directionOffset: 90
+  shot: {fileID: 11400000, guid: 55d14230a5d8eb94698b98f455d494f7, type: 2}
+  directionOffset: 0
   targetEnemies: 0
   targetTypes: 
---- !u!114 &5411452294418001787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 01000000
---- !u!114 &-8765544198053044644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expirationTime: 30
-  expirationDistance: -1
-  doDestroyActions: 1

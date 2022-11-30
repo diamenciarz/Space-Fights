@@ -140,11 +140,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  affectObjectOnce: 0
-  expandRate: 2
+  affectObjectOnce: 1
+  expandRate: 3
   timeToExpire: 0.5
   maxPushingForce: 100
-  startingRadius: 1
 --- !u!114 &4969334111073187723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,13 +176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  affectObjectOnce: 0
-  hurtsAllies: 0
+  affectObjectOnce: 1
+  hurtsAllies: 1
   damageCategories:
   - damageType: 0
     damage: 10
   startingSpeed: 0
   addCreatorVelocity: 0
   timeToExpire: 0.5
-  expandRate: 2
+  expandRate: 3
   rotateDuringLifetime: 180

@@ -178,11 +178,16 @@ MonoBehaviour:
   hurtsAllies: 0
   damageCategories:
   - damageType: 1
-    damage: 2
-  startingSpeed: 2
+    damage: 4
+  - damageType: 2
+    damage: 4
+  startingSpeed: 10
   addCreatorVelocity: 0
-  isPiercing: 0
-  totalDamageCategories: []
+  totalDamageCategories:
+  - damageType: 1
+    damage: 100
+  - damageType: 2
+    damage: 4
 --- !u!114 &5534843798056116234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 
+  affectObjectOnce: 1
+  breakEnum: 0400000005000000
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!114 &-5391318588103268029

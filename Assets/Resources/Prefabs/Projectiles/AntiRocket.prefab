@@ -338,8 +338,8 @@ MonoBehaviour:
   - damageType: 0
     damage: 4
   startingSpeed: 2
-  addCreatorVelocity: 0
-  maxRocketSpeed: 5
+  addCreatorVelocity: 1
+  maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 120
   targetTypes: 010000000200000003000000
@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  affectObjectOnce: 0
   breakEnum: 05000000040000000000000001000000020000000300000006000000
   breakingSounds: []
   breakingSoundVolume: 1

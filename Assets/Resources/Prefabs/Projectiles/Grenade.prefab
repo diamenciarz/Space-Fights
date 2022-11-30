@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7700761372939823442}
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 3278521563504507919}
-  - component: {fileID: 1082129703195348843}
   - component: {fileID: -553088433232255719}
   - component: {fileID: 5409658927449349606}
   - component: {fileID: -8346593562546245867}
   - component: {fileID: -7255239622593922487}
+  - component: {fileID: 6226319890669195142}
   m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
@@ -126,30 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  affectObjectOnce: 0
   breakEnum: 
   breakingSounds: []
   breakingSoundVolume: 1
---- !u!114 &1082129703195348843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ec272812664804e9792839c2a6e27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 0
-  hurtsAllies: 0
-  damageCategories: []
-  startingSpeed: 2
-  addCreatorVelocity: 0
-  isPiercing: 0
-  totalDamageCategories: []
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +193,22 @@ MonoBehaviour:
   doDestroyActions: 1
   expirationTime: 3
   expirationDistance: -1
+--- !u!114 &6226319890669195142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a621c1f48b78c6c429dc5bf6822f5824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  hurtsAllies: 0
+  damageCategories: []
+  startingSpeed: 6
+  addCreatorVelocity: 0

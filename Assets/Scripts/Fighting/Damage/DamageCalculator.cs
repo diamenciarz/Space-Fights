@@ -5,6 +5,9 @@ using static DamageInstance;
 
 public class DamageCalculator : MonoBehaviour
 {
+    /// <summary>
+    /// The time after the creation of an obejct that this object cannot be damaged for.
+    /// </summary>
     private const float INVULNERABILITY_TIME = 0.25f;
 
     public static void DealDamage(IDamageable damageable, DamageInstance damageInstance)
@@ -43,7 +46,7 @@ public class DamageCalculator : MonoBehaviour
         return true;
     }
     /// <summary>
-    /// Every unit is invulnerable to its own projectiles for 0.1 sec
+    /// Every unit is invulnerable to its own projectiles for INVULNERABILITY_TIME sec
     /// </summary>
     /// <param name="collisionObject"></param>
     /// <returns>Whether the collisionObject is invulnerable to this game object</returns>

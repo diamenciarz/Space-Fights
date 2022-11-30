@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4451088827896640096}
   - component: {fileID: 6571188519091311371}
   - component: {fileID: 6984753308812821007}
-  - component: {fileID: 8073304274026262071}
   - component: {fileID: -8559096068599649868}
+  - component: {fileID: -543215102192844180}
   m_Layer: 8
   m_Name: Bomb
   m_TagString: Untagged
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
+  affectObjectOnce: 0
   breakEnum: 0100000003000000040000000500000006000000
   breakingSounds: []
   breakingSoundVolume: 1
@@ -162,29 +163,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fd04b1ebbcbf2e24a95a36a8e848dd46, type: 3}
   - {fileID: 21300000, guid: f50f0388710dd354c916ab7dd76dd6bf, type: 3}
   - {fileID: 21300000, guid: 58800b830341d8047a073d524ced1541, type: 3}
---- !u!114 &8073304274026262071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ec272812664804e9792839c2a6e27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 1
-  hurtsAllies: 0
-  damageCategories:
-  - damageType: 1
-    damage: 4
-  startingSpeed: 2
-  addCreatorVelocity: 0
-  isPiercing: 0
-  totalDamageCategories: []
 --- !u!114 &-8559096068599649868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +182,24 @@ MonoBehaviour:
   directionOffset: 0
   targetEnemies: 0
   targetTypes: 
+--- !u!114 &-543215102192844180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a621c1f48b78c6c429dc5bf6822f5824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  hurtsAllies: 0
+  damageCategories:
+  - damageType: 2
+    damage: 4
+  startingSpeed: 6
+  addCreatorVelocity: 1

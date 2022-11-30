@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 public class BreakOnCollision : AbstractActionOnCollision
 {
     [Header("Collision Settings")]
+    private new bool affectObjectOnce;
     public List<BreaksOn> breakEnum = new List<BreaksOn>();
 
     [Header("Sounds")]
