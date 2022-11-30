@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionBar.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\MovementDataProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractProjectileController.cs" />
@@ -67,10 +68,12 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Movement\MovementScheme.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionBarCompatible.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\CenteredPushingForce.cs" />
     <Compile Include="Assets\Scripts\Effects\BackgroundGenerator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Fighting\Damage\DamageInstance.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IProgressionCone.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractActionOnCollision.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Movement\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IModifiableStartingSpeed.cs" />
@@ -131,9 +134,6 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Prefabs\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\CenteredPushingForce.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractActionOnCollision.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\MovementDataProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

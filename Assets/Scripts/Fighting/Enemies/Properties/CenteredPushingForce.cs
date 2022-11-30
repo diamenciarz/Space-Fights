@@ -10,8 +10,14 @@ public class CenteredPushingForce : AbstractActionOnCollision
     [Tooltip("How strong the pushing force of this explosion should be at its strongest point, which is the middle. The force decreases with as distance from the middle gets lower")]
     [SerializeField][Range(0, 1000)] float maxPushingForce;
     [Header("Info")]
-    [SerializeField][Range(0.01f, 100)] float startingRadius;
+    float startingRadius;
+    //[SerializeField][Range(0.01f, 100)] float startingRadius;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        startingRadius = transform.localScale.x;
+    }
 
     #region OnCollision
     protected override void HandleExit(GameObject collisionObject)

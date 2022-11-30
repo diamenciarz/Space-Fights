@@ -128,7 +128,7 @@ MonoBehaviour:
   hurtsAllies: 0
   damageCategories:
   - damageType: 0
-    damage: 6
+    damage: 4
   startingSpeed: 0
   addCreatorVelocity: 0
   timeToExpire: 0.5
@@ -182,10 +182,10 @@ MonoBehaviour:
   team:
     teamInstance: 0
   affectObjectOnce: 0
-  expandRate: 0
-  timeToExpire: 0
-  maxPushingForce: 0
-  startingRadius: 0
+  expandRate: 3
+  timeToExpire: 0.5
+  maxPushingForce: 100
+  startingRadius: 1
 --- !u!114 &6721332528289669469
 MonoBehaviour:
   m_ObjectHideFlags: 0

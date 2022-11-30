@@ -34,6 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 9096f092cd033fd4ba2dec92cc6cf60d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01d69adfd2273254e90657989bc6bc24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.56, y: 0.56}
+  m_Size: {x: 0.92, y: 0.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,25 +121,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
-  breakEnum: 02000000030000000500000004000000
+  breakEnum: 
   breakingSounds: []
   breakingSoundVolume: 1
-  hurtsAllies: 0
-  damageCategories: []
-  startingSpeed: 8
-  addCreatorVelocity: 0
-  isPiercing: 0
-  destroyDelay: 3
-  destroyDistance: -1
-  minAngleToReflect: 0
-  maxReflectionNumber: 3
-  timeAddedUponReflection: 0
 --- !u!114 &1082129703195348843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,16 +138,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5634230a842c6a4ca3c0868625a2b81, type: 3}
+  m_Script: {fileID: 11500000, guid: 67ec272812664804e9792839c2a6e27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  activateOn: 
-  shot: {fileID: 11400000, guid: d43f87f347076604ea1f1f0cf8ce7518, type: 2}
-  directionOffset: 0
-  targetEnemies: 0
-  targetTypes: 
+  affectObjectOnce: 0
+  hurtsAllies: 0
+  damageCategories: []
+  startingSpeed: 2
+  addCreatorVelocity: 0
+  isPiercing: 0
+  totalDamageCategories: []
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,10 +159,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 01d69adfd2273254e90657989bc6bc24, type: 3}
 --- !u!58 &5409658927449349606
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -186,7 +181,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0012454987, y: 0}
   serializedVersion: 2
-  m_Radius: 0.28093147
+  m_Radius: 0.46
 --- !u!114 &-8346593562546245867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +191,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6909d072900944f438ab2fe0c61f96c0, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 01d69adfd2273254e90657989bc6bc24, type: 3}
 --- !u!114 &-7255239622593922487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,9 +207,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Script: {fileID: 11500000, guid: b48a2cc892d000a4a814d83ed9eb3905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expirationTime: 30
-  expirationDistance: -1
   doDestroyActions: 1
+  expirationTime: 3
+  expirationDistance: -1

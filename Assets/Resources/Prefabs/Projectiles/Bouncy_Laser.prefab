@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700761372939823443}
   m_RootOrder: 0
@@ -72,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 6e025619e4b3cd044b839e8942134089, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f633120c8dd1cb4fb64661cd345c7b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.37}
+  m_Size: {x: 0.09, y: 0.37}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,6 +98,8 @@ GameObject:
   - component: {fileID: 3278521563504507919}
   - component: {fileID: 5534843798056116234}
   - component: {fileID: -5391318588103268029}
+  - component: {fileID: -8578680821316315447}
+  - component: {fileID: 292488992788198187}
   m_Layer: 8
   m_Name: Bouncy_Laser
   m_TagString: Untagged
@@ -114,6 +117,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8989033578331711026}
   m_Father: {fileID: 0}
@@ -165,31 +169,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87032fb490caac4aab0e55e918527c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 67ec272812664804e9792839c2a6e27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: 6e025619e4b3cd044b839e8942134089, type: 3}
-  - {fileID: 21300000, guid: 6b19e11560449224b95b80fcd03fe592, type: 3}
-  breakEnum: 040000000500000006000000
-  breakingSounds: []
-  breakingSoundVolume: 1
+  affectObjectOnce: 0
   hurtsAllies: 0
   damageCategories:
   - damageType: 1
     damage: 2
-  - damageType: 2
-    damage: 4
-  startingSpeed: 10
+  startingSpeed: 2
   addCreatorVelocity: 0
   isPiercing: 0
-  destroyDelay: 5
-  destroyDistance: -1
-  minAngleToReflect: 0
-  maxReflectionNumber: 8
-  timeAddedUponReflection: 2
+  totalDamageCategories: []
 --- !u!114 &5534843798056116234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,10 +192,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d950f1db291832640a93937c00c44330, type: 3}
+  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 01000000
+  team:
+    teamInstance: 0
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1
 --- !u!114 &-5391318588103268029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,9 +209,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35f89f04b260894d939083ee7e3e60c, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expirationTime: 5
-  expirationDistance: -1
-  doDestroyActions: 1
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 7f633120c8dd1cb4fb64661cd345c7b4, type: 3}
+  - {fileID: 21300000, guid: 10c697e124ccbc748896b16f70141afb, type: 3}
+  - {fileID: 21300000, guid: f9650eff7ec1e7749987a68547a59ead, type: 3}
+--- !u!114 &-8578680821316315447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2459c7377130f142a78b34bcec31276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  minAngleToReflect: 45
+  maxReflectionNumber: 3
+--- !u!114 &292488992788198187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a2cc892d000a4a814d83ed9eb3905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doDestroyActions: 0
+  expirationTime: 30
+  expirationDistance: 30

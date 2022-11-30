@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class BreakOnCollision : TeamUpdater
+public class BreakOnCollision : AbstractActionOnCollision
 {
     [Header("Collision Settings")]
     public List<BreaksOn> breakEnum = new List<BreaksOn>();
@@ -31,15 +31,21 @@ public class BreakOnCollision : TeamUpdater
     }
 
     #region Collisions
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void HandleCollision(Collision2D collision)
     {
-        HandleCollision(collision.gameObject);
+        HandleBreak(collision.gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    protected override void HandleTriggerEnter(Collider2D collision)
     {
-        HandleCollision(collision.gameObject);
+        HandleBreak(collision.gameObject);
     }
-    private void HandleCollision(GameObject collisionObject)
+
+    protected override void HandleExit(GameObject obj)
+    {
+        //Do nothing
+    }
+    private void HandleBreak(GameObject collisionObject)
     {
         if (ShouldBreak(collisionObject))
         {
@@ -124,13 +130,14 @@ public class BreakOnCollision : TeamUpdater
         await Task.Yield();
         Destroy(gameObject);
     }
+
     /* OLD
-    private IEnumerator DestroyAtTheEndOfFrame()
-    {
-        yield return new WaitForEndOfFrame();
-        Destroy(gameObject);
-    }
-    */
+private IEnumerator DestroyAtTheEndOfFrame()
+{
+   yield return new WaitForEndOfFrame();
+   Destroy(gameObject);
+}
+*/
 
     #endregion
 }

@@ -7,7 +7,8 @@ public class ProjectileController : AbstractProjectileController, IPiercingDamag
 {
     [Header("Piercing")]
     [SerializeField] bool isPiercing;
-    [SerializeReference] 
+    //TODO: Implement total damage lowering upon damage dealt
+    [SerializeField] protected List<DamageInstance.DamageCategory> totalDamageCategories = new List<DamageInstance.DamageCategory>();
 
     #region Mutator methods
     /// <summary>

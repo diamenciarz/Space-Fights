@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 133220287009352267}
   - component: {fileID: 1594040755141738852}
+  - component: {fileID: 4969334111073187723}
+  - component: {fileID: 7901248762215323648}
   m_Layer: 8
   m_Name: Bomb_Explosion
   m_TagString: Untagged
@@ -30,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.938457, y: -31.60448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -51
-  m_Sprite: {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 078a066a6a12c814db4cb8ce14564fab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.37}
+  m_Size: {x: 0.38, y: 0.37}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,9 +123,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0004696923, y: -0.0048275925}
+  m_Offset: {x: -0.0005531311, y: -0.004827589}
   serializedVersion: 2
-  m_Radius: 0.22
+  m_Radius: 0.19038773
 --- !u!114 &1594040755141738852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,27 +135,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebd032f4f5b13540ae023ed67610dc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 41cb07557e6db494d841de05753676f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 0
+  expandRate: 2
+  timeToExpire: 0.5
+  maxPushingForce: 100
+  startingRadius: 1
+--- !u!114 &4969334111073187723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
   sprites:
-  - {fileID: 21300000, guid: 8e8c61de88de7a34483bf5aa1f8f0a2a, type: 3}
-  - {fileID: 21300000, guid: 99fd9373b80084848bd102b122ed3bda, type: 3}
-  breakEnum: 
-  breakingSounds: []
-  breakingSoundVolume: 1
-  hurtsAllies: 1
+  - {fileID: 21300000, guid: 078a066a6a12c814db4cb8ce14564fab, type: 3}
+  - {fileID: 21300000, guid: 46eb98b394bc1e542bf764ba0b26f558, type: 3}
+  - {fileID: 21300000, guid: 682e252b80d9fd24fbb02183dd4ae948, type: 3}
+--- !u!114 &7901248762215323648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174bdbbfc7bbd2c4896d92e14f61584c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 0
+  hurtsAllies: 0
   damageCategories:
   - damageType: 0
-    damage: 4
-  - damageType: 2
-    damage: 6
+    damage: 10
   startingSpeed: 0
   addCreatorVelocity: 0
-  timeToExpire: 0.2
-  expandRate: 6
-  rotateDuringLifetime: 90
-  maxPushingForce: 500
-  startingRadius: 0.22
+  timeToExpire: 0.5
+  expandRate: 2
+  rotateDuringLifetime: 180
