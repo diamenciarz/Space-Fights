@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPiercingDamage
 {
-    public abstract void LowerDamageBy(int change);
+    public abstract void LowerDamageBy(List<DamageInstance.DamageCategory> change);
 }

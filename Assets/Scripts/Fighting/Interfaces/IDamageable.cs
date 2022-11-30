@@ -21,6 +21,10 @@ public interface IDamageable
     /// <returns></returns>
     public abstract bool DealDamage(int damage);
     public abstract void DoFullHeal();
+    /// <summary>
+    /// This is used by behaviour scripts that can react to being attacked by an entity
+    /// </summary>
+    /// <param name="damagedBy"></param>
     public abstract void NotifyAboutDamage(GameObject damagedBy);
     #endregion
 }

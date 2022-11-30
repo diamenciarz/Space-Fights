@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CenteredPushingForce))]
-public class ExplosionController : AbstractProjectileController
+public class ExplosionController : ProjectileController
 {
 
     [Header("Bomb Settings")]

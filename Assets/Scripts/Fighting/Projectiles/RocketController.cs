@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BreakOnCollision))]
 [RequireComponent(typeof(DeterministicExpirationProperty))]
-public class RocketController : AbstractProjectileController
+public class RocketController : ProjectileController
 {
 
     [Header("Rocket Flight Settings")]

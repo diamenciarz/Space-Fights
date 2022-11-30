@@ -60,7 +60,7 @@
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\MovementDataProperty.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\ShipController.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\AbstractProjectileController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\AbstractActiveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnJointBreak.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="Assets\Scripts\Fighting\Damage\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Controls\Actions\ConstantMoveAction.cs" />
     <Compile Include="Assets\Scripts\Fighting\Interfaces\IParent.cs" />
-    <Compile Include="Assets\Scripts\Fighting\Projectiles\ProjectileController.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Projectiles\PiercingProjectileController.cs" />
     <Compile Include="Assets\Scripts\UI\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseCursorFollower.cs" />

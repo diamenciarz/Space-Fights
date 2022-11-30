@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static DamageInstance;
 
 public class DamageCalculator : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class DamageCalculator : MonoBehaviour
         {
             return;
         }
-        int totalDamage = GetTotalDamage(damageable, damageInstance);
+        int totalDamage = damageInstance.GetTotalApplicableDamage(damageable);
         ApplyDamage(damageable, damageInstance, totalDamage);
     }
     private static void ApplyDamage(IDamageable damageable, DamageInstance damageInstance, int totalDamage)
@@ -59,35 +60,7 @@ public class DamageCalculator : MonoBehaviour
     }
     #endregion
 
-    #region Get damage
-    private static int GetTotalDamage(IDamageable damageable, DamageInstance damageInstance)
-    {
-        int totalDamage = 0;
-        foreach (var damageType in damageInstance.damageCategories)
-        {
-            int categoryDamage = GetDamageFromCategory(damageable, damageType);
-            totalDamage += categoryDamage;
-        }
-        return totalDamage;
-    }
-    private static int GetDamageFromCategory(IDamageable damageable, DamageInstance.DamageCategory damageCategory)
-    {
-        float trueDamage = ((float)damageCategory.damage) * (1 - GetApplicableImmunityPercentage(damageable, damageCategory));
-        return (int)trueDamage;
-    }
-    private static float GetApplicableImmunityPercentage(IDamageable damageable, DamageInstance.DamageCategory damageCategory)
-    {
-        List<Immunity> immunities = damageable.GetImmunities();
-        foreach (var immunity in immunities)
-        {
-            if (immunity.damageType == damageCategory.damageType)
-            {
-                return immunity.immunityPercentage;
-            }
-        }
-        return 0;
-    }
-    #endregion
+    
 
     #region OnHit effects
     private static void HandlePiercing(IDamageable damageable, DamageInstance damageInstance)
@@ -96,21 +69,15 @@ public class DamageCalculator : MonoBehaviour
         {
             return;
         }
-        DamageInstance.DamageCategory category = damageInstance.GetCategoryWithDamageOfType(DamageInstance.TypeOfDamage.Physical);
-        if (category == null)
-        {
-            return;
-        }
-        int categoryDamage = GetDamageFromCategory(damageable, category);
-        int clampedDamage = Mathf.Clamp(categoryDamage, 0, damageable.GetHealth());
-        damageInstance.iPiercingDamage.LowerDamageBy(clampedDamage);
+        List<DamageCategory> lowerCategoryDamageBy = damageInstance.GetApplicableDamageByCategory(damageable);
+        damageInstance.iPiercingDamage.LowerDamageBy(lowerCategoryDamageBy);
     }
     #endregion
 
     [Serializable]
     public class Immunity
     {
-        public DamageInstance.TypeOfDamage damageType;
+        public TypeOfDamage damageType;
         /// <summary>
         /// The higher the value, the less damage will be taken
         /// </summary>
