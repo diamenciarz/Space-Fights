@@ -38,6 +38,10 @@ public class SpriteUpdater : TeamUpdater
         {
             return;
         }
+        if (sprites.Length == 0)
+        {
+            return;
+        }
         if (team.teamInstance == TeamInstance.Team1)
         {
             if (sprites.Length >= 1)

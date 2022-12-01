@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 551fdc0d4d5831c4597540e4cd000e69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9eb8d704711b4a147b5a3bb8f2d1a12e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -172,7 +172,13 @@ MonoBehaviour:
   partHealth: 50
   barHealth: 50
   destroyDamage: 20
-  immunities: []
+  immunities:
+  - damageType: 0
+    immunityPercentage: 1
+  - damageType: 1
+    immunityPercentage: 1
+  - damageType: 2
+    immunityPercentage: 1
   minKineticEnergy: 20
   collisionDamageModifier: 0.25
   breakingSounds: []

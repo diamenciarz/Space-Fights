@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static DamageInstance;
 
-public class DamageCalculator : MonoBehaviour
+public static class DamageCalculator
 {
     /// <summary>
     /// The time after the creation of an obejct that this object cannot be damaged for.
@@ -50,7 +50,7 @@ public class DamageCalculator : MonoBehaviour
     /// </summary>
     /// <param name="collisionObject"></param>
     /// <returns>Whether the collisionObject is invulnerable to this game object</returns>
-    protected static bool IsInvulnerableTo(GameObject target, DamageInstance damageInstance)
+    private static bool IsInvulnerableTo(GameObject target, DamageInstance damageInstance)
     {
         bool isTouchingParent = damageInstance.createdBy == target;
         bool isStillInvulnerable = damageInstance.lifetime < INVULNERABILITY_TIME;
