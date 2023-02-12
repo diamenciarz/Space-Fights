@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  basicGunDirection: 0
+  basicGunDirection: 180
   gunRotationSpeed: 90
   hasRotationLimits: 1
   leftMaxRotationLimit: 60
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  deltaParentRotation: 0
+  deltaParentRotation: 180
   hasRotationLimits: 0
   leftMaxRotationLimit: 0
   rightMaxRotationLimit: 0
@@ -672,9 +672,9 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 0
-  isShootingZoneOn: 0
-  ignoreMouseCollisions: 0
+  isControlledByMouse: 1
+  isShootingZoneOn: 1
+  ignoreMouseCollisions: 1
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
@@ -1990,7 +1990,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 40
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -2705,7 +2705,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 40
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -3533,7 +3533,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 40
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 40
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1

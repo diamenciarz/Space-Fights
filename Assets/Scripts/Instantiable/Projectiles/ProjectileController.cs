@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteUpdater))]
 [RequireComponent(typeof(BreakOnCollision))]
 public class ProjectileController : OnCollisionDamage, IParent, IModifiableStartingSpeed
 {

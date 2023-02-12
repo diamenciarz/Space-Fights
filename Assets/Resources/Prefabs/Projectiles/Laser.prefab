@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8989033578331711026}
   - component: {fileID: 5399962572158842332}
+  - component: {fileID: 57067047419679127}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &57067047419679127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4741006506434280758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 22e837fe4ccbdd546bb05f63186dd76e, type: 3}
+  - {fileID: 21300000, guid: a3e755ddf99d58e4784b569c5de15010, type: 3}
+  - {fileID: 21300000, guid: 29c1f33cd0627774fb2853bbdab58cb6, type: 3}
 --- !u!1 &7700761372939823446
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +113,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7700761372939823443}
   - component: {fileID: 3632203342257642947}
-  - component: {fileID: 5329267400732313886}
   - component: {fileID: 8884412361962455790}
   - component: {fileID: 7426536192320844466}
   - component: {fileID: 8397113486806745960}
@@ -139,24 +157,6 @@ MonoBehaviour:
   breakEnum: 01000000040000000500000006000000
   breakingSounds: []
   breakingSoundVolume: 1
---- !u!114 &5329267400732313886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: 22e837fe4ccbdd546bb05f63186dd76e, type: 3}
-  - {fileID: 21300000, guid: a3e755ddf99d58e4784b569c5de15010, type: 3}
-  - {fileID: 21300000, guid: 29c1f33cd0627774fb2853bbdab58cb6, type: 3}
 --- !u!50 &8884412361962455790
 Rigidbody2D:
   serializedVersion: 4

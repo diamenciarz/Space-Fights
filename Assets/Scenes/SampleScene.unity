@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: immunities.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723099, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: putInLists.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723100, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_Name
       value: SquareWall (1)
@@ -662,6 +666,10 @@ PrefabInstance:
     - target: {fileID: 7493213699246723098, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: immunities.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723099, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: putInLists.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723100, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_Name
@@ -1419,6 +1427,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 597981991798496538, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 597981991798496538, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 597981991798496538, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2488323260018361336, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: controlScheme
       value: 
@@ -1426,6 +1446,18 @@ PrefabInstance:
     - target: {fileID: 2488323260018361336, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: controlledByPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592164531682, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592164531682, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592538751777, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: maxSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751965, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: m_Name
@@ -1478,6 +1510,18 @@ PrefabInstance:
     - target: {fileID: 6441913592538751966, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592912191836, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592912191836, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592912191836, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594127976648, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: m_Color.b
@@ -1809,6 +1853,10 @@ PrefabInstance:
     - target: {fileID: 7493213699246723098, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: immunities.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723099, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: putInLists.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723100, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_Name
@@ -3263,6 +3311,10 @@ PrefabInstance:
     - target: {fileID: 7493213699246723098, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: immunities.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723099, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: putInLists.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723100, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_Name

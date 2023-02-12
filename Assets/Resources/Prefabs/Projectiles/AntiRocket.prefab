@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5953393413085095053}
   - component: {fileID: 4013303304944118881}
+  - component: {fileID: 4216975373688157519}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4216975373688157519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6603927837569778551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: e94d85c41692be042a1a3705b4c1641a, type: 3}
+  - {fileID: 21300000, guid: 6d545f99a7f61ac43b924de542185a66, type: 3}
+  - {fileID: 21300000, guid: 9b641f6751560554ea35675ece62d7fe, type: 3}
 --- !u!1 &7105881877523404379
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +256,6 @@ GameObject:
   - component: {fileID: 7847874424909462462}
   - component: {fileID: 8049664115235684150}
   - component: {fileID: 7748659938827264479}
-  - component: {fileID: 4526067873477398424}
   - component: {fileID: 6572667855001212798}
   - component: {fileID: 662213920967089266}
   m_Layer: 8
@@ -337,7 +355,7 @@ MonoBehaviour:
   damageCategories:
   - damageType: 0
     damage: 4
-  startingSpeed: 2
+  startingSpeed: 4
   addCreatorVelocity: 1
   maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
@@ -364,24 +382,6 @@ MonoBehaviour:
   directionOffset: 0
   targetEnemies: 0
   targetTypes: 
---- !u!114 &4526067873477398424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: e94d85c41692be042a1a3705b4c1641a, type: 3}
-  - {fileID: 21300000, guid: 6d545f99a7f61ac43b924de542185a66, type: 3}
-  - {fileID: 21300000, guid: 9b641f6751560554ea35675ece62d7fe, type: 3}
 --- !u!114 &6572667855001212798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   team:
     teamInstance: 0
   affectObjectOnce: 0
-  breakEnum: 05000000040000000000000001000000020000000300000006000000
+  breakEnum: 050000000400000000000000010000000300000006000000
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!114 &662213920967089266

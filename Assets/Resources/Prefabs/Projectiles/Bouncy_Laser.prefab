@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8989033578331711026}
   - component: {fileID: 8506415841635345968}
+  - component: {fileID: 4439450923120037191}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -84,6 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4439450923120037191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4741006506434280758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 7f633120c8dd1cb4fb64661cd345c7b4, type: 3}
+  - {fileID: 21300000, guid: 10c697e124ccbc748896b16f70141afb, type: 3}
+  - {fileID: 21300000, guid: f9650eff7ec1e7749987a68547a59ead, type: 3}
 --- !u!1 &7700761372939823446
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +116,6 @@ GameObject:
   - component: {fileID: 7700761372939823447}
   - component: {fileID: 3278521563504507919}
   - component: {fileID: 5534843798056116234}
-  - component: {fileID: -5391318588103268029}
   - component: {fileID: -8578680821316315447}
   - component: {fileID: 292488992788198187}
   m_Layer: 8
@@ -206,24 +224,6 @@ MonoBehaviour:
   breakEnum: 0400000005000000
   breakingSounds: []
   breakingSoundVolume: 1
---- !u!114 &-5391318588103268029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: 7f633120c8dd1cb4fb64661cd345c7b4, type: 3}
-  - {fileID: 21300000, guid: 10c697e124ccbc748896b16f70141afb, type: 3}
-  - {fileID: 21300000, guid: f9650eff7ec1e7749987a68547a59ead, type: 3}
 --- !u!114 &-8578680821316315447
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -181,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5953393413085095053}
   - component: {fileID: 4013303304944118881}
+  - component: {fileID: 8839455421355684633}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -255,6 +256,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8839455421355684633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6603927837569778551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: 04fe38316b6fa7c429d2634891f68202, type: 3}
+  - {fileID: 21300000, guid: c74355b9fdc75c24eaa098124351b740, type: 3}
+  - {fileID: 21300000, guid: 6e24a573d7797594895ed525c9919bc4, type: 3}
 --- !u!1 &7700761372939823446
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +286,6 @@ GameObject:
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 7847874424909462462}
   - component: {fileID: 8049664115235684150}
-  - component: {fileID: 7748659938827264479}
   - component: {fileID: -776891561322186458}
   - component: {fileID: 4526067873477398424}
   - component: {fileID: 1465621673243021626}
@@ -378,24 +396,6 @@ MonoBehaviour:
   targetTypes: 0100000003000000
   rocketEyeTransform: {fileID: 1070908890487506755}
   target: {fileID: 0}
---- !u!114 &7748659938827264479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: 04fe38316b6fa7c429d2634891f68202, type: 3}
-  - {fileID: 21300000, guid: c74355b9fdc75c24eaa098124351b740, type: 3}
-  - {fileID: 21300000, guid: 6e24a573d7797594895ed525c9919bc4, type: 3}
 --- !u!114 &-776891561322186458
 MonoBehaviour:
   m_ObjectHideFlags: 0

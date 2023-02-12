@@ -177,12 +177,12 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites: []
-  partHealth: 50
-  barHealth: 50
+  partHealth: 30
+  barHealth: 30
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
-  collisionDamageModifier: 0.25
+  minKineticEnergy: 10
+  collisionDamageModifier: 0.5
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -235,4 +235,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e40f961c35611b74ca5eef8c40cf891d, type: 3}
   - {fileID: 21300000, guid: 353ef3bd1e581894d8b663c0f3fa76bb, type: 3}
   spriteProbabilities: 3200000032000000
-  spriteRenderer: {fileID: 0}

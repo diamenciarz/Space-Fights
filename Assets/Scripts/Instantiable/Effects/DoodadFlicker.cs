@@ -61,7 +61,6 @@ public class DoodadFlicker : MonoBehaviour, ISerializationCallbackReceiver
         int gradientIndex = HelperMethods.ListUtils.GetIndexFromChance(chance, gradientProbabilities);
         currentGradient = flickerGradients[gradientIndex];
     }
-
     #endregion
 
     #region Update

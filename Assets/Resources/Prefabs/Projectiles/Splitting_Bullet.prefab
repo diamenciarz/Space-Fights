@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772904740918751643}
   - component: {fileID: 9032151664788439083}
+  - component: {fileID: 3096815234759494932}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3096815234759494932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745399959768513687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites:
+  - {fileID: 21300000, guid: abe42b58a399ee94dacad1e2749dfe2c, type: 3}
+  - {fileID: 21300000, guid: d1bb82e66b619e948aa00c72ad88efae, type: 3}
+  - {fileID: 21300000, guid: d0e63efd8a4d79846bea48650b83ddd2, type: 3}
 --- !u!1 &7700761372939823446
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +114,6 @@ GameObject:
   - component: {fileID: 7700761372939823443}
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 8776004092663047426}
-  - component: {fileID: 5598095727471138394}
   - component: {fileID: 1840522685464473822}
   - component: {fileID: -6639344204899158849}
   - component: {fileID: 5268208231612974113}
@@ -159,24 +177,6 @@ CapsuleCollider2D:
   m_Offset: {x: -1.2612134e-13, y: -0.0000010579826}
   m_Size: {x: 0.57000005, y: 0.12565099}
   m_Direction: 1
---- !u!114 &5598095727471138394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d472edd50dece43952626e2bbabd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  sprites:
-  - {fileID: 21300000, guid: abe42b58a399ee94dacad1e2749dfe2c, type: 3}
-  - {fileID: 21300000, guid: d1bb82e66b619e948aa00c72ad88efae, type: 3}
-  - {fileID: 21300000, guid: d0e63efd8a4d79846bea48650b83ddd2, type: 3}
 --- !u!114 &1840522685464473822
 MonoBehaviour:
   m_ObjectHideFlags: 0
