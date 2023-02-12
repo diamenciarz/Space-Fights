@@ -25,7 +25,7 @@ public class DoodadFlicker : MonoBehaviour, ISerializationCallbackReceiver
     private void Start()
     {
         SetupStartingVariables();
-        chanceSum = CountChanceSum();
+        chanceSum = HelperMethods.ListUtils.CountChanceSum(gradientProbabilities);
     }
     private void SetupStartingVariables()
     {
@@ -33,15 +33,6 @@ public class DoodadFlicker : MonoBehaviour, ISerializationCallbackReceiver
         currentGradient = flickerGradients[0];
         flickerStartTime = -1 * flickerDuration;
         StartCoroutine(flickerRoutine());
-    }
-    private int CountChanceSum()
-    {
-        int sum = 0;
-        foreach (int chance in gradientProbabilities)
-        {
-            sum += chance;
-        }
-        return sum;
     }
     #endregion
 

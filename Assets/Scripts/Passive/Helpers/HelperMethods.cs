@@ -349,7 +349,7 @@ public static class HelperMethods
             }
             return probabilities.Count - 1;
         }
-        private static int CountChanceSum(List<int> probabilities)
+        public static int CountChanceSum(List<int> probabilities)
         {
             int sum = 0;
             foreach (int chance in probabilities)
@@ -392,6 +392,12 @@ public static class HelperMethods
         public static List<Vector3> CloneList(List<Vector3> inputList)
         {
             List<Vector3> returnList = new List<Vector3>(inputList.Count);
+            inputList.ForEach((item) => returnList.Add(item));
+            return returnList;
+        }
+        public static List<Vector2> CloneList(List<Vector2> inputList)
+        {
+            List<Vector2> returnList = new List<Vector2>(inputList.Count);
             inputList.ForEach((item) => returnList.Add(item));
             return returnList;
         }
