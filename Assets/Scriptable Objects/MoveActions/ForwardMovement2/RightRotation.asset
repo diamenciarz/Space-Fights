@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RightRotation
   m_EditorClassIdentifier: 
   torque: -1000
-  affectedByVelocity: 0
+  affectedByVelocity: 1

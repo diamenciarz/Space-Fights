@@ -29,7 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -86,20 +86,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.7679454
+      outSlope: 1.7679454
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.079166666
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.0078001358
+      outSlope: 0.0078001358
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.6041666
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -118,12 +118,12 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.64656067
-      inSlope: -0.61690986
-      outSlope: -0.61690986
+      value: 1
+      inSlope: 0.008113877
+      outSlope: 0.008113877
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.22916669
+      inWeight: 0.74583334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -134,20 +134,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -114.62296
+      outSlope: -114.62296
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.058333334
     - serializedVersion: 3
       time: 1
-      value: -45
-      inSlope: 2
-      outSlope: 2
+      value: -35
+      inSlope: -0.69626564
+      outSlope: -0.69626564
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.2708333
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

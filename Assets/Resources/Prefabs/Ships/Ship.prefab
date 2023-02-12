@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5699753045744380763}
   - component: {fileID: 4678151132839442301}
   - component: {fileID: 6584085193551642099}
+  - component: {fileID: 3974430762197789361}
   m_Layer: 7
   m_Name: RightArmor
   m_TagString: Untagged
@@ -313,6 +314,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &3974430762197789361
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161992438742806062}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592222990136}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.05000004, y: -0.325}
+  m_AngularOffset: 0
 --- !u!1 &1143466193118479298
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +973,7 @@ GameObject:
   - component: {fileID: 3053305423686384990}
   - component: {fileID: 8634896179821027948}
   - component: {fileID: 5929757085221161170}
+  - component: {fileID: 4551472302514882335}
   m_Layer: 7
   m_Name: LeftArmor
   m_TagString: Untagged
@@ -1167,6 +1188,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &4551472302514882335
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240635708381860907}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913594073557300}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.049999982, y: -0.325}
+  m_AngularOffset: 0
 --- !u!1 &5330567886002227178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,6 +1308,7 @@ GameObject:
   - component: {fileID: 6701698553508886421}
   - component: {fileID: 8523799297667140121}
   - component: {fileID: 6029524992735487678}
+  - component: {fileID: 6262043443459889419}
   m_Layer: 7
   m_Name: RightWing
   m_TagString: Untagged
@@ -1479,6 +1520,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &6262043443459889419
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592109276572}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5057970825632474978}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.26516506, y: -0.51265246}
+  m_AngularOffset: 5.4977875
 --- !u!1 &6441913592164531680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,6 +1556,8 @@ GameObject:
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 6277392765285528697}
   - component: {fileID: 8938107796251630952}
+  - component: {fileID: 3884369921391416714}
+  - component: {fileID: 4456534973171068049}
   m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
@@ -1707,6 +1769,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &3884369921391416714
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592912191839}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.25, y: -0.000000021855694}
+  m_AngularOffset: 0
+--- !u!254 &4456534973171068049
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913594190072069}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.25, y: 0.000000021855694}
+  m_AngularOffset: 0
 --- !u!1 &6441913592222990131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1824,7 @@ GameObject:
   - component: {fileID: 6878370843787619903}
   - component: {fileID: 6846691201955435316}
   - component: {fileID: 3519853161726921020}
+  - component: {fileID: 4301460452244733516}
   m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
@@ -1933,6 +2034,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &4301460452244733516
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592222990131}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592454232450}
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 5000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.511, y: 0.03349994}
+  m_AngularOffset: -1.3379651
 --- !u!1 &6441913592454232510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,6 +2516,7 @@ GameObject:
   - component: {fileID: 8359169267604548254}
   - component: {fileID: 2840782541516616931}
   - component: {fileID: 535006687838750076}
+  - component: {fileID: 3118542449087796360}
   m_Layer: 7
   m_Name: LeftGun
   m_TagString: Untagged
@@ -2643,6 +2764,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &3118542449087796360
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592834815039}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592454232450}
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 5000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.48899993, y: 0.5335}
+  m_AngularOffset: -1.3379651
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2800,7 @@ GameObject:
   - component: {fileID: 9053003173177597814}
   - component: {fileID: 8694115087449935496}
   - component: {fileID: 7273319582546221694}
+  - component: {fileID: 1870446364785305945}
   m_Layer: 7
   m_Name: LeftEngine
   m_TagString: Untagged
@@ -2868,6 +3009,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &1870446364785305945
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592912191834}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913593705025615}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.37501234, y: 0.0000143915395}
+  m_AngularOffset: -0.78539824
 --- !u!1 &6441913593705025610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +3045,7 @@ GameObject:
   - component: {fileID: 4049046681727661406}
   - component: {fileID: 3186012606726292373}
   - component: {fileID: 9076624318505784063}
+  - component: {fileID: 1554142526956661798}
   m_Layer: 7
   m_Name: LeftWing
   m_TagString: Untagged
@@ -3096,6 +3257,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &1554142526956661798
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913593705025610}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1177742716018359492}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.26516652, y: -0.51267135}
+  m_AngularOffset: 0.78539824
 --- !u!1 &6441913593890035337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,6 +3366,7 @@ GameObject:
   - component: {fileID: 3361010296158313404}
   - component: {fileID: 2684357815117090102}
   - component: {fileID: 5697400224897131966}
+  - component: {fileID: 2856201227424772899}
   m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
@@ -3395,6 +3576,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &2856201227424772899
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594073557295}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592454232450}
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 5000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.489, y: 0.033500027}
+  m_AngularOffset: -1.3379651
 --- !u!1 &6441913594105931013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,6 +3639,7 @@ GameObject:
   - component: {fileID: 6441913594127976649}
   - component: {fileID: 6441913594127976652}
   - component: {fileID: 6441913594127976651}
+  - component: {fileID: 8077016238563249273}
   - component: {fileID: 494917494657619772}
   - component: {fileID: 5812251090777440677}
   - component: {fileID: 5191196131033383256}
@@ -3591,6 +3792,25 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.00000004371139, y: 0.5}
   m_AngularOffset: 0
+--- !u!254 &8077016238563249273
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594127976646}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592454232450}
+  m_BreakForce: 5000
+  m_BreakTorque: 5000
+  m_MaxForce: 5000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.51100004, y: 0.5334999}
+  m_AngularOffset: -1.3379651
 --- !u!114 &494917494657619772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3709,6 +3929,7 @@ GameObject:
   - component: {fileID: 5873663910185833245}
   - component: {fileID: 5267737260283441228}
   - component: {fileID: 3970114368212281128}
+  - component: {fileID: 41402405380234878}
   m_Layer: 7
   m_Name: RightEngine
   m_TagString: Untagged
@@ -3917,6 +4138,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &41402405380234878
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594190072064}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592109276641}
+  m_BreakForce: 8000
+  m_BreakTorque: 8000
+  m_MaxForce: 20000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.375, y: 0.00000003278354}
+  m_AngularOffset: -5.4977875
 --- !u!1 &6533934170034619756
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class BackgroundGenerator : MonoBehaviour, ISerializationCallbackReceiver
     {
         for (int j = 0; j < count; j++)
         {
+            //Makes itself the parent of the doodads for organization purposes.
+            //The doodads can move freely by themselves.
             Instantiate(doodad, transform);
         }
     }

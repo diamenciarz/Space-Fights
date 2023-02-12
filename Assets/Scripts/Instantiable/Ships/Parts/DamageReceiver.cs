@@ -39,6 +39,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     private HealthManager healthManager;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
+    private int numberOfJoints;
 
     private float maxPartHealth;
     private float maxBarHealth;
@@ -70,6 +71,8 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
                 Debug.LogError("DamagePopup not found in UI folder!");
             }
         }
+        Joint2D[] joints = GetComponents<Joint2D>();
+        numberOfJoints = joints.Length;
         //Math
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
@@ -214,7 +217,11 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     #region OnJointBreak2D
     public void OnJointBreak2D(Joint2D joint)
     {
-        BreakOff();
+        numberOfJoints--;
+        if (numberOfJoints == 0)
+        {
+            BreakOff();
+        }
     }
     private void BreakOff()
     {
