@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4216594292853443633}
   - {fileID: 1703297536418594645}
@@ -60,6 +61,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5894294184723456587}
   m_RootOrder: 1
@@ -135,6 +137,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.26875, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 568770409758024066}
   m_RootOrder: 0
@@ -210,6 +213,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.26875, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 568770409758024066}
   m_RootOrder: 1
@@ -268,7 +272,7 @@ GameObject:
   - component: {fileID: 5894294184723456587}
   - component: {fileID: 7605551919563914786}
   - component: {fileID: 1160312431654840371}
-  - component: {fileID: 6701576795160655256}
+  - component: {fileID: 670324118962033673}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -286,6 +290,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 568770409758024066}
   - {fileID: 5738531776353841944}
@@ -340,8 +345,8 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
---- !u!114 &6701576795160655256
+  m_PresetInfoIsWorld: 0
+--- !u!114 &670324118962033673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,7 +355,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8395912166832606940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97405c7dd0bb1e741a447245223f7bb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9736c7e9a1a321b47875c626cc391061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarImage: {fileID: 8492177007195057068}
@@ -362,20 +367,20 @@ MonoBehaviour:
   useGradient: 1
   barColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0.013207495, b: 0.013207495, a: 1}
-    key1: {r: 1, g: 0.88171977, b: 0.09811318, a: 1}
-    key2: {r: 0.15950511, g: 0.9716981, b: 0.16233306, a: 0}
-    key3: {r: 0.15950511, g: 0.9716981, b: 0.16233306, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.7924528, g: 0.09821562, b: 0, a: 1}
+    key1: {r: 0.990566, g: 0.6415726, b: 0.14391239, a: 1}
+    key2: {r: 0.8584906, g: 0.84615505, b: 0, a: 0}
+    key3: {r: 0.5496862, g: 0.82673156, b: 0.03949716, a: 0}
+    key4: {r: 0, g: 0.79215693, b: 0.10980393, a: 0}
+    key5: {r: 0, g: 0.79215693, b: 0.10980393, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 29298
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
+    ctime1: 19661
+    ctime2: 34310
+    ctime3: 48188
+    ctime4: 65535
+    ctime5: 65535
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -387,8 +392,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
+    m_NumColorKeys: 5
     m_NumAlphaKeys: 2
   originalAlfa: 1
   rotateSameAsParent: 0
-  isShown: 0

@@ -819,6 +819,14 @@
       <Project>{5ED73B9E-D2C3-FFFF-1108-0A86F53BDF22}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{6DAD1BCB-457A-904E-1F5C-7B2F2F093D47}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{3B437885-ACFA-AF80-DDB3-F49433AC729C}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
       <Project>{2FB18889-14D8-16B7-6013-EEF9BAD9FB8A}</Project>
       <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>

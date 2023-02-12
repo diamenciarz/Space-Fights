@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081ae9bc7ed593a4e9526f4afa2e3970, type: 3}
   m_Name: LeftRotation
   m_EditorClassIdentifier: 
-  torque: -1000
-  affectedByVelocity: 1
+  torque: -500
+  affectedByVelocity: 0

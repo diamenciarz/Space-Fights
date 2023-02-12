@@ -180,7 +180,7 @@ MonoBehaviour:
   - damageType: 2
     immunityPercentage: 1
   minKineticEnergy: 20
-  collisionDamageModifier: 0.25
+  collisionDamageModifier: 0
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []

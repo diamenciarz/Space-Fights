@@ -21,9 +21,9 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
 
     [Header("Sounds")]
     [SerializeField] protected List<AudioClip> breakingSounds;
-    [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
+    [SerializeField][Range(0, 1)] protected float breakingSoundVolume = 1f;
     [SerializeField] protected List<AudioClip> hitSounds;
-    [SerializeField] [Range(0, 1)] protected float hitSoundVolume = 1f;
+    [SerializeField][Range(0, 1)] protected float hitSoundVolume = 1f;
 
     [Header("Progression bar usage")]
     [SerializeField] bool dontUseProgressionBar = true;
@@ -201,11 +201,12 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     {
         GameObject poup = Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, 0));
         DamagePopup damagePopupScript = poup.GetComponent<DamagePopup>();
-        damagePopupScript.Start();
         if (damagePopupScript)
         {
+            damagePopupScript.Start();
             damagePopupScript.SetMaxDamage((int)maxPartHealth);
             damagePopupScript.SetDamageDisplayed(damage);
+            //TODO: Make a system, where the color of damage popups depends on the gun's properties, not the object's max health
         }
     }
     #endregion

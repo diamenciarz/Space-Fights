@@ -75,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1000
-  m_Sprite: {fileID: -5604200098444175960, guid: 88b58383db5cbdf439ee36aabb2966d1, type: 3}
+  m_Sprite: {fileID: 1738397660, guid: faaa8d12975ab70429585726fc4694be, type: 3}
   m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.6, y: 3.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6676668502653053866
@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 0
-  maxDistance: 0
-  recalculateOffScreen: 1
-  changeSpriteOnRecalculation: 1
+  minDistance: 50
+  maxDistance: 100
+  recalculateOffScreen: 0
+  changeSpriteOnRecalculation: 0
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +114,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks: []
-  spriteProbabilities: 
-  spriteRenderer: {fileID: 0}
+  alternativeLooks:
+  - {fileID: 196840995, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 1738397660, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -457772825, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -639142033, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 944308016, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 1557402794, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 688758485, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 562326208, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 893417129, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -1899716388, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 231041851, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 1415614910, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 215612937, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -464380299, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 333891229, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -1781727450, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 1435390257, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -1900367349, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 688992119, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: -438324468, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  - {fileID: 665457205, guid: faaa8d12975ab70429585726fc4694be, type: 3}
+  spriteProbabilities: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  spriteRenderer: {fileID: 6676668502653053865}

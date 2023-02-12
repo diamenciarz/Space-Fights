@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class CameraPositionController : MonoBehaviour
 {
-    [SerializeField] [Range(-10, 10)] float deltaX;
-    [SerializeField] [Range(-10, 10)] float deltaY;
-    [SerializeField] List<GameObject> follow;
-    [SerializeField] SpriteRenderer background;
-    [SerializeField] bool limitView;
+    [SerializeField][Range(-10, 10)] float deltaX;
+    [SerializeField][Range(-10, 10)] float deltaY;
 
+    [SerializeField]
+    [Tooltip("The point will follow the average position of all objects in the list")]
+    List<GameObject> follow;
+
+    [SerializeField]
+    [Tooltip("The sprite's dimensions will be used to make sure the camera does not fly outside the sprite")]
+    SpriteRenderer backgroundSprite;
+
+    [SerializeField]
+    [Tooltip("If set to true, the camera will only fly as far from the (0,0) point in game units so that it does not see outside the background (unmovable)")]
+    bool limitView;
+
+    //The maximum distance in game units that the camera can fly
     private float xLimit;
     private float yLimit;
 
@@ -23,19 +33,19 @@ public class CameraPositionController : MonoBehaviour
     }
     private void UpdateLimits()
     {
-        Sprite sprite = background.sprite;
-        float pixelsPerUnit = background.sprite.pixelsPerUnit;
+        Sprite sprite = backgroundSprite.sprite;
+        float pixelsPerUnit = backgroundSprite.sprite.pixelsPerUnit;
         float width = sprite.texture.width;
         float height = sprite.texture.height;
 
         Vector2 cameraSize = CameraInformation.GetCameraSize();
 
         //Size in game units
-        float backgroundWidth = width / pixelsPerUnit * background.transform.lossyScale.x;
-        float backgroundHeight = height / pixelsPerUnit * background.transform.lossyScale.y;
+        float backgroundWidthInCameraUnits = width / pixelsPerUnit * backgroundSprite.transform.lossyScale.x;
+        float backgroundHeightInCameraUnits = height / pixelsPerUnit * backgroundSprite.transform.lossyScale.y;
 
-        xLimit = backgroundWidth - cameraSize.x;
-        yLimit = backgroundHeight - cameraSize.y;
+        xLimit = backgroundWidthInCameraUnits - cameraSize.x;
+        yLimit = backgroundHeightInCameraUnits - cameraSize.y;
 
         if (xLimit < 0)
         {

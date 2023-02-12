@@ -184,7 +184,7 @@ public class ShipController : TeamUpdater
     }
     private void FillInActions(List<EntityInputs> entityInputs)
     {
-        bool forwardLeft = entityInputs.Contains(EntityInputs.FORWARD) && entityInputs.Contains(EntityInputs.LEFT);
+        /*bool forwardLeft = entityInputs.Contains(EntityInputs.FORWARD) && entityInputs.Contains(EntityInputs.LEFT);
         TryAddAction(entityInputs, forwardLeft, EntityInputs.FORWARD_LEFT);
         bool forwardRight = entityInputs.Contains(EntityInputs.FORWARD) && entityInputs.Contains(EntityInputs.RIGHT);
         TryAddAction(entityInputs, forwardRight, EntityInputs.FORWARD_RIGHT);
@@ -192,6 +192,7 @@ public class ShipController : TeamUpdater
         TryAddAction(entityInputs, backwardLeft, EntityInputs.BACKWARD_LEFT);
         bool backwardRight = entityInputs.Contains(EntityInputs.BACKWARD) && entityInputs.Contains(EntityInputs.RIGHT);
         TryAddAction(entityInputs, backwardRight, EntityInputs.BACKWARD_RIGHT);
+        */
     }
     private void CallInputActions(ActionCallData[] callActions)
     {

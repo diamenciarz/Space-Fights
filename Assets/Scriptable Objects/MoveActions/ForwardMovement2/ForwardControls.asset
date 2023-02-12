@@ -15,18 +15,18 @@ MonoBehaviour:
   controls:
   - key: 119
     type: 0
-    action: {fileID: 0}
+    action: {fileID: 11400000, guid: fc70f901cefd8a847a4bfc02d9e5cf43, type: 2}
     actionControllers: []
   - key: 115
     type: 1
-    action: {fileID: 0}
+    action: {fileID: 11400000, guid: 41decb73e8b614e468d488adc36e3d67, type: 2}
     actionControllers: []
   - key: 97
-    type: 2
-    action: {fileID: 0}
+    type: 8
+    action: {fileID: 11400000, guid: a0d258e3ca9dc0543a4919d98593af4f, type: 2}
     actionControllers: []
   - key: 100
-    type: 3
-    action: {fileID: 0}
+    type: 9
+    action: {fileID: 11400000, guid: 521e1f8a06aa7904597e95ee2a55d3bd, type: 2}
     actionControllers: []
   actionCalculator: {fileID: 0}

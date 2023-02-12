@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -900
-  m_Sprite: {fileID: 21300000, guid: ef3f907626217164fb1dfe1e93b4765b, type: 3}
-  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fb63198968e2ca4479ebcea81dc10b44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 0
-  maxDistance: 0
-  recalculateOffScreen: 1
-  changeSpriteOnRecalculation: 1
+  minDistance: 30
+  maxDistance: 100
+  recalculateOffScreen: 0
+  changeSpriteOnRecalculation: 0
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks: []
-  spriteProbabilities: 
-  spriteRenderer: {fileID: 0}
+  alternativeLooks:
+  - {fileID: 21300000, guid: fb63198968e2ca4479ebcea81dc10b44, type: 3}
+  - {fileID: 21300000, guid: f45b791edebb87d4798e1c25019446c1, type: 3}
+  - {fileID: 21300000, guid: 80662f0b2396c4141b15cfc5b982e2c6, type: 3}
+  spriteProbabilities: 000000000000000000000000
+  spriteRenderer: {fileID: 6676668502653053865}

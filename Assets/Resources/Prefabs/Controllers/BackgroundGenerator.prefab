@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 412578077085716772}
   - component: {fileID: 412578077085716773}
   m_Layer: 0
-  m_Name: DoodadGenerator
+  m_Name: BackgroundGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 412578077085716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.1284351, y: 0.90380216, z: -0.49214926}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d509cdcc2483324483fe8e032123eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doodads: []
-  spawnCount: 
+  doodads:
+  - {fileID: 6676668502653053867, guid: ca175804ce915ce4795746961e957273, type: 3}
+  - {fileID: 6676668502653053867, guid: 9214274e4e100974a9ca464b6823b5db, type: 3}
+  - {fileID: 6676668502653053867, guid: e5dc7e215c0e6cf45b0ee072c351ac48, type: 3}
+  - {fileID: 6676668502653053867, guid: ca4fab1d3331dfb42adfe76b68e9b0de, type: 3}
+  spawnCount: 0100000002000000140000000a000000
