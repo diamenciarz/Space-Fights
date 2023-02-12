@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6676668502653053865}
   - component: {fileID: 6676668502653053866}
   - component: {fileID: 6676668502653053871}
+  - component: {fileID: 3244885849608403393}
   m_Layer: 0
   m_Name: WhiteStar
   m_TagString: Untagged
@@ -98,11 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c49f5530051074eab89a191e1b5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks:
-  - {fileID: 21300000, guid: 44cfc596740364b46b841b18d94b212a, type: 3}
-  - {fileID: 21300000, guid: 06160b463f0521046b86719711fbda25, type: 3}
-  spriteProbabilities: 1400000001000000
-  spriteRenderer: {fileID: 6676668502653053865}
   minDelay: 10
   maxDelay: 60
   flickerDuration: 0.25
@@ -180,3 +176,19 @@ MonoBehaviour:
   maxDistance: 990
   recalculateOffScreen: 1
   changeSpriteOnRecalculation: 1
+--- !u!114 &3244885849608403393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6676668502653053867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alternativeLooks:
+  - {fileID: 21300000, guid: 44cfc596740364b46b841b18d94b212a, type: 3}
+  - {fileID: 21300000, guid: 06160b463f0521046b86719711fbda25, type: 3}
+  spriteProbabilities: 1400000001000000

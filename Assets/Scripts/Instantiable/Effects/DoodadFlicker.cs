@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class DoodadFlicker : SetRandomTexture, ISerializationCallbackReceiver
+[RequireComponent(typeof(SetRandomTexture))]
+public class DoodadFlicker : MonoBehaviour, ISerializationCallbackReceiver
 {
     [Header("Flicker settings")]
     [SerializeField] float minDelay;
@@ -11,11 +11,13 @@ public class DoodadFlicker : SetRandomTexture, ISerializationCallbackReceiver
 
     [SerializeField] List<Gradient> flickerGradients;
     [Tooltip("Each value is the chance for this gradient to be chosen")]
-    [SerializeField] [Range(0, 100)] List<int> gradientProbabilities;
+    [SerializeField][Range(0, 100)] List<int> gradientProbabilities;
+
+    private Gradient currentGradient;
+    private SpriteRenderer spriteRenderer;
 
     private int chanceSum;
     private float flickerStartTime;
-    private Gradient currentGradient;
     private bool isVisible;
 
 
@@ -27,6 +29,7 @@ public class DoodadFlicker : SetRandomTexture, ISerializationCallbackReceiver
     }
     private void SetupStartingVariables()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         currentGradient = flickerGradients[0];
         flickerStartTime = -1 * flickerDuration;
         StartCoroutine(flickerRoutine());
@@ -109,9 +112,12 @@ public class DoodadFlicker : SetRandomTexture, ISerializationCallbackReceiver
     #endregion
 
     #region Serialization
-    public override void OnBeforeSerialize()
+    public void OnAfterDeserialize()
     {
-        base.OnBeforeSerialize();
+
+    }
+    public void OnBeforeSerialize()
+    {
         controlGradientProbabilitiesLength();
     }
     private void controlGradientProbabilitiesLength()
