@@ -26,14 +26,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012750832036236270}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: 1.44}
@@ -142,7 +142,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: -45
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -153,9 +153,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lifetime: 1
-  minTextSize: 5
-  maxTextSize: 12
-  TMP: {fileID: 8730830146734266329}
+  minTextSize: 30
+  maxTextSize: 60
 --- !u!23 &7063885092318526906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -218,7 +217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 100000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f74127c002b78d4f98770ba3b7f07b0, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f74127c002b78d4f98770ba3b7f07b0, type: 2}

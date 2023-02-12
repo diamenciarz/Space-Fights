@@ -7,16 +7,20 @@ using TMPro;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] Gradient colorGradient;
+    [Tooltip("The x offset from the starting position. Time from 0 to 1.")]
     [SerializeField] AnimationCurve xPositionCurve;
+    [Tooltip("The y offset from the starting position. Time from 0 to 1.")]
     [SerializeField] AnimationCurve yPositionCurve;
+    [Tooltip("The value of angle from the beginning to the end of the animation. Time from 0 to 1.")]
     [SerializeField] AnimationCurve rotationCurve;
+    [Tooltip("Given in seconds. The animation curves remain supported on [0,1].")]
     [SerializeField] float lifetime;
-    [SerializeField] int minTextSize;
-    [SerializeField] int maxTextSize;
+    [SerializeField] int minTextSize = 30;
+    [SerializeField] int maxTextSize = 60;
 
     private int maxDamageForGradient = 1;
     private int displayedDamage = 0;
-    public TMP_Text TMP;
+    private TMP_Text TMP;
     private float creationTime;
     private Vector2 startingPosition;
     private float startingRotation;
