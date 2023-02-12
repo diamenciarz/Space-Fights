@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 public static class EntityFactory
 {
-    private static Dictionary<string, GameObject> projectiles = new Dictionary<string, GameObject>();
-    private static Dictionary<string, GameObject> entities = new Dictionary<string, GameObject>();
-    private static Dictionary<string, GameObject> UIs = new Dictionary<string, GameObject>();
+    private static Dictionary<string, GameObject> projectiles = new Dictionary<string, GameObject>(); // Projectiles and destructible obstacles
+    private static Dictionary<string, GameObject> entities = new Dictionary<string, GameObject>(); // Ships and indestructible walls
+    private static Dictionary<string, GameObject> UIs = new Dictionary<string, GameObject>(); // Non physical items
 
     private static bool initialized = false;
     private static string projectilePath = "Prefabs/Projectiles";
     private static string entityPath = "Prefabs/Ships";
-    private static string obstaclePath = "Prefabs/Doodads";
+    private static string obstaclePath = "Prefabs/Obstacles";
+    private static string indestructiblesPath = "Prefabs/Indestructibles";
     private static string UIPath = "Prefabs/UI";
 
     #region Initialization
@@ -22,6 +23,7 @@ public static class EntityFactory
             FillDictionaryWithEntities(projectiles, projectilePath);
             FillDictionaryWithEntities(projectiles, obstaclePath);
             FillDictionaryWithEntities(entities, entityPath);
+            FillDictionaryWithEntities(entities, indestructiblesPath);
             FillDictionaryWithEntities(UIs, UIPath);
         }
     }
@@ -63,6 +65,7 @@ public static class EntityFactory
     {
         if (dictionary.ContainsKey(name))
         {
+            Debug.Log(name);
             return dictionary[name];
         }
         return null;

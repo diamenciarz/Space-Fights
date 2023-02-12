@@ -60,7 +60,10 @@ public class ExplosionController : ProjectileController
         if (Time.time - creationTime > timeToExpire)
         {
             SetSizeToMax();
-            breakOnCollision.DestroyObject();
+            if (breakOnCollision)
+            {
+                breakOnCollision.DestroyObject();
+            }
         }
     }
     private void SetSizeToMax()

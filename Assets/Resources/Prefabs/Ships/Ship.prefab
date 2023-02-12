@@ -537,7 +537,7 @@ MonoBehaviour:
   team:
     teamInstance: 0
   basicGunDirection: 0
-  gunRotationSpeed: 0
+  gunRotationSpeed: 90
   hasRotationLimits: 1
   leftMaxRotationLimit: 60
   rightMaxRotationLimit: 60
@@ -599,7 +599,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 3503175393803492294}
   forwardGunRotation: 0
   shootingMode: 0
-  targetTypes: 
+  targetTypes: 010000000200000003000000
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!114 &7398243765704990038
@@ -675,8 +675,9 @@ MonoBehaviour:
   isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
-  targetTypes: 
-  actionControllers: []
+  targetTypes: 010000000200000003000000
+  actionControllers:
+  - {fileID: 863468948743332297}
 --- !u!1 &4306293360209334544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,10 +2415,11 @@ MonoBehaviour:
     - {fileID: 6441913592834814980}
     - {fileID: 494917494657619772}
   secondaryAction:
-    key: 0
-    type: 0
+    key: 304
+    type: 11
     action: {fileID: 0}
-    actionControllers: []
+    actionControllers:
+    - {fileID: 7551173842708764306}
   ternaryAction:
     key: 0
     type: 0
@@ -3826,11 +3828,11 @@ MonoBehaviour:
   team:
     teamInstance: 0
   salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
-  shootingPoint: {fileID: 6441913593890035338}
+  shootingPoint: {fileID: 6441913594105931014}
   forwardGunRotation: 180
   shootingMode: 0
   targetTypes: 
-  reloadingBarAlwaysOn: 0
+  reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
 --- !u!114 &5812251090777440677
 MonoBehaviour:

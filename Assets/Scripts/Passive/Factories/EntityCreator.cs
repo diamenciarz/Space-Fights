@@ -15,15 +15,17 @@ public class EntityCreator : MonoBehaviour
         Grenade,
         Grenade_Explosion,
         Bouncy_Laser,
-        SmallRock,
-        TinyRock,
+        Small_Rock,
+        Tiny_Rock,
         Invisible_Explosion,
         AntiRocket,
-        AntiBomb_Explosion
+        AntiRocket_Explosion
     }
     public enum Entities
     {
-        Ship
+        Ship,
+        SquareWall,
+        LongWall
     }
     public enum ProgressionBars
     {

@@ -633,11 +633,11 @@ public static class HelperMethods
             List<LayerNames> layers = new List<LayerNames>();
             foreach (var type in targetTypes)
             {
-                if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Doodad)
+                if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Obstacle)
                 {
                     layers.Add(LayerNames.Actors);
                 }
-                if (type == StaticDataHolder.ObjectTypes.Obstacle)
+                if (type == StaticDataHolder.ObjectTypes.Indestructible)
                 {
                     layers.Add(LayerNames.Obstacles);
                 }

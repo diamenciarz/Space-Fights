@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4745208028666614122}
   - component: {fileID: -4837405678306962265}
   - component: {fileID: 5497011935168393560}
+  - component: {fileID: 5268208231612974113}
   m_Layer: 8
   m_Name: Rocket_Explosion
   m_TagString: Untagged
@@ -188,3 +189,21 @@ MonoBehaviour:
   timeToExpire: 0.5
   expandRate: 2
   rotateDuringLifetime: 180
+--- !u!114 &5268208231612974113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1

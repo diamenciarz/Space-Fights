@@ -12,10 +12,11 @@ public static class StaticDataHolder
     public static List<float> soundDurationList = new List<float>();
     public static int soundLimit = 10;
 
+    //If you change stuff here, you must update it in HelperMethods.GetLayers()
     public enum ObjectTypes
     {
+        Indestructible,
         Obstacle,
-        Doodad,
         Projectile,
         Entity,
         MouseCursor

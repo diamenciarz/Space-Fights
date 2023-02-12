@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5598095727471138394}
   - component: {fileID: 1840522685464473822}
   - component: {fileID: -6639344204899158849}
+  - component: {fileID: 5268208231612974113}
   m_Layer: 8
   m_Name: Splitting_Bullet
   m_TagString: Untagged
@@ -216,3 +217,21 @@ MonoBehaviour:
   directionOffset: 0
   targetEnemies: 0
   targetTypes: 
+--- !u!114 &5268208231612974113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  breakEnum: 01000000030000000400000005000000
+  breakingSounds: []
+  breakingSoundVolume: 1
