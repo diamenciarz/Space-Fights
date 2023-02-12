@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000
   unchangeableTeam: 1
   team:
     teamInstance: 0
@@ -211,6 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07044da6873024f49ba2886230c84525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeLooks: []
-  spriteProbabilities: 
+  alternativeLooks:
+  - {fileID: 21300000, guid: bc67cfedfc8f44c46b86056436971216, type: 3}
+  - {fileID: 21300000, guid: e317cb6c351c76447a14c1806f3f34e6, type: 3}
+  spriteProbabilities: 3200000032000000
   spriteRenderer: {fileID: 4456331406175181434}

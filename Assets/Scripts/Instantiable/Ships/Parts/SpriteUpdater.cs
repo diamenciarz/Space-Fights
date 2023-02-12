@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class SpriteUpdater : TeamUpdater
 {
     [Tooltip("Specify the sprites that this part should change according to its team. Starting from team 1, onwards")]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class SetRandomTexture : MonoBehaviour, ISerializationCallbackReceiver
 {
     [Header("Texture settings")]
@@ -9,7 +10,7 @@ public class SetRandomTexture : MonoBehaviour, ISerializationCallbackReceiver
     [Tooltip("Each value is the chance for this sprite to be chosen")]
     [SerializeField] [Range(0, 100)] List<int> spriteProbabilities;
 
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
 
     #region Startup
