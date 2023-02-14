@@ -1535,6 +1535,22 @@ PrefabInstance:
       propertyPath: debugZonePrefab
       value: 
       objectReference: {fileID: 8395912166832606940, guid: 2dd6f5c4ba49c6142bff8e221e533c74, type: 3}
+    - target: {fileID: 8448464666150114285, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: isControlledByMouse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: ignoreMouseCollisions
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: targetTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
+      propertyPath: targetTypes.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8786691315742761047, guid: 610fe58644368c84f87c442a11f1849e, type: 3}
       propertyPath: sprites.Array.size
       value: 3
@@ -3300,6 +3316,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 493045442}
     m_Modifications:
+    - target: {fileID: 7493213699246723096, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9809845
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723096, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9809845
+      objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723097, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_BodyType
       value: 0

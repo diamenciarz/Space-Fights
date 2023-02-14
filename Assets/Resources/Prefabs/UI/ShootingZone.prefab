@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 8492177007195057068}
   - component: {fileID: 5189311966775966252}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: ZoneSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  originalAlfa: 1
+  originalAlfa: 0.25
   rotateSameAsParent: 1
 --- !u!114 &6266471521723400712
 MonoBehaviour:

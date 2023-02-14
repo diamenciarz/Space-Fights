@@ -672,9 +672,9 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 1
+  isControlledByMouse: 0
   isShootingZoneOn: 1
-  ignoreMouseCollisions: 1
+  ignoreMouseCollisions: 0
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
@@ -1965,9 +1965,9 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
   m_BreakForce: 5000
   m_BreakTorque: 5000
-  m_MaxForce: 50000
+  m_MaxForce: 5000
   m_MaxTorque: 1000
-  m_CorrectionScale: 0.1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.50000006, y: 0.37499997}
   m_AngularOffset: -3.1415927
@@ -2659,9 +2659,9 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913594073557300}
   m_BreakForce: 5000
   m_BreakTorque: 5000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.05
+  m_MaxForce: 5000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.00000004371139, y: 0.5}
   m_AngularOffset: 0
@@ -3508,9 +3508,9 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
   m_BreakForce: 5000
   m_BreakTorque: 5000
-  m_MaxForce: 50000
+  m_MaxForce: 5000
   m_MaxTorque: 1000
-  m_CorrectionScale: 0.1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.49999997, y: 0.37500003}
   m_AngularOffset: -3.1415927
@@ -3788,9 +3788,9 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592222990136}
   m_BreakForce: 5000
   m_BreakTorque: 5000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.05
+  m_MaxForce: 5000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.00000004371139, y: 0.5}
   m_AngularOffset: 0

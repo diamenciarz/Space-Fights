@@ -7,6 +7,7 @@ public class OnCollisionDamage : AbstractActionOnCollision, IDamageDealer
     [SerializeField] protected bool hurtsAllies;
 
     [Header("Damage type")]
+    [Tooltip("The maximum damage that can be dealt on a single hit")]
     [SerializeField] protected List<DamageInstance.DamageCategory> damageCategories = new List<DamageInstance.DamageCategory>();
 
 

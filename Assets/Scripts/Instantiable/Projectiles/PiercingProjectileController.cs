@@ -6,6 +6,7 @@ using UnityEngine;
 public class PiercingProjectileController : ProjectileController, IPiercingDamage
 {
     //TODO: Implement total damage lowering upon damage dealt
+    [Tooltip("The total damage that this projectile can deal, even if it pierces through many entities. The damage it deals to each entity is subtracted from totalDamage")]
     [SerializeField] protected List<DamageInstance.DamageCategory> totalDamageCategories = new List<DamageInstance.DamageCategory>();
 
     #region Mutator methods
