@@ -51,7 +51,9 @@ public class ListUpdater : MonoBehaviour
     }
     public void SetList(List<ObjectTypes> newList)
     {
+        RemoveObjectFromLists();
         putInLists = newList;
+        AddObjectToLists();
     }
     #endregion
     public List<ObjectTypes> GetList()

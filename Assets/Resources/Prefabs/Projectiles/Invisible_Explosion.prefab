@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1584809002072738734}
   - component: {fileID: 9105046196351330134}
   - component: {fileID: 6721332528289669469}
+  - component: {fileID: 6337006721521068565}
   m_Layer: 8
   m_Name: Invisible_Explosion
   m_TagString: Untagged
@@ -95,7 +96,6 @@ MonoBehaviour:
     damage: 8
   startingSpeed: 0
   addCreatorVelocity: 0
-  timeToExpire: 0.5
   expandRate: 2
   rotateDuringLifetime: 180
 --- !u!212 &-1584809002072738734
@@ -183,3 +183,18 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites: []
+--- !u!114 &6337006721521068565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a2cc892d000a4a814d83ed9eb3905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doDestroyActions: 1
+  expireAfterTime: 0.5
+  expirationDistance: -1

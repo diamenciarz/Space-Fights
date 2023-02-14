@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1594040755141738852}
   - component: {fileID: 1218885602159398205}
   - component: {fileID: 4705688004795715904}
+  - component: {fileID: 6337006721521068565}
   m_Layer: 8
   m_Name: Grenade_Explosion
   m_TagString: Untagged
@@ -183,6 +184,20 @@ MonoBehaviour:
     damage: 4
   startingSpeed: 0
   addCreatorVelocity: 0
-  timeToExpire: 0.75
   expandRate: 2
   rotateDuringLifetime: 360
+--- !u!114 &6337006721521068565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a2cc892d000a4a814d83ed9eb3905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doDestroyActions: 1
+  expireAfterTime: 1
+  expirationDistance: -1

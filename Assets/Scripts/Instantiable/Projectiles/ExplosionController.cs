@@ -2,12 +2,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CenteredPushingForce))]
+[RequireComponent(typeof(DeterministicExpirationProperty))]
+
 public class ExplosionController : ProjectileController
 {
 
     [Header("Bomb Settings")]
     // Ustawienia dla bomby
-    public float timeToExpire;
+    private float timeToExpire;
     [Tooltip("How many times larger should the explosion get than the starting size")]
     [SerializeField] float expandRate; // Sprite scale
     [Tooltip("The total rotation that the explosion will do during its lifetime in degrees")]
@@ -15,6 +17,7 @@ public class ExplosionController : ProjectileController
 
     //Private variables
     private CenteredPushingForce pushingForce;
+    private DeterministicExpirationProperty expirationProperty;
     private float originalSize;
     private float originalZRotation;
 
@@ -29,6 +32,14 @@ public class ExplosionController : ProjectileController
         originalSize = transform.localScale.x;
         originalZRotation = transform.rotation.eulerAngles.z;
         pushingForce = GetComponent<CenteredPushingForce>();
+        expirationProperty = GetComponent<DeterministicExpirationProperty>();
+
+        timeToExpire = expirationProperty.expireAfterTime;
+        if(timeToExpire <= 0)
+        {
+            Debug.LogError("Time to expire in the DeterministicExpirationProperty has  to be higher than 0 for the ExplosionController to work");
+        }
+
         pushingForce.timeToExpire = timeToExpire;
     }
     #endregion

@@ -26,12 +26,12 @@ public class ListUpdaterOnJointBreak : MonoBehaviour
     {
         if (wasActivated)
         {
-            RemoveObjectFromLists(putInLists);
+            RemoveObjectFromList(putInLists);
         }
     }
     protected void OnDestroy()
     {
-        RemoveObjectFromLists(putInLists);
+        RemoveObjectFromList(putInLists);
     }
     #endregion
 
@@ -47,10 +47,8 @@ public class ListUpdaterOnJointBreak : MonoBehaviour
     public void SwitchObjectInLists()
     {
         ListUpdater listUpdater = GetComponent<ListUpdater>();
-        RemoveObjectFromLists(listUpdater.GetList());
         listUpdater.SetList(putInLists);
 
-        AddObjectToLists();
         wasActivated = true;
     }
     private void AddObjectToLists()
@@ -60,7 +58,7 @@ public class ListUpdaterOnJointBreak : MonoBehaviour
             StaticDataHolder.ListModification.AddObject(list, gameObject);
         }
     }
-    private void RemoveObjectFromLists(List<StaticDataHolder.ObjectTypes> lists)
+    private void RemoveObjectFromList(List<StaticDataHolder.ObjectTypes> lists)
     {
         foreach (var list in lists)
         {

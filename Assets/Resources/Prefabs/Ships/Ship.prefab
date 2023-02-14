@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 5699753045744380763}
   - component: {fileID: 4678151132839442301}
   - component: {fileID: 6584085193551642099}
-  - component: {fileID: 3974430762197789361}
   m_Layer: 7
   m_Name: RightArmor
   m_TagString: Untagged
@@ -313,26 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
---- !u!254 &3974430762197789361
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161992438742806062}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592222990136}
-  m_BreakForce: 8000
-  m_BreakTorque: 8000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.1
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.05000004, y: -0.325}
-  m_AngularOffset: 0
+  putInLists: 03000000
 --- !u!1 &1143466193118479298
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +652,7 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 0
+  isControlledByMouse: 1
   isShootingZoneOn: 1
   ignoreMouseCollisions: 0
   targetTypes: 010000000200000003000000
@@ -974,7 +954,6 @@ GameObject:
   - component: {fileID: 3053305423686384990}
   - component: {fileID: 8634896179821027948}
   - component: {fileID: 5929757085221161170}
-  - component: {fileID: 4551472302514882335}
   m_Layer: 7
   m_Name: LeftArmor
   m_TagString: Untagged
@@ -1188,26 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
---- !u!254 &4551472302514882335
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5240635708381860907}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913594073557300}
-  m_BreakForce: 8000
-  m_BreakTorque: 8000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.1
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.049999982, y: -0.325}
-  m_AngularOffset: 0
+  putInLists: 03000000
 --- !u!1 &5330567886002227178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,7 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &6262043443459889419
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -1557,8 +1517,6 @@ GameObject:
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 6277392765285528697}
   - component: {fileID: 8938107796251630952}
-  - component: {fileID: 3884369921391416714}
-  - component: {fileID: 4456534973171068049}
   m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
@@ -1626,7 +1584,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2b18bad44d40c7f4e9fa485e9836f6a0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.54901963, b: 0.54901963, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1769,45 +1727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
---- !u!254 &3884369921391416714
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592164531680}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592912191839}
-  m_BreakForce: 8000
-  m_BreakTorque: 8000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.1
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.25, y: -0.000000021855694}
-  m_AngularOffset: 0
---- !u!254 &4456534973171068049
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592164531680}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913594190072069}
-  m_BreakForce: 8000
-  m_BreakTorque: 8000
-  m_MaxForce: 20000
-  m_MaxTorque: 500
-  m_CorrectionScale: 0.1
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.25, y: 0.000000021855694}
-  m_AngularOffset: 0
+  putInLists: 03000000
 --- !u!1 &6441913592222990131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,15 +1882,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592538751967}
+  m_ConnectedRigidBody: {fileID: 5057970825632474978}
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.50000006, y: 0.37499997}
-  m_AngularOffset: -3.1415927
+  m_LinearOffset: {x: 0.05000004, y: 0.325}
+  m_AngularOffset: 0
 --- !u!114 &7777640078348625372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2034,7 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &4301460452244733516
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -2071,6 +1991,8 @@ GameObject:
   - component: {fileID: 8026648952637378061}
   - component: {fileID: 7591081900006578315}
   - component: {fileID: 8498402774063008030}
+  - component: {fileID: 3691443966653001840}
+  - component: {fileID: 2929451005444828216}
   m_Layer: 7
   m_Name: Bumper
   m_TagString: Untagged
@@ -2231,7 +2153,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
+  - {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
+  - {fileID: 21300000, guid: d5f9a5d3d5c9ff948b808b974b7bf654, type: 3}
   partHealth: 50
   barHealth: 50
   destroyDamage: 20
@@ -2281,6 +2206,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 
+--- !u!254 &3691443966653001840
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592454232510}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1177742716018359492}
+  m_BreakForce: 5000
+  m_BreakTorque: 2000
+  m_MaxForce: 10000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.18234253, y: 0.49441323}
+  m_AngularOffset: 1.3379651
+--- !u!254 &2929451005444828216
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592454232510}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5057970825632474978}
+  m_BreakForce: 5000
+  m_BreakTorque: 2000
+  m_MaxForce: 10000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.39000252, y: -0.3813021}
+  m_AngularOffset: 1.3379651
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,7 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656dbc62519a61448f0692676f18cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 8
   minSpeed: 2
   maxTurningSpeed: 180
   driftFactor: 0.9
@@ -2405,7 +2368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de898801af72c6469d83a3cc4e3ea97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledByPlayer: 0
+  controlledByPlayer: 1
   controlScheme: {fileID: 11400000, guid: 6fe0b3f1a63ae514ab1df81e98777b2a, type: 2}
   primaryAction:
     key: 32
@@ -2765,7 +2728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &3118542449087796360
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -2937,15 +2900,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592538751967}
+  m_ConnectedRigidBody: {fileID: 6441913592164531685}
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.25000003, y: -0.49999997}
-  m_AngularOffset: -3.1415927
+  m_LinearOffset: {x: -0.25, y: 0.000000021855694}
+  m_AngularOffset: 0
 --- !u!114 &2089844514390813114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,7 +2973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &1870446364785305945
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -3258,7 +3221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &1554142526956661798
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -3505,15 +3468,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592538751967}
+  m_ConnectedRigidBody: {fileID: 1177742716018359492}
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.49999997, y: 0.37500003}
-  m_AngularOffset: -3.1415927
+  m_LinearOffset: {x: -0.049999982, y: 0.325}
+  m_AngularOffset: 0
 --- !u!114 &4357380861355621637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3577,7 +3540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &2856201227424772899
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -3714,7 +3677,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8d05cd9902526814e9cc9246dd857263, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98598385, b: 0.98598385, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3913,7 +3876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!1 &6441913594190072064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,15 +4029,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592538751967}
+  m_ConnectedRigidBody: {fileID: 6441913592164531685}
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.24999996, y: -0.5}
-  m_AngularOffset: -3.1415927
+  m_LinearOffset: {x: 0.25, y: -0.000000021855694}
+  m_AngularOffset: 0
 --- !u!114 &8520602108167705266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4139,7 +4102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
 --- !u!254 &41402405380234878
 RelativeJoint2D:
   m_ObjectHideFlags: 0

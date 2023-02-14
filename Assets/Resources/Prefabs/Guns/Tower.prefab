@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4296519749683544341}
   - component: {fileID: 8021823894982714015}
+  - component: {fileID: 1204640746029900739}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -167,9 +168,25 @@ MonoBehaviour:
   shootingPoint: {fileID: 6271903174717107740}
   forwardGunRotation: 0
   shootingMode: 0
-  targetTypes: 010000000300000002000000
+  targetTypes: 
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
+--- !u!114 &1204640746029900739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6275599121277092949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3fffc7546b7e44e9f46c49fc95fd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 0
+  barDeltaPosition: {x: 0, y: 1}
+  isAlwaysOn: 0
+  hideDelay: 1
 --- !u!1 &6869262952838426057
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,10 +242,11 @@ MonoBehaviour:
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 6271903174717107740}
   isControlledByMouse: 0
-  isShootingZoneOn: 0
+  isShootingZoneOn: 1
   ignoreMouseCollisions: 0
-  targetTypes: 
-  actionControllers: []
+  targetTypes: 010000000300000002000000
+  actionControllers:
+  - {fileID: 8021823894982714015}
 --- !u!1 &7725359952001599400
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 
+  putInLists: 03000000
   unchangeableTeam: 0
   team:
     teamInstance: 0
@@ -519,6 +537,6 @@ MonoBehaviour:
   rightMaxRotationLimit: 120
   visualDetectors:
   - {fileID: 7480479330725694337}
-  debugZoneOn: 1
+  debugZoneOn: 0
   debugZonePrefab: {fileID: 8395912166832606940, guid: 2dd6f5c4ba49c6142bff8e221e533c74, type: 3}
   DebugZoneTransform: {fileID: 7371173148479189348}
