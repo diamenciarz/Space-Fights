@@ -223,7 +223,7 @@ MonoBehaviour:
   range: 10
   mouseRange: 10
   refreshRate: 0.1
-  visualZoneOrigin: {fileID: 0}
+  visualZoneOrigin: {fileID: 6271903174717107740}
   isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7725359952001599400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.188, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -514,10 +514,11 @@ MonoBehaviour:
     teamInstance: 0
   basicGunDirection: 0
   gunRotationSpeed: 0
-  hasRotationLimits: 0
-  leftMaxRotationLimit: 0
-  rightMaxRotationLimit: 0
-  visualDetectors: []
+  hasRotationLimits: 1
+  leftMaxRotationLimit: 120
+  rightMaxRotationLimit: 120
+  visualDetectors:
+  - {fileID: 7480479330725694337}
   debugZoneOn: 1
-  debugZonePrefab: {fileID: 0}
-  DebugZoneTransform: {fileID: 0}
+  debugZonePrefab: {fileID: 8395912166832606940, guid: 2dd6f5c4ba49c6142bff8e221e533c74, type: 3}
+  DebugZoneTransform: {fileID: 7371173148479189348}

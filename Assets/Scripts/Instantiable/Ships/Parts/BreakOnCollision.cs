@@ -15,7 +15,6 @@ public class BreakOnCollision : AbstractActionOnCollision
     protected const float INVULNERABILITY_TIME = 0.25f;
     protected GameObject objectThatCreatedThisProjectile;
     protected bool isDestroyed = false;
-    private new bool affectObjectOnce;
 
     /// <summary>
     /// This entity should break if it collides with one of these types of objects

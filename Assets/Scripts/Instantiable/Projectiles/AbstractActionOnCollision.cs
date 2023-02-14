@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractActionOnCollision : TeamUpdater
 {
-    public bool affectObjectOnce = true;
+    [SerializeField] private bool affectObjectOnce = true;
     protected List<GameObject> actedOnObjects = new List<GameObject>();
 
     #region Collisions

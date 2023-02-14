@@ -65,7 +65,6 @@ public static class EntityFactory
     {
         if (dictionary.ContainsKey(name))
         {
-            Debug.Log(name);
             return dictionary[name];
         }
         return null;
