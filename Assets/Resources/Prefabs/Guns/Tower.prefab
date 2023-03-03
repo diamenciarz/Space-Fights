@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3fffc7546b7e44e9f46c49fc95fd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: 0
+  bar: 1
   barDeltaPosition: {x: 0, y: 1}
   isAlwaysOn: 0
   hideDelay: 1
@@ -234,15 +234,15 @@ MonoBehaviour:
   team:
     teamInstance: 0
   deltaParentRotation: 0
-  hasRotationLimits: 0
-  leftMaxRotationLimit: 0
-  rightMaxRotationLimit: 0
+  hasRotationLimits: 1
+  leftMaxRotationLimit: 90
+  rightMaxRotationLimit: 90
   range: 10
   mouseRange: 10
   refreshRate: 0.1
-  visualZoneOrigin: {fileID: 6271903174717107740}
-  isControlledByMouse: 0
-  isShootingZoneOn: 1
+  visualZoneOrigin: {fileID: 7005096668549435608}
+  isControlledByMouse: 1
+  isShootingZoneOn: 0
   ignoreMouseCollisions: 0
   targetTypes: 010000000300000002000000
   actionControllers:
@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 7005096668549435608}
   - component: {fileID: 6493010151437119125}
   - component: {fileID: 9173923930102967529}
+  - component: {fileID: 6833806250247197728}
   m_Layer: 6
   m_Name: Tower
   m_TagString: Untagged
@@ -305,8 +306,8 @@ Transform:
   m_GameObject: {fileID: 8017394203629097686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7002466400094574582}
   - {fileID: 7371173148479189348}
@@ -354,7 +355,23 @@ MonoBehaviour:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
-  dontUseProgressionBar: 1
+  dontUseProgressionBar: 0
+--- !u!114 &6833806250247197728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017394203629097686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3fffc7546b7e44e9f46c49fc95fd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 0
+  barDeltaPosition: {x: 0, y: 1}
+  isAlwaysOn: 0
+  hideDelay: 1
 --- !u!1 &8041327027955548429
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,8 +547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  basicGunDirection: 0
-  gunRotationSpeed: 0
+  basicGunDirection: -90
+  gunRotationSpeed: 90
   hasRotationLimits: 1
   leftMaxRotationLimit: 120
   rightMaxRotationLimit: 120

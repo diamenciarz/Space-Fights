@@ -39,7 +39,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     private HealthManager healthManager;
     private Rigidbody2D myRigidbody2D;
     private IOnDamageDealt[] onHitCalls;
-    private int numberOfJoints;
+    private List<Joint2D> joints;
 
     private float maxPartHealth;
     private float maxBarHealth;
@@ -71,8 +71,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
                 Debug.LogError("DamagePopup not found in UI folder!");
             }
         }
-        Joint2D[] joints = GetComponents<Joint2D>();
-        numberOfJoints = joints.Length;
+        joints = new List<Joint2D>(GetComponents<Joint2D>());
         //Math
         maxPartHealth = partHealth;
         maxBarHealth = barHealth;
@@ -217,8 +216,8 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     #region OnJointBreak2D
     public void OnJointBreak2D(Joint2D joint)
     {
-        numberOfJoints--;
-        if (numberOfJoints == 0)
+        joints.Remove(joint);
+        if (joints.Count == 0)
         {
             BreakOff();
         }
@@ -239,10 +238,26 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
             healthManager = null;
         }
 
+        DisconnectJoints(); //Only disconnect joints not connected with the part's direct parent
         transform.SetParent(null);
         TurnOffGuns();
         SetTeam(Team.GetEnemyToAllTeam()); //Everyone can destroy detached parts
-        SwitchLists();
+        SwitchLists(); //Add to obstacle list
+    }
+    public void DisconnectJoints()
+    {
+        foreach (Joint2D joint in joints)
+        {
+            Transform jointObjectParentTransform = joint.gameObject.transform.parent;
+            if (jointObjectParentTransform == null)
+            {
+                continue;
+            }
+            if (joint.connectedBody != jointObjectParentTransform.gameObject)
+            {
+                joint.breakForce = 0;
+            }
+        }
     }
     private void TurnOffGuns()
     {

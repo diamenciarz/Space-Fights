@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ShootOnDeath.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\MovementScheme.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdater.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\OnCollisionDamage.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionBarCompatible.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\CenteredPushingForce.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\BackgroundGenerator.cs" />
@@ -81,8 +83,12 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\AbstractActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\ParallaxScroller.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\ListUpdaterOnJointBreak.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\PushableProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticProgressionBarUpdater.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\BreakOnCollision.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\AbstractProjectileController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractMoveAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\ForwardActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TriggerOnDeath.cs" />
@@ -107,6 +113,7 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\MouseCursorFollower.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Actions\ActionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TeamUpdater.cs" />
+    <Compile Include="Assets\Scripts\Passive\Controls\ShipController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPushable.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\VisualDetector.cs" />
@@ -124,6 +131,7 @@
     <Compile Include="Assets\Scripts\Passive\Helpers\StaticDataHolder.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\EntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\RocketController.cs" />
+    <Compile Include="Assets\Scripts\Movement\MovementScheme.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IActionControllerCaller.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPiercingDamage.cs" />
@@ -132,6 +140,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ObjectMissingIconProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
+    <Compile Include="Assets\Scripts\Fighting\Enemies\Properties\CenteredPushingForce.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
   </ItemGroup>

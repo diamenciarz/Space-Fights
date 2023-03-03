@@ -143,16 +143,12 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     {
         if (isControlledByMouse && IsMouseInSight())
         {
-            isTargetInSight = IsMouseClickedInSight();
+            isTargetInSight = IsMouseClicked();
         }
         else
         {
             isTargetInSight = targetsInSightList.Count > 0;
         }
-    }
-    private bool IsMouseClickedInSight()
-    {
-        return IsMouseInSight() && IsMouseClicked();
     }
     private bool IsMouseInSight()
     {
