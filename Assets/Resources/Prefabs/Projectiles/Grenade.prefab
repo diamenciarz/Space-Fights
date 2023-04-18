@@ -121,15 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 0
-  breakEnum: 
-  breakingSounds: []
-  breakingSoundVolume: 1
+  putInLists: 02000000
 --- !u!114 &-553088433232255719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doDestroyActions: 1
-  expirationTime: 3
+  expireAfterTime: -1
   expirationDistance: -1
 --- !u!114 &6226319890669195142
 MonoBehaviour:

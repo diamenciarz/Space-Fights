@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 7748659938827264479}
   - component: {fileID: 6572667855001212798}
   - component: {fileID: 662213920967089266}
+  - component: {fileID: 5268208231612974113}
   m_Layer: 8
   m_Name: AntiRocket
   m_TagString: Untagged
@@ -391,15 +392,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 0
-  breakEnum: 050000000400000000000000010000000300000006000000
-  breakingSounds: []
-  breakingSoundVolume: 1
+  putInLists: 02000000
 --- !u!114 &662213920967089266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +411,23 @@ MonoBehaviour:
   doDestroyActions: 1
   expireAfterTime: -1
   expirationDistance: -1
+--- !u!114 &5268208231612974113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b5cde8477ace54aaa13d51bf49617a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  breakEnum: 
+  breakingSounds: []
+  breakingSoundVolume: 1
 --- !u!1 &8479812763967634279
 GameObject:
   m_ObjectHideFlags: 0

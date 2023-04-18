@@ -1964,8 +1964,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 5057970825632474978}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -2047,8 +2047,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3
@@ -2066,8 +2066,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 4400702746985605334}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -2680,8 +2680,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913594073557300}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -2800,8 +2800,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3
@@ -3551,8 +3551,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1177742716018359492}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -3634,8 +3634,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3
@@ -3653,8 +3653,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 7264960904025806074}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -3850,8 +3850,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592222990136}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
@@ -3869,8 +3869,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 5000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3

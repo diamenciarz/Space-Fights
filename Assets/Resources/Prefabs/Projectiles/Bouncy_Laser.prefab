@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 5534843798056116234}
   - component: {fileID: -8578680821316315447}
   - component: {fileID: 292488992788198187}
+  - component: {fileID: 5268208231612974113}
   m_Layer: 8
   m_Name: Bouncy_Laser
   m_TagString: Untagged
@@ -215,15 +216,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
+  m_Script: {fileID: 11500000, guid: f1cdc85a143c0f045a7fd8d7a393e4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  affectObjectOnce: 1
-  breakEnum: 0400000005000000
-  breakingSounds: []
-  breakingSoundVolume: 1
+  minAngleToReflect: 45
+  maxReflectionNumber: 3
 --- !u!114 &-8578680821316315447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,13 +232,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700761372939823446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2459c7377130f142a78b34bcec31276, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  minAngleToReflect: 45
-  maxReflectionNumber: 3
+  putInLists: 02000000
 --- !u!114 &292488992788198187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,5 +249,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doDestroyActions: 0
-  expirationTime: 30
+  expireAfterTime: -1
   expirationDistance: 30
+--- !u!114 &5268208231612974113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b5cde8477ace54aaa13d51bf49617a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  breakEnum: 05000000
+  breakingSounds: []
+  breakingSoundVolume: 1

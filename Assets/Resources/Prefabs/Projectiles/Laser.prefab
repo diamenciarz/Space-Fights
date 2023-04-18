@@ -112,10 +112,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7700761372939823443}
-  - component: {fileID: 3632203342257642947}
   - component: {fileID: 8884412361962455790}
   - component: {fileID: 7426536192320844466}
   - component: {fileID: 8397113486806745960}
+  - component: {fileID: 3724997657364934861}
+  - component: {fileID: 4218730403650343124}
   m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
@@ -139,24 +140,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3632203342257642947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5724a6f454b1e8b47b34a5770d59a0c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 1
-  breakEnum: 01000000040000000500000006000000
-  breakingSounds: []
-  breakingSoundVolume: 1
 --- !u!50 &8884412361962455790
 Rigidbody2D:
   serializedVersion: 4
@@ -215,3 +198,33 @@ MonoBehaviour:
     damage: 6
   startingSpeed: 12
   addCreatorVelocity: 0
+--- !u!114 &3724997657364934861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b5cde8477ace54aaa13d51bf49617a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  breakEnum: 01000000060000000400000005000000
+  breakingSounds: []
+  breakingSoundVolume: 1
+--- !u!114 &4218730403650343124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000

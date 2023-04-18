@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9105046196351330134}
   - component: {fileID: 6721332528289669469}
   - component: {fileID: 6337006721521068565}
+  - component: {fileID: 6982043592674631484}
   m_Layer: 8
   m_Name: Invisible_Explosion
   m_TagString: Untagged
@@ -140,7 +141,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 078a066a6a12c814db4cb8ce14564fab, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,3 +199,16 @@ MonoBehaviour:
   doDestroyActions: 1
   expireAfterTime: 0.5
   expirationDistance: -1
+--- !u!114 &6982043592674631484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000

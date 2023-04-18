@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -4837405678306962265}
   - component: {fileID: 5497011935168393560}
   - component: {fileID: 6337006721521068565}
+  - component: {fileID: 604168146307288306}
   m_Layer: 8
   m_Name: Rocket_Explosion
   m_TagString: Untagged
@@ -203,3 +204,16 @@ MonoBehaviour:
   doDestroyActions: 1
   expireAfterTime: 0.5
   expirationDistance: -1
+--- !u!114 &604168146307288306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 02000000
