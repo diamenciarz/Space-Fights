@@ -764,4 +764,12 @@ public static class HelperMethods
         #endregion
 
     }
+
+    public class InputUtils
+    {
+        public static bool IsAnyInputKeyPressed()
+        {
+            return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+        }
+    }
 }

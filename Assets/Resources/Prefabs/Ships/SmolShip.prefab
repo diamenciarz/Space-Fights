@@ -886,7 +886,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
-  force: 25000
+  maxForce: 250
+  K1: 5000
+  K2: 10
+  K3: 40
 --- !u!1 &6441913594026728077
 GameObject:
   m_ObjectHideFlags: 0

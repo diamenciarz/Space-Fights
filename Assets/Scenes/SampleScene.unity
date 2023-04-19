@@ -2528,8 +2528,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9100750884195188640, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
-      propertyPath: force
-      value: 25000
+      propertyPath: M2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100750884195188640, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: M3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9100750884195188640, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: isForceGlobal
