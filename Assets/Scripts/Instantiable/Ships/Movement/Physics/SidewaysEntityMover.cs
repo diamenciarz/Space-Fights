@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using static EntityInput;
 
-public class SidewaysEntityMover : MonoBehaviour
+public class SidewaysEntityMover : MonoBehaviour, IEntityMover
 {
 
     #region Serialization
     [Tooltip("The highest speed that the vehicle can accelerate towards")]
     [SerializeField] float maxSpeed;
-    [Tooltip("The lowest speed that the vehicle can travel backwards")]
-    [SerializeField] float minSpeed;
-    [Tooltip("Turn speed in degrees per second (at the highest speed)")]
-    [SerializeField] float maxTurningSpeed;
-    [Tooltip("How slippery the driving experience is. 1 for no drifting, 0 for driving on ice")]
-    [SerializeField][Range(0, 1)] float driftFactor;
-    [SerializeField] bool isForceGlobal = true;
+    [Tooltip("The maximum force that can be applied")]
+    [SerializeField] float force;
     #endregion
 
     #region Private variables
@@ -23,8 +19,6 @@ public class SidewaysEntityMover : MonoBehaviour
     Rigidbody2D myRigidbody2D;
     private Vector2 inputVector;
 
-    private float previousRotationAngle;
-    private float directionAngle;
     #endregion
 
     #region Startup
@@ -34,8 +28,6 @@ public class SidewaysEntityMover : MonoBehaviour
     }
     private void SetupVariables()
     {
-        directionAngle = transform.rotation.eulerAngles.z;
-        previousRotationAngle = directionAngle;
         myRigidbody2D = GetComponent<Rigidbody2D>();
     }
     #endregion
@@ -45,76 +37,65 @@ public class SidewaysEntityMover : MonoBehaviour
     {
         inputVector = newInputVector;
     }
-    public void RotateByAngle(float rotation, bool affectedByVelocity)
-    {
-        float deltaAngle = CalculateDeltaAngle(rotation, affectedByVelocity);
-        ModifyDirection(deltaAngle);
-    }
-    public void RotateTowardsVector(Vector2 targetDirection, bool affectedByVelocity)
-    {
-        float deltaAngle = CalculateDeltaAngle(targetDirection, affectedByVelocity);
-        ModifyDirection(deltaAngle);
-    }
-    #region Helper methods
-    private float CalculateDeltaAngle(float rotation, bool affectedByVelocity)
-    {
-        if (affectedByVelocity)
-        {
-            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
-            return rotation * Time.fixedDeltaTime * maxSpeedPercentage;
-        }
-        return rotation * Time.fixedDeltaTime;
-    }
-    private float CalculateDeltaAngle(Vector2 targetDirection, bool affectedByVelocity)
-    {
-        float directionVector = HelperMethods.VectorUtils.VectorDirection(targetDirection);
-        float directionVectorClamped = HelperMethods.AngleUtils.ClampAngle180(directionVector);
-        float rotation = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
-        float deltaAngle = HelperMethods.AngleUtils.ClampAngle180(directionVectorClamped - rotation);
-
-        float deltaStep = Mathf.Sign(deltaAngle) * maxTurningSpeed * Time.fixedDeltaTime;
-
-        //0.1 is a good multiplier that avoids the counter torque from overshooting and creating wiggle
-        const float WIGGLE_DAMPER = 0.1f;
-        bool angleIsSmall = Mathf.Abs(deltaAngle) < maxTurningSpeed * WIGGLE_DAMPER;
-        if (angleIsSmall)
-        {
-            return deltaAngle * Time.fixedDeltaTime;
-        }
-
-        if (affectedByVelocity)
-        {
-            float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
-            return deltaStep * maxSpeedPercentage;
-        }
-        return deltaStep;
-    }
-    private void ModifyDirection(float deltaDirection)
-    {
-        float minRotation = previousRotationAngle - maxTurningSpeed * Time.fixedDeltaTime;
-        float maxRotation = previousRotationAngle + maxTurningSpeed * Time.fixedDeltaTime;
-        directionAngle = Mathf.Clamp(directionAngle + deltaDirection, minRotation, maxRotation);
-    }
-    #endregion
     #endregion
 
     #region Update
     void FixedUpdate()
     {
-        ApplyForce(inputVector);
+        Vector2 forceToApply = GetForceToApply(inputVector);
+        ApplyForce(forceToApply);
+        KeepVelocityInBounds(forceToApply);
+    }
+
+    private Vector2 GetForceToApply(Vector2 inputVector)
+    {
+        Vector2 forceInTime = force * inputVector * Time.fixedDeltaTime;
+        float forceMultiplier = CalculateForceMultiplier(forceInTime);
+        Vector2 clampedForce = forceInTime * forceMultiplier;
+
+        return clampedForce / Time.fixedDeltaTime;
+    }
+    private float CalculateForceMultiplier(Vector2 appliedForce)
+    {
+        Vector2 forceInWorldspace = CalculateAppliedForce(appliedForce);
+        Vector2 velocityInForceDirection = HelperMethods.VectorUtils.ProjectVector(myRigidbody2D.velocity, forceInWorldspace);
+        float dot = Vector2.Dot(myRigidbody2D.velocity, forceInWorldspace);
+
+        bool forceInFlightDirection = dot > 0;
+        if (forceInFlightDirection)
+        {
+            float deltaSpeedToMax = maxSpeed - velocityInForceDirection.magnitude;
+            return deltaSpeedToMax / maxSpeed;
+        }
+        return 1;
+    }
+    private void KeepVelocityInBounds(Vector2 appliedForce)
+    {
+        Vector2 velocity = myRigidbody2D.velocity;
+        Vector2 forceInWorldspace = CalculateAppliedForce(appliedForce);
+        Vector2 velocityInForceDirection = HelperMethods.VectorUtils.ProjectVector(velocity, forceInWorldspace);
+        Vector2 perpendicularVelocity = velocity - velocityInForceDirection;
+
+        float maxPerpendicularSpeed = Mathf.Sqrt(maxSpeed * maxSpeed - velocityInForceDirection.sqrMagnitude);
+        Vector2 allowedPerpendicularVelocity = Vector2.ClampMagnitude(perpendicularVelocity, maxPerpendicularSpeed);
+        myRigidbody2D.velocity = allowedPerpendicularVelocity + velocityInForceDirection;
+    }
+    private Vector2 CalculateAppliedForce(Vector2 appliedForce)
+    {
+        return appliedForce;
     }
     private void ApplyForce(Vector2 force)
     {
-        if (isForceGlobal)
-        {
-            myRigidbody2D.AddForce(force, ForceMode2D.Force);
-            return;
-        }
-        myRigidbody2D.AddRelativeForce(force, ForceMode2D.Force);
+        myRigidbody2D.AddForce(force * Time.deltaTime, ForceMode2D.Force);
+        return;
     }
     #endregion
 
     #region Accessor methods
+    private float GetSpeed()
+    {
+        return myRigidbody2D.velocity.magnitude;
+    }
     private Vector2 GetSidewayVelocity()
     {
         return transform.right * Vector2.Dot(myRigidbody2D.velocity, transform.right);
@@ -126,18 +107,6 @@ public class SidewaysEntityMover : MonoBehaviour
     public float GetMaxSpeed()
     {
         return maxSpeed;
-    }
-    public float GetMinSpeed()
-    {
-        return minSpeed;
-    }
-    public float GetMaxTurningSpeed()
-    {
-        return maxTurningSpeed;
-    }
-    public float GetDirectionAngle()
-    {
-        return directionAngle;
     }
     #endregion
 }

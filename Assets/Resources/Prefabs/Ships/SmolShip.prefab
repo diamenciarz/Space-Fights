@@ -732,13 +732,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6441913592538751966}
   - component: {fileID: 7342654577498207827}
-  - component: {fileID: 6441913592538751777}
   - component: {fileID: 6441913592538751967}
   - component: {fileID: 1630741118}
   - component: {fileID: 5166552632043362251}
   - component: {fileID: -6443159064478190265}
   - component: {fileID: 4590534427023860326}
   - component: {fileID: -1594027281432790397}
+  - component: {fileID: 9100750884195188640}
   m_Layer: 7
   m_Name: SmolShip
   m_TagString: Untagged
@@ -781,22 +781,6 @@ MonoBehaviour:
   breakingSounds: []
   breakingSoundVolume: 1
   dontUseProgressionBar: 0
---- !u!114 &6441913592538751777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592538751965}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d656dbc62519a61448f0692676f18cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 8
-  minSpeed: 2
-  maxTurningSpeed: 180
-  driftFactor: 0.9
 --- !u!50 &6441913592538751967
 Rigidbody2D:
   serializedVersion: 4
@@ -889,6 +873,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9100750884195188640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8afaf3108e3d3c45b5a294522026202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  force: 25000
 --- !u!1 &6441913594026728077
 GameObject:
   m_ObjectHideFlags: 0
