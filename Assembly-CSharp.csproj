@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ShootOnDeath.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\MovementScheme.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\BounceProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionBarCompatible.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\CenteredPushingForce.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\BackgroundGenerator.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\EntityInput.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\IEntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ProgressionConeProperty.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\SidewaysEntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IOnDamageDealt.cs" />
@@ -134,8 +136,6 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Projectiles\BounceProperty.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\SidewaysEntityMover.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

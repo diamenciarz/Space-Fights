@@ -18,19 +18,24 @@ public class ProgressionBarProperty : MonoBehaviour, IProgressionBar
     {
         GameObject barToInstantiate = EntityFactory.GetPrefab(bar);
         progressionBar = Instantiate(barToInstantiate, parent.transform.position, parent.transform.rotation);
-        progressionBar.transform.SetParent(StaticProgressionBarUpdater.UIParent.transform, true);
-        SetBarScriptValues();
-    }
-    #region Helper methods
-    private void SetBarScriptValues()
-    {
+        SummonedProgressionBarData data = CreateSummonData(parent);
+
+        progressionBar = EntityCreator.SummonProgressionBar(data);
         barScript = progressionBar.GetComponent<ProgressionBarController>();
-        barScript.SetDeltaPositionToObject(barDeltaPosition);
-        barScript.SetHideDelay(hideDelay);
-        barScript.SetIsAlwaysVisible(isAlwaysOn);
-        barScript.SetObjectToFollow(gameObject);
     }
-    #endregion
+    private SummonedProgressionBarData CreateSummonData(GameObject parent)
+    {
+        SummonedProgressionBarData data = new SummonedProgressionBarData();
+        data.progressionBarType = bar;
+        data.barDeltaPosition = barDeltaPosition;
+        data.summonPosition = parent.transform.position;
+        data.summonRotation = parent.transform.rotation;
+        data.hideDelay = hideDelay;
+        data.isAlwaysOn = isAlwaysOn;
+        data.objectToFollow = gameObject;
+
+        return data;
+    }
 
     public void DeleteProgressionBar()
     {

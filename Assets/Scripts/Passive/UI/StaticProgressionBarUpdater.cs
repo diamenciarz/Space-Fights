@@ -136,6 +136,7 @@ public static class StaticProgressionBarUpdater
         bool objectDoesNotHaveABar = bans.Contains(updater);
         if (objectDoesNotHaveABar)
         {
+            Debug.LogError("This object does not have a progression bar!");
             throw new System.Exception();
         }
         IProgressionBar bar = GetBar(updater);

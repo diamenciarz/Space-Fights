@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 
+  breakEnum: 0100000003000000060000000500000004000000
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!1 &8479812763967634279

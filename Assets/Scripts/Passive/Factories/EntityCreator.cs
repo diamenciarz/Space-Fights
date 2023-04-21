@@ -1,4 +1,5 @@
 using UnityEngine;
+using static EntityCreator;
 using static TeamUpdater;
 
 public class EntityCreator : MonoBehaviour
@@ -85,31 +86,21 @@ public class EntityCreator : MonoBehaviour
 
     private static void CreateProjectile(SummonedShotData data, int i)
     {
-        GameObject bulletToSummon = GetBulletToSummon(data, i);
-        if (bulletToSummon == null)
+        Projectiles projectileToSummon = data.shot.projectilesToCreateList[i];
+        if (projectileToSummon == Projectiles.Nothing)
         {
             return;
         }
 
-        SummonedEntityData newData = new SummonedEntityData();
+        SummonedProjectileData newData = new SummonedProjectileData();
+        newData.projectileType = projectileToSummon;
         newData.summonPosition = data.summonPosition;
         newData.summonRotation = CountSummonRotation(data, i);
         newData.SetTeam(data.GetTeam());
         newData.createdBy = data.createdBy;
         newData.target = data.target;
 
-        SummonEntity(newData, bulletToSummon);
-    }
-
-    private static GameObject GetBulletToSummon(SummonedShotData data, int i)
-    {
-        Projectiles bulletType = data.shot.projectilesToCreateList[i];
-        GameObject bulletToSummon = EntityFactory.GetPrefab(bulletType);
-        if (IsEntityNull(bulletToSummon, bulletType))
-        {
-            return null;
-        }
-        return bulletToSummon;
+        SummonProjectile(newData);
     }
 
     #region Count shot rotation
@@ -174,10 +165,10 @@ public class EntityCreator : MonoBehaviour
     #endregion
     #endregion
 
-    #region Entities
+    #region Projectiles
 
     #region Null Check
-    private static bool IsEntityNull(GameObject entityToSummon, Projectiles entityType)
+    private static bool IsProjectileNull(GameObject entityToSummon, Projectiles entityType)
     {
         if (entityType == Projectiles.Nothing)
         {
@@ -193,23 +184,28 @@ public class EntityCreator : MonoBehaviour
     }
     #endregion
 
-    public static void SummonEntity(SummonedEntityData data, GameObject entityToSummon)
+    public static void SummonProjectile(SummonedProjectileData data)
     {
+        GameObject entityToSummon = EntityFactory.GetPrefab(data.projectileType);
+        if (IsProjectileNull(entityToSummon, data.projectileType))
+        {
+            return;
+        }
+
         GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
         CheckForRocket(summonedEntity, data);
 
-        SetupStartingValues(summonedEntity, data);
+        SetupStartingProjectileValues(summonedEntity, data);
     }
-    #endregion
 
     #region Helper methods
-    private static void SetupStartingValues(GameObject summonedObject, SummonedEntityData data)
+    private static void SetupStartingProjectileValues(GameObject summonedObject, SummonedProjectileData data)
     {
         SetTeam(summonedObject, data);
         SetCreatedBy(summonedObject, data.createdBy);
         ModifyStartingSpeed(summonedObject, data);
     }
-    private static void SetTeam(GameObject summonedObject, SummonedEntityData data)
+    private static void SetTeam(GameObject summonedObject, SummonedProjectileData data)
     {
         IParent teamUpdater = summonedObject.GetComponent<IParent>();
         if (teamUpdater != null)
@@ -220,16 +216,19 @@ public class EntityCreator : MonoBehaviour
     private static void SetCreatedBy(GameObject summonedObject, GameObject createdBy)
     {
         IParent iParent = summonedObject.GetComponent<IParent>();
-        if (createdBy)
+        if (iParent != null)
         {
-            iParent.SetCreatedBy(createdBy);
-        }
-        else
-        {
-            iParent.SetCreatedBy(summonedObject.gameObject);
+            if (createdBy)
+            {
+                iParent.SetCreatedBy(createdBy);
+            }
+            else
+            {
+                iParent.SetCreatedBy(summonedObject.gameObject);
+            }
         }
     }
-    private static void ModifyStartingSpeed(GameObject summonedObject, SummonedEntityData data)
+    private static void ModifyStartingSpeed(GameObject summonedObject, SummonedProjectileData data)
     {
         if (data.createdBy == null)
         {
@@ -254,7 +253,7 @@ public class EntityCreator : MonoBehaviour
             }
         }
     }
-    private static void CheckForRocket(GameObject summonedObject, SummonedEntityData data)
+    private static void CheckForRocket(GameObject summonedObject, SummonedProjectileData data)
     {
         if (!data.target)
         {
@@ -283,6 +282,36 @@ public class EntityCreator : MonoBehaviour
         StaticDataHolder.Sounds.PlaySound(sound, data.summonPosition, shotSO.shotSoundVolume);
     }
     #endregion
+
+    #endregion
+
+    #region Progression Bars
+    public static GameObject SummonProgressionBar(SummonedProgressionBarData data)
+    {
+        GameObject entityToSummon = EntityFactory.GetPrefab(data.progressionBarType);
+        if (entityToSummon == null)
+        {
+            Debug.LogError("The prefab was null! Probably, the name does not match the enum name.");
+            return null;
+        }
+        GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
+        summonedEntity.transform.SetParent(StaticProgressionBarUpdater.UIParent.transform, true);
+
+        SetupStartingProgressionBarValues(summonedEntity, data);
+        return summonedEntity;
+    }
+
+    #region Helper methods
+    private static void SetupStartingProgressionBarValues(GameObject summonedEntity, SummonedProgressionBarData data)
+    {
+        ProgressionBarController barScript = summonedEntity.GetComponent<ProgressionBarController>();
+        barScript.SetDeltaPositionToObject(data.barDeltaPosition);
+        barScript.SetHideDelay(data.hideDelay);
+        barScript.SetIsAlwaysVisible(data.isAlwaysOn);
+        barScript.SetObjectToFollow(data.objectToFollow);
+    }
+    #endregion
+    #endregion
 }
 
 #region Data types
@@ -304,9 +333,9 @@ public class SummonedShotData
         this.team = team;
     }
 }
-public class SummonedEntityData
+public class SummonedProjectileData
 {
-    public EntityCreator.Projectiles entityType;
+    public EntityCreator.Projectiles projectileType;
     public Vector3 summonPosition;
     public Quaternion summonRotation;
     private Team team;
@@ -321,6 +350,19 @@ public class SummonedEntityData
     {
         this.team = team;
     }
+}
+public class SummonedProgressionBarData
+{
+    public EntityCreator.ProgressionBars progressionBarType;
+    public Vector3 summonPosition;
+    public Quaternion summonRotation;
+
+    public bool isAlwaysOn;
+    public float hideDelay;
+    public GameObject objectToFollow;
+    public Vector2 barDeltaPosition;
+
+
 }
 #endregion
 

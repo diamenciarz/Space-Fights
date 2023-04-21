@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 392aae05b246dd44ea3905a19038726b, type: 2}
+  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
   forwardGunRotation: 0
   shootingMode: 0
@@ -264,12 +264,12 @@ MonoBehaviour:
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
   range: 10
-  mouseRange: 10
+  mouseRange: 0
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 0
-  isShootingZoneOn: 1
-  ignoreMouseCollisions: 0
+  isControlledByMouse: 1
+  isShootingZoneOn: 0
+  ignoreMouseCollisions: 1
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
@@ -733,12 +733,12 @@ GameObject:
   - component: {fileID: 6441913592538751966}
   - component: {fileID: 7342654577498207827}
   - component: {fileID: 6441913592538751967}
+  - component: {fileID: 9100750884195188640}
   - component: {fileID: 1630741118}
   - component: {fileID: 5166552632043362251}
   - component: {fileID: -6443159064478190265}
   - component: {fileID: 4590534427023860326}
   - component: {fileID: -1594027281432790397}
-  - component: {fileID: 9100750884195188640}
   m_Layer: 7
   m_Name: SmolShip
   m_TagString: Untagged
@@ -802,6 +802,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &9100750884195188640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8afaf3108e3d3c45b5a294522026202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 10
+  M1: 10000
+  M2: 1000
+  M3: 5000
+  T1: 5000
+  T2: 10
+  T3: 40
 --- !u!114 &1630741118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,23 +892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9100750884195188640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592538751965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8afaf3108e3d3c45b5a294522026202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  maxForce: 250
-  K1: 5000
-  K2: 10
-  K3: 40
 --- !u!1 &6441913594026728077
 GameObject:
   m_ObjectHideFlags: 0
