@@ -39,6 +39,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private bool isTargetInSight;
     private Coroutine checkCoroutine;
+    private float barRatio;
 
 
     #region Startup
@@ -51,6 +52,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     }
     private void SetStartingVariables()
     {
+        barRatio = (leftMaxRotationLimit + rightMaxRotationLimit) / 360f;
         TryCreateUI();
     }
     private void AddToListeners()
@@ -176,12 +178,8 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     #region UI
     private void TryCreateUI()
     {
-        bool createBar = hasRotationLimits;
-        if (createBar)
-        {
-            float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
-            StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), GetBarRatio(), shootingZoneRotation);
-        }
+        float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
+        StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), GetBarRatio(), shootingZoneRotation);
     }
     #region Update
     private void RefreshUI()
@@ -193,21 +191,10 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
 
     private void UpdateShootingZoneVisibility()
     {
-        bool barOn = hasRotationLimits && isControlledByMouse;
-        if (!barOn)
+        if (isTargetInSight || (isControlledByMouse && IsMouseClicked()))
         {
-            return;
-        }
-        if (isTargetInSight)
-        {
-            //Debug.Log("Show cone");
-            //Make the light orange bar show up
-            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, true);
-        }
-        else
-        {
-            //Make the light orange bar disappear
-            StaticProgressionBarUpdater.SetIsProgressionConeAlwaysVisible(this, false);
+            //Make the bar show up
+            StaticProgressionBarUpdater.UpdateProgressionCone(this);
         }
     }
     #endregion
@@ -225,7 +212,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     {
         if (hasRotationLimits)
         {
-            return (leftMaxRotationLimit + rightMaxRotationLimit) / 360f;
+            return barRatio;
         }
         else
         {

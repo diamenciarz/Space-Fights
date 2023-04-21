@@ -223,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3628950189056374314}
   - component: {fileID: 8448464666150114285}
+  - component: {fileID: 3611032152340221076}
   m_Layer: 7
   m_Name: Detector
   m_TagString: Untagged
@@ -273,6 +274,23 @@ MonoBehaviour:
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
+--- !u!114 &3611032152340221076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135078944746659301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d3e0b05de5c7c41960a9f704827583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cone: 0
+  coneDeltaPosition: {x: 0, y: 0}
+  isAlwaysOn: 0
+  offsetAngle: 0
+  hideDelay: 1
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0

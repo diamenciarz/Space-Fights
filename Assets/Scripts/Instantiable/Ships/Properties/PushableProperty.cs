@@ -23,8 +23,15 @@ public class PushableProperty : MonoBehaviour, IPushable
     /// </summary>
     /// <param name="force"></param>
     /// <param name="deltaPosition"></param>
-    public void Push(Vector2 force, Vector2 deltaPosition)
+    public void Push(Vector2 force, Vector2 deltaPosition, bool impulse = false)
     {
-        myRigidbody2D.AddForceAtPosition(force, deltaPosition, ForceMode2D.Impulse);
+        if (impulse)
+        {
+            myRigidbody2D.AddForceAtPosition(force, deltaPosition, ForceMode2D.Impulse);
+        }
+        else
+        {
+            myRigidbody2D.AddForceAtPosition(force, deltaPosition, ForceMode2D.Force);
+        }
     }
 }

@@ -360,7 +360,7 @@ public class AutomaticGunRotator : TeamUpdater
         if (debugZonePrefab != null)
         {
             GameObject newShootingZoneGo = Instantiate(debugZonePrefab, DebugZoneTransform);
-            float debugZoneRange = 1.8f; // This is a constant
+            float debugZoneRange = 3.8f; // This is a constant
             newShootingZoneGo.transform.localScale = new Vector3(debugZoneRange, debugZoneRange, 1);
 
             SetupDebugZone(newShootingZoneGo);

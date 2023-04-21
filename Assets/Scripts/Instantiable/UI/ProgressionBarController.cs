@@ -242,6 +242,5 @@ public class ProgressionBarController : MonoBehaviour
             UpdateBarRatio(newRatio);
         }
     }
-
     #endregion
 }

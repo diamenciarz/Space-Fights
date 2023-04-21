@@ -2495,6 +2495,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6443159064478190265, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: isAlwaysOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611032152340221076, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: hideDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751965, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Name
       value: SmolShip
@@ -2546,6 +2554,14 @@ PrefabInstance:
     - target: {fileID: 7472136560962297160, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: basicGunDirection
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: mouseRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: isShootingZoneOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8671073499299282293, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_LocalRotation.w
