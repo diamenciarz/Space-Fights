@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static StaticDataHolder.ListContents;
 
@@ -169,17 +168,18 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private float CountAngleToTarget(float angleToTarget)
     {
+        float angleAroundBoundary = angleToTarget;
         if (hasRotationLimits)
         {
-            angleToTarget = GoAroundBoundaries(angleToTarget);
-            Debug.Log("Angle:" + angleToTarget);
+            angleAroundBoundary = GoAroundBoundaries(angleToTarget);
+            Debug.Log("Angle was:" + angleToTarget + "With boundary:" + angleAroundBoundary);
 
         }
         if (debugZoneOn)
         {
-            UpdateDebugZone(GetGunAngle(), GetGunAngle() + angleToTarget);
+            UpdateDebugZone(GetGunAngle(), GetGunAngle() + angleAroundBoundary);
         }
-        return angleToTarget;
+        return angleAroundBoundary;
     }
     #region Get Delta Angle
     private float CountDeltaAngleToTarget()
@@ -258,9 +258,14 @@ public class AutomaticGunRotator : TeamUpdater
     private float GoAroundRightBoundary(float angleToMove)
     {
         float angleFromGunToRightLimit = CountAngleFromGunToRightLimit();
+        Debug.Log("From gun to limit:" + angleFromGunToRightLimit + "angle to move:" + angleToMove);
         if (angleFromGunToRightLimit <= 0)
         {
-            if (angleToMove < angleFromGunToRightLimit)
+            // Due to two float angles being added, and then compared, an overflow occurred,
+            // which would make equal values appear different by a very small fraction.
+            // This did cause weird behaviour at the right boundary.
+            // Subtracting 0.01 removes the error
+            if (angleToMove < angleFromGunToRightLimit - 0.001f)
             {
                 return (angleToMove + 360);
             }
@@ -269,7 +274,8 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private float CountAngleFromGunToLeftLimit()
     {
-        float angleFromGunToLeftLimit = leftMaxRotationLimit - GetFromGunToMiddleAngle();
+        float fromGunToMiddleAngle = GetFromGunToMiddleAngle();
+        float angleFromGunToLeftLimit = leftMaxRotationLimit - fromGunToMiddleAngle;
         if (angleFromGunToLeftLimit > 180)
         {
             angleFromGunToLeftLimit -= 360;
@@ -278,7 +284,8 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private float CountAngleFromGunToRightLimit()
     {
-        float angleFromGunToRightLimit = -(rightMaxRotationLimit + GetFromGunToMiddleAngle());
+        float fromGunToMiddleAngle = GetFromGunToMiddleAngle();
+        float angleFromGunToRightLimit = -(rightMaxRotationLimit + fromGunToMiddleAngle);
         if (angleFromGunToRightLimit < -180)
         {
             angleFromGunToRightLimit += 360;
