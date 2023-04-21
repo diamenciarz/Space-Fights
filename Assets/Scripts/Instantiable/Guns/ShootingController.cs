@@ -22,7 +22,8 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     [Header("Mouse Steering")]
     bool isControlledByMouse; // Just in case
     [SerializeField] bool reloadingBarAlwaysOn = true;
-    [Header("Progression bar usage")]
+    [Header("Progression bar compatibility")]
+    [Tooltip("The progression bars and users should be a one-to-one match. If true, this script is not using GetGomponent<>() to find a ProgressionBarProperty.")]
     [SerializeField] bool dontUseProgressionBar;
 
     public enum ShootingMode
