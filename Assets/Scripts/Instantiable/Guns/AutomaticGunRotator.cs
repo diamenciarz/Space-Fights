@@ -23,7 +23,6 @@ public class AutomaticGunRotator : TeamUpdater
 
     [Header("Debug zone")]
     [SerializeField] bool debugZoneOn = true;
-    [SerializeField] GameObject debugZonePrefab;
     [SerializeField] Transform DebugZoneTransform;
     #endregion
 
@@ -35,7 +34,7 @@ public class AutomaticGunRotator : TeamUpdater
     private IParent parent;
     private GameObject parentGameObject;
     private GameObject closestTarget;
-    
+
     #region Startup
     protected override void Start()
     {
@@ -173,6 +172,8 @@ public class AutomaticGunRotator : TeamUpdater
         if (hasRotationLimits)
         {
             angleToTarget = GoAroundBoundaries(angleToTarget);
+            Debug.Log("Angle:" + angleToTarget);
+
         }
         if (debugZoneOn)
         {
@@ -205,7 +206,6 @@ public class AutomaticGunRotator : TeamUpdater
 
         float angleFromGunToItem = Mathf.DeltaAngle(GetFromGunToMiddleAngle(), angleFromMiddleToItem);
 
-        Debug.Log("Angle:" + angleFromGunToItem);
         return angleFromGunToItem;
     }
     private float ClampAngleToBoundaries(float angleFromMiddleToItem)
@@ -358,14 +358,12 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private void CreateDebugZone()
     {
-        if (debugZonePrefab != null)
-        {
-            GameObject newShootingZoneGo = Instantiate(debugZonePrefab, DebugZoneTransform);
-            float debugZoneRange = 3.8f; // This is a constant
-            newShootingZoneGo.transform.localScale = new Vector3(debugZoneRange, debugZoneRange, 1);
+        GameObject debugZonePrefab = EntityFactory.GetPrefab(EntityCreator.ProgressionCones.ShootingZone);
+        GameObject newShootingZoneGo = Instantiate(debugZonePrefab, DebugZoneTransform);
+        float debugZoneRange = 5f; // This is a constant
+        newShootingZoneGo.transform.localScale = new Vector3(debugZoneRange, debugZoneRange, 1);
 
-            SetupDebugZone(newShootingZoneGo);
-        }
+        SetupDebugZone(newShootingZoneGo);
     }
     private void SetupDebugZone(GameObject newShootingZoneGo)
     {
