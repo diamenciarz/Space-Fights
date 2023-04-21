@@ -205,6 +205,7 @@ public class AutomaticGunRotator : TeamUpdater
 
         float angleFromGunToItem = Mathf.DeltaAngle(GetFromGunToMiddleAngle(), angleFromMiddleToItem);
 
+        Debug.Log("Angle:" + angleFromGunToItem);
         return angleFromGunToItem;
     }
     private float ClampAngleToBoundaries(float angleFromMiddleToItem)

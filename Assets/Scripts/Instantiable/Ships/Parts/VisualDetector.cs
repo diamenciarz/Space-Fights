@@ -191,7 +191,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
 
     private void UpdateShootingZoneVisibility()
     {
-        if (isTargetInSight || (isControlledByMouse && IsMouseClicked()))
+        if (isTargetInSight || (isControlledByMouse && IsMouseClicked()) || isShootingZoneOn)
         {
             //Make the bar show up
             StaticProgressionBarUpdater.UpdateProgressionCone(this);

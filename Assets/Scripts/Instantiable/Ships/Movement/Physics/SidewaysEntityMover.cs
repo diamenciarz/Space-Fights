@@ -65,15 +65,10 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
     #region Movement
     private void UpdateVelocity()
     {
-        Vector2 deltaVelocity = CalculateDeltaVelocity(inputVector);
-        Vector2 forceToApply = GetForceToApply(deltaVelocity);
+        Vector2 forceToApply = GetForceToApply();
         ApplyForce(forceToApply);
     }
-    private Vector2 CalculateDeltaVelocity(Vector2 inputVector)
-    {
-        return (inputVector * maxSpeed) - myRigidbody2D.velocity;
-    }
-    private Vector2 GetForceToApply(Vector2 deltaVelocity)
+    private Vector2 GetForceToApply()
     {
         {
             if (HelperMethods.InputUtils.IsAnyInputKeyPressed())
@@ -81,11 +76,9 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
                 lastInput = inputVector;
             }
 
-            Vector2 speedPercentage = deltaVelocity / maxSpeed;
             Vector2 m1 = inputVector * M1;
             Vector2 m2 = -M2 * myRigidbody2D.velocity;
             Vector2 m3 = -M3 * GetAcceleration();
-            Debug.Log("M1:" + m1 + ", M2:" + m2 + ", M3:" + m3);
             return m1 + m2 + m3;
         }
     }
