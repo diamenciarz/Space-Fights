@@ -3,26 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using static MovementScheme;
 using static StaticDataHolder;
+using static UnityEditor.Progress;
 
-[RequireComponent(typeof(EntityInput))]
 public class ShipController : TeamUpdater
 {
     [SerializeField] float chaseRange;
     [SerializeField] float avoidRange;
     [SerializeField] bool isForceGlobal;
 
-    private EntityInput entityInput;
+    IEntityMover myVehicle;
     private Rigidbody2D rb2D;
+    private GameObject targetToChase;
+    private MovementMode movementMode;
+
+    enum MovementMode
+    {
+        CHASING,
+        AVOIDING,
+        IDLE
+    }
 
     #region Startup
     protected override void Start()
     {
         base.Start();
-        entityInput = GetComponent<EntityInput>();
-        rb2D = GetComponent<Rigidbody2D>();
-        fixRange();
+        SetupStartingVariables();
+        FixRange();
     }
-    private void fixRange()
+    private void SetupStartingVariables()
+    {
+        rb2D = GetComponent<Rigidbody2D>();
+        myVehicle = GetComponent<IEntityMover>();
+    }
+    private void FixRange()
     {
         if (chaseRange < avoidRange)
         {
@@ -35,10 +48,10 @@ public class ShipController : TeamUpdater
     void Update()
     {
         Vector2 movementVector = CalculateMovementVector();
-        Debug.DrawRay(transform.position, movementVector, Color.blue, 0.1f);
-        ActionCallData[] callActions = entityInput.controlScheme.actionCalculator.CalculateActionsToCall(TranslateMovementVector(movementVector));
-        CallInputActions(callActions);
+        myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
+
+    #region Helper methods
     private Vector2 TranslateMovementVector(Vector2 globalForce)
     {
         if (isForceGlobal)
@@ -59,82 +72,111 @@ public class ShipController : TeamUpdater
 
         return rotatedVector;
     }
+    #endregion
 
     #region Movement vector
     private Vector2 CalculateMovementVector()
     {
-        Vector2 proximityVector = Vector2.zero;
-        List<GameObject> chaseObjects = ListContents.Enemies.GetEnemyList(team);
+        targetToChase = ListContents.Enemies.GetClosestEnemy(transform.position, team);
+        Vector2 chaseVector = CalculateChaseVector();
+
         List<GameObject> avoidObjects = GetObjectsToAvoid();
+        Vector2 avoidVector = CalculateAvoidVector(avoidObjects);
 
-        foreach (var item in chaseObjects)
+        if (avoidVector.magnitude > 1)
         {
-            Vector2 deltaPositionToItem = CountDeltaPositionToItem(item);
-            if (!IsInChaseRange(deltaPositionToItem))
-            {
-                continue;
-            }
-
-            proximityVector += HandleChaseObject(deltaPositionToItem);
+            return avoidVector;
         }
-        foreach (var item in avoidObjects)
+        else
         {
-            Vector2 deltaPositionToItem = HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
-            bool isInChaseRange = deltaPositionToItem.magnitude < chaseRange;
-            if (!IsInChaseRange(deltaPositionToItem))
+            if (avoidVector.magnitude > chaseVector.magnitude)
             {
-                continue;
+                return avoidVector;
             }
-
-            proximityVector += HandleAvoidObject(deltaPositionToItem);
+            else
+            {
+                return chaseVector + avoidVector;
+            }
         }
-        return proximityVector.normalized;
     }
-    private Vector2 CountDeltaPositionToItem(GameObject item)
+
+    #region Chasing
+    private Vector2 CalculateChaseVector()
+    {
+        if (targetToChase == null)
+        {
+            return Vector2.zero;
+        }
+        Vector2 deltaPositionToItem = GetDeltaPositionToItem(targetToChase);
+        if (!IsInChaseRange(deltaPositionToItem))
+        {
+            return Vector2.zero;
+        }
+
+        return HandleChaseObject(deltaPositionToItem);
+    }
+    private Vector2 GetDeltaPositionToItem(GameObject item)
     {
         return HelperMethods.LineOfSightUtils.EdgeDeltaPosition(gameObject, item);
     }
     private bool IsInChaseRange(Vector2 deltaPositionToItem)
     {
         return deltaPositionToItem.magnitude < chaseRange;
-
     }
     private Vector2 HandleChaseObject(Vector2 deltaPositionToItem)
     {
-        float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
         bool isInAvoidRange = deltaPositionToItem.magnitude < avoidRange;
-        if (!isInAvoidRange)
+        if (isInAvoidRange)
         {
-            Debug.DrawRay(transform.position, deltaPositionToItem, Color.red, 0.05f);
+            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.red, 0.05f);
+            return -deltaPositionToItem.normalized;
         }
         else
         {
-            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.yellow, 0.05f);
-            multiplier *= -1;
+            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            Debug.DrawRay(transform.position, deltaPositionToItem * multiplier, Color.blue, 0.05f);
+            return deltaPositionToItem.normalized * multiplier;
         }
-        return deltaPositionToItem.normalized * multiplier;
+    }
+    #endregion
+
+    private Vector2 CalculateAvoidVector(List<GameObject> avoidObjects)
+    {
+        Vector2 proximityVector = Vector2.zero;
+        foreach (var item in avoidObjects)
+        {
+            Vector2 deltaPositionToItem = GetDeltaPositionToItem(item);
+            bool shouldIgnore = deltaPositionToItem.magnitude > chaseRange;
+            if (shouldIgnore)
+            {
+                continue;
+            }
+
+            proximityVector += HandleAvoidObject(deltaPositionToItem);
+        }
+        return proximityVector;
     }
     private Vector2 HandleAvoidObject(Vector2 deltaPositionToItem)
     {
-        float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
         bool isInAvoidRange = deltaPositionToItem.magnitude < avoidRange;
         if (!isInAvoidRange)
         {
             //Debug.DrawRay(transform.position, deltaPositionToItem, Color.red, 0.05f);
-            multiplier = 0;
+            return Vector2.zero;
         }
         else
         {
-            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.yellow, 0.05f);
-            multiplier *= -1;
+            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            Debug.DrawRay(transform.position, -deltaPositionToItem * multiplier, Color.yellow, 0.05f);
+            return -deltaPositionToItem.normalized * multiplier;
         }
-        return deltaPositionToItem.normalized * multiplier;
     }
     private List<GameObject> GetObjectsToAvoid()
     {
         List<GameObject> avoidObjects = ListContents.Allies.GetAllyList(team, gameObject);
         RemoveMyParts(avoidObjects);
         avoidObjects.AddRange(ListContents.Generic.GetObjectList(ObjectTypes.Obstacle));
+        avoidObjects.AddRange(ListContents.Generic.GetObjectList(ObjectTypes.Indestructible));
         return avoidObjects;
     }
     private void RemoveMyParts(List<GameObject> avoidObjects)
@@ -160,48 +202,6 @@ public class ShipController : TeamUpdater
     }
     #endregion
 
-    #region Actions
-    private EntityInputs[] CalculateActionsToCall(Vector2 movementVector)
-    {
-        List<EntityInputs> entityInputs = new List<EntityInputs>();
-
-        TryAddAction(entityInputs, movementVector.y > 0, EntityInputs.FORWARD);
-        TryAddAction(entityInputs, movementVector.y < 0, EntityInputs.BACKWARD);
-        TryAddAction(entityInputs, movementVector.x > 0, EntityInputs.RIGHT);
-        TryAddAction(entityInputs, movementVector.x < 0, EntityInputs.LEFT);
-        FillInActions(entityInputs);
-        TryAddAction(entityInputs, movementVector.x > 0.7, EntityInputs.DOUBLE_RIGHT);
-        TryAddAction(entityInputs, movementVector.x < -0.7, EntityInputs.DOUBLE_LEFT);
-
-        return entityInputs.ToArray();
-    }
-    private void TryAddAction(List<EntityInputs> entityInputs, bool requirement, EntityInputs input)
-    {
-        if (requirement)
-        {
-            entityInputs.Add(input);
-        }
-    }
-    private void FillInActions(List<EntityInputs> entityInputs)
-    {
-        /*bool forwardLeft = entityInputs.Contains(EntityInputs.FORWARD) && entityInputs.Contains(EntityInputs.LEFT);
-        TryAddAction(entityInputs, forwardLeft, EntityInputs.FORWARD_LEFT);
-        bool forwardRight = entityInputs.Contains(EntityInputs.FORWARD) && entityInputs.Contains(EntityInputs.RIGHT);
-        TryAddAction(entityInputs, forwardRight, EntityInputs.FORWARD_RIGHT);
-        bool backwardLeft = entityInputs.Contains(EntityInputs.BACKWARD) && entityInputs.Contains(EntityInputs.LEFT);
-        TryAddAction(entityInputs, backwardLeft, EntityInputs.BACKWARD_LEFT);
-        bool backwardRight = entityInputs.Contains(EntityInputs.BACKWARD) && entityInputs.Contains(EntityInputs.RIGHT);
-        TryAddAction(entityInputs, backwardRight, EntityInputs.BACKWARD_RIGHT);
-        */
-    }
-    private void CallInputActions(ActionCallData[] callActions)
-    {
-        foreach (var action in callActions)
-        {
-            entityInput.TryCallAction(action, true);
-        }
-    }
-    #endregion
     #endregion
 }
 public class ActionCallData

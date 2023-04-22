@@ -183,7 +183,7 @@ MonoBehaviour:
   mouseRange: 0
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 1
+  isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 1
   targetTypes: 010000000200000003000000
@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 7864284901952902704}
   - component: {fileID: 7386377890576602311}
   - component: {fileID: 3415557106310415077}
+  - component: {fileID: 2413983068291882298}
   m_Layer: 7
   m_Name: Cabin
   m_TagString: Untagged
@@ -427,6 +428,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2413983068291882298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004513072726312593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 03000000
 --- !u!1 &6441913592164531680
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +681,7 @@ GameObject:
   - component: {fileID: 7342654577498207827}
   - component: {fileID: 6441913592538751967}
   - component: {fileID: 9100750884195188640}
+  - component: {fileID: 3129043820781705072}
   - component: {fileID: 1630741118}
   - component: {fileID: 5166552632043362251}
   - component: {fileID: -6443159064478190265}
@@ -751,9 +766,27 @@ MonoBehaviour:
   M1: 10000
   M2: 1000
   M3: 5000
+  rotationMode: 0
   T1: 5000
   T2: 10
   T3: 40
+--- !u!114 &3129043820781705072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592538751965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa7b9eaa866c8543869c8b6ee3896d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  chaseRange: 5
+  avoidRange: 10
+  isForceGlobal: 1
 --- !u!114 &1630741118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b48e49aca473fc438249ff7efc52aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledByPlayer: 1
+  controlledByPlayer: 0
   controls: 1
 --- !u!114 &5166552632043362251
 MonoBehaviour:

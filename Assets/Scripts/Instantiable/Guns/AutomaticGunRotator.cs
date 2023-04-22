@@ -349,7 +349,6 @@ public class AutomaticGunRotator : TeamUpdater
 
         float parentAngle = parentGameObject.transform.rotation.eulerAngles.z;
         float angleSize = startAngle - endAngle;
-        //Debug.Log(startAngle + ", " + endAngle);
         if (angleSize < 0)
         {
             float ratio = -angleSize / 360f;

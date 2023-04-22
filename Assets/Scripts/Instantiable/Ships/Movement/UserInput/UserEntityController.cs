@@ -65,6 +65,7 @@ public class UserEntityController : MonoBehaviour
         Vector2 mousePos = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
         Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition((Vector2)transform.position, mousePos);
 
+        Debug.Log(deltaMousePos);
         myVehicle.SetInputVector(ScaleInput(deltaMousePos));
     }
     private Vector2 ScaleInput(Vector2 deltaMousePos)
@@ -73,7 +74,12 @@ public class UserEntityController : MonoBehaviour
         /// This way, the entity won't overshoot behind the mouse cursor.
         const float SLOWDOWN_DISTANCE = 5f;
         float magnitude = deltaMousePos.magnitude;
-        deltaMousePos = deltaMousePos.normalized * Mathf.Min(magnitude / SLOWDOWN_DISTANCE, 1);
+        float scaler = Mathf.Min(magnitude / SLOWDOWN_DISTANCE, 1);
+        if (scaler < 0.2)
+        {
+            scaler = 0;
+        }
+        deltaMousePos = deltaMousePos.normalized * scaler;
 
         return deltaMousePos;
     }

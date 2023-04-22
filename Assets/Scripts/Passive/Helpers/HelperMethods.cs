@@ -425,8 +425,7 @@ public static class HelperMethods
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target, LayerNames[] layers)
         {
             Vector2 direction = target.transform.position - originalPos;
-            Debug.DrawLine(target.transform.position, originalPos, Color.red);
-            //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
+            //Debug.DrawLine(target.transform.position, originalPos, Color.red);
 
             RaycastHit2D raycastHit2DWithProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
             RaycastHit2D raycastHit2DNoProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
