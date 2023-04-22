@@ -2140,6 +2140,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 493045442}
     m_Modifications:
+    - target: {fileID: 7493213699246723096, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.99376976
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493213699246723096, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.99376976
+      objectReference: {fileID: 0}
     - target: {fileID: 7493213699246723097, guid: dcb9de5f6cadee74b96db9ea0020d5b0, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -2499,6 +2507,10 @@ PrefabInstance:
       propertyPath: isAlwaysOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1630741118, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: controls
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 84601112019320437, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: minKineticEnergy
       value: 20
@@ -2568,6 +2580,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472136560962297160, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: hasRotationLimits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472136560962297160, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: leftMaxRotationLimit
       value: 60
       objectReference: {fileID: 0}
@@ -2581,11 +2597,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: mouseRange
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: isShootingZoneOn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: hasRotationLimits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: isControlledByMouse
@@ -2597,7 +2617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: ignoreMouseCollisions
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: rightMaxRotationLimit
@@ -2634,6 +2654,10 @@ PrefabInstance:
     - target: {fileID: 8671073499299282293, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100750884195188640, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: rotationMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9100750884195188640, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: isForceGlobal

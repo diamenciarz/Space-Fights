@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledByPlayer: 1
-  controls: 0
+  controls: 1
 --- !u!114 &5166552632043362251
 MonoBehaviour:
   m_ObjectHideFlags: 0

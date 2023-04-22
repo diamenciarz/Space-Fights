@@ -781,5 +781,14 @@ public static class HelperMethods
         {
             return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
         }
+
+        public static bool IsMouseLeftClicked()
+        {
+            return Input.GetMouseButton(0);
+        }
+        public static bool IsMouseRightClicked()
+        {
+            return Input.GetMouseButton(1);
+        }
     }
 }

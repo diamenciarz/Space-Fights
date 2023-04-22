@@ -52,6 +52,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     }
     private void SetStartingVariables()
     {
+        Gizmos.color = Color.red;
         barRatio = (leftMaxRotationLimit + rightMaxRotationLimit) / 360f;
         TryCreateUI();
     }
@@ -73,8 +74,10 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     {
         if (isTargetInSight)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(currentTarget.transform.position, 1);
+            if (currentTarget)
+            {
+                Gizmos.DrawWireSphere(currentTarget.transform.position, 1);
+            }
         }
     }
 
@@ -189,7 +192,12 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     private void TryCreateUI()
     {
         float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
-        StaticProgressionBarUpdater.CreateProgressionCone(this, GetCurrentRange(), GetBarRatio(), shootingZoneRotation);
+        float currentRange = GetCurrentRange();
+        if (mouseRange == 0)
+        {
+            currentRange = range;
+        }
+        StaticProgressionBarUpdater.CreateProgressionCone(this, currentRange, GetBarRatio(), shootingZoneRotation);
     }
     #region Update
     private void RefreshUI()

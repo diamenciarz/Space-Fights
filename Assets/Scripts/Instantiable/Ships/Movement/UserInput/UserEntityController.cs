@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class UserEntityController : MonoBehaviour
 {
@@ -55,13 +57,25 @@ public class UserEntityController : MonoBehaviour
     }
     private void DoMouseInput()
     {
+        if (!HelperMethods.InputUtils.IsMouseRightClicked())
+        {
+            myVehicle.SetInputVector(Vector2.zero);
+            return;
+        }
         Vector2 mousePos = HelperMethods.VectorUtils.TranslatedMousePosition(transform.position);
-        Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition((Vector2) transform.position, mousePos);
-        Vector2 forwardVector = transform.right;
+        Vector2 deltaMousePos = HelperMethods.VectorUtils.DeltaPosition((Vector2)transform.position, mousePos);
 
-        float deltaAngle = Vector2.SignedAngle(forwardVector, deltaMousePos);
-        Vector2 directionVector = HelperMethods.VectorUtils.DirectionVectorNormalized(deltaAngle); ;
-        myVehicle.SetInputVector(directionVector);
+        myVehicle.SetInputVector(ScaleInput(deltaMousePos));
+    }
+    private Vector2 ScaleInput(Vector2 deltaMousePos)
+    {
+        /// As the entity is approaching the mouse cursor, the input comes closer to zero.
+        /// This way, the entity won't overshoot behind the mouse cursor.
+        const float SLOWDOWN_DISTANCE = 5f;
+        float magnitude = deltaMousePos.magnitude;
+        deltaMousePos = deltaMousePos.normalized * Mathf.Min(magnitude / SLOWDOWN_DISTANCE, 1);
+
+        return deltaMousePos;
     }
     #endregion
 }

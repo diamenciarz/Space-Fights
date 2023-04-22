@@ -8,16 +8,23 @@ using static EntityInput;
 
 public class SidewaysEntityMover : MonoBehaviour, IEntityMover
 {
+    enum RotationMode
+    {
+        ROTATE_FORWARD,
+        STABILIZE
+    }
 
     #region Serialization
-    [Category("Movement")]
+    [Header("Movement")]
     [Tooltip("The highest speed that the vehicle can move at")]
     [SerializeField] float maxSpeed;
     [Tooltip("The maximum movement force that can be applied")]
     [SerializeField] float M1 = 25000;
     [SerializeField] float M2 = 10;
     [SerializeField] float M3 = 1;
-    [Category("Rotation")]
+
+    [Header("Rotation")]
+    [SerializeField] RotationMode rotationMode; 
     [SerializeField] float T1 = 5000;
     [SerializeField] float T2 = 10;
     [SerializeField] float T3 = 40;
@@ -71,7 +78,7 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
     private Vector2 GetForceToApply()
     {
         {
-            if (HelperMethods.InputUtils.IsAnyInputKeyPressed())
+            if (inputVector.magnitude > 0)
             {
                 lastInput = inputVector;
             }
@@ -92,11 +99,27 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
     #region Rotation
     private void UpdateRotation()
     {
+        if (rotationMode == RotationMode.ROTATE_FORWARD)
+        {
+            RoatateForward();
+        }
+        if (rotationMode == RotationMode.STABILIZE)
+        {
+            Stabilize();
+        }
+    }
+    private void RoatateForward()
+    {
         float deltaAngle = CalculateDeltaAngle(inputVector);
         float torqueToApply = GetTorqueToApply(deltaAngle);
         ApplyTorque(torqueToApply);
     }
-
+    private void Stabilize()
+    {
+        float deltaAngle = CalculateDeltaAngle(Vector2.up);
+        float torqueToApply = GetTorqueToApply(deltaAngle);
+        ApplyTorque(torqueToApply);
+    }
     private float CalculateDeltaAngle(Vector2 targetDirection)
     {
         if (targetDirection.magnitude == 0)
