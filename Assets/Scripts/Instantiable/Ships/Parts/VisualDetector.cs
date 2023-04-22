@@ -35,7 +35,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     [SerializeField] ActionController[] actionControllers;
     #endregion
 
-    private GameObject currentTarget;
+    public GameObject currentTarget;
     private List<GameObject> targetsInSightList = new List<GameObject>();
     private bool isTargetInSight;
     private Coroutine checkCoroutine;
@@ -67,6 +67,15 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     private void Update()
     {
         UpdateShootingZoneVisibility();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (isTargetInSight)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(currentTarget.transform.position, 1);
+        }
     }
 
     #region Check coroutine
@@ -125,6 +134,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
         }
         return targetsInSight;
     }
+
     /// <summary>
     /// Only target obstacles if you only see obstacles.
     /// </summary>

@@ -51,6 +51,7 @@ public class AutomaticGunRotator : TeamUpdater
     }
     #endregion
 
+    #region Update
     protected void Update()
     {
         if (!parentGameObject)
@@ -85,6 +86,7 @@ public class AutomaticGunRotator : TeamUpdater
             areTargetsInRange = false;
         }
     }
+    #endregion
 
     #region Random Rotation
     private void CreateRandomRotationCoroutine()
@@ -172,7 +174,6 @@ public class AutomaticGunRotator : TeamUpdater
         if (hasRotationLimits)
         {
             angleAroundBoundary = GoAroundBoundaries(angleToTarget);
-            Debug.Log("Angle was:" + angleToTarget + "With boundary:" + angleAroundBoundary);
 
         }
         if (debugZoneOn)
@@ -258,7 +259,6 @@ public class AutomaticGunRotator : TeamUpdater
     private float GoAroundRightBoundary(float angleToMove)
     {
         float angleFromGunToRightLimit = CountAngleFromGunToRightLimit();
-        Debug.Log("From gun to limit:" + angleFromGunToRightLimit + "angle to move:" + angleToMove);
         if (angleFromGunToRightLimit <= 0)
         {
             // Due to two float angles being added, and then compared, an overflow occurred,
@@ -338,6 +338,8 @@ public class AutomaticGunRotator : TeamUpdater
     #endregion
 
     #region UpdateUI
+
+    #region DebugZone
     private void UpdateDebugZone(float startAngle, float endAngle)
     {
         if (!debugZoneScript)
@@ -377,5 +379,7 @@ public class AutomaticGunRotator : TeamUpdater
         debugZoneScript = newShootingZoneGo.GetComponent<ProgressionBarController>();
         debugZoneScript.SetObjectToFollow(DebugZoneTransform.gameObject);
     }
+    #endregion
+
     #endregion
 }

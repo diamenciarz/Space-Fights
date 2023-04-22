@@ -407,7 +407,7 @@ public static class HelperMethods
         public enum LayerNames
         {
             Actors,
-            Obstacles,
+            Indestructibles,
             Projectiles
         }
 
@@ -425,6 +425,7 @@ public static class HelperMethods
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target, LayerNames[] layers)
         {
             Vector2 direction = target.transform.position - originalPos;
+            Debug.DrawLine(target.transform.position, originalPos, Color.red);
             //Debug.DrawRay(originalPos, direction, Color.red, 0.5f);
 
             RaycastHit2D raycastHit2DWithProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
@@ -463,7 +464,7 @@ public static class HelperMethods
         #region Helper methods
         private static LayerNames[] GetDefaultLayerMask()
         {
-            LayerNames[] layers = { LayerNames.Actors, LayerNames.Obstacles };
+            LayerNames[] layers = { LayerNames.Actors, LayerNames.Indestructibles };
             return layers;
         }
         private static int GetLayerMask(LayerNames[] layers)
@@ -641,15 +642,24 @@ public static class HelperMethods
             {
                 if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Obstacle)
                 {
-                    layers.Add(LayerNames.Actors);
+                    if (!layers.Contains(LayerNames.Actors))
+                    {
+                        layers.Add(LayerNames.Actors);
+                    }
                 }
                 if (type == StaticDataHolder.ObjectTypes.Indestructible)
                 {
-                    layers.Add(LayerNames.Obstacles);
+                    if (!layers.Contains(LayerNames.Indestructibles))
+                    {
+                        layers.Add(LayerNames.Indestructibles);
+                    }
                 }
                 if (type == StaticDataHolder.ObjectTypes.Projectile)
                 {
-                    layers.Add(LayerNames.Projectiles);
+                    if (!layers.Contains(LayerNames.Projectiles))
+                    {
+                        layers.Add(LayerNames.Projectiles);
+                    }
                 }
             }
             return layers.ToArray();

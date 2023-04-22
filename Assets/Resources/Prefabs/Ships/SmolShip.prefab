@@ -50,11 +50,11 @@ MonoBehaviour:
   basicGunDirection: 180
   gunRotationSpeed: 90
   hasRotationLimits: 1
-  leftMaxRotationLimit: 60
-  rightMaxRotationLimit: 60
+  leftMaxRotationLimit: 90
+  rightMaxRotationLimit: 90
   visualDetectors:
   - {fileID: 8448464666150114285}
-  debugZoneOn: 1
+  debugZoneOn: 0
   DebugZoneTransform: {fileID: 2394063691835432234}
 --- !u!1 &2550649395205867984
 GameObject:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
+  salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
   forwardGunRotation: 0
   shootingMode: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
+  currentTarget: {fileID: 0}
 --- !u!114 &3611032152340221076
 MonoBehaviour:
   m_ObjectHideFlags: 0
