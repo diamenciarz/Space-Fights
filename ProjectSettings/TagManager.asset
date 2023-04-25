@@ -15,16 +15,16 @@ TagManager:
   - Indestructibles
   - Actors
   - Projectiles
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Team1Projectiles
+  - Team2Projectiles
+  - Team3Projectiles
+  - EnemyToAllProjectiles
+  - NeutralProjectiles
+  - Team1Actors
+  - Team2Actors
+  - Team3Actors
+  - EnemyToAllActors
+  - NeutralActors
   - 
   - 
   - 

@@ -13,7 +13,7 @@ public class ShipController : TeamUpdater
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
-    private GameObject targetToChase;
+    public GameObject targetToChase;
     private MovementMode movementMode;
 
     enum MovementMode
@@ -79,13 +79,14 @@ public class ShipController : TeamUpdater
     {
         targetToChase = ListContents.Enemies.GetClosestEnemy(transform.position, team);
         Vector2 chaseVector = CalculateChaseVector();
+        Debug.Log(chaseVector);
 
         List<GameObject> avoidObjects = GetObjectsToAvoid();
         Vector2 avoidVector = CalculateAvoidVector(avoidObjects);
 
         if (avoidVector.magnitude > 1)
         {
-            return avoidVector;
+            return avoidVector.normalized;
         }
         else
         {
@@ -95,6 +96,10 @@ public class ShipController : TeamUpdater
             }
             else
             {
+                if (chaseVector.magnitude > 1)
+                {
+                    chaseVector = chaseVector.normalized;
+                }
                 return chaseVector + avoidVector;
             }
         }
@@ -128,14 +133,15 @@ public class ShipController : TeamUpdater
         bool isInAvoidRange = deltaPositionToItem.magnitude < avoidRange;
         if (isInAvoidRange)
         {
-            Debug.DrawRay(transform.position, -deltaPositionToItem, Color.red, 0.05f);
-            return -deltaPositionToItem.normalized;
+            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            Debug.DrawRay(transform.position, -deltaPositionToItem.normalized * multiplier, Color.red, 0.05f);
+            return -deltaPositionToItem.normalized * multiplier;
         }
         else
         {
-            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
-            Debug.DrawRay(transform.position, deltaPositionToItem * multiplier, Color.blue, 0.05f);
-            return deltaPositionToItem.normalized * multiplier;
+            float multiplier = deltaPositionToItem.sqrMagnitude;
+            Debug.DrawRay(transform.position, deltaPositionToItem.normalized * multiplier, Color.blue, 0.05f);
+            return deltaPositionToItem;
         }
     }
     #endregion

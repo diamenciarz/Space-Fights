@@ -73,9 +73,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0004696923, y: -0.0048275925}
+  m_Offset: {x: -0.0004696995, y: 0.00026798248}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.23227596
 --- !u!114 &1594040755141738852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,10 +165,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  affectObjectOnce: 0
-  expandRate: 2
+  affectObjectOnce: 1
   timeToExpire: 0.5
-  maxPushingForce: 100
+  maxPushingForce: 20
 --- !u!114 &6721332528289669469
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,36 +5,44 @@ using UnityEngine;
 public class CenteredPushingForce : AbstractActionOnCollision
 {
     [Tooltip("How many times the starting radius should the final range be")]
-    [SerializeField] float expandRate; // Sprite scale
     public float timeToExpire;
     [Tooltip("How strong the pushing force of this explosion should be at its strongest point, which is the middle. The force decreases with as distance from the middle gets lower")]
     [SerializeField][Range(0, 1000)] float maxPushingForce;
-    [Header("Info")]
-    float startingRadius;
+    
+    //[Header("Info")]
+    private float startingRadius;
+    private float expandRate; // Sprite scale
     //[SerializeField][Range(0.01f, 100)] float startingRadius;
 
     protected override void Awake()
     {
         base.Awake();
         startingRadius = transform.localScale.x;
+        expandRate = GetComponent<ExplosionController>().GetExpandRate();
     }
 
-    #region OnCollision
     protected override void HandleExit(GameObject collisionObject)
     {
         //Leave empty
     }
     protected override void HandleCollision(Collision2D collision)
     {
-        HandlePush(collision.gameObject, collision.contacts);
+        ContactPoint2D[] contacts = new ContactPoint2D[collision.contactCount];
+        collision.GetContacts(contacts);
+
+        HandlePush(collision.gameObject, contacts);
+        
     }
     protected override void HandleTriggerEnter(Collider2D trigger)
     {
-        ContactPoint2D[] contacts = new ContactPoint2D[1];
+        ContactPoint2D[] contacts = new ContactPoint2D[10];
         trigger.GetContacts(contacts);
 
         HandlePush(trigger.gameObject, contacts);
     }
+
+
+    #region OnCollision
     private void HandlePush(GameObject collisionObject, ContactPoint2D[] contacts)
     {
         if (CanPush(collisionObject))
@@ -44,9 +52,7 @@ public class CenteredPushingForce : AbstractActionOnCollision
     }
     private bool CanPush(GameObject collisionObject)
     {
-        IPushable iPushable = collisionObject.GetComponent<IPushable>();
-        bool objectCanBePushed = iPushable != null;
-        return objectCanBePushed;
+        return collisionObject.GetComponent<IPushable>() != null;
     }
     private void PushObject(GameObject collisionObject, ContactPoint2D[] contacts)
     {
@@ -58,6 +64,7 @@ public class CenteredPushingForce : AbstractActionOnCollision
     #region Helper methods
     private Vector2 CountForce(GameObject collisionObject, ContactPoint2D[] contacts)
     {
+        // There was a bug with using the contacts
         Vector2 collisionPosition = FindTheClosestCollisionPoint(contacts);
         Vector2 explosionPosition = transform.position;
         Vector2 obstaclePosition = collisionObject.transform.position;
@@ -66,7 +73,7 @@ public class CenteredPushingForce : AbstractActionOnCollision
         float maxRadius = startingRadius * expandRate;
 
         float maxForcePercentage = Mathf.Clamp((maxRadius - distance), 0, maxRadius) / maxRadius;
-        //Debug.Log("Max radius: " + maxRadius + " percentage: " + maxForcePercentage);
+        Debug.Log("Max radius: " + maxRadius + " percentage: " + maxForcePercentage);
         float forceStrength = maxPushingForce * maxForcePercentage;
         Vector2 force = deltaPosition.normalized * forceStrength;
 
@@ -84,6 +91,11 @@ public class CenteredPushingForce : AbstractActionOnCollision
         Vector2 explosionPosition = transform.position;
         foreach (ContactPoint2D contactPoint in contacts)
         {
+            if (contactPoint.otherCollider == null)
+            {
+                continue;
+            }
+            Debug.DrawLine(explosionPosition, contactPoint.point, Color.cyan, 0.3f);
             bool foundCloserPoint = HelperMethods.VectorUtils.Distance(explosionPosition, contactPoint.point) < HelperMethods.VectorUtils.Distance(explosionPosition, closestPoint.point);
             if (foundCloserPoint)
             {

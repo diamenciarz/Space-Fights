@@ -77,7 +77,7 @@ public abstract class AbstractProjectileController : OnCollisionDamage, IParent,
         TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
         foreach (TeamUpdater item in teamUpdater)
         {
-            item.UpdateTeam(this);
+            item.ParentUpdatesTeam(this);
         }
     }
     #endregion
@@ -99,6 +99,10 @@ public abstract class AbstractProjectileController : OnCollisionDamage, IParent,
     public Vector3 GetVelocityVector3()
     {
         return myRigidbody2D.velocity;
+    }
+    public TeamUpdater.ObjectType GetObjectType()
+    {
+        return ObjectType.PROJECTILE;
     }
     public override DamageInstance GetDamageInstance()
     {

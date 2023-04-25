@@ -7,6 +7,15 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     public Team team;
     protected float creationTime;
     protected GameObject createdBy;
+
+    public enum ObjectType
+    {
+        PROJECTILE,
+        ACTOR,
+        OTHER
+    }
+    protected ObjectType objectType = ObjectType.OTHER;
+
     public enum TeamInstance
     {
         EnemyToAll,
@@ -25,7 +34,8 @@ public class TeamUpdater : MonoBehaviour, ITeamable
             return;
         }
         UpdateCreatedBy(parent);
-        UpdateTeam(parent);
+        UpdateLayer(team);
+        ParentUpdatesTeam(parent);
     }
 
     protected virtual void Start()
@@ -61,6 +71,10 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     #endregion
 
     #region Mutator methods
+    protected void SetObjectType(ObjectType type)
+    {
+        objectType = type;
+    }
     public void SetCreatedBy(GameObject parent)
     {
         if (parent)
@@ -72,9 +86,12 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     /// This is called by the parent to override the teams of all of its children
     /// </summary>
     /// <param name="parent"></param>
-    public virtual void UpdateTeam(IParent parent)
+    public virtual void ParentUpdatesTeam(IParent parent)
     {
         team = parent.GetTeam();
+        objectType = parent.GetObjectType();
+        UpdateLayer(team);
+
     }
     /// <summary>
     /// This is called on the parent to change its team and off of its childrens team
@@ -83,6 +100,61 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     public virtual void SetTeam(Team newTeam)
     {
         team = new Team(newTeam);
+        UpdateLayer(newTeam);
+    }
+
+    private void UpdateLayer(Team newTeam)
+    {
+        if (objectType == ObjectType.PROJECTILE)
+        {
+            SetProjectileLayer(newTeam);
+        }
+        if (objectType == ObjectType.ACTOR)
+        {
+            SetActorLayer(newTeam);
+        }
+    }
+    private void SetProjectileLayer(Team newTeam)
+    {
+        switch (newTeam.teamInstance)
+        {
+            case TeamInstance.Team1:
+                gameObject.layer = 9;
+                break;
+            case TeamInstance.Team2:
+                gameObject.layer = 10;
+                break;
+            case TeamInstance.Team3:
+                gameObject.layer = 11;
+                break;
+            case TeamInstance.EnemyToAll:
+                gameObject.layer = 12;
+                break;
+            default:
+                gameObject.layer = 13;
+                break;
+        }
+    }
+    private void SetActorLayer(Team newTeam)
+    {
+        switch (newTeam.teamInstance)
+        {
+            case TeamInstance.Team1:
+                gameObject.layer = 14;
+                break;
+            case TeamInstance.Team2:
+                gameObject.layer = 15;
+                break;
+            case TeamInstance.Team3:
+                gameObject.layer = 16;
+                break;
+            case TeamInstance.EnemyToAll:
+                gameObject.layer = 17;
+                break;
+            default:
+                gameObject.layer = 18;
+                break;
+        }
     }
     #endregion
     #endregion

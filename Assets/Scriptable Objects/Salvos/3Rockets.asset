@@ -15,12 +15,12 @@ MonoBehaviour:
   additionalReloadTime: 1
   reloadAllAtOnce: 0
   shots:
-  - shot: {fileID: 0}
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
     delayAfterShot: 0.5
     reloadDelay: 0.2
-  - shot: {fileID: 11400000, guid: 3ab405868f2016644af33dbbbcb27160, type: 2}
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
     delayAfterShot: 0.5
     reloadDelay: 0.2
-  - shot: {fileID: 11400000, guid: 3ab405868f2016644af33dbbbcb27160, type: 2}
+  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
     delayAfterShot: 0.5
     reloadDelay: 0.2

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4705688004795715904}
   - component: {fileID: 6337006721521068565}
   - component: {fileID: 1862808287176827098}
+  - component: {fileID: 8168626191734578022}
   m_Layer: 8
   m_Name: Grenade_Explosion
   m_TagString: Untagged
@@ -125,9 +126,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0004696923, y: -0.0048275925}
+  m_Offset: {x: -0.0004696995, y: 0.0049123764}
   serializedVersion: 2
-  m_Radius: 0.15996362
+  m_Radius: 0.22990894
 --- !u!114 &1594040755141738852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,9 +160,8 @@ MonoBehaviour:
   team:
     teamInstance: 0
   affectObjectOnce: 1
-  expandRate: 2
-  timeToExpire: 0.75
-  maxPushingForce: 0
+  timeToExpire: 0.2
+  maxPushingForce: 30
 --- !u!114 &4705688004795715904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +215,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 02000000
+--- !u!249 &8168626191734578022
+AreaEffector2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGlobalAngle: 0
+  m_ForceAngle: 0
+  m_ForceMagnitude: 10
+  m_ForceVariation: 0
+  m_ForceTarget: 0
+  m_Drag: 0
+  m_AngularDrag: 0

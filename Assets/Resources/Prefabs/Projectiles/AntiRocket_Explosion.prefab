@@ -198,9 +198,8 @@ MonoBehaviour:
   team:
     teamInstance: 0
   affectObjectOnce: 1
-  expandRate: 2
-  timeToExpire: 0.5
-  maxPushingForce: 100
+  timeToExpire: 0.1
+  maxPushingForce: 15
 --- !u!114 &6721332528289669469
 MonoBehaviour:
   m_ObjectHideFlags: 0

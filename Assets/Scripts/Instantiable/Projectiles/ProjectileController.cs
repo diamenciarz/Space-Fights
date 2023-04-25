@@ -76,7 +76,7 @@ public class ProjectileController : OnCollisionDamage, IParent, IModifiableStart
         TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
         foreach (TeamUpdater item in teamUpdater)
         {
-            item.UpdateTeam(this);
+            item.ParentUpdatesTeam(this);
         }
     }
     #endregion
@@ -98,6 +98,10 @@ public class ProjectileController : OnCollisionDamage, IParent, IModifiableStart
     public Vector3 GetVelocityVector3()
     {
         return myRigidbody2D.velocity;
+    }
+    public TeamUpdater.ObjectType GetObjectType()
+    {
+        return ObjectType.PROJECTILE;
     }
     public override DamageInstance GetDamageInstance()
     {

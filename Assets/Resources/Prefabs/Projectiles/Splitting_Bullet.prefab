@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 1840522685464473822}
   - component: {fileID: -6639344204899158849}
   - component: {fileID: 5268208231612974113}
+  - component: {fileID: 8610998659955623421}
   m_Layer: 8
   m_Name: Splitting_Bullet
   m_TagString: Untagged
@@ -230,3 +231,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 02000000
+--- !u!114 &8610998659955623421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ea2df8e167b754aa0d71eb361f6609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  pushingForce: 10

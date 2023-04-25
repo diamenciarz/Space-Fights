@@ -39,6 +39,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         UpdateMaxHP();
         UpdateHealth();
         HandleHealthBar();
+        CheckForCollider();
     }
     private void SetupCreatedBy()
     {
@@ -80,6 +81,13 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
             return;
         }
         StaticProgressionBarUpdater.CreateProgressionBar(this);
+    }
+    private void CheckForCollider()
+    {
+        if (GetComponent<Collider2D>() == null)
+        {
+            Debug.LogError("Health manager on " + gameObject.name + " has no collider! It is required!");
+        }
     }
     #endregion
 
@@ -162,7 +170,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         TeamUpdater[] teamUpdater = GetComponentsInChildren<TeamUpdater>();
         foreach (TeamUpdater item in teamUpdater)
         {
-            item.UpdateTeam(this);
+            item.ParentUpdatesTeam(this);
         }
     }
     #endregion
@@ -187,6 +195,10 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
     public float GetBarRatio()
     {
         return health / maxHealth;
+    }
+    public ObjectType GetObjectType()
+    {
+        return ObjectType.ACTOR;
     }
     #endregion
 

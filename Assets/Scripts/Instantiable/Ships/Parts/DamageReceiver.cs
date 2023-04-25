@@ -51,7 +51,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     {
         base.Awake();
         SetupStartingVariables();
-        UpdateTeam(healthManager);
+        ParentUpdatesTeam(healthManager);
     }
     private void SetupStartingVariables()
     {

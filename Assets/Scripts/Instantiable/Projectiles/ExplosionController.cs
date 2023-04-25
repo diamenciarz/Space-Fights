@@ -35,7 +35,7 @@ public class ExplosionController : ProjectileController
         expirationProperty = GetComponent<DeterministicExpirationProperty>();
 
         timeToExpire = expirationProperty.expireAfterTime;
-        if(timeToExpire <= 0)
+        if (timeToExpire <= 0)
         {
             Debug.LogError("Time to expire in the DeterministicExpirationProperty has  to be higher than 0 for the ExplosionController to work");
         }
@@ -80,6 +80,17 @@ public class ExplosionController : ProjectileController
     private void SetSizeToMax()
     {
         gameObject.transform.localScale = new Vector3(expandRate * originalSize, expandRate * originalSize, 0);
+    }
+    #endregion
+
+    #region Accessor methods
+    public float GetExpandRate()
+    {
+        return expandRate;
+    }
+    public TeamUpdater.ObjectType GetObjectType()
+    {
+        return ObjectType.PROJECTILE;
     }
     #endregion
 }

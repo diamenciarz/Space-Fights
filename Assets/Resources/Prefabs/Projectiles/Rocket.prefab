@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 4526067873477398424}
   - component: {fileID: 1465621673243021626}
   - component: {fileID: 5268208231612974113}
+  - component: {fileID: 4918023251875234943}
   m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
@@ -461,3 +462,19 @@ MonoBehaviour:
   breakEnum: 0100000003000000060000000500000004000000
   breakingSounds: []
   breakingSoundVolume: 1
+--- !u!114 &4918023251875234943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ea2df8e167b754aa0d71eb361f6609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  affectObjectOnce: 1
+  pushingForce: 20

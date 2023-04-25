@@ -125,9 +125,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0005531311, y: -0.004827589}
+  m_Offset: {x: -0.0005531311, y: 0.0018854141}
   serializedVersion: 2
-  m_Radius: 0.19038773
+  m_Radius: 0.23401928
 --- !u!114 &1594040755141738852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,9 +143,8 @@ MonoBehaviour:
   team:
     teamInstance: 0
   affectObjectOnce: 1
-  expandRate: 3
-  timeToExpire: 0.5
-  maxPushingForce: 100
+  timeToExpire: 0.1
+  maxPushingForce: 30
 --- !u!114 &4969334111073187723
 MonoBehaviour:
   m_ObjectHideFlags: 0

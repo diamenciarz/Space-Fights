@@ -16,22 +16,22 @@ public class PushableProperty : MonoBehaviour, IPushable
     public void Push(Vector2 force)
     {
         //Debug.Log("Pushed for: " + force);
-        myRigidbody2D.AddForce(force, ForceMode2D.Force);
+        myRigidbody2D.AddForce(force, ForceMode2D.Impulse);
     }
     /// <summary>
     /// Pushed the object at a delta position from the middle of the object's collider
     /// </summary>
     /// <param name="force"></param>
-    /// <param name="deltaPosition"></param>
-    public void Push(Vector2 force, Vector2 deltaPosition, bool impulse = false)
+    /// <param name="positionInWorldSpace"></param>
+    public void Push(Vector2 force, Vector2 positionInWorldSpace, bool impulse = true)
     {
         if (impulse)
         {
-            myRigidbody2D.AddForceAtPosition(force, deltaPosition, ForceMode2D.Impulse);
+            myRigidbody2D.AddForceAtPosition(force, positionInWorldSpace, ForceMode2D.Impulse);
         }
         else
         {
-            myRigidbody2D.AddForceAtPosition(force, deltaPosition, ForceMode2D.Force);
+            myRigidbody2D.AddForceAtPosition(force, positionInWorldSpace, ForceMode2D.Force);
         }
     }
 }
