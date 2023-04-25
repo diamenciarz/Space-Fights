@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 477665981838516455}
   - component: {fileID: 3162747271885406307}
   - component: {fileID: 5624280318738914921}
-  m_Layer: 6
+  m_Layer: 17
   m_Name: Tiny_Rock
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

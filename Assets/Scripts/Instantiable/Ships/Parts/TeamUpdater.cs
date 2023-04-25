@@ -194,6 +194,10 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         }
         public bool IsAlly(Team otherTeam)
         {
+            if (teamInstance == TeamInstance.EnemyToAll || otherTeam.teamInstance == TeamInstance.EnemyToAll)
+            {
+                return false;
+            }
             if (teamInstance == otherTeam.teamInstance)
             {
                 return true;

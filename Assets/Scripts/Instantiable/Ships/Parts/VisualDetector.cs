@@ -130,6 +130,11 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
         foreach (GameObject target in potentialTargets)
         {
             //I expect enemyList to never have a single null value
+            if (target == null)
+            {
+                Debug.LogError("Enemy was null, but this should not be the case at this point!");
+                continue;
+            }
             if (CanSeeTarget(target, layers))
             {
                 targetsInSight.Add(target);
@@ -261,19 +266,19 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     }
     public bool CanSeeTarget(GameObject target, LayerNames[] layerNames)
     {
-        if (CanSeeDirectly(transform.position, target, layerNames))
+        if (!CanSeeDirectly(transform.position, target, layerNames))
         {
-            if (hasRotationLimits)
-            {
-                Cone cone = new Cone(transform.position, GetMiddleAngle(), leftMaxRotationLimit, rightMaxRotationLimit, range);
-                return IsPositionInCone(target.transform.position, cone);
-            }
-            else
-            {
-                return IsPositionInRange(transform.position, target.transform.position, GetCurrentRange());
-            }
+            return false;
         }
-        return false;
+        if (hasRotationLimits)
+        {
+            Cone cone = new Cone(transform.position, GetMiddleAngle(), leftMaxRotationLimit, rightMaxRotationLimit, range);
+            return IsPositionInCone(target.transform.position, cone);
+        }
+        else
+        {
+            return IsPositionInRange(transform.position, target.transform.position, GetCurrentRange());
+        }
     }
     /// <summary>
     /// Returns the current closest target that this detector can see. (The closest target angle wise)

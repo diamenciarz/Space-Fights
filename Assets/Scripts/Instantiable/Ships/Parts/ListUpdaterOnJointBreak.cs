@@ -65,9 +65,5 @@ public class ListUpdaterOnJointBreak : MonoBehaviour
             StaticDataHolder.ListModification.RemoveObject(list, gameObject);
         }
     }
-    public bool ListContains(StaticDataHolder.ObjectTypes element)
-    {
-        return putInLists.Contains(element);
-    }
     #endregion
 }

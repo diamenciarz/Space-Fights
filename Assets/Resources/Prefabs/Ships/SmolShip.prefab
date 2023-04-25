@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 1071542429760869110}
   - component: {fileID: 1041874885758407220}
   - component: {fileID: 3584015117729830725}
+  - component: {fileID: 7148820827750459461}
   m_Layer: 0
   m_Name: RightWing
   m_TagString: Untagged
@@ -350,6 +351,19 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.5681603, y: -0.21460693}
   m_AngularOffset: 2.3561945
+--- !u!114 &7148820827750459461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059472270907488857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7e7dca4fca55648986de0b352b0110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
 --- !u!1 &3135078944746659301
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,9 +958,9 @@ MonoBehaviour:
   M2: 1000
   M3: 5000
   rotationMode: 0
-  T1: 8000
-  T2: 10
-  T3: 40
+  T1: 12000
+  T2: 20
+  T3: 80
 --- !u!114 &3129043820781705072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,6 +1350,7 @@ GameObject:
   - component: {fileID: 3346224111281637435}
   - component: {fileID: 5803864322049263194}
   - component: {fileID: 7662163393235251778}
+  - component: {fileID: 1609254296342363878}
   m_Layer: 0
   m_Name: LeftWing
   m_TagString: Untagged
@@ -1542,3 +1557,16 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.5681603, y: -0.21460693}
   m_AngularOffset: 3.926991
+--- !u!114 &1609254296342363878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341605518784828374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7e7dca4fca55648986de0b352b0110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000

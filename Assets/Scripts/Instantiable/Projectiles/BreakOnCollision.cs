@@ -21,7 +21,7 @@ public class BreakOnCollision : TeamUpdater
     /// </summary>
     public enum BreaksOn
     {
-        AllyParts,
+        AllyParts, // Parts are objects that contain the HelthManager or DamageReceiver components
         EnemyParts,
         AllyProjectiles,
         EnemyProjectiles,

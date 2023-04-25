@@ -406,9 +406,17 @@ public static class HelperMethods
     {
         public enum LayerNames
         {
-            Actors,
             Indestructibles,
-            Projectiles
+            Team1Projectiles,
+            Team2Projectiles,
+            Team3Projectiles,
+            EnemyToAllProjectiles,
+            NeutralProjectiles,
+            Team1Actors,
+            Team2Actors,
+            Team3Actors,
+            EnemyToAllActors,
+            NeutralActors
         }
 
         #region Can see directly
@@ -463,7 +471,7 @@ public static class HelperMethods
         #region Helper methods
         private static LayerNames[] GetDefaultLayerMask()
         {
-            LayerNames[] layers = { LayerNames.Actors, LayerNames.Indestructibles };
+            LayerNames[] layers = { LayerNames.Team1Actors, LayerNames.Team2Actors, LayerNames.Team3Actors, LayerNames.EnemyToAllActors, LayerNames.Indestructibles };
             return layers;
         }
         private static int GetLayerMask(LayerNames[] layers)
@@ -480,7 +488,8 @@ public static class HelperMethods
             string[] names = new string[layers.Length];
             for (int i = 0; i < names.Length; i++)
             {
-                if (layers[i] == LayerNames.Projectiles)
+                bool isProjectile = layers[i] == LayerNames.EnemyToAllProjectiles || layers[i] == LayerNames.NeutralProjectiles || layers[i] == LayerNames.Team1Projectiles || layers[i] == LayerNames.Team2Projectiles || layers[i] == LayerNames.Team3Projectiles;
+                if (isProjectile)
                 {
                     continue;
                 }
@@ -601,6 +610,7 @@ public static class HelperMethods
             {
                 return true;
             }
+            // Is indestructible
             bool objectIsOnObstacleLayerMask = collisionObject.layer == 6;
             if (objectIsOnObstacleLayerMask)
             {
@@ -637,31 +647,45 @@ public static class HelperMethods
         public static LayerNames[] GetLayers(StaticDataHolder.ObjectTypes[] targetTypes)
         {
             List<LayerNames> layers = new List<LayerNames>();
+            RemoveRepeatedTargetTypes(ref targetTypes);
             foreach (var type in targetTypes)
             {
                 if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Obstacle)
                 {
-                    if (!layers.Contains(LayerNames.Actors))
-                    {
-                        layers.Add(LayerNames.Actors);
-                    }
+                    layers.Add(LayerNames.Team1Actors);
+                    layers.Add(LayerNames.Team2Actors);
+                    layers.Add(LayerNames.Team3Actors);
+                    layers.Add(LayerNames.EnemyToAllActors);
                 }
                 if (type == StaticDataHolder.ObjectTypes.Indestructible)
                 {
-                    if (!layers.Contains(LayerNames.Indestructibles))
-                    {
-                        layers.Add(LayerNames.Indestructibles);
-                    }
+                    layers.Add(LayerNames.Indestructibles);
                 }
                 if (type == StaticDataHolder.ObjectTypes.Projectile)
                 {
-                    if (!layers.Contains(LayerNames.Projectiles))
-                    {
-                        layers.Add(LayerNames.Projectiles);
-                    }
+                    layers.Add(LayerNames.Team1Projectiles);
+                    layers.Add(LayerNames.Team2Projectiles);
+                    layers.Add(LayerNames.Team3Projectiles);
+                    layers.Add(LayerNames.EnemyToAllProjectiles);
                 }
             }
             return layers.ToArray();
+        }
+        /// <summary>
+        /// This edits the original array and removes repeated values from it
+        /// </summary>
+        /// <param name="targetTypes"></param>
+        private static void RemoveRepeatedTargetTypes(ref StaticDataHolder.ObjectTypes[] targetTypes)
+        {
+            List<StaticDataHolder.ObjectTypes> nonRepeatedTargetTypes = new List<StaticDataHolder.ObjectTypes>();
+            foreach (var type in targetTypes)
+            {
+                if (!nonRepeatedTargetTypes.Contains(type))
+                {
+                    nonRepeatedTargetTypes.Add(type);
+                }
+            }
+            targetTypes = nonRepeatedTargetTypes.ToArray();
         }
     }
     /// <summary>

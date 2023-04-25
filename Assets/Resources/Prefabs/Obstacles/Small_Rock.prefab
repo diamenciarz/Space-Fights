@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3678744313637120050}
   - component: {fileID: -3598053457957266730}
   - component: {fileID: 8346551187640470578}
-  m_Layer: 6
+  m_Layer: 17
   m_Name: Small_Rock
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

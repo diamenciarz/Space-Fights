@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7493213699246723102}
   - component: {fileID: 7493213699246723099}
   - component: {fileID: 7493213699246723098}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: SquareWall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 49335754480182673}
   - component: {fileID: 477665981838516455}
   - component: {fileID: 3162747271885406307}
-  m_Layer: 6
+  m_Layer: 17
   m_Name: TinyRock
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 0.98, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4456331406175181435
