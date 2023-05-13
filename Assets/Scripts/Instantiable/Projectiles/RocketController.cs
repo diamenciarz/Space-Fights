@@ -23,6 +23,8 @@ public class RocketController : ProjectileController
     {
         base.Start();
         SetupStartingSpeed();
+        // The rocket automatically sets layer to "EnemyToAll"
+        UpdateLayer(Team.GetEnemyToAllTeam());
     }
     private void SetupStartingSpeed()
     {

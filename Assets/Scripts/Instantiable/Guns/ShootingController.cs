@@ -15,8 +15,10 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     [Header("Settings")]
     [Tooltip("The direction of bullets coming out of the gun pipe")]
     [SerializeField] float forwardGunRotation;
-    [Header("Targeting settings")]
+    [Tooltip("Describes how the gun will choose the direction of the projectiles coming out of its pipe")]
     [SerializeField] ShootingMode shootingMode;
+    [Tooltip("Describes how the gun will give targets to its projectiles")]
+    [SerializeField] ShootingMode targetMode;
     [Tooltip("Used if FindTarget mode is chosen")]
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
     [Header("Mouse Steering")]
@@ -207,21 +209,27 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     }
     private GameObject GetTarget()
     {
-        if (shootingMode == ShootingMode.Forward)
+
+        if (targetMode == ShootingMode.Forward)
         {
             return null;
         }
-        if (shootingMode == ShootingMode.CameraTargeting)
+        if (targetMode == ShootingMode.CameraTargeting)
         {
+            if (StaticDataHolder.ListContents.Generic.IsObjectMouseCursor(cameraTarget))
+            {
+                return FindClosestTargetToMouseCursor(cameraTarget.transform.position);
+            }
             return cameraTarget;
         }
-        if (shootingMode == ShootingMode.FindTarget)
-        {
-            return FindTarget();
-        }
-        //This will never happen
-        Debug.LogError("This should never happen!");
-        return null;
+        // targetMode == ShootingMode.FindTarget
+        return FindTarget();
+    }
+    private GameObject FindClosestTargetToMouseCursor(Vector2 mousePosition)
+    {
+        List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
+        StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
+        return StaticDataHolder.ListContents.Generic.GetClosestObject(potentialTargets, mousePosition);
     }
     private GameObject FindTarget()
     {

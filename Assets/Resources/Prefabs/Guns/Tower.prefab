@@ -244,6 +244,7 @@ MonoBehaviour:
   isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
+  ignoreSameTeamCollisions: 1
   targetTypes: 010000000300000002000000
   actionControllers:
   - {fileID: 8021823894982714015}

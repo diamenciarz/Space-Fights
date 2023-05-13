@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doDestroyActions: 1
-  expireAfterTime: -1
+  expireAfterTime: 1
   expirationDistance: -1
 --- !u!114 &5268208231612974113
 MonoBehaviour:
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 0100000003000000060000000500000004000000
+  breakEnum: 010000000300000006000000050000000400000000000000
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!1 &8479812763967634279

@@ -103,7 +103,7 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         UpdateLayer(newTeam);
     }
 
-    private void UpdateLayer(Team newTeam)
+    public void UpdateLayer(Team newTeam)
     {
         if (objectType == ObjectType.PROJECTILE)
         {

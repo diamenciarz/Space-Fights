@@ -12,7 +12,7 @@ public class BreakOnCollision : TeamUpdater
     [SerializeField] protected List<AudioClip> breakingSounds;
     [SerializeField] [Range(0, 1)] protected float breakingSoundVolume = 1f;
 
-    protected const float INVULNERABILITY_TIME = 0.25f;
+    protected const float INVULNERABILITY_TIME = 0.5f;
     protected GameObject objectThatCreatedThisProjectile;
     protected bool isDestroyed = false;
 

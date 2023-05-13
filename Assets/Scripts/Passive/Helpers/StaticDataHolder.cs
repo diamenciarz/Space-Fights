@@ -404,6 +404,12 @@ public static class StaticDataHolder
                 }
                 return HelperMethods.ListUtils.CloneList(allObjectList);
             }
+
+            public static bool IsObjectMouseCursor(GameObject obj)
+            {
+                List<GameObject> mouseCursors = GetObjectList(ObjectTypes.MouseCursor);
+                return mouseCursors.Contains(obj);
+            }
             
             #region Helper methods
             public static void InstantiateAllLists()
