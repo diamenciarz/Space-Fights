@@ -419,6 +419,66 @@ public static class HelperMethods
             NeutralActors
         }
 
+        public static LayerNames NumberToLayerName(int number)
+        {
+            switch (number)
+            {
+                case 6:
+                    return LayerNames.Indestructibles;
+                case 9:
+                    return LayerNames.Team1Projectiles;
+                case 10:
+                    return LayerNames.Team2Projectiles;
+                case 11:
+                    return LayerNames.Team3Projectiles;
+                case 12:
+                    return LayerNames.EnemyToAllProjectiles;
+                case 13:
+                    return LayerNames.NeutralProjectiles;
+                case 14:
+                    return LayerNames.Team1Actors;
+                case 15:
+                    return LayerNames.Team2Actors;
+                case 16:
+                    return LayerNames.Team3Actors;
+                case 17:
+                    return LayerNames.EnemyToAllActors;
+                case 18:
+                    return LayerNames.NeutralActors;
+                default:
+                    return LayerNames.Indestructibles;
+            }
+        }
+        public static int LayerNameToNumber(LayerNames layerName)
+        {
+            switch (layerName)
+            {
+                case LayerNames.Indestructibles:
+                    return 6;
+                case LayerNames.Team1Projectiles:
+                    return 9;
+                case LayerNames.Team2Projectiles:
+                    return 10;
+                case LayerNames.Team3Projectiles:
+                    return 11;
+                case LayerNames.EnemyToAllProjectiles:
+                    return 12;
+                case LayerNames.NeutralProjectiles:
+                    return 13;
+                case LayerNames.Team1Actors:
+                    return 14;
+                case LayerNames.Team2Actors:
+                    return 15;
+                case LayerNames.Team3Actors:
+                    return 16;
+                case LayerNames.EnemyToAllActors:
+                    return 17;
+                case LayerNames.NeutralActors:
+                    return 18;
+                default:
+                    return 6;
+            }
+        }
         #region Can see directly
         /// <summary>
         /// Checks, if the target is visible from the specified position. The default layer names are "Actors", "Obstacles".
@@ -644,7 +704,7 @@ public static class HelperMethods
             }
             return null;
         }
-        public static LayerNames[] GetLayers(StaticDataHolder.ObjectTypes[] targetTypes)
+        public static List<LayerNames> GetLayers(StaticDataHolder.ObjectTypes[] targetTypes)
         {
             List<LayerNames> layers = new List<LayerNames>();
             RemoveRepeatedTargetTypes(ref targetTypes);
@@ -652,24 +712,33 @@ public static class HelperMethods
             {
                 if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Obstacle)
                 {
-                    layers.Add(LayerNames.Team1Actors);
-                    layers.Add(LayerNames.Team2Actors);
-                    layers.Add(LayerNames.Team3Actors);
-                    layers.Add(LayerNames.EnemyToAllActors);
+                    if (!layers.Contains(LayerNames.Team1Actors))
+                    {
+                        layers.Add(LayerNames.Team1Actors);
+                        layers.Add(LayerNames.Team2Actors);
+                        layers.Add(LayerNames.Team3Actors);
+                        layers.Add(LayerNames.EnemyToAllActors);
+                    }
                 }
                 if (type == StaticDataHolder.ObjectTypes.Indestructible)
                 {
-                    layers.Add(LayerNames.Indestructibles);
+                    if (!layers.Contains(LayerNames.Indestructibles))
+                    {
+                        layers.Add(LayerNames.Indestructibles);
+                    }
                 }
                 if (type == StaticDataHolder.ObjectTypes.Projectile)
                 {
-                    layers.Add(LayerNames.Team1Projectiles);
-                    layers.Add(LayerNames.Team2Projectiles);
-                    layers.Add(LayerNames.Team3Projectiles);
-                    layers.Add(LayerNames.EnemyToAllProjectiles);
+                    if (!layers.Contains(LayerNames.Team1Projectiles))
+                    {
+                        layers.Add(LayerNames.Team1Projectiles);
+                        layers.Add(LayerNames.Team2Projectiles);
+                        layers.Add(LayerNames.Team3Projectiles);
+                        layers.Add(LayerNames.EnemyToAllProjectiles);
+                    }
                 }
             }
-            return layers.ToArray();
+            return layers;
         }
         /// <summary>
         /// This edits the original array and removes repeated values from it

@@ -117,8 +117,9 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
         targetsInSightList = FindAllEnemiesInSight();
         TryRemoveObstacles();
 
-        LayerNames[] layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
-        return Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle(), layers);
+        List<LayerNames> layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
+        RemoveMyLayer(layers);
+        return Generic.GetClosestObjectInSightAngleWise(targetsInSightList, transform.position, GetGunAngle(), layers.ToArray());
     }
     private List<GameObject> FindAllEnemiesInSight()
     {
@@ -126,7 +127,8 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
 
         List<GameObject> targetsInSight = new List<GameObject>();
-        LayerNames[] layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
+        List<LayerNames> layers = HelperMethods.ObjectUtils.GetLayers(targetTypes);
+        RemoveMyLayer(layers);
         foreach (GameObject target in potentialTargets)
         {
             //I expect enemyList to never have a single null value
@@ -135,12 +137,18 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
                 Debug.LogError("Enemy was null, but this should not be the case at this point!");
                 continue;
             }
-            if (CanSeeTarget(target, layers))
+            if (CanSeeTarget(target, layers.ToArray()))
             {
                 targetsInSight.Add(target);
             }
         }
         return targetsInSight;
+    }
+
+    private void RemoveMyLayer(List<LayerNames> layers)
+    {
+        LayerNames myLayerName = NumberToLayerName(gameObject.layer);
+        layers.Remove(myLayerName);
     }
 
     /// <summary>

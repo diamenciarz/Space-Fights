@@ -127,6 +127,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\EntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\SingleShotScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\PointPushingForce.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IActionControllerCaller.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPiercingDamage.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractShipAction.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Projectiles\PointPushingForce.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

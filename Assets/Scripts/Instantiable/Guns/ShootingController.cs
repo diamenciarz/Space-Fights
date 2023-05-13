@@ -222,8 +222,14 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     {
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
-        LayerNames[] layers = ObjectUtils.GetLayers(targetTypes);
-        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, shootingPoint.position, GetForwardGunRotation().eulerAngles.z, layers);
+        List<LayerNames> layers = ObjectUtils.GetLayers(targetTypes);
+        RemoveMyLayer(layers);
+        return StaticDataHolder.ListContents.Generic.GetClosestObjectInSightAngleWise(potentialTargets, shootingPoint.position, GetForwardGunRotation().eulerAngles.z, layers.ToArray());
+    }
+    private void RemoveMyLayer(List<LayerNames> layers)
+    {
+        LayerNames myLayerName = NumberToLayerName(gameObject.layer);
+        layers.Remove(myLayerName);
     }
     private Quaternion GetForwardGunRotation()
     {
