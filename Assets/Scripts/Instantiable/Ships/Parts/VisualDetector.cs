@@ -27,6 +27,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     [SerializeField] bool isControlledByMouse;
     [SerializeField] bool isShootingZoneOn;
     [SerializeField] bool ignoreMouseCollisions;
+    [SerializeField] bool ignoreSameTeamCollisions;
 
     [Header("Targeting settings")]
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
@@ -147,8 +148,11 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
 
     private void RemoveMyLayer(List<LayerNames> layers)
     {
-        LayerNames myLayerName = NumberToLayerName(gameObject.layer);
-        layers.Remove(myLayerName);
+        if (ignoreSameTeamCollisions)
+        {
+            LayerNames myLayerName = NumberToLayerName(gameObject.layer);
+            layers.Remove(myLayerName);
+        }
     }
 
     /// <summary>

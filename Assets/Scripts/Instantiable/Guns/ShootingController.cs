@@ -215,8 +215,13 @@ public class ShootingController : ActionController, IProgressionBarCompatible
         {
             return cameraTarget;
         }
-        //shootingMode == ShootingMode.FindTarget
-        return FindTarget();
+        if (shootingMode == ShootingMode.FindTarget)
+        {
+            return FindTarget();
+        }
+        //This will never happen
+        Debug.LogError("This should never happen!");
+        return null;
     }
     private GameObject FindTarget()
     {
