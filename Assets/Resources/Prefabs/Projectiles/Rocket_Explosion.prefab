@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doDestroyActions: 1
-  expireAfterTime: 0.5
+  expireAfterTime: 0.25
   expirationDistance: -1
 --- !u!114 &604168146307288306
 MonoBehaviour:

@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 4969334111073187723}
   - component: {fileID: 7901248762215323648}
   - component: {fileID: 6337006721521068565}
-  - component: {fileID: 7102225055912808053}
   m_Layer: 8
   m_Name: Bomb_Explosion
   m_TagString: Untagged
@@ -140,11 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cb07557e6db494d841de05753676f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 1
-  timeToExpire: 0.1
-  maxPushingForce: 30
+  maxPushingForce: 60
 --- !u!114 &4969334111073187723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,16 +196,3 @@ MonoBehaviour:
   doDestroyActions: 1
   expireAfterTime: 0.5
   expirationDistance: -1
---- !u!114 &7102225055912808053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  putInLists: 02000000

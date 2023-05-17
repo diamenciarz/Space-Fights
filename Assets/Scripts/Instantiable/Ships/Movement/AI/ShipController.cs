@@ -29,6 +29,7 @@ public class ShipController : TeamUpdater
         base.Start();
         SetupStartingVariables();
         FixRange();
+        SetNotMouseControlled();
     }
     private void SetupStartingVariables()
     {
@@ -40,6 +41,14 @@ public class ShipController : TeamUpdater
         if (chaseRange < avoidRange)
         {
             chaseRange = avoidRange;
+        }
+    }
+    private void SetNotMouseControlled()
+    {
+        IPlayerControllable[] components = GetComponentsInChildren<IPlayerControllable>();
+        foreach (IPlayerControllable component in components)
+        {
+            component.SetIsControlledByMouse(false);
         }
     }
     #endregion

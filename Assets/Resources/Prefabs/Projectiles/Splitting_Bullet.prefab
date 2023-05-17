@@ -173,7 +173,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: e782e5b19ac414042a2688cf19680076, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.2612134e-13, y: -0.0000010579826}
@@ -216,7 +216,7 @@ MonoBehaviour:
     teamInstance: 0
   activateOn: 
   shot: {fileID: 11400000, guid: 55d14230a5d8eb94698b98f455d494f7, type: 2}
-  directionOffset: 0
+  directionOffset: -90
   targetEnemies: 0
   targetTypes: 
 --- !u!114 &5268208231612974113
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09ea2df8e167b754aa0d71eb361f6609, type: 3}
   m_Name: 
@@ -262,6 +262,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 010000000600000005000000040000000200000003000000
+  breakEnum: 01000000060000000500000003000000
   breakingSounds: []
   breakingSoundVolume: 1

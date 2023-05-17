@@ -6,7 +6,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class UserEntityController : MonoBehaviour
 {
-    [SerializeField] bool controlledByPlayer = true;
+    [SerializeField] bool isControlledByPlayer = true;
     [SerializeField] Controls controls;
 
     public enum Controls
@@ -23,10 +23,19 @@ public class UserEntityController : MonoBehaviour
     void Start()
     {
         StartupMethods();
+        SetIsMouseControlled();
     }
     private void StartupMethods()
     {
         myVehicle = GetComponent<IEntityMover>();
+    }
+    private void SetIsMouseControlled()
+    {
+        IPlayerControllable[] components = GetComponentsInChildren<IPlayerControllable>();
+        foreach (IPlayerControllable component in components)
+        {
+            component.SetIsControlledByMouse(isControlledByPlayer);
+        }
     }
     #endregion
 
@@ -37,7 +46,7 @@ public class UserEntityController : MonoBehaviour
     }
     private void CheckInputs()
     {
-        if (!controlledByPlayer)
+        if (!isControlledByPlayer)
         {
             return;
         }

@@ -37,10 +37,8 @@ public class ExplosionController : ProjectileController
         timeToExpire = expirationProperty.expireAfterTime;
         if (timeToExpire <= 0)
         {
-            Debug.LogError("Time to expire in the DeterministicExpirationProperty has  to be higher than 0 for the ExplosionController to work");
+            Debug.LogError("Time to expire in the DeterministicExpirationProperty has to be higher than 0 for the ExplosionController to work");
         }
-
-        pushingForce.timeToExpire = timeToExpire;
     }
     #endregion
 

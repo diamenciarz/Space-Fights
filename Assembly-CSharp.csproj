@@ -137,6 +137,8 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\IPlayerControllable.cs" />
+    <Compile Include="Assets\ExplosionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

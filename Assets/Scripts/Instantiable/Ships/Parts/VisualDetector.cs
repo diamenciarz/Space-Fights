@@ -6,7 +6,7 @@ using static HelperMethods.LineOfSightUtils;
 using static HelperMethods.VectorUtils;
 using static StaticDataHolder.ListContents;
 
-public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionControllerCaller
+public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionControllerCaller, IPlayerControllable
 {
     #region Serialization
     [Tooltip("Delta angle from the middle of parent's rotation")]
@@ -24,7 +24,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     [SerializeField] Transform visualZoneOrigin;
 
     [Header("Mouse Steering")]
-    [SerializeField] bool isControlledByMouse;
+    bool isControlledByMouse;
     [SerializeField] bool isShootingZoneOn;
     [SerializeField] bool ignoreMouseCollisions;
     [SerializeField] bool ignoreSameTeamCollisions;

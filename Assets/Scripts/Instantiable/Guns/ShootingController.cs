@@ -5,7 +5,7 @@ using static ActionController;
 using static HelperMethods;
 using static HelperMethods.LineOfSightUtils;
 
-public class ShootingController : ActionController, IProgressionBarCompatible
+public class ShootingController : ActionController, IProgressionBarCompatible, IPlayerControllable
 {
     [Header("Instances")]
     [SerializeField] SalvoScriptableObject salvo;
@@ -293,14 +293,19 @@ public class ShootingController : ActionController, IProgressionBarCompatible
     #region UI
     private void UpdateUIState()
     {
-        bool barOn = !isDetached && (isControlledByMouse || reloadingBarAlwaysOn);
-        if (barOn)
+        if (isDetached || !isControlledByMouse)
         {
-            StaticProgressionBarUpdater.CreateProgressionBar(this);
+            StaticProgressionBarUpdater.DeleteProgressionBar(this);
+            return;
+        }
+        StaticProgressionBarUpdater.CreateProgressionBar(this);
+        if (reloadingBarAlwaysOn)
+        {
+            StaticProgressionBarUpdater.SetIsProgressionBarAlwaysVisible(this, true);
         }
         else
         {
-            StaticProgressionBarUpdater.DeleteProgressionBar(this);
+            StaticProgressionBarUpdater.SetIsProgressionBarAlwaysVisible(this, false);
         }
     }
     private void UpdateAmmoBar()

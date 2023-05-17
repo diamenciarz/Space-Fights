@@ -134,7 +134,7 @@ MonoBehaviour:
   startingSpeed: 0
   addCreatorVelocity: 0
   expandRate: 4
-  rotateDuringLifetime: 0
+  rotateDuringLifetime: 180
 --- !u!114 &6949998906670407419
 MonoBehaviour:
   m_ObjectHideFlags: 0

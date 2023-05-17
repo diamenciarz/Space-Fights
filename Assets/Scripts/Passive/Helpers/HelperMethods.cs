@@ -4,7 +4,9 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using static HelperMethods.LineOfSightUtils;
+using static StaticDataHolder;
 using static TeamUpdater;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public static class HelperMethods
 {
@@ -486,18 +488,80 @@ public static class HelperMethods
         /// <param name="originalPos"></param>
         /// <param name="target"></param>
         /// <returns></returns>
+        public static Vector2 GetRaycastHitPositionIgnoreEverything(Vector3 originalPos, GameObject target)
+        {
+            ObjectTypes[] objectTypes = {ObjectTypes.Entity, ObjectTypes.Indestructible};
+            return GetRaycastHitPositionIgnoreEverything(originalPos, target, objectTypes);
+        }
+        public static Vector2 GetRaycastHitPositionIgnoreEverything(Vector3 originalPos, GameObject target, ObjectTypes[] objectTypes)
+        {
+            Vector2 direction = target.transform.position - originalPos;
+            //Debug.DrawLine(target.transform.position, originalPos, Color.red);
+            LayerNames[] layerNames = ObjectUtils.GetLayers(objectTypes).ToArray();
+
+            // Check if is not already inside of the object
+            Collider2D[] collidersInside = GetOverlappingCollidersWithCircle(originalPos, 0.01f, objectTypes);
+            foreach (Collider2D collider in collidersInside)
+            {
+                if (collider.gameObject == target)
+                {
+                    return target.transform.position;
+                }
+            }
+
+            RaycastHit2D[] raycastHits2DWithProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude, GetLayerMask(layerNames));
+            RaycastHit2D[] raycastHits2DNoProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layerNames));
+
+            foreach (RaycastHit2D hit in raycastHits2DWithProjectiles)
+            {
+                if(hit.collider.gameObject == target)
+                {
+                    return hit.point;
+                }
+            }
+            foreach (RaycastHit2D hit in raycastHits2DNoProjectiles)
+            {
+                if (hit.collider.gameObject == target)
+                {
+                    return hit.point;
+                }
+            }
+            Debug.LogError("This hit should be guaranteed");
+            return Vector2.zero;
+        }
+        public static Vector2 GetRaycastHitPosition(Vector3 originalPos, GameObject target)
+        {
+            return GetRaycastHitPosition(originalPos, target, GetDefaultLayerNames());
+        }
+        public static Vector2 GetRaycastHitPosition(Vector3 originalPos, GameObject target, LayerNames[] layers)
+        {
+            Vector2 direction = target.transform.position - originalPos;
+            //Debug.DrawLine(target.transform.position, originalPos, Color.red);
+
+            RaycastHit2D raycastHit2DWithProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
+            RaycastHit2D raycastHit2DNoProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
+            if (!raycastHit2DNoProjectiles && !raycastHit2DWithProjectiles)
+            {
+                return Vector2.zero;
+            }
+            if (!raycastHit2DNoProjectiles)
+            {
+
+                return raycastHit2DWithProjectiles.point;
+            }
+            return raycastHit2DNoProjectiles.point;
+        }
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target)
         {
-            return CanSeeDirectly(originalPos, target, GetDefaultLayerMask());
+            return CanSeeDirectly(originalPos, target, GetDefaultLayerNames());
         }
         public static bool CanSeeDirectly(Vector3 originalPos, GameObject target, LayerNames[] layers)
         {
             Vector2 direction = target.transform.position - originalPos;
-            Debug.DrawLine(target.transform.position, originalPos, Color.red);
+            //Debug.DrawLine(target.transform.position, originalPos, Color.red);
 
             RaycastHit2D raycastHit2DWithProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMask(layers));
             RaycastHit2D raycastHit2DNoProjectiles = Physics2D.Raycast(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layers));
-
             if (!raycastHit2DNoProjectiles && !raycastHit2DWithProjectiles)
             {
                 return false;
@@ -514,9 +578,15 @@ public static class HelperMethods
         /// <param name="originalPos"></param>
         /// <param name="targetPosition"></param>
         /// <returns></returns>
+        public static Collider2D[] GetOverlappingCollidersWithCircle(Vector2 circleMiddle, float range, ObjectTypes[] objectTypes)
+        {
+            int layerMask = GetLayerMask(ObjectUtils.GetLayers(objectTypes).ToArray());
+            Collider2D[] collidersHit = Physics2D.OverlapCircleAll(circleMiddle, range, layerMask);
+            return collidersHit;
+        }
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition)
         {
-            return CanSeeDirectly(originalPos, targetPosition, GetDefaultLayerMask());
+            return CanSeeDirectly(originalPos, targetPosition, GetDefaultLayerNames());
         }
         public static bool CanSeeDirectly(Vector3 originalPos, Vector3 targetPosition, LayerNames[] layers)
         {
@@ -529,7 +599,7 @@ public static class HelperMethods
         }
 
         #region Helper methods
-        private static LayerNames[] GetDefaultLayerMask()
+        private static LayerNames[] GetDefaultLayerNames()
         {
             LayerNames[] layers = { LayerNames.Team1Actors, LayerNames.Team2Actors, LayerNames.Team3Actors, LayerNames.EnemyToAllActors, LayerNames.Indestructibles };
             return layers;
@@ -704,13 +774,13 @@ public static class HelperMethods
             }
             return null;
         }
-        public static List<LayerNames> GetLayers(StaticDataHolder.ObjectTypes[] targetTypes)
+        public static List<LayerNames> GetLayers(ObjectTypes[] targetTypes)
         {
             List<LayerNames> layers = new List<LayerNames>();
             RemoveRepeatedTargetTypes(ref targetTypes);
             foreach (var type in targetTypes)
             {
-                if (type == StaticDataHolder.ObjectTypes.Entity || type == StaticDataHolder.ObjectTypes.Obstacle)
+                if (type == ObjectTypes.Entity || type == ObjectTypes.Obstacle)
                 {
                     if (!layers.Contains(LayerNames.Team1Actors))
                     {
@@ -720,14 +790,14 @@ public static class HelperMethods
                         layers.Add(LayerNames.EnemyToAllActors);
                     }
                 }
-                if (type == StaticDataHolder.ObjectTypes.Indestructible)
+                if (type == ObjectTypes.Indestructible)
                 {
                     if (!layers.Contains(LayerNames.Indestructibles))
                     {
                         layers.Add(LayerNames.Indestructibles);
                     }
                 }
-                if (type == StaticDataHolder.ObjectTypes.Projectile)
+                if (type == ObjectTypes.Projectile)
                 {
                     if (!layers.Contains(LayerNames.Team1Projectiles))
                     {
