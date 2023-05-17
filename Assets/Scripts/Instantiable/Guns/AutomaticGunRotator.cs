@@ -39,7 +39,6 @@ public class AutomaticGunRotator : TeamUpdater
     {
         base.Start();
         SetStartingVariables();
-        CreateDebugZone();
     }
     private void SetStartingVariables()
     {

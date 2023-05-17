@@ -88,7 +88,7 @@ public class ShipController : TeamUpdater
     {
         targetToChase = ListContents.Enemies.GetClosestEnemy(transform.position, team);
         Vector2 chaseVector = CalculateChaseVector();
-        Debug.Log(chaseVector);
+        //Debug.Log(chaseVector);
 
         List<GameObject> avoidObjects = GetObjectsToAvoid();
         Vector2 avoidVector = CalculateAvoidVector(avoidObjects);

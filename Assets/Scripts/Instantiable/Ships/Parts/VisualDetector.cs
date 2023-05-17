@@ -208,13 +208,16 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     #region UI
     private void TryCreateUI()
     {
-        float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
-        float currentRange = GetCurrentRange();
-        if (mouseRange == 0)
+        if (isShootingZoneOn)
         {
-            currentRange = range;
+            float shootingZoneRotation = deltaParentRotation + leftMaxRotationLimit;
+            float currentRange = GetCurrentRange();
+            if (mouseRange == 0)
+            {
+                currentRange = range;
+            }
+            StaticProgressionBarUpdater.CreateProgressionCone(this, currentRange, GetBarRatio(), shootingZoneRotation);
         }
-        StaticProgressionBarUpdater.CreateProgressionCone(this, currentRange, GetBarRatio(), shootingZoneRotation);
     }
     #region Update
     private void RefreshUI()
@@ -226,7 +229,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
 
     private void UpdateShootingZoneVisibility()
     {
-        if (isTargetInSight || (isControlledByMouse && IsMouseClicked()) || isShootingZoneOn)
+        if ((isTargetInSight || (isControlledByMouse && IsMouseClicked())) && isShootingZoneOn)
         {
             //Make the bar show up
             StaticProgressionBarUpdater.UpdateProgressionCone(this);
