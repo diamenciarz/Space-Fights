@@ -83,6 +83,10 @@ public class ProjectileController : OnCollisionDamage, IParent, IModifiableStart
     #endregion
 
     #region Accessor methods
+    public float GetStartingSpeed()
+    {
+        return startingSpeed;
+    }
     public GameObject GetGameObject()
     {
         return gameObject;

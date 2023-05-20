@@ -16,6 +16,7 @@ public class AutomaticGunRotator : TeamUpdater
     [SerializeField] bool hasRotationLimits;
     [SerializeField] float leftMaxRotationLimit;
     [SerializeField] float rightMaxRotationLimit;
+    [SerializeField] bool predictVelocity;
 
     [Header("Instances")]
     [SerializeField] VisualDetector[] visualDetectors;
@@ -33,6 +34,7 @@ public class AutomaticGunRotator : TeamUpdater
     private IParent parent;
     private GameObject parentGameObject;
     private GameObject closestTarget;
+    private ShootingController shootingController;
 
     #region Startup
     protected override void Start()
@@ -47,6 +49,7 @@ public class AutomaticGunRotator : TeamUpdater
         {
             parentGameObject = parent.GetGameObject();
         }
+        shootingController = GetComponentInChildren<ShootingController>();
     }
     #endregion
 
@@ -186,7 +189,7 @@ public class AutomaticGunRotator : TeamUpdater
     {
         if (closestTarget)
         {
-            Vector3 targetPosition = closestTarget.transform.position;
+            Vector3 targetPosition = GetTargetPosition();
             return CountAngleFromGunToTargetPosition(targetPosition);
         }
         else
@@ -194,6 +197,68 @@ public class AutomaticGunRotator : TeamUpdater
             //There is no target to turn towards
             return 0;
         }
+    }
+    private Vector2 GetTargetPosition()
+    {
+        if (predictVelocity)
+        {
+            return PredictPosition();
+        }
+        else
+        {
+            return closestTarget.transform.position;
+        }
+    }
+    private Vector2 PredictPosition() {
+        Vector2 targetPosition = closestTarget.transform.position;
+
+        float timeToTarget = CalculateTimeToTarget();
+
+        Rigidbody2D rb2D = closestTarget.GetComponent<Rigidbody2D>();
+        if (rb2D != null)
+        {
+            targetPosition += rb2D.velocity * timeToTarget;
+        }
+
+        IMoveable imoveable = closestTarget.GetComponent<IMoveable>();
+        if (imoveable != null)
+        {
+            targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
+        }
+        return targetPosition;
+    }
+    private float CalculateTimeToTarget()
+    {
+        if (shootingController == null)
+        {
+            return 0;
+        }
+
+
+        SalvoScriptableObject.Shot shot = GetShot();
+        EntityCreator.Projectiles projectileType = shot.shot.projectilesToCreateList[0];
+        GameObject entityToSummon = EntityFactory.GetPrefab(projectileType);
+        ProjectileController projectileController = entityToSummon.GetComponent<ProjectileController>();
+
+        if (projectileController != null)
+        {
+            float distanceToTarget = HelperMethods.VectorUtils.Distance(shootingController.GetShootingPoint(), closestTarget);
+            float projectileSpeed = projectileController.GetStartingSpeed();
+            return distanceToTarget / projectileSpeed;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    private SalvoScriptableObject.Shot GetShot()
+    {
+        int index = shootingController.shotIndex;
+        if (index >= shootingController.salvo.shots.Length)
+        {
+            index -= 1;
+        }
+        return shootingController.salvo.shots[index];
     }
     private float CountAngleFromGunToTargetPosition(Vector3 targetPosition)
     {

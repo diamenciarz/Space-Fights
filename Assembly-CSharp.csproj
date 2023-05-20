@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Passive\Controls\IEntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ProgressionConeProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\SidewaysEntityMover.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\IPlayerControllable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IOnDamageDealt.cs" />
@@ -137,8 +138,7 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\IPlayerControllable.cs" />
-    <Compile Include="Assets\ExplosionTest.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interfaces\IMoveable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

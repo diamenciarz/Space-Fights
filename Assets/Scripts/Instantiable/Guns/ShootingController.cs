@@ -8,7 +8,7 @@ using static HelperMethods.LineOfSightUtils;
 public class ShootingController : ActionController, IProgressionBarCompatible, IPlayerControllable
 {
     [Header("Instances")]
-    [SerializeField] SalvoScriptableObject salvo;
+    public SalvoScriptableObject salvo;
     [Tooltip("Game Object, which will act as the creation point for the bullets")]
     [SerializeField] Transform shootingPoint;
 
@@ -36,7 +36,6 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     }
 
     //Private variables
-    private SingleShotScriptableObject currentShotSO;
     private GameObject cameraTarget;
     /// <summary>
     ///The gun tries to shoot, if this is set to true
@@ -46,7 +45,8 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     private float shootingTimeBank;
     private float currentTimeBetweenEachShot;
     private float lastShotTime;
-    private int shotIndex;
+    [HideInInspector]
+    public int shotIndex;
     private bool canShoot;
     private int shotAmount;
     private float salvoTimeSum;
@@ -174,7 +174,6 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     #region Shot Methods
     private void DoOneShot(int shotIndex)
     {
-        currentShotSO = salvo.shots[shotIndex].shot;
         PlayShotSound();
         CreateShot(shotIndex);
         //Update time bank
@@ -254,6 +253,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     //Sounds
     private void PlayShotSound()
     {
+        SingleShotScriptableObject currentShotSO = salvo.shots[shotIndex].shot;
         if (currentShotSO.shotSounds.Length != 0)
         {
             AudioClip sound = currentShotSO.shotSounds[Random.Range(0, currentShotSO.shotSounds.Length)];
@@ -351,6 +351,10 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     public float GetBarRatio()
     {
         return shootingTimeBank / salvoTimeSum;
+    }
+    public GameObject GetShootingPoint()
+    {
+        return shootingPoint.gameObject;
     }
     #endregion
 }

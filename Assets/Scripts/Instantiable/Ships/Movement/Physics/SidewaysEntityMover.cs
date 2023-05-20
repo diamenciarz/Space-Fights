@@ -6,7 +6,9 @@ using Unity.Mathematics;
 using UnityEngine;
 using static EntityInput;
 
-public class SidewaysEntityMover : MonoBehaviour, IEntityMover
+[RequireComponent(typeof(Rigidbody2D))]
+
+public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
 {
     enum RotationMode
     {
@@ -53,7 +55,7 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
     }
     #endregion
 
-    #region Public methods
+    #region Mutator methods
     public void SetInputVector(Vector2 newInputVector)
     {
         inputVector = newInputVector;
@@ -164,11 +166,11 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover
     {
         return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
     }
-    private float GetAngularAcceleration()
+    public float GetAngularAcceleration()
     {
         return myRigidbody2D.angularVelocity - previousAngularVelocity;
     }
-    private Vector2 GetAcceleration()
+    public Vector2 GetAcceleration()
     {
         return myRigidbody2D.velocity - lastVelocity;
     }
