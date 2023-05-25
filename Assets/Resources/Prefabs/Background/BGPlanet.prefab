@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 50
-  maxDistance: 100
+  minDistance: 800
+  maxDistance: 850
   recalculateOffScreen: 0
   changeSpriteOnRecalculation: 0
 --- !u!114 &-5130600736205839532
@@ -137,4 +137,3 @@ MonoBehaviour:
   - {fileID: -438324468, guid: faaa8d12975ab70429585726fc4694be, type: 3}
   - {fileID: 665457205, guid: faaa8d12975ab70429585726fc4694be, type: 3}
   spriteProbabilities: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  spriteRenderer: {fileID: 6676668502653053865}

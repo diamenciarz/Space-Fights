@@ -209,31 +209,39 @@ public class AutomaticGunRotator : TeamUpdater
             return closestTarget.transform.position;
         }
     }
-    private Vector2 PredictPosition() {
-        Vector2 targetPosition = closestTarget.transform.position;
-
-        float timeToTarget = CalculateTimeToTarget();
-
+    /// <summary>
+    /// Iteratively predicts the future position of a target. Increase the constant for more calculation steps
+    /// </summary>
+    private Vector2 PredictPosition(int PREDICTION_ITERATIONS = 5) {
         Rigidbody2D rb2D = closestTarget.GetComponent<Rigidbody2D>();
-        if (rb2D != null)
-        {
-            targetPosition += rb2D.velocity * timeToTarget;
-        }
-
         IMoveable imoveable = closestTarget.GetComponent<IMoveable>();
-        if (imoveable != null)
+        
+        Vector2 startingTargetPosition = closestTarget.transform.position;
+        Vector2 targetPosition = startingTargetPosition;
+        float timeToTarget = CalculateTimeToTarget(startingTargetPosition);
+        
+        for (int i = 0; i < PREDICTION_ITERATIONS; i++)
         {
-            targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
+            targetPosition = startingTargetPosition;
+            if (rb2D != null)
+            {
+                targetPosition += rb2D.velocity * timeToTarget;
+            }
+            if (imoveable != null)
+            {
+                targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
+            }
+            timeToTarget = CalculateTimeToTarget(targetPosition);
+            Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
         }
         return targetPosition;
     }
-    private float CalculateTimeToTarget()
+    private float CalculateTimeToTarget(Vector3 targetPosition)
     {
         if (shootingController == null)
         {
             return 0;
         }
-
 
         SalvoScriptableObject.Shot shot = GetShot();
         EntityCreator.Projectiles projectileType = shot.shot.projectilesToCreateList[0];
@@ -242,7 +250,7 @@ public class AutomaticGunRotator : TeamUpdater
 
         if (projectileController != null)
         {
-            float distanceToTarget = HelperMethods.VectorUtils.Distance(shootingController.GetShootingPoint(), closestTarget);
+            float distanceToTarget = HelperMethods.VectorUtils.Distance(shootingController.GetShootingPoint().transform.position, targetPosition);
             float projectileSpeed = projectileController.GetStartingSpeed();
             return distanceToTarget / projectileSpeed;
         }

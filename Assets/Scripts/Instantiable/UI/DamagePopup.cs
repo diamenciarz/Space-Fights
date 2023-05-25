@@ -60,7 +60,8 @@ public class DamagePopup : MonoBehaviour
     }
     private void Move()
     {
-        transform.position = startingPosition + CalculateDeltaPosition();
+        Vector2 newPosition = startingPosition + CalculateDeltaPosition();
+        transform.position = new Vector3(newPosition.x, newPosition.y, 1);
     }
     private Vector2 CalculateDeltaPosition()
     {

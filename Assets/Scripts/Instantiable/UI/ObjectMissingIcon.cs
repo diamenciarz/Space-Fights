@@ -126,7 +126,8 @@ public class ObjectMissingIcon : MonoBehaviour
     }
     private void UpdatePosition()
     {
-        transform.position = CameraInformation.ClampPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset);
+        Vector2 newPosition = CameraInformation.ClampPositionOnScreen(objectToFollow.transform.position, screenEdgeOffset);
+        transform.position = new Vector3(newPosition.x, newPosition.y, 1);
     }
     private void UpdateScale()
     {

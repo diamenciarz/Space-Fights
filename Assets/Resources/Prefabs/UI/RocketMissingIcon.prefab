@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumSpriteSize: 0.4
-  hideDistance: 6
-  spriteScale: 1
+  hideDistance: 12
+  spriteScale: 4
   screenEdgeOffset: 0.5
-  allyColor: {r: 0.46560726, g: 1, b: 0.058823526, a: 0}
-  enemyColor: {r: 1, g: 0, b: 0, a: 0}
-  neutralColor: {r: 0, g: 0.119636536, b: 1, a: 0}
+  allyColor: {r: 0.46560726, g: 1, b: 0.058823526, a: 1}
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  neutralColor: {r: 0, g: 0.119636536, b: 1, a: 1}

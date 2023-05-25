@@ -111,7 +111,7 @@ public class ParallaxScroller : MonoBehaviour
         Vector2 cameraPosition = mainCamera.transform.position;
         Vector2 offset = countParallaxOffset(cameraPosition);
 
-        transform.position = startingPosition + offset;
+        transform.position = new Vector3(startingPosition.x + offset.x, startingPosition.y + offset.y, 1);
     }
     private Vector2 countParallaxOffset(Vector2 cameraPosition)
     {

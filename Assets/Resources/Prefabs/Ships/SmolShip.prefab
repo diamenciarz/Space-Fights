@@ -52,6 +52,7 @@ MonoBehaviour:
   hasRotationLimits: 1
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
+  predictVelocity: 1
   visualDetectors:
   - {fileID: 8448464666150114285}
   debugZoneOn: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   targetTypes: 010000000200000003000000
   reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &7398243765704990038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +422,6 @@ MonoBehaviour:
   mouseRange: 0
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 1
   ignoreSameTeamCollisions: 1
@@ -993,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b48e49aca473fc438249ff7efc52aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledByPlayer: 0
+  isControlledByPlayer: 1
   controls: 1
 --- !u!114 &5166552632043362251
 MonoBehaviour:
