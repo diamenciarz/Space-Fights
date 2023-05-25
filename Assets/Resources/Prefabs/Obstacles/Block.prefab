@@ -173,7 +173,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 15
+  minKineticEnergy: 25
   collisionDamageModifier: 0.3
   breakingSounds: []
   breakingSoundVolume: 1

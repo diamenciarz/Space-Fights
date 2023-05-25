@@ -93,4 +93,12 @@ public class UserEntityController : MonoBehaviour
         return deltaMousePos;
     }
     #endregion
+
+    #region Mutator methods
+    public void SetIsControlledByPlayer(bool set)
+    {
+        isControlledByPlayer = set;
+        SetIsMouseControlled();
+    }
+    #endregion
 }

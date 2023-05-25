@@ -16,7 +16,7 @@ public class AutomaticGunRotator : TeamUpdater
     [SerializeField] bool hasRotationLimits;
     [SerializeField] float leftMaxRotationLimit;
     [SerializeField] float rightMaxRotationLimit;
-    [SerializeField] bool predictVelocity;
+    [SerializeField] bool predictTargetVelocity = true;
 
     [Header("Instances")]
     [SerializeField] VisualDetector[] visualDetectors;
@@ -200,7 +200,7 @@ public class AutomaticGunRotator : TeamUpdater
     }
     private Vector2 GetTargetPosition()
     {
-        if (predictVelocity)
+        if (predictTargetVelocity)
         {
             return PredictPosition();
         }

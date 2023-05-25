@@ -52,7 +52,7 @@ MonoBehaviour:
   hasRotationLimits: 1
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
-  predictVelocity: 1
+  predictTargetVelocity: 1
   visualDetectors:
   - {fileID: 8448464666150114285}
   debugZoneOn: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 30
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -608,7 +608,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 1000
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 30
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -829,7 +829,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 30
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 20
+  minKineticEnergy: 30
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
