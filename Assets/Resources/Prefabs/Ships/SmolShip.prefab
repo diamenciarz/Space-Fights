@@ -265,8 +265,8 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 30
-  collisionDamageModifier: 0.25
+  minKineticEnergy: 200
+  collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
@@ -608,7 +608,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 1000
   immunities: []
-  minKineticEnergy: 30
+  minKineticEnergy: 100
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -829,7 +829,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 30
+  minKineticEnergy: 100
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -1471,8 +1471,8 @@ MonoBehaviour:
   barHealth: 10
   destroyDamage: 10
   immunities: []
-  minKineticEnergy: 30
-  collisionDamageModifier: 0.25
+  minKineticEnergy: 200
+  collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []

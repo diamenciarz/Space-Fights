@@ -89,26 +89,26 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     }
     private void HandleCollision(Collision2D collision)
     {
-        Rigidbody2D colliderRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
-        if (colliderRB2D == null || isDestroyed)
+        if (collision.rigidbody == null || isDestroyed)
         {
             return;
         }
 
-        int damage = CountCollisionDamage(colliderRB2D);
+        int damage = CountCollisionDamage(collision);
         DealDamage(damage);
     }
-    private int CountCollisionDamage(Rigidbody2D colliderRB2D)
+    private int CountCollisionDamage(Collision2D collision)
     {
-        Vector2 deltaVelocity = colliderRB2D.velocity - myRigidbody2D.velocity;
+        Vector2 deltaVelocity = collision.relativeVelocity;
         float speed = deltaVelocity.magnitude;
-        float mass = colliderRB2D.mass;
+        float mass = collision.rigidbody.mass;
         float collisionKineticEnergy = speed * speed * mass / 2;
 
         if (collisionKineticEnergy > minKineticEnergy)
         {
-            collisionKineticEnergy *= collisionDamageModifier;
-            return (int)collisionKineticEnergy;
+            float damage = (collisionKineticEnergy - minKineticEnergy) * collisionDamageModifier;
+            Debug.Log("Relative velocity: " + deltaVelocity + " kinetic energy: " + collisionKineticEnergy + " damage: " + damage);
+            return (int)damage;
         }
         return 0;
     }

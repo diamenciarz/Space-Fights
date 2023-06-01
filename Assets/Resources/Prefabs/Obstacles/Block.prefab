@@ -172,9 +172,11 @@ MonoBehaviour:
   partHealth: 50
   barHealth: 50
   destroyDamage: 20
-  immunities: []
-  minKineticEnergy: 25
-  collisionDamageModifier: 0.3
+  immunities:
+  - damageType: 1
+    immunityPercentage: 0.5
+  minKineticEnergy: 50
+  collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []

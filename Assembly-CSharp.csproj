@@ -132,13 +132,13 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\IActionControllerCaller.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPiercingDamage.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractShipAction.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interfaces\IMoveable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ListUpdater.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ObjectMissingIconProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Passive\Interfaces\IMoveable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
