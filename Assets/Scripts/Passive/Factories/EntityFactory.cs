@@ -60,6 +60,10 @@ public static class EntityFactory
     {
         return searchFor(enumName.ToString(), UIs);
     }
+    public static GameObject GetPrefab(EntityCreator.ObjectFollowers enumName)
+    {
+        return searchFor(enumName.ToString(), UIs);
+    }
 
     private static GameObject searchFor(string name, Dictionary<string, GameObject> dictionary)
     {

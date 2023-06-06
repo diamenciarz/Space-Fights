@@ -50,6 +50,8 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     private bool canShoot;
     private int shotAmount;
     private float salvoTimeSum;
+    private GameObject targetFollower;
+    private EntityCreator.ObjectFollowers currentFollowerType;
 
     #region Initialization
     protected override void Start()
@@ -71,6 +73,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     private void CallStartingMethods()
     {
         UpdateUIState();
+        UpdateTargetFollower();
     }
     #endregion
 
@@ -108,12 +111,16 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         bool hasAmmo = shotIndex <= shotAmount - 1;
         if (hasAmmo)
         {
-            DoOneShot(shotIndex);
+            // This order is important! Cannot play sound before increasing the shot index!
+            // Otherwise, the shot index is already shifted by +1 too early!
             canShoot = false;
+            DoOneShot(shotIndex);
+
             StartCoroutine(WaitForNextShotCooldown(shotIndex));
-            shotIndex++;
             UpdateTimeBetweenEachShot();
             UpdateAmmoBar();
+
+            shotIndex++;
         }
     }
     #endregion
@@ -175,9 +182,10 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     private void DoOneShot(int shotIndex)
     {
         PlayShotSound();
+        DecreaseShootingTime();
         CreateShot(shotIndex);
         //Update time bank
-        DecreaseShootingTime();
+        UpdateTargetFollower();
     }
     private void CreateShot(int shotIndex)
     {
@@ -293,6 +301,11 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     #region UI
     private void UpdateUIState()
     {
+        UpdateProgressionBar();
+        // There can come more UI updates here
+    }
+    private void UpdateProgressionBar()
+    {
         if (isDetached || !isControlledByMouse)
         {
             StaticProgressionBarUpdater.DeleteProgressionBar(this);
@@ -307,6 +320,43 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         {
             StaticProgressionBarUpdater.SetIsProgressionBarAlwaysVisible(this, false);
         }
+    }
+    private void UpdateTargetFollower()
+    {
+        List<EntityCreator.Projectiles> projectileTypes = salvo.shots[shotIndex].shot.projectilesToCreateList;
+        TargetFollowerProperty newTargetFollowerProperty = EntityCreator.GetFirstTargetFollower(projectileTypes);
+
+        // If new is null, destroy old if not null
+        if (newTargetFollowerProperty == null)
+        {
+            if (targetFollower != null)
+            {
+                Destroy(targetFollower);
+            }
+            return;
+        }
+        // If old is null and new is not ==> overwrite
+        if (targetFollower == null && newTargetFollowerProperty != null)
+        {
+            ChangeTargetFollower(newTargetFollowerProperty.targetIcon);
+            return;
+        }
+        // If icons not the same ==> destroy old ==> overwrite with new
+        if (newTargetFollowerProperty.targetIcon != currentFollowerType)
+        {
+            Destroy(targetFollower);
+            ChangeTargetFollower(newTargetFollowerProperty.targetIcon);
+            return;
+        }
+    }
+    private void ChangeTargetFollower(EntityCreator.ObjectFollowers objectFollower)
+    {
+        targetFollower = Instantiate(EntityFactory.GetPrefab(objectFollower), transform.position, Quaternion.identity);
+        ClosestTargetFollower closestTargetFollower = targetFollower.GetComponentInChildren<ClosestTargetFollower>();
+        closestTargetFollower.SetFollowMouse(true);
+        closestTargetFollower.SetTeam(team);
+
+        currentFollowerType = objectFollower;
     }
     private void UpdateAmmoBar()
     {

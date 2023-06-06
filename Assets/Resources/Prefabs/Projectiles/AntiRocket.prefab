@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 6572667855001212798}
   - component: {fileID: 662213920967089266}
   - component: {fileID: 5268208231612974113}
+  - component: {fileID: 4460352848343668174}
   m_Layer: 8
   m_Name: AntiRocket
   m_TagString: Untagged
@@ -428,6 +429,21 @@ MonoBehaviour:
   breakEnum: 0100000003000000060000000500000000000000
   breakingSounds: []
   breakingSoundVolume: 1
+--- !u!114 &4460352848343668174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae11d6385dc6bd94ab151c7c17e5376f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetIcon: 0
+  followMouseCursor: 1
+  targetTypesToFollow: 0100000003000000
 --- !u!1 &8479812763967634279
 GameObject:
   m_ObjectHideFlags: 0

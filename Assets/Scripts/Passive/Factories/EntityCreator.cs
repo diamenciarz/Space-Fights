@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static EntityCreator;
 using static TeamUpdater;
 
 public class EntityCreator : MonoBehaviour
 {
+    // Change ProjectileIsRocket, when adding more rockets
     public enum Projectiles
     {
         Nothing,
@@ -41,13 +43,44 @@ public class EntityCreator : MonoBehaviour
     {
         RocketMissingIcon,
         AntirocketMissingIcon,
-        ShipMissingIcon,
+        ShipMissingIcon
+    }
+    public enum ObjectFollowers
+    {
         TargetIcon
     }
     private void Awake()
     {
         EntityFactory.InitializeFactory();
     }
+
+    #region Accessor Methods
+    public static TargetFollowerProperty GetFirstTargetFollower(List<Projectiles> projectiles)
+    {
+        foreach (var projectile in projectiles)
+        {
+            GameObject obj = EntityFactory.GetPrefab(projectile);
+            TargetFollowerProperty targetFollowerProperty = obj.GetComponentInChildren<TargetFollowerProperty>();
+            if (targetFollowerProperty != null)
+            {
+                return targetFollowerProperty;
+            }
+        }
+        return null;
+    }
+    private static bool ProjectileIsRocket(Projectiles projectile)
+    {
+        switch (projectile)
+        {
+            case Projectiles.Rocket:
+                return true;
+            case Projectiles.AntiRocket:
+                return true;
+            default:
+                return false;
+        }
+    }
+    #endregion
 
     #region Salvos
     public static void SummonShot(SummonedShotData data)
@@ -151,7 +184,7 @@ public class EntityCreator : MonoBehaviour
     {
         Quaternion randomDeltaRotation = HelperMethods.RotationUtils.RandomRotationInRange(data.shot.leftBulletSpread, data.shot.rightBulletSpread);
         Quaternion rotationToTarget = HelperMethods.RotationUtils.DeltaPositionRotation(data.summonPosition, data.target.transform.position);
-        Quaternion weirdOffset = Quaternion.Euler(0,0,-90);
+        Quaternion weirdOffset = Quaternion.Euler(0, 0, -90);
         return randomDeltaRotation * rotationToTarget * weirdOffset;
     }
     private static Quaternion RotToPosRegularSpread(SummonedShotData data, int index)
@@ -159,7 +192,7 @@ public class EntityCreator : MonoBehaviour
         float bulletOffset = (data.shot.spreadDegrees * (index - (data.shot.projectilesToCreateList.Count - 1f) / 2));
         Quaternion deltaRotation = Quaternion.Euler(0, 0, bulletOffset);
         Quaternion rotationToTarget = HelperMethods.RotationUtils.DeltaPositionRotation(data.summonPosition, data.target.transform.position);
-        Quaternion weirdOffset = Quaternion.Euler(0,0,-90);
+        Quaternion weirdOffset = Quaternion.Euler(0, 0, -90);
         return deltaRotation * rotationToTarget * weirdOffset;
     }
     #endregion
@@ -193,7 +226,7 @@ public class EntityCreator : MonoBehaviour
         }
 
         GameObject summonedEntity = Instantiate(entityToSummon, data.summonPosition, data.summonRotation);
-        CheckForRocket(summonedEntity, data);
+        SetRocketTarget(summonedEntity, data);
 
         SetupStartingProjectileValues(summonedEntity, data);
     }
@@ -253,7 +286,7 @@ public class EntityCreator : MonoBehaviour
             }
         }
     }
-    private static void CheckForRocket(GameObject summonedObject, SummonedProjectileData data)
+    private static void SetRocketTarget(GameObject summonedObject, SummonedProjectileData data)
     {
         if (!data.target)
         {
