@@ -121,6 +121,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             UpdateAmmoBar();
 
             shotIndex++;
+            UpdateTargetFollower();
         }
     }
     #endregion
@@ -149,6 +150,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             shotIndex = 0;
             UpdateTimeBetweenEachShot();
             UpdateAmmoBar();
+            UpdateTargetFollower();
         }
     }
     private void TryReloadOneBullet()
@@ -167,6 +169,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
                 lastShotTime += previousShotDelay;
                 UpdateTimeBetweenEachShot();
                 UpdateAmmoBar();
+                UpdateTargetFollower();
             }
         }
     }
@@ -185,7 +188,6 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         DecreaseShootingTime();
         CreateShot(shotIndex);
         //Update time bank
-        UpdateTargetFollower();
     }
     private void CreateShot(int shotIndex)
     {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class ClosestTargetFollower : MonoBehaviour
 {
     [SerializeField] bool followMouseInstead;
@@ -9,10 +10,13 @@ public class ClosestTargetFollower : MonoBehaviour
     private GameObject objectToFollow;
     private GameObject currentTarget;
     private TeamUpdater.Team team;
+    private SpriteRenderer spriteRenderer;
 
     #region Initialization
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
         FindObjectToFollow();
     }
     private void FindObjectToFollow()
@@ -34,6 +38,7 @@ public class ClosestTargetFollower : MonoBehaviour
     {
         if (objectToFollow != null)
         {
+            spriteRenderer.enabled = true;
             List<GameObject> potentialTargetsWithAllies = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypesToFollow);
             List<GameObject> potentialTargets = StaticDataHolder.ListModification.SubtractAllies(potentialTargetsWithAllies, team);
             currentTarget = StaticDataHolder.ListContents.Generic.GetClosestObject(potentialTargets, objectToFollow.transform.position);
@@ -43,6 +48,7 @@ public class ClosestTargetFollower : MonoBehaviour
     {
         if (currentTarget != null)
         {
+
             transform.position = currentTarget.transform.position;
         }
     }
