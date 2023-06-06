@@ -107,7 +107,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         if (collisionKineticEnergy > minKineticEnergy)
         {
             float damage = (collisionKineticEnergy - minKineticEnergy) * collisionDamageModifier;
-            Debug.Log("Relative velocity: " + deltaVelocity + " kinetic energy: " + collisionKineticEnergy + " damage: " + damage);
+            //Debug.Log("Relative velocity: " + deltaVelocity + " kinetic energy: " + collisionKineticEnergy + " damage: " + damage);
             return (int)damage;
         }
         return 0;

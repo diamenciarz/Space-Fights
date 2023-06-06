@@ -509,8 +509,8 @@ public static class HelperMethods
                 }
             }
 
-            RaycastHit2D[] raycastHits2DWithProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude, GetLayerMask(layerNames));
-            RaycastHit2D[] raycastHits2DNoProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude, GetLayerMaskWithoutProjectiles(layerNames));
+            RaycastHit2D[] raycastHits2DWithProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude + 0.01f, GetLayerMask(layerNames));
+            RaycastHit2D[] raycastHits2DNoProjectiles = Physics2D.RaycastAll(originalPos, direction, direction.magnitude + 0.01f, GetLayerMaskWithoutProjectiles(layerNames));
 
             foreach (RaycastHit2D hit in raycastHits2DWithProjectiles)
             {

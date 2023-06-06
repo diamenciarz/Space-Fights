@@ -20,7 +20,6 @@ public class CenteredPushingForce : MonoBehaviour
         SetupStartingVariables();
 
         Collider2D[] collidersHit = LineOfSightUtils.GetOverlappingCollidersWithCircle(transform.position, maxRadius, GetObjectTypes()).ToArray();
-        Debug.Log("Hit " + collidersHit.Length + " targets");
         PushColliders(collidersHit);
     }
     private void SetupStartingVariables()
@@ -28,7 +27,6 @@ public class CenteredPushingForce : MonoBehaviour
         startingRadius = GetComponent<CircleCollider2D>().radius;
         float expandRate = GetComponent<ExplosionController>().GetExpandRate();
         maxRadius = startingRadius * expandRate;
-        Debug.Log("Max radius " + maxRadius);
     }
     private ObjectTypes[] GetObjectTypes()
     {
@@ -39,17 +37,27 @@ public class CenteredPushingForce : MonoBehaviour
     }
     private void PushColliders(Collider2D[] visibleColliders)
     {
+        int hits =0;
         foreach (Collider2D collider in visibleColliders)
         {
             Rigidbody2D rb2D = collider.attachedRigidbody;
             if (rb2D != null)
             {
                 Vector2 collisionPoint = LineOfSightUtils.GetRaycastHitPositionIgnoreEverything(transform.position, collider.gameObject);
+                
                 Vector2 deltaPositionToCollider = collisionPoint - (Vector2)transform.position;
+                if (collisionPoint.magnitude == 0)
+                {
+                    // This is an unknown BUG. Sometimes, a collision is not detected.
+                    deltaPositionToCollider = collider.transform.position - transform.position;
+                }
                 float maxForcePercentage = Mathf.Clamp((maxRadius - deltaPositionToCollider.magnitude) / maxRadius, 0, maxRadius);
                 Vector2 force = maxForcePercentage * maxPushingForce * deltaPositionToCollider.normalized;
                 rb2D.AddForceAtPosition(force, collider.transform.position, ForceMode2D.Impulse);
+                hits++;
             }
         }
+        Debug.Log("Hit " + hits + " targets");
+
     }
 }
