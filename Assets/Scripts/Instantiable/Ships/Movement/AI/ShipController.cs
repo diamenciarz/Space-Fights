@@ -29,7 +29,7 @@ public class ShipController : TeamUpdater
         base.Start();
         SetupStartingVariables();
         FixRange();
-        SetNotMouseControlled();
+        //SetNotMouseControlled();
     }
     private void SetupStartingVariables()
     {
