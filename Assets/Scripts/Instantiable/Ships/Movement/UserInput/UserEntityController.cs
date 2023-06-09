@@ -31,6 +31,7 @@ public class UserEntityController : MonoBehaviour
     }
     private void SetIsMouseControlled()
     {
+        StaticCameraController.SetObserveMe(gameObject, isControlledByPlayer);
         IPlayerControllable[] components = GetComponentsInChildren<IPlayerControllable>();
         foreach (IPlayerControllable component in components)
         {
