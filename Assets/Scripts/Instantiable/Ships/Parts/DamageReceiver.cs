@@ -136,7 +136,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     #endregion
 
     #region Accessor methods
-    public Transform GetFollowTransform()
+    public Transform GetTransform()
     {
         return transform;
     }
@@ -261,7 +261,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     }
     private void TurnOffGuns()
     {
-        ShootingController[] shootingControllers = GetComponents<ShootingController>();
+        GunController[] shootingControllers = GetComponents<GunController>();
         foreach (var controller in shootingControllers)
         {
             controller.Detach();

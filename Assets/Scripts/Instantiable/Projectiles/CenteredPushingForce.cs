@@ -57,7 +57,5 @@ public class CenteredPushingForce : MonoBehaviour
                 hits++;
             }
         }
-        Debug.Log("Hit " + hits + " targets");
-
     }
 }

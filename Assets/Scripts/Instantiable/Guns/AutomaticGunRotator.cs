@@ -34,7 +34,7 @@ public class AutomaticGunRotator : TeamUpdater
     private IParent parent;
     private GameObject parentGameObject;
     private GameObject closestTarget;
-    private ShootingController shootingController;
+    private GunController shootingController;
 
     #region Startup
     protected override void Start()
@@ -49,7 +49,7 @@ public class AutomaticGunRotator : TeamUpdater
         {
             parentGameObject = parent.GetGameObject();
         }
-        shootingController = GetComponentInChildren<ShootingController>();
+        shootingController = GetComponentInChildren<GunController>();
     }
     #endregion
 

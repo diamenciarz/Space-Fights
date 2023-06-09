@@ -238,7 +238,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     #endregion
 
     #region Accessor methods
-    public Transform GetFollowTransform()
+    public Transform GetTransform()
     {
         return visualZoneOrigin;
     }

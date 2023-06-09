@@ -235,7 +235,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
         }
     }
 
-    public Transform GetFollowTransform()
+    public Transform GetTransform()
     {
         return transform;
     }
