@@ -5,8 +5,8 @@ using UnityEngine;
 public class ClosestTargetFollower : MonoBehaviour
 {
     [SerializeField] bool followMouseInstead;
-    [SerializeField] StaticDataHolder.ObjectTypes[] targetTypesToFollow;
 
+    private StaticDataHolder.ObjectTypes[] targetTypesToFollow;
     private GameObject objectToFollow;
     private GameObject currentTarget;
     private TeamUpdater.Team team;
@@ -40,7 +40,7 @@ public class ClosestTargetFollower : MonoBehaviour
         {
             spriteRenderer.enabled = true;
             List<GameObject> potentialTargetsWithAllies = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypesToFollow);
-            List<GameObject> potentialTargets = StaticDataHolder.ListModification.SubtractAllies(potentialTargetsWithAllies, team);
+            List<GameObject> potentialTargets = StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargetsWithAllies, team);
             currentTarget = StaticDataHolder.ListContents.Generic.GetClosestObject(potentialTargets, objectToFollow.transform.position);
         }
     }
@@ -53,7 +53,7 @@ public class ClosestTargetFollower : MonoBehaviour
         }
     }
     #endregion
-    
+
     #region Mutator Methods
     public void SetObjectToFollow(GameObject newObj)
     {
@@ -65,6 +65,10 @@ public class ClosestTargetFollower : MonoBehaviour
         followMouseInstead = set;
         objectToFollow = null;
         FindObjectToFollow();
+    }
+    public void SetTargetTypesToFollow(StaticDataHolder.ObjectTypes[] types)
+    {
+        targetTypesToFollow = types;
     }
     public void SetTeam(TeamUpdater.Team newteam)
     {

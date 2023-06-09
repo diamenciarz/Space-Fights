@@ -8,10 +8,6 @@ public class CameraPositionController : MonoBehaviour
     [SerializeField][Range(-10, 10)] float deltaY;
 
     [SerializeField]
-    [Tooltip("The point will follow the average position of all objects in the list")]
-    List<GameObject> follow;
-
-    [SerializeField]
     [Tooltip("The sprite's dimensions will be used to make sure the camera does not fly outside the sprite")]
     SpriteRenderer backgroundSprite;
 
@@ -22,6 +18,7 @@ public class CameraPositionController : MonoBehaviour
     //The maximum distance in game units that the camera can fly
     private float xLimit;
     private float yLimit;
+    private List<GameObject> follow;
 
     private void Start()
     {
@@ -30,6 +27,7 @@ public class CameraPositionController : MonoBehaviour
     private void SetupStartingVariables()
     {
         UpdateLimits();
+        follow = StaticCameraController.objectsToObserve;
     }
     private void UpdateLimits()
     {

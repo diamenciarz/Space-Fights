@@ -93,7 +93,7 @@ public static class StaticProgressionBarUpdater
         {
             return;
         }
-        bar.CreateProgressionCone(updater.GetFollowTransform(), radius, ratio);
+        bar.CreateProgressionCone(updater.GetTransform(), radius, ratio);
     }
     public static void CreateProgressionCone(IProgressionBarCompatible updater, float radius, float ratio, float deltaRotationFromParent)
     {
@@ -106,7 +106,7 @@ public static class StaticProgressionBarUpdater
         {
             return;
         }
-        bar.CreateProgressionCone(updater.GetFollowTransform(), radius, ratio, deltaRotationFromParent);
+        bar.CreateProgressionCone(updater.GetTransform(), radius, ratio, deltaRotationFromParent);
     }
     public static void DeleteProgressionBar(IProgressionBarCompatible updater)
     {
