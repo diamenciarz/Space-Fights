@@ -396,7 +396,7 @@ MonoBehaviour:
   maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 120
-  targetTypes: 0100000003000000
+  targetTypes: 0300000001000000
   rocketEyeTransform: {fileID: 1070908890487506755}
   target: {fileID: 0}
 --- !u!114 &-776891561322186458
@@ -493,4 +493,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetIcon: 0
   followMouseCursor: 1
-  targetTypesToFollow: 0100000003000000
+  targetTypesToFollow: 010000000300000002000000

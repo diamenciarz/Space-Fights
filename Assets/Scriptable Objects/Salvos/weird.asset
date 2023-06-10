@@ -21,6 +21,12 @@ MonoBehaviour:
   - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
     delayAfterShot: 0.5
     reloadDelay: 0.2
-  - shot: {fileID: 11400000, guid: b331fdb24e6cf484e8a1b75a52fc8394, type: 2}
+  - shot: {fileID: 11400000, guid: f24399c6d4bfe6149b507a69e05c8f39, type: 2}
+    delayAfterShot: 0.5
+    reloadDelay: 0.2
+  - shot: {fileID: 11400000, guid: 8af65a950cb0c604e98270034d0d61fc, type: 2}
+    delayAfterShot: 0.5
+    reloadDelay: 0.2
+  - shot: {fileID: 11400000, guid: 55d14230a5d8eb94698b98f455d494f7, type: 2}
     delayAfterShot: 0.5
     reloadDelay: 0.2

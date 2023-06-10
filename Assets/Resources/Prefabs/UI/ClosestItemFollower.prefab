@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3062658290673438456}
   - component: {fileID: 1437697990563623582}
   m_Layer: 5
-  m_Name: TargetIcon
+  m_Name: ClosestItemFollower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012750832036236270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 1.44, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3400234099962009486}
   - component: {fileID: 8865192197013644556}
+  - component: {fileID: 8387643618343885274}
   m_Layer: 5
   m_Name: TargetFollower
   m_TagString: TargetFollower
@@ -182,3 +183,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8387643618343885274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263192383216903975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea071962b61b3cf44aa3ac506082735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followMouseInstead: 1
