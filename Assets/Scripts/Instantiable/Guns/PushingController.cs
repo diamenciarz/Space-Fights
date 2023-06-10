@@ -45,7 +45,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     }
     protected override void CallStartingMethods()
     {
-        // Add any
+        ResetUIState();
     }
     #endregion
 
@@ -201,27 +201,14 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     }
     private void ResetTargetFollower()
     {
+        targetFollowers.Reset();
         if (isDetached || !isControlledByMouse)
         {
-            Destroy(targetFollower);
             return;
         }
 
-        targetFollower = Instantiate(EntityFactory.GetPrefab(targetIcon), transform.position, Quaternion.identity);
-        targetFollowerChild = FindTargetFollowerChild(targetFollower);
-        targetFollowerChild.transform.parent = null;
-    }
-    private GameObject FindTargetFollowerChild(GameObject targetFollower)
-    {
-        for (int i = 0; i < targetFollower.transform.childCount; i++)
-        {
-            GameObject child = targetFollower.transform.GetChild(i).gameObject;
-            if (child.tag == "TargetFollower")
-            {
-                return child;
-            }
-        }
-        return null;
+        targetFollowers.AddTargetFollower(0, new TargetFollower(targetIcon));
+        targetFollowers.SetCurrentProjectile(0);
     }
     #endregion
 

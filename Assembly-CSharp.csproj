@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractActiveAction.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Guns\AutomaticGunRotator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ListUpdaterOnJointBreak.cs" />
+    <Compile Include="Assets\Scripts\Passive\Factories\UICreator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ShootOnDeath.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\MovementScheme.cs" />
@@ -80,10 +81,12 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\IModifiableStartingSpeed.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\RotateInMovementDirectionAction.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ProgressionBarController.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\TargetFollowerProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\AbstractActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\PushableProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticProgressionBarUpdater.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\ClosestTargetFollower.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\BreakOnCollision.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\AbstractProjectileController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractMoveAction.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\ObjectMissingIcon.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IOnDamageDealt.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\DamageCalculator.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Guns\PushingController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantMoveAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\PiercingProjectileController.cs" />
@@ -122,8 +126,9 @@
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\ExplosionController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\RotateInMouseDirectionAction.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\DoodadFlicker.cs" />
+    <Compile Include="Assets\Scripts\Passive\Damage\RayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\RandomTimeExpirationProperty.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Guns\ShootingController.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Guns\GunController.cs" />
     <Compile Include="Assets\Scripts\Passive\Helpers\StaticDataHolder.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\EntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\RocketController.cs" />
@@ -139,6 +144,9 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Passive\UI\StaticCameraController.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\CameraControllerImplementation.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Guns\AbstractShootingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using static HelperMethods;
 using static HelperMethods.LineOfSightUtils;
@@ -11,7 +13,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
 
     [Header("Settings")]
     [Tooltip("Describes how the gun will choose the direction of the projectiles coming out of its pipe")]
-    [SerializeField] ShootingMode shootingMode;
+    [SerializeField] ShootingMode shootingDirection;
     [Tooltip("Describes how the gun will give targets to its projectiles")]
     [SerializeField] TargetMode targetMode;
     [Tooltip("Used if FindTarget mode is chosen")]
@@ -39,7 +41,6 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     private int shotAmount;
     private float currentTimeBetweenEachShot;
     private float salvoTimeSum;
-    private EntityCreator.ObjectFollowers currentFollowerType;
 
     #region Initialization
     protected override void InitializeStartingVariables()
@@ -53,9 +54,8 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     }
     protected override void CallStartingMethods()
     {
-        // Add methods
         UpdateTimeBetweenEachShot();
-        UpdateTargetFollower();
+        ResetUIState();
     }
     #endregion
 
@@ -172,11 +172,11 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     }
     private Quaternion GetRotation()
     {
-        if (shootingMode == ShootingMode.Forward)
+        if (shootingDirection == ShootingMode.Forward)
         {
             return GetForwardGunRotation();
         }
-        if (shootingMode == ShootingMode.CameraDirection)
+        if (shootingDirection == ShootingMode.CameraDirection)
         {
             return GetRotationToTarget(cameraTarget);
         }
@@ -238,7 +238,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
         SingleShotScriptableObject currentShotSO = salvo.shots[shotIndex].shot;
         if (currentShotSO.shotSounds.Length != 0)
         {
-            AudioClip sound = currentShotSO.shotSounds[Random.Range(0, currentShotSO.shotSounds.Length)];
+            AudioClip sound = currentShotSO.shotSounds[UnityEngine.Random.Range(0, currentShotSO.shotSounds.Length)];
             StaticDataHolder.Sounds.PlaySound(sound, transform.position, currentShotSO.shotSoundVolume);
         }
     }
@@ -274,51 +274,31 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     #endregion
 
     #region UI
+    protected override void ResetUIState()
+    {
+        base.ResetUIState();
+        ResetTargetFollowers();
+    }
+    private void ResetTargetFollowers()
+    {
+        targetFollowers.Reset();
+        int index = 0;
+        foreach (SalvoScriptableObject.Shot shot in salvo.shots)
+        {
+            List<EntityCreator.Projectiles> projectileTypes = shot.shot.projectilesToCreateList;
+            TargetFollowerProperty newTargetFollowerProperty = EntityCreator.GetFirstTargetFollower(projectileTypes);
+
+            if (newTargetFollowerProperty != null)
+            {
+                targetFollowers.AddTargetFollower(index, new TargetFollower(newTargetFollowerProperty.targetIcon));
+            }
+            index ++;
+        }
+        targetFollowers.SetCurrentProjectile(shotIndex);
+    }
     private void UpdateTargetFollower()
     {
-        // If there are no shots in the magazine, then don't show the icon
-        if (shotIndex >= salvo.shots.Length)
-        {
-            Destroy(targetFollower);
-            Destroy(targetFollowerChild);
-            return;
-        }
-
-        List<EntityCreator.Projectiles> projectileTypes = salvo.shots[shotIndex].shot.projectilesToCreateList;
-        TargetFollowerProperty newTargetFollowerProperty = EntityCreator.GetFirstTargetFollower(projectileTypes);
-
-        // If new is null, destroy old if not null
-        if (newTargetFollowerProperty == null)
-        {
-            if (targetFollower != null)
-            {
-                Destroy(targetFollower);
-                Destroy(targetFollowerChild);
-            }
-            return;
-        }
-        // If old is null and new is not ==> overwrite
-        if (targetFollower == null && newTargetFollowerProperty != null)
-        {
-            ChangeTargetFollower(newTargetFollowerProperty.targetIcon);
-            return;
-        }
-        // If icons not the same ==> destroy old ==> overwrite with new
-        if (newTargetFollowerProperty.targetIcon != currentFollowerType)
-        {
-            Destroy(targetFollower);
-            Destroy(targetFollowerChild);
-            ChangeTargetFollower(newTargetFollowerProperty.targetIcon);
-            return;
-        }
-    }
-    private void ChangeTargetFollower(EntityCreator.ObjectFollowers objectFollower)
-    {
-        targetFollower = Instantiate(EntityFactory.GetPrefab(objectFollower), transform.position, Quaternion.identity);
-        targetFollowerChild = FindTargetFollowerChild(targetFollower);
-        targetFollowerChild.transform.parent = null;
-
-        currentFollowerType = objectFollower;
+        targetFollowers.SetCurrentProjectile(shotIndex);
     }
     private void UpdateAmmoBar()
     {
@@ -327,18 +307,6 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
             return;
         }
         StaticProgressionBarUpdater.UpdateProgressionBar(this);
-    }
-    private GameObject FindTargetFollowerChild(GameObject targetFollower)
-    {
-        for (int i = 0; i < targetFollower.transform.childCount; i++)
-        {
-            GameObject child = targetFollower.transform.GetChild(i).gameObject;
-            if (child.tag == "TargetFollower")
-            {
-                return child;
-            }
-        }
-        return null;
     }
     #endregion
 
@@ -350,7 +318,6 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     #endregion
     private void OnDestroy()
     {
-        Destroy(targetFollower);
-        Destroy(targetFollowerChild);
+        targetFollowers.Reset();
     }
 }

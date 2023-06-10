@@ -3,11 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MouseCursorFollower : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        transform.position = (Vector3)HelperMethods.VectorUtils.TranslatedMousePosition() + new Vector3(0, 0, 1);
     }
     void Update()
     {
@@ -15,7 +13,6 @@ public class MouseCursorFollower : MonoBehaviour
     }
     private void FollowMouse()
     {
-        spriteRenderer.enabled = true;
         transform.position = (Vector3) HelperMethods.VectorUtils.TranslatedMousePosition() + new Vector3(0,0,1);
     }
 }

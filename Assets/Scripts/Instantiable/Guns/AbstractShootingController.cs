@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,106 @@ public abstract class AbstractShootingController : ActionController, IProgressio
     protected bool canShoot;
     protected bool isControlledByMouse;
 
-    protected GameObject targetFollower;
-    protected GameObject targetFollowerChild;
+    protected TargetFollowers targetFollowers = new TargetFollowers();
+    protected class TargetFollowers
+    {
+        private Dictionary<int,TargetFollower> targetFollowers = new Dictionary<int, TargetFollower>();
+        private KeyValuePair<int,TargetFollower> activeTargetFollower = new KeyValuePair<int, TargetFollower>(-1, null);
+
+        public void Reset()
+        {
+            foreach (KeyValuePair<int, TargetFollower> pair in targetFollowers)
+            {
+                pair.Value.DestroyFollowers();
+            }
+            targetFollowers = new Dictionary<int, TargetFollower>();
+            activeTargetFollower = new KeyValuePair<int, TargetFollower>(-1, null);
+        }
+        public void AddTargetFollower(int index, TargetFollower targetFollower)
+        {
+            targetFollower.SetEnabled(false);
+            targetFollowers.Add(index, targetFollower);
+        }
+        public void SetCurrentProjectile(int index)
+        {
+            if(activeTargetFollower.Key == index)
+            {
+                return;
+            }
+            if(activeTargetFollower.Value != null)
+            {
+                activeTargetFollower.Value.SetEnabled(false);
+            }
+            if(targetFollowers.ContainsKey(index))
+            {
+                activeTargetFollower = new KeyValuePair<int, TargetFollower>(index, targetFollowers[index]);
+                activeTargetFollower.Value.SetEnabled(true);
+            }
+            else
+            {
+                activeTargetFollower = new KeyValuePair<int, TargetFollower>(-1, null);
+            }
+        }
+        public void MoveActiveFollower(GameObject target)
+        {
+            if (activeTargetFollower.Value != null)
+            {
+                activeTargetFollower.Value.Move(target);
+            }
+        }
+    }
+    protected class TargetFollower
+    {
+        public TargetFollower(EntityCreator.ObjectFollowers objectFollower)
+        {
+            targetFollower = Instantiate(EntityFactory.GetPrefab(objectFollower), Vector3.zero, Quaternion.identity);
+            targetFollowerChild = FindTargetFollowerChild(targetFollower);
+            targetFollowerChild.transform.parent = null;
+
+            followerRenderer = targetFollower.GetComponent<SpriteRenderer>();
+            childRenderer = targetFollowerChild.GetComponent<SpriteRenderer>();
+
+        }
+
+        private GameObject targetFollower;
+        private GameObject targetFollowerChild;
+
+        private SpriteRenderer followerRenderer;
+        private SpriteRenderer childRenderer;
+
+        private GameObject FindTargetFollowerChild(GameObject targetFollower)
+        {
+            for (int i = 0; i < targetFollower.transform.childCount; i++)
+            {
+                GameObject child = targetFollower.transform.GetChild(i).gameObject;
+                if (child.tag == "TargetFollower")
+                {
+                    return child;
+                }
+            }
+            Debug.LogError("Target follower child not found. The target follower prefab is defined wrongly! The child should have tag \"TargetFollower\"");
+            return null;
+        }
+        public void SetEnabled(bool set)
+        {
+            followerRenderer.enabled = set;
+            childRenderer.enabled = set;
+        }
+        public void Move(GameObject target)
+        {
+            if (target != null && targetFollowerChild != null)
+            {
+                Vector3 newPosition = target.transform.position;
+                newPosition.z = 1;
+                targetFollowerChild.transform.position = newPosition;
+            }
+        }
+        public void DestroyFollowers()
+        {
+            Destroy(targetFollower);
+            Destroy(targetFollowerChild);
+        }
+    }
 
     #region Initialization
     protected override void Start()
@@ -52,11 +151,7 @@ public abstract class AbstractShootingController : ActionController, IProgressio
     protected void UpdateController()
     {
         shoot = IsControllerOn();
-
-        if (shoot)
-        {
-            cameraTarget = GetActionControllerData().target;
-        }
+        cameraTarget = GetActionControllerData().target;
     }
     protected abstract void TryShoot();
     #endregion
@@ -64,11 +159,7 @@ public abstract class AbstractShootingController : ActionController, IProgressio
 
     private void MoveTargetFollower()
     {
-        GameObject target = GetTarget();
-        if (target != null && targetFollowerChild != null)
-        {
-            targetFollowerChild.transform.position = target.transform.position;
-        }
+        targetFollowers.MoveActiveFollower(GetTarget());
     }
     protected abstract GameObject GetTarget();
 

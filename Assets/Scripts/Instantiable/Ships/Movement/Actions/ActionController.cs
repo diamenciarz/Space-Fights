@@ -10,6 +10,7 @@ public abstract class ActionController : TeamUpdater
     public void AddActionCaller(IActionControllerCaller caller)
     {
         callers.Add(new CallerPair(caller));
+        firstActiveCaller = caller;
     }
     public void AddActionCaller(IActionControllerCaller caller, EntityInputs input)
     {

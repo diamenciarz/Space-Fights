@@ -222,7 +222,9 @@ public static class HelperMethods
         #region Helper methods
         private static float CountAngleFromMiddleToPosition(Vector3 middlePosition, Vector3 targetPosition, float middleAngle)
         {
-            float angleFromZeroToItem = HelperMethods.RotationUtils.DeltaPositionRotation(middlePosition, targetPosition).eulerAngles.z;
+            Quaternion rightToUpTranslation = Quaternion.Euler(0, 0, -90);
+            Quaternion rotationFromZeroToItem = RotationUtils.DeltaPositionRotation(middlePosition, targetPosition) * rightToUpTranslation;
+            float angleFromZeroToItem = rotationFromZeroToItem.eulerAngles.z;
             float angleFromGunToItem = Mathf.DeltaAngle(middleAngle, angleFromZeroToItem);
 
             return angleFromGunToItem;
@@ -248,7 +250,7 @@ public static class HelperMethods
     public class RotationUtils
     {
         /// <summary>
-        /// Rotation from first position to second position. Range <0;360)
+        /// Rotation from first position to second position. Range <0;360). Point zero is for Vector2(1,0).
         /// </summary>
         /// <param name="firstPosition"></param>
         /// <param name="secondPosition"></param>
