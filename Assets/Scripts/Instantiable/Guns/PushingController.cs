@@ -186,10 +186,10 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     #endregion
 
     #region UI
-    protected override void UpdateUIState()
+    protected override void ResetUIState()
     {
-        base.UpdateUIState();
-        UpdateTargetFollower();
+        base.ResetUIState();
+        ResetTargetFollower();
     }
     private void UpdateAmmoBar()
     {
@@ -199,7 +199,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         }
         StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
-    private void UpdateTargetFollower()
+    private void ResetTargetFollower()
     {
         if (isDetached || !isControlledByMouse)
         {

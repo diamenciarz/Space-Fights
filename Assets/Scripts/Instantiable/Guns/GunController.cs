@@ -1,29 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ActionController;
 using static HelperMethods;
 using static HelperMethods.LineOfSightUtils;
 
-public class ShootingController : ActionController, IProgressionBarCompatible, IPlayerControllable
+public class GunController : AbstractShootingController, IProgressionBarCompatible, IPlayerControllable
 {
     [Header("Instances")]
     public SalvoScriptableObject salvo;
-    [Tooltip("Game Object, which will act as the creation point for the bullets")]
-    [SerializeField] Transform shootingPoint;
 
     [Header("Settings")]
-    [Tooltip("The direction of bullets coming out of the gun pipe")]
-    [SerializeField] float forwardGunRotation;
     [Tooltip("Describes how the gun will choose the direction of the projectiles coming out of its pipe")]
     [SerializeField] ShootingMode shootingMode;
     [Tooltip("Describes how the gun will give targets to its projectiles")]
-    [SerializeField] ShootingMode targetMode;
+    [SerializeField] TargetMode targetMode;
     [Tooltip("Used if FindTarget mode is chosen")]
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
-    [Header("Mouse Steering")]
-    bool isControlledByMouse; // Just in case
-    [SerializeField] bool reloadingBarAlwaysOn = true;
     [Header("Progression bar compatibility")]
     [Tooltip("The progression bars and users should be a one-to-one match. If true, this script is not using GetGomponent<>() to find a ProgressionBarProperty.")]
     [SerializeField] bool dontUseProgressionBar;
@@ -31,36 +23,26 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     public enum ShootingMode
     {
         Forward,
-        FindTarget,
-        CameraTargeting
+        ClosestAnglewiseDirection,
+        CameraDirection
+    }
+    public enum TargetMode
+    {
+        None,
+        ClosestTargetAnglewise,
+        CameraTarget
     }
 
     //Private variables
-    private GameObject cameraTarget;
-    /// <summary>
-    ///The gun tries to shoot, if this is set to true
-    /// </summary>
-    protected bool shoot;
-    private bool isDetached = false;
-    private float shootingTimeBank;
-    private float currentTimeBetweenEachShot;
-    private float lastShotTime;
     [HideInInspector]
     public int shotIndex;
-    private bool canShoot;
     private int shotAmount;
+    private float currentTimeBetweenEachShot;
     private float salvoTimeSum;
-    private GameObject targetFollower;
     private EntityCreator.ObjectFollowers currentFollowerType;
 
     #region Initialization
-    protected override void Start()
-    {
-        base.Start();
-        InitializeStartingVariables();
-        CallStartingMethods();
-    }
-    private void InitializeStartingVariables()
+    protected override void InitializeStartingVariables()
     {
         lastShotTime = Time.time;
         salvoTimeSum = salvo.GetSalvoTimeSum();
@@ -68,33 +50,21 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         shotAmount = salvo.shots.Length;
         canShoot = true;
         shotIndex = 0;
-        UpdateTimeBetweenEachShot();
     }
-    private void CallStartingMethods()
+    protected override void CallStartingMethods()
     {
-        UpdateUIState();
+        // Add methods
+        UpdateTimeBetweenEachShot();
         UpdateTargetFollower();
     }
     #endregion
 
     #region Update
-    protected virtual void Update()
+    protected override void Update()
     {
-        CheckTimeBank();
-        UpdateController();
-        TryShoot();
+        base.Update();
     }
-    private void UpdateController()
-    {
-        bool isOn = IsControllerOn();
-        SetShoot(isOn);
-
-        if (isOn)
-        {
-            SetTarget(GetActionControllerData().target);
-        }
-    }
-    private void TryShoot()
+    protected override void TryShoot()
     {
         if (!shoot)
         {
@@ -117,17 +87,17 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             DoOneShot(shotIndex);
 
             StartCoroutine(WaitForNextShotCooldown(shotIndex));
-            UpdateTimeBetweenEachShot();
             UpdateAmmoBar();
 
             shotIndex++;
+            UpdateTimeBetweenEachShot();
             UpdateTargetFollower();
         }
     }
     #endregion
 
     #region Reloading
-    private void CheckTimeBank()
+    protected override void TryReload()
     {
         if (salvo.reloadAllAtOnce)
         {
@@ -204,9 +174,9 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     {
         if (shootingMode == ShootingMode.Forward)
         {
-            return transform.rotation * GetForwardGunRotation();
+            return GetForwardGunRotation();
         }
-        if (shootingMode == ShootingMode.CameraTargeting)
+        if (shootingMode == ShootingMode.CameraDirection)
         {
             return GetRotationToTarget(cameraTarget);
         }
@@ -216,14 +186,13 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             return GetRotationToTarget(foundTarget);
         }
     }
-    private GameObject GetTarget()
+    protected override GameObject GetTarget()
     {
-
-        if (targetMode == ShootingMode.Forward)
+        if (targetMode == TargetMode.None)
         {
             return null;
         }
-        if (targetMode == ShootingMode.CameraTargeting)
+        if (targetMode == TargetMode.CameraTarget)
         {
             if (StaticDataHolder.ListContents.Generic.IsObjectMouseCursor(cameraTarget))
             {
@@ -231,7 +200,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             }
             return cameraTarget;
         }
-        // targetMode == ShootingMode.FindTarget
+        // targetMode == TargetMode.ClosestTargetAnglewise
         return FindTarget();
     }
     private GameObject FindClosestTargetToMouseCursor(Vector2 mousePosition)
@@ -255,7 +224,10 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     }
     private Quaternion GetForwardGunRotation()
     {
-        return Quaternion.Euler(0, 0, forwardGunRotation);
+        Vector2 vec = shootingPoint.transform.up;
+        Quaternion rightToUpTranslation = Quaternion.Euler(0, 0, -90);
+        // By default, Arctan2 starts counting 0 from the right. But in Unity we want angle 0 to be facing up
+        return RotationUtils.DeltaPositionRotation(Vector2.zero, vec) * rightToUpTranslation;
     }
     #endregion
 
@@ -277,10 +249,11 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     {
         if (!target)
         {
-            return transform.rotation * GetForwardGunRotation();
+            return GetForwardGunRotation();
         }
-        Quaternion weirdAngle = Quaternion.Euler(0, 0, -90);
-        return RotationUtils.DeltaPositionRotation(shootingPoint.position, target.transform.position) * weirdAngle;
+        Quaternion rightToUpTranslation = Quaternion.Euler(0, 0, -90);
+        // By default, Arctan2 starts counting 0 from the right. But in Unity we want angle 0 to be facing up
+        return RotationUtils.DeltaPositionRotation(shootingPoint.position, target.transform.position) * rightToUpTranslation;
     }
     private void DecreaseShootingTime()
     {
@@ -301,30 +274,16 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     #endregion
 
     #region UI
-    private void UpdateUIState()
-    {
-        UpdateProgressionBar();
-        // There can come more UI updates here
-    }
-    private void UpdateProgressionBar()
-    {
-        if (isDetached || !isControlledByMouse)
-        {
-            StaticProgressionBarUpdater.DeleteProgressionBar(this);
-            return;
-        }
-        StaticProgressionBarUpdater.CreateProgressionBar(this);
-        if (reloadingBarAlwaysOn)
-        {
-            StaticProgressionBarUpdater.SetIsProgressionBarAlwaysVisible(this, true);
-        }
-        else
-        {
-            StaticProgressionBarUpdater.SetIsProgressionBarAlwaysVisible(this, false);
-        }
-    }
     private void UpdateTargetFollower()
     {
+        // If there are no shots in the magazine, then don't show the icon
+        if (shotIndex >= salvo.shots.Length)
+        {
+            Destroy(targetFollower);
+            Destroy(targetFollowerChild);
+            return;
+        }
+
         List<EntityCreator.Projectiles> projectileTypes = salvo.shots[shotIndex].shot.projectilesToCreateList;
         TargetFollowerProperty newTargetFollowerProperty = EntityCreator.GetFirstTargetFollower(projectileTypes);
 
@@ -334,6 +293,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
             if (targetFollower != null)
             {
                 Destroy(targetFollower);
+                Destroy(targetFollowerChild);
             }
             return;
         }
@@ -347,6 +307,7 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         if (newTargetFollowerProperty.targetIcon != currentFollowerType)
         {
             Destroy(targetFollower);
+            Destroy(targetFollowerChild);
             ChangeTargetFollower(newTargetFollowerProperty.targetIcon);
             return;
         }
@@ -354,9 +315,8 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
     private void ChangeTargetFollower(EntityCreator.ObjectFollowers objectFollower)
     {
         targetFollower = Instantiate(EntityFactory.GetPrefab(objectFollower), transform.position, Quaternion.identity);
-        ClosestTargetFollower closestTargetFollower = targetFollower.GetComponentInChildren<ClosestTargetFollower>();
-        closestTargetFollower.SetFollowMouse(true);
-        closestTargetFollower.SetTeam(team);
+        targetFollowerChild = FindTargetFollowerChild(targetFollower);
+        targetFollowerChild.transform.parent = null;
 
         currentFollowerType = objectFollower;
     }
@@ -368,45 +328,29 @@ public class ShootingController : ActionController, IProgressionBarCompatible, I
         }
         StaticProgressionBarUpdater.UpdateProgressionBar(this);
     }
-    #endregion
-
-    #region Mutator methods
-    public void SetTarget(GameObject newTarget)
+    private GameObject FindTargetFollowerChild(GameObject targetFollower)
     {
-        cameraTarget = newTarget;
-    }
-    public void SetIsControlledByMouse(bool isTrue)
-    {
-        isControlledByMouse = isTrue;
-        UpdateUIState();
-    }
-    public void Detach()
-    {
-        isDetached = true;
-        UpdateUIState();
-    }
-    public void SetShoot(bool set)
-    {
-        shoot = set;
+        for (int i = 0; i < targetFollower.transform.childCount; i++)
+        {
+            GameObject child = targetFollower.transform.GetChild(i).gameObject;
+            if (child.tag == "TargetFollower")
+            {
+                return child;
+            }
+        }
+        return null;
     }
     #endregion
 
     #region Accessor methods
-    public Transform GetFollowTransform()
-    {
-        return transform;
-    }
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-    public float GetBarRatio()
+    public override float GetBarRatio()
     {
         return shootingTimeBank / salvoTimeSum;
     }
-    public GameObject GetShootingPoint()
-    {
-        return shootingPoint.gameObject;
-    }
     #endregion
+    private void OnDestroy()
+    {
+        Destroy(targetFollower);
+        Destroy(targetFollowerChild);
+    }
 }
