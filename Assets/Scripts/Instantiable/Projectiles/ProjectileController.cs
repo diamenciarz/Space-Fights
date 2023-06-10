@@ -103,7 +103,7 @@ public class ProjectileController : OnCollisionDamage, IParent, IModifiableStart
     {
         return myRigidbody2D.velocity;
     }
-    public TeamUpdater.ObjectType GetObjectType()
+    public virtual ObjectType GetObjectType()
     {
         return ObjectType.PROJECTILE;
     }

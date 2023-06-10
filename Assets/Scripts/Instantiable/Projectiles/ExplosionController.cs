@@ -86,7 +86,7 @@ public class ExplosionController : ProjectileController
     {
         return expandRate;
     }
-    public TeamUpdater.ObjectType GetObjectType()
+    public override TeamUpdater.ObjectType GetObjectType()
     {
         return ObjectType.PROJECTILE;
     }
