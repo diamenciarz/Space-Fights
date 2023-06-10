@@ -16,6 +16,6 @@ public class MouseCursorFollower : MonoBehaviour
     private void FollowMouse()
     {
         spriteRenderer.enabled = true;
-        transform.position = HelperMethods.VectorUtils.TranslatedMousePosition();
+        transform.position = (Vector3) HelperMethods.VectorUtils.TranslatedMousePosition() + new Vector3(0,0,1);
     }
 }
