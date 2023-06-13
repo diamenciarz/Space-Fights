@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Passive\Damage\DamageInstance.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionCone.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\AbstractActionOnCollision.cs" />
+    <Compile Include="Assets\Scripts\Passive\UI\StaticCameraController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\Abstract\ExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IModifiableStartingSpeed.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraPositionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\MusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\CameraControllerImplementation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ProgressionBarProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\EntityInput.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\IEntityMover.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Actions\ActionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TeamUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPushable.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Guns\AbstractShootingController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\VisualDetector.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\EntityProperties.cs" />
@@ -144,9 +147,6 @@
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\ConstantRotationAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Passive\UI\StaticCameraController.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\UI\CameraControllerImplementation.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Guns\AbstractShootingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

@@ -109,7 +109,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 3503175393803492294}
   reloadingBarAlwaysOn: 1
   salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
-  shootingMode: 0
+  shootingDirection: 0
   targetMode: 2
   targetTypes: 010000000200000003000000
   dontUseProgressionBar: 0
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059472270907488857}
   m_LocalRotation: {x: 0, y: 0, z: -0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: -0.5, y: -0.15, z: 0}
+  m_LocalPosition: {x: -0.549, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -260,10 +260,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
   - {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
   - {fileID: 21300000, guid: d5f9a5d3d5c9ff948b808b974b7bf654, type: 3}
-  partHealth: 100
+  partHealth: 250
   barHealth: 10
   destroyDamage: 10
-  immunities: []
+  immunities:
+  - damageType: 1
+    immunityPercentage: 0.5
   minKineticEnergy: 200
   collisionDamageModifier: 0.1
   breakingSounds: []
@@ -288,7 +290,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.22980972, y: 0.12374368}
+  m_LinearOffset: {x: -0.28956026, y: 0.09864139}
   m_AngularOffset: -0.7853981
 --- !u!60 &1071542429760869110
 PolygonCollider2D:
@@ -318,7 +320,8 @@ PolygonCollider2D:
     - - {x: 0.3303489, y: -0.19400716}
       - {x: 0.31368127, y: 0.30417585}
       - {x: 0.087224916, y: 0.7439646}
-      - {x: 0.041611664, y: 0.06367981}
+      - {x: -0.06910805, y: 0.68023723}
+      - {x: -0.096505694, y: 0.07070272}
       - {x: -0.349737, y: -0.6255855}
       - {x: -0.08814674, y: -0.771886}
 --- !u!114 &1041874885758407220
@@ -351,7 +354,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.5681603, y: -0.21460693}
+  m_LinearOffset: {x: -0.62791085, y: -0.23970921}
   m_AngularOffset: 2.3561945
 --- !u!114 &7148820827750459461
 MonoBehaviour:
@@ -581,9 +584,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.44240898, y: -0.21003067}
-      - {x: -0.009076487, y: -0.6790647}
-      - {x: 0.43911868, y: -0.19345087}
+    - - {x: -0.4174721, y: -0.20379648}
+      - {x: 0.0028309114, y: -0.6612037}
+      - {x: 0.42353302, y: -0.19656798}
       - {x: 0.6031952, y: 0.39062285}
       - {x: 0.26555336, y: 0.6254948}
       - {x: -0.25320923, y: 0.6254381}
@@ -607,7 +610,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 1000
   immunities: []
-  minKineticEnergy: 100
+  minKineticEnergy: 150
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -801,8 +804,8 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.1
@@ -824,10 +827,12 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites: []
-  partHealth: 50
+  partHealth: 100
   barHealth: 50
   destroyDamage: 20
-  immunities: []
+  immunities:
+  - damageType: 1
+    immunityPercentage: 0.25
   minKineticEnergy: 100
   collisionDamageModifier: 0.25
   breakingSounds: []
@@ -1368,7 +1373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8341605518784828374}
   m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: 0.5, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0.551, y: -0.271, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1466,10 +1471,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
   - {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
   - {fileID: 21300000, guid: d5f9a5d3d5c9ff948b808b974b7bf654, type: 3}
-  partHealth: 100
+  partHealth: 250
   barHealth: 10
   destroyDamage: 10
-  immunities: []
+  immunities:
+  - damageType: 1
+    immunityPercentage: 0.5
   minKineticEnergy: 200
   collisionDamageModifier: 0.1
   breakingSounds: []
@@ -1488,13 +1495,13 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 10000
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.22980972, y: 0.12374368}
+  m_LinearOffset: {x: 0.2906209, y: 0.09899494}
   m_AngularOffset: 0.7853981
 --- !u!60 &3346224111281637435
 PolygonCollider2D:
@@ -1522,8 +1529,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.3453793, y: -0.62989104}
-      - {x: -0.04268715, y: 0.069358274}
-      - {x: -0.064385295, y: 0.76759166}
+      - {x: 0.08372533, y: 0.08808602}
+      - {x: 0.07967922, y: 0.6721991}
+      - {x: -0.09481794, y: 0.7512049}
       - {x: -0.33887574, y: 0.22397156}
       - {x: -0.33206254, y: -0.1933899}
       - {x: 0.077188544, y: -0.75685555}
@@ -1551,13 +1559,13 @@ RelativeJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 6441913592164531685}
-  m_BreakForce: 5000
-  m_BreakTorque: 5000
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
   m_MaxForce: 10000
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.5681603, y: -0.21460693}
+  m_LinearOffset: {x: 0.6289715, y: -0.23935568}
   m_AngularOffset: 3.926991
 --- !u!114 &1609254296342363878
 MonoBehaviour:
