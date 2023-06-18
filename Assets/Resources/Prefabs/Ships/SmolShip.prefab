@@ -261,7 +261,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
   - {fileID: 21300000, guid: d5f9a5d3d5c9ff948b808b974b7bf654, type: 3}
   partHealth: 250
-  barHealth: 10
+  barHealth: 100
   destroyDamage: 10
   immunities:
   - damageType: 1
@@ -427,7 +427,7 @@ MonoBehaviour:
   isShootingZoneOn: 0
   ignoreMouseCollisions: 1
   ignoreSameTeamCollisions: 1
-  targetTypes: 010000000200000003000000
+  targetTypes: 0100000003000000
   actionControllers:
   - {fileID: 863468948743332297}
   currentTarget: {fileID: 0}
@@ -984,7 +984,11 @@ MonoBehaviour:
     teamInstance: 0
   chaseRange: 10
   avoidRange: 5
+  attackRange: 0
   isForceGlobal: 1
+  entityAvoidance: 0
+  projectileAvoidance: 0
+  shipSize: 1
   targetToChase: {fileID: 0}
 --- !u!114 &1630741118
 MonoBehaviour:
@@ -1472,7 +1476,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
   - {fileID: 21300000, guid: d5f9a5d3d5c9ff948b808b974b7bf654, type: 3}
   partHealth: 250
-  barHealth: 10
+  barHealth: 100
   destroyDamage: 10
   immunities:
   - damageType: 1

@@ -11,7 +11,9 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     [SerializeField][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange;
     [SerializeField][Tooltip("Will not come closer to target than this distance")] float attackRange;
     [SerializeField] bool isForceGlobal;
-    [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float obstacleAvoidance;
+    [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance;
+    [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance;
+    [SerializeField] float shipSize = 1;
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
@@ -116,27 +118,30 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     private Vector2 CalculateMovementVector()
     {
         targetToChase = ListContents.Enemies.GetClosestEnemy(transform.position, team);
+        //Vector2 chaseVector = Vector2.zero;
         Vector2 chaseVector = CalculateChaseVector();
-        //Debug.Log(chaseVector);
 
-        List<GameObject> avoidObjects = GetObjectsToAvoid();
-        Vector2 avoidVector = CalculateAvoidVector(avoidObjects);
+        Vector2 obstacleAvoidanceVector = CalculateObstacleAvoidanceVector();
+        Vector2 projectileAvoidanceVector = CalculateProjectileAvoidanceVector();
 
-        Vector2 randomMovement = CalculateRandomMovementVector();
+        Vector2 randomMovement = Vector2.zero;
+        //Vector2 randomMovement = CalculateRandomMovementVector();
 
-        float chaseLength = chaseVector.magnitude;
+        float chaseLength = Mathf.Min(chaseVector.magnitude, 1);
+        float obstacleAvoidanceLength = Mathf.Min(obstacleAvoidanceVector.magnitude, 1);
+        float projectileAvoidanceLength = Mathf.Min(projectileAvoidanceVector.magnitude, 1);
 
+        Vector2 projectilePart = (1 - obstacleAvoidanceLength) * projectileAvoidance * projectileAvoidanceVector.normalized * projectileAvoidanceLength;
+        Vector2 obstaclePart = obstacleAvoidanceLength * obstacleAvoidanceVector.normalized;
+        Vector2 avoidanceVector = obstaclePart + projectilePart;
+
+        Vector2 movementVector = chaseVector;
+        
         if (chaseLength < 1)
         {
-            Vector2 movementVector = chaseVector + (1-chaseLength)* randomMovement;
-            return chaseLength * movementVector + (1 + obstacleAvoidance - chaseLength) * avoidVector.normalized;
+            movementVector += (1 - chaseLength) * randomMovement;
         }
-
-        if (chaseLength > 1)
-        {
-            chaseLength = 1;
-        }
-        return chaseLength * chaseVector.normalized + (1 + obstacleAvoidance - chaseLength) * avoidVector.normalized;
+        return chaseLength * movementVector.normalized + (1 + entityAvoidance - chaseLength) * avoidanceVector.normalized;
     }
 
     #region Chasing
@@ -183,6 +188,11 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     #endregion
 
     #region Obstacle Avoidance
+    private Vector2 CalculateObstacleAvoidanceVector()
+    {
+        List<GameObject> avoidObjects = GetObjectsToAvoid();
+        return CalculateAvoidVector(avoidObjects);
+    }
     private Vector2 CalculateAvoidVector(List<GameObject> avoidObjects)
     {
         Vector2 proximityVector = Vector2.zero;
@@ -242,6 +252,67 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
             return false;
         }
         return partParent.GetGameObject() == myParent.GetGameObject();
+    }
+    #endregion
+
+    #region Projectile Avoidance
+    private Vector2 CalculateProjectileAvoidanceVector()
+    {
+        Vector2 avoidVector = Vector2.zero;
+        foreach (GameObject projectile in GetProjectilesToAvoid())
+        {
+            if (projectile == null)
+            {
+                continue;
+            }
+            Rigidbody2D rb2D = projectile.GetComponent<Rigidbody2D>();
+            if (rb2D == null)
+            {
+                continue;
+            }
+
+            avoidVector += CalculateSingleProjectileAvoidance(projectile, rb2D);
+        }
+        return avoidVector;
+    }
+    private List<GameObject> GetProjectilesToAvoid()
+    {
+        List<GameObject> allProjectiles = ListContents.Generic.GetObjectList(ObjectTypes.Projectile);
+        return ListModification.SubtractNeutralsAndAllies(allProjectiles, team);
+    }
+    private Vector2 CalculateSingleProjectileAvoidance(GameObject projectile, Rigidbody2D rb2D)
+    {
+        Vector2 positionToEnemy = HelperMethods.VectorUtils.DeltaPosition(gameObject, projectile);
+        if (!IsEnemyAhead(projectile, rb2D))
+        {
+            return Vector2.zero;
+        }
+
+        Vector2 projectedPosition = Vector3.Project(positionToEnemy, rb2D.velocity);
+        // This is the delta vector towards the closest point that the projectile will pass by next to the ship
+        Vector2 projectilePassPosition = positionToEnemy - projectedPosition;
+        float projectilePassDistance = projectilePassPosition.magnitude;
+
+        bool projectileWillMiss = projectilePassDistance > shipSize;
+        if (projectileWillMiss)
+        {
+            return Vector2.zero;
+        }
+
+        float timeForProjectileToPass = projectedPosition.magnitude / rb2D.velocity.magnitude;
+        const float MAX_REACT_TIME = 3f;
+
+        float modifier = Mathf.Pow(Mathf.Max(0, MAX_REACT_TIME - timeForProjectileToPass), 2) / projectilePassDistance;
+        //Debug.Log("Modifier " + modifier);
+        //Debug.DrawLine(transform.position, ((Vector2)transform.position - (projectilePassPosition.normalized * modifier)), Color.red, 0.1f);
+        //Debug.DrawLine(projectile.transform.position, (Vector2)projectile.transform.position-projectedPosition, Color.blue, 0.1f);
+        return -projectilePassPosition.normalized * modifier;
+    }
+    private bool IsEnemyAhead(GameObject projectile, Rigidbody2D rb2D)
+    {
+        Vector2 positionToEnemy = HelperMethods.VectorUtils.DeltaPosition(gameObject, projectile);
+        float dot = Vector2.Dot(rb2D.velocity, positionToEnemy);
+        return dot < 0;
     }
     #endregion
 
