@@ -49,7 +49,7 @@ MonoBehaviour:
     teamInstance: 0
   basicGunDirection: 180
   gunRotationSpeed: 360
-  hasRotationLimits: 1
+  hasRotationLimits: 0
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
   predictTargetVelocity: 1

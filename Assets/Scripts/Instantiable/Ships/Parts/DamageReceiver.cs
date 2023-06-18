@@ -261,7 +261,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
     }
     private void TurnOffGuns()
     {
-        GunController[] shootingControllers = GetComponents<GunController>();
+        GunController[] shootingControllers = GetComponentsInChildren<GunController>();
         foreach (var controller in shootingControllers)
         {
             controller.Detach();
