@@ -362,7 +362,7 @@ MonoBehaviour:
   maxRocketSpeed: 8
   speedChangeRatePerSecond: 3
   rocketRotationSpeed: 120
-  targetTypes: 030000000100000002000000
+  targetTypes: 030000000100000005000000
   rocketEyeTransform: {fileID: 5447275333531231939}
   target: {fileID: 0}
 --- !u!114 &7748659938827264479
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 05000000
 --- !u!114 &662213920967089266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,8 +442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetIcon: 0
-  followMouseCursor: 1
-  targetTypesToFollow: 0100000003000000
 --- !u!1 &8479812763967634279
 GameObject:
   m_ObjectHideFlags: 0

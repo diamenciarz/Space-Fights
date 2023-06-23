@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf335462b1ae26438893fb6d9800cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 02000000
+  putInLists: 05000000
 --- !u!114 &5268208231612974113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,5 +492,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetIcon: 0
-  followMouseCursor: 1
-  targetTypesToFollow: 010000000300000002000000

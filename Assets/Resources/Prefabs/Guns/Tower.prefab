@@ -636,14 +636,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
   shootingPoint: {fileID: 6271903174717107740}
-  forwardGunRotation: 0
-  shootingMode: 0
+  reloadingBarAlwaysOn: 1
+  salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
+  shootingDirection: 0
   targetMode: 0
   targetTypes: 
-  reloadingBarAlwaysOn: 1
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &1204640746029900739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,11 +950,10 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 7005096668549435608}
-  isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
   ignoreSameTeamCollisions: 1
-  targetTypes: 010000000300000002000000
+  targetTypes: 010000000300000005000000
   actionControllers:
   - {fileID: 8021823894982714015}
   currentTarget: {fileID: 0}
@@ -1474,6 +1473,7 @@ MonoBehaviour:
   hasRotationLimits: 1
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
+  predictTargetVelocity: 1
   visualDetectors:
   - {fileID: 7480479330725694337}
   debugZoneOn: 0
