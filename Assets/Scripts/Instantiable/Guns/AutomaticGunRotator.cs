@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static StaticDataHolder.ListContents;
 
@@ -202,7 +203,7 @@ public class AutomaticGunRotator : TeamUpdater
     {
         if (predictTargetVelocity)
         {
-            return PredictPosition();
+            return PredictTargetPosition();
         }
         else
         {
@@ -212,35 +213,11 @@ public class AutomaticGunRotator : TeamUpdater
     /// <summary>
     /// Iteratively predicts the future position of a target. Increase the constant for more calculation steps
     /// </summary>
-    private Vector2 PredictPosition(int PREDICTION_ITERATIONS = 5) {
-        Rigidbody2D rb2D = closestTarget.GetComponent<Rigidbody2D>();
-        IMoveable imoveable = closestTarget.GetComponent<IMoveable>();
-        
-        Vector2 startingTargetPosition = closestTarget.transform.position;
-        Vector2 targetPosition = startingTargetPosition;
-        float timeToTarget = CalculateTimeToTarget(startingTargetPosition);
-        
-        for (int i = 0; i < PREDICTION_ITERATIONS; i++)
-        {
-            targetPosition = startingTargetPosition;
-            if (rb2D != null)
-            {
-                targetPosition += rb2D.velocity * timeToTarget;
-            }
-            if (imoveable != null)
-            {
-                targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
-            }
-            timeToTarget = CalculateTimeToTarget(targetPosition);
-            Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
-        }
-        return targetPosition;
-    }
-    private float CalculateTimeToTarget(Vector3 targetPosition)
+    private Vector2 PredictTargetPosition()
     {
         if (shootingController == null)
         {
-            return 0;
+            return Vector2.zero;
         }
 
         SalvoScriptableObject.Shot shot = GetShot();
@@ -248,16 +225,13 @@ public class AutomaticGunRotator : TeamUpdater
         GameObject entityToSummon = EntityFactory.GetPrefab(projectileType);
         ProjectileController projectileController = entityToSummon.GetComponent<ProjectileController>();
 
-        if (projectileController != null)
+        if (projectileController == null)
         {
-            float distanceToTarget = HelperMethods.VectorUtils.Distance(shootingController.GetShootingPoint().transform.position, targetPosition);
-            float projectileSpeed = projectileController.GetStartingSpeed();
-            return distanceToTarget / projectileSpeed;
+            return Vector2.zero;
         }
-        else
-        {
-            return 0;
-        }
+
+        float myProjectileSpeed = projectileController.GetStartingSpeed();
+        return HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, closestTarget, myProjectileSpeed);
     }
     private SalvoScriptableObject.Shot GetShot()
     {

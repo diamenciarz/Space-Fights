@@ -24,7 +24,7 @@ public class RocketController : ProjectileController
         base.Start();
         SetupStartingSpeed();
         // The rocket automatically sets layer to "EnemyToAll"
-        UpdateLayer(Team.GetEnemyToAllTeam());
+        UpdateLayer(team);
     }
     private void SetupStartingSpeed()
     {
@@ -109,6 +109,10 @@ public class RocketController : ProjectileController
     #endregion
 
     #region Accessor/Mutator Methods
+    public override ObjectType GetObjectType()
+    {
+        return ObjectType.ROCKET;
+    }
     public void SetTarget(GameObject target)
     {
         this.target = target;

@@ -26,10 +26,10 @@ TagManager:
   - Team3Actors
   - EnemyToAllActors
   - NeutralActors
-  - 
-  - 
-  - 
-  - 
+  - Team1Rockets
+  - Team2Rockets
+  - Team3Rockets
+  - EnemyToAllRockets
   - 
   - 
   - 

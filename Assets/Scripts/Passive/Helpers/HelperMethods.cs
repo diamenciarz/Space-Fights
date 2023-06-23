@@ -420,7 +420,11 @@ public static class HelperMethods
             Team2Actors,
             Team3Actors,
             EnemyToAllActors,
-            NeutralActors
+            NeutralActors,
+            Team1Rockets,
+            Team2Rockets,
+            Team3Rockets,
+            EnemyToAllRockets
         }
 
         public static LayerNames NumberToLayerName(int number)
@@ -809,6 +813,16 @@ public static class HelperMethods
                         layers.Add(LayerNames.EnemyToAllProjectiles);
                     }
                 }
+                if (type == ObjectTypes.Rocket)
+                {
+                    if (!layers.Contains(LayerNames.Team1Rockets))
+                    {
+                        layers.Add(LayerNames.Team1Rockets);
+                        layers.Add(LayerNames.Team2Rockets);
+                        layers.Add(LayerNames.Team3Rockets);
+                        layers.Add(LayerNames.EnemyToAllRockets);
+                    }
+                }
             }
             return layers;
         }
@@ -827,6 +841,61 @@ public static class HelperMethods
                 }
             }
             targetTypes = nonRepeatedTargetTypes.ToArray();
+        }
+        /// <summary>
+        /// Iteratively predicts the future position of a target until it is hit by a projectile at mySpeed. Increase the constant for more calculation steps and more precise prediction
+        /// </summary>
+        public static Vector2 PredictTargetPositionUponHit(Vector2 myPosition, GameObject target, float mySpeed, int PREDICTION_ITERATIONS = 5)
+        {
+            Vector2 startingTargetPosition = target.transform.position;
+            Vector2 targetPosition = startingTargetPosition;
+
+            Rigidbody2D rb2D = target.GetComponent<Rigidbody2D>();
+            if (rb2D == null)
+            {
+                return startingTargetPosition;
+            }
+            IMoveable imoveable = target.GetComponent<IMoveable>();
+            float timeToTarget = CalculateTimeToTarget(myPosition, startingTargetPosition, mySpeed);
+
+            for (int i = 0; i < PREDICTION_ITERATIONS; i++)
+            {
+                targetPosition = startingTargetPosition;
+                targetPosition += rb2D.velocity * timeToTarget;
+                if (imoveable != null)
+                {
+                    targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
+                }
+                timeToTarget = CalculateTimeToTarget(myPosition, targetPosition, mySpeed);
+                //Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
+            }
+            return targetPosition;
+        }
+        private static float CalculateTimeToTarget(Vector2 myPosition, Vector2 targetPosition, float mySpeed)
+        {
+            float distanceToTarget = VectorUtils.Distance(myPosition, targetPosition);
+            return distanceToTarget / mySpeed;
+        }
+        public static Vector2 PredictPositionAfterDelay(GameObject target, float time)
+        {
+            Vector2 startingTargetPosition = target.transform.position;
+            Vector2 targetPosition = startingTargetPosition;
+
+            Rigidbody2D rb2D = target.GetComponent<Rigidbody2D>();
+            if (rb2D == null)
+            {
+                return startingTargetPosition;
+            }
+            IMoveable imoveable = target.GetComponent<IMoveable>();
+        
+            targetPosition = startingTargetPosition;
+            targetPosition += rb2D.velocity * time;
+            if (imoveable != null)
+            {
+                targetPosition += imoveable.GetAcceleration() * time * time / 2;
+            }
+            //Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
+            return targetPosition;
         }
     }
     /// <summary>

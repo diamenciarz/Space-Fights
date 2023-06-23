@@ -12,7 +12,8 @@ public class TeamUpdater : MonoBehaviour, ITeamable
     {
         PROJECTILE,
         ACTOR,
-        OTHER
+        OTHER,
+        ROCKET
     }
     protected ObjectType objectType = ObjectType.OTHER;
 
@@ -113,6 +114,10 @@ public class TeamUpdater : MonoBehaviour, ITeamable
         {
             SetActorLayer(newTeam);
         }
+        if (objectType == ObjectType.ROCKET)
+        {
+            SetRocketLayer(newTeam);
+        }
     }
     private void SetProjectileLayer(Team newTeam)
     {
@@ -153,6 +158,24 @@ public class TeamUpdater : MonoBehaviour, ITeamable
                 break;
             default:
                 gameObject.layer = 18;
+                break;
+        }
+    }
+    private void SetRocketLayer(Team newTeam)
+    {
+        switch (newTeam.teamInstance)
+        {
+            case TeamInstance.Team1:
+                gameObject.layer = 19;
+                break;
+            case TeamInstance.Team2:
+                gameObject.layer = 20;
+                break;
+            case TeamInstance.Team3:
+                gameObject.layer = 21;
+                break;
+            default:
+                gameObject.layer = 22;
                 break;
         }
     }

@@ -19,7 +19,8 @@ public static class StaticDataHolder
         Obstacle,
         Projectile,
         Entity,
-        MouseCursor
+        MouseCursor,
+        Rocket
     }
     private static bool wasInstantiated = false;
 
