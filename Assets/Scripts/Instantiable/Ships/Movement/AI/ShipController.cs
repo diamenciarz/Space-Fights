@@ -5,7 +5,7 @@ using static MovementScheme;
 using static StaticDataHolder;
 using static UnityEditor.Progress;
 
-public class ShipController : TeamUpdater, ISerializationCallbackReceiver
+public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
 {
     [SerializeField][Tooltip("Will stop chasing its target above that distance")] float chaseRange;
     [SerializeField][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange;
@@ -14,12 +14,15 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance;
     [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance;
     [SerializeField] float shipSize = 1;
+    [SerializeField] float movementMomentum = 0.5f;
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
     public GameObject targetToChase;
-    private MovementMode movementMode;
+    private FightTactics fightTactics;
     private IParent myParent;
+    private int gunCount;
+    private bool orderSent = false;
 
     //Random movement
     private float movementPeriod;
@@ -30,13 +33,18 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
         AVOIDING,
         IDLE
     }
+    enum BattleMode
+    {
+        RANGED,
+        MELEE
+    }
 
     #region Startup
     protected override void Start()
     {
         base.Start();
         SetupStartingVariables();
-        GenerateRandomMovementVariables();
+        //GenerateRandomMovementVariables();
         //SetNotMouseControlled();
     }
     private void SetupStartingVariables()
@@ -44,10 +52,22 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
         rb2D = GetComponent<Rigidbody2D>();
         myVehicle = GetComponent<IEntityMover>();
         myParent = gameObject.GetComponentInParent<IParent>();
+        CountGuns();
+        fightTactics = new FightTactics();
     }
-
+    private void CountGuns()
+    {
+        GunController[] gunControllers = GetComponentsInChildren<GunController>();
+        foreach (GunController controller in gunControllers)
+        {
+            controller.AddOnDestroyAction(this);
+        }
+        gunCount = gunControllers.Length;
+    }
     private void GenerateRandomMovementVariables()
     {
+        entityAvoidance = Random.Range(0, 1);
+        projectileAvoidance = Random.Range(0, 1);
         movementPeriod = Random.Range(2, 8);
     }
 
@@ -87,6 +107,8 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     #region Update
     void Update()
     {
+        //Order important
+        UpdateTactics();
         Vector2 movementVector = CalculateMovementVector();
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
@@ -169,20 +191,58 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     }
     private Vector2 HandleChaseObject(Vector2 deltaPositionToItem)
     {
-        bool isAboveAttackRange = deltaPositionToItem.magnitude > attackRange;
-        if (isAboveAttackRange)
+        bool isAboveRange = IsAboveAttackRange(deltaPositionToItem);
+        if (isAboveRange)
         {
             // Prioritize chasing more, if farther away from the target!
-            float multiplier = deltaPositionToItem.sqrMagnitude;
-            Debug.DrawRay(transform.position, deltaPositionToItem.normalized * multiplier, Color.blue, 0.05f);
-            return deltaPositionToItem;
+            float multiplier = CalculateMultiplier(isAboveRange, deltaPositionToItem);
+            Vector2 predictedTargetPosition = HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, targetToChase, myVehicle.GetMaxSpeed());
+            Vector2 predictedDeltaPosition = predictedTargetPosition - (Vector2)targetToChase.transform.position;
+            Debug.DrawRay(transform.position, (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
+            return (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier;
         }
         else
         {
             // Fall back, if too close to target. Keep distance!
-            float multiplier = 1 / deltaPositionToItem.sqrMagnitude;
+            float multiplier = CalculateMultiplier(isAboveRange, deltaPositionToItem);
             Debug.DrawRay(transform.position, -deltaPositionToItem.normalized * multiplier, Color.red, 0.05f);
             return -deltaPositionToItem.normalized * multiplier;
+        }
+    }
+    private float CalculateMultiplier(bool isAboveRange, Vector2 deltaPositionToItem)
+    {
+        if (fightTactics.battleMode == BattleMode.RANGED)
+        {
+            if (isAboveRange)
+            {
+                return deltaPositionToItem.magnitude - attackRange;
+            }
+            else
+            {
+                return 1 / (attackRange - deltaPositionToItem.magnitude);
+            }
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    private bool IsAboveAttackRange(Vector2 deltaPositionToItem)
+    {
+        if (fightTactics.battleMode == BattleMode.RANGED)
+        {
+            return deltaPositionToItem.magnitude > attackRange;
+        }
+        else
+        {
+            if (fightTactics.movementMode == MovementMode.CHASING)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
     #endregion
@@ -325,7 +385,89 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver
     #endregion
     #endregion
 
+    #region Update tactics
+    private void UpdateTactics()
+    {
+        if (targetToChase == null)
+        {
+            return;
+        }
+        //shipController.targetToChase;
+        if (fightTactics.battleMode == BattleMode.MELEE)
+        {
+            if (fightTactics.movementMode == MovementMode.CHASING)
+            {
+                float distanceToTarget = HelperMethods.VectorUtils.Distance(gameObject, targetToChase);
+                // If the ship gets below this distance to a target, then it either has hit it already, or missed and has no velocity left anymore
+                const float MISS_RANGE = 2;
+                if (distanceToTarget < MISS_RANGE)
+                {
+                    StartAvoiding();
+                }
+            }
+            if (fightTactics.movementMode == MovementMode.AVOIDING)
+            {
+                float distanceToTarget = HelperMethods.VectorUtils.Distance(gameObject, targetToChase);
+                // If the ship gets above this range to target, it will start attacking again, as it has enough distance to gain useful velocity
+                const float ATTACK_RANGE = 10;
+                if (distanceToTarget > ATTACK_RANGE)
+                {
+                    StartChasing();
+                }
+            }
+        }
+    }
+    private void StartAvoiding()
+    {
+        if (!orderSent)
+        {
+            orderSent = true;
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING));
+
+        }
+    }
+    private void StartChasing()
+    {
+        if (!orderSent)
+        {
+            orderSent = true;
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.CHASING));
+        }
+    }
+    /// <summary>
+    /// Default value of 1 is enough for the ship to bump into its target
+    /// </summary>
+    private IEnumerator SetMovementModeAfterDelay(MovementMode newMode, float delay = 0.3f)
+    {
+        yield return new WaitForSeconds(delay);
+        fightTactics.movementMode = newMode;
+        orderSent = false;
+    }
     #endregion
+    #endregion
+
+    #region Mutator methods
+    public void NofityOnDestroy(GameObject obj)
+    {
+        gunCount--;
+        if (gunCount == 0)
+        {
+            fightTactics.battleMode = BattleMode.MELEE;
+        }
+    }
+    #endregion
+    private class FightTactics
+    {
+        public FightTactics()
+        {
+            battleMode = BattleMode.RANGED;
+            movementMode = MovementMode.CHASING;
+        }
+
+        public BattleMode battleMode;
+        public MovementMode movementMode;
+
+    }
 }
 public class ActionCallData
 {

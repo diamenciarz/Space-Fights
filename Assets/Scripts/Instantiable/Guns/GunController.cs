@@ -41,6 +41,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     private int shotAmount;
     private float currentTimeBetweenEachShot;
     private float salvoTimeSum;
+    private List<INotifyOnDestroy> notifyOnDestroy = new List<INotifyOnDestroy>();
 
     #region Initialization
     protected override void InitializeStartingVariables()
@@ -315,9 +316,17 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     {
         return shootingTimeBank / salvoTimeSum;
     }
+    public void AddOnDestroyAction(INotifyOnDestroy toCall)
+    {
+        notifyOnDestroy.Add(toCall);
+    }
     #endregion
     private void OnDestroy()
     {
         targetFollowers.Reset();
+        foreach (INotifyOnDestroy toCall in notifyOnDestroy)
+        {
+            toCall.NofityOnDestroy(gameObject);
+        }
     }
 }

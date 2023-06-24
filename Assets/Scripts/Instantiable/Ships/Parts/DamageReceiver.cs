@@ -241,6 +241,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         DisconnectJoints(); //Only disconnect joints not connected with the part's direct parent
         transform.SetParent(null);
         TurnOffGuns();
+        CallOnDetachmentActions();
         SetTeam(Team.GetEnemyToAllTeam()); //Everyone can destroy detached parts
         SwitchLists(); //Add to obstacle list
     }
@@ -265,6 +266,14 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
         foreach (var controller in shootingControllers)
         {
             controller.Detach();
+        }
+    }
+    private void CallOnDetachmentActions()
+    {
+        IActOnParentDetach[] objs = GetComponentsInChildren<IActOnParentDetach>();
+        foreach (IActOnParentDetach obj in objs)
+        {
+            obj.PerformAction();
         }
     }
     private void SwitchLists()

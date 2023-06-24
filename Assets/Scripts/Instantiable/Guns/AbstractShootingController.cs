@@ -200,7 +200,7 @@ public abstract class AbstractShootingController : ActionController, IProgressio
     }
     public void Detach()
     {
-        Debug.Log("Detached " + gameObject.name);
+        //Debug.Log("Detached " + gameObject.name);
         isDetached = true;
         ResetUIState();
     }

@@ -40,16 +40,6 @@ public class EntityMover : MonoBehaviour, IEntityMover
     {
         inputVector = newInputVector;
     }
-    public void RotateByAngle(float rotation, bool affectedByVelocity)
-    {
-        float deltaAngle = CalculateDeltaAngle(rotation, affectedByVelocity);
-        ModifyDirection(deltaAngle);
-    }
-    public void RotateTowardsVector(Vector2 targetDirection, bool affectedByVelocity)
-    {
-        float deltaAngle = CalculateDeltaAngle(targetDirection, affectedByVelocity);
-        ModifyDirection(deltaAngle);
-    }
     #region Helper methods
     private float CalculateDeltaAngle(float rotation, bool affectedByVelocity)
     {

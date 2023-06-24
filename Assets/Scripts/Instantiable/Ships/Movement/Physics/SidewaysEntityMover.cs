@@ -174,5 +174,9 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
     {
         return myRigidbody2D.velocity - lastVelocity;
     }
+    public float GetMaxSpeed()
+    {
+        return maxSpeed;
+    }
     #endregion
 }
