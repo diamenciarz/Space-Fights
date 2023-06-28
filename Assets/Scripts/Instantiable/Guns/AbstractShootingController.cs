@@ -202,6 +202,7 @@ public abstract class AbstractShootingController : ActionController, IProgressio
     {
         //Debug.Log("Detached " + gameObject.name);
         isDetached = true;
+        shoot = false;
         ResetUIState();
     }
     #endregion
