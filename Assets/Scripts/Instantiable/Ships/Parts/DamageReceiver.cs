@@ -238,7 +238,7 @@ public class DamageReceiver : SpriteUpdater, IDamageable, IProgressionBarCompati
             healthManager = null;
         }
 
-        DisconnectJoints(); //Only disconnect joints not connected with the part's direct parent
+        //DisconnectJoints(); //Only disconnect joints not connected with the part's direct parent
         transform.SetParent(null);
         TurnOffGuns();
         CallOnDetachmentActions();

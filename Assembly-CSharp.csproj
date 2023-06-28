@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionCone.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\AbstractActionOnCollision.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticCameraController.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interfaces\INotifyOnDestroy.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\Abstract\ExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IModifiableStartingSpeed.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\TargetFollowerProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\AbstractActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\ParallaxScroller.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\DestroyOnParentDetachedProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\PushableProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticProgressionBarUpdater.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ClosestTargetFollower.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\IOnDamageDealt.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Guns\PushingController.cs" />
+    <Compile Include="Assets\Scripts\Passive\Interfaces\IActOnParentDetachment.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IParent.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\PiercingProjectileController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\DamagePopup.cs" />
@@ -143,9 +146,6 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\DestroyOnParentDetachedProperty.cs" />
-    <Compile Include="Assets\Scripts\Passive\Interfaces\IActOnParentDetachment.cs" />
-    <Compile Include="Assets\Scripts\Passive\Interfaces\INotifyOnDestroy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
