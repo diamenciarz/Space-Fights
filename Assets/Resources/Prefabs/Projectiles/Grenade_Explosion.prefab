@@ -157,10 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cb07557e6db494d841de05753676f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team:
-    teamInstance: 0
-  affectObjectOnce: 1
-  timeToExpire: 0.2
   maxPushingForce: 30
 --- !u!114 &4705688004795715904
 MonoBehaviour:
@@ -185,8 +181,8 @@ MonoBehaviour:
     damage: 4
   startingSpeed: 0
   addCreatorVelocity: 0
-  expandRate: 2
-  rotateDuringLifetime: 360
+  expandRate: 6
+  rotateDuringLifetime: 0
 --- !u!114 &6337006721521068565
 MonoBehaviour:
   m_ObjectHideFlags: 0

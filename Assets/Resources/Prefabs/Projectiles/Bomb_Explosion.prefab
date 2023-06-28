@@ -179,8 +179,8 @@ MonoBehaviour:
     damage: 10
   startingSpeed: 0
   addCreatorVelocity: 0
-  expandRate: 3
-  rotateDuringLifetime: 180
+  expandRate: 6
+  rotateDuringLifetime: 0
 --- !u!114 &6337006721521068565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,5 +194,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doDestroyActions: 1
-  expireAfterTime: 0.5
+  expireAfterTime: 0.1
   expirationDistance: -1
