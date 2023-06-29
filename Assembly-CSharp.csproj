@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionBar.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\MovementDataProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\SalvoScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\ShipController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\ProjectileController.cs" />
@@ -146,6 +145,7 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\InstantiateOnDeath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
