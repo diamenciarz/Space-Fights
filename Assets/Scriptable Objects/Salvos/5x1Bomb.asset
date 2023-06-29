@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: 5x1Bomb
   m_EditorClassIdentifier: 
   additionalReloadTime: 1
-  reloadAllAtOnce: 0
+  reloadAllAtOnce: 1
   shots:
   - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
     delayAfterShot: 0.3
-    reloadDelay: 0.3
+    reloadDelay: 0.2
   - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
     delayAfterShot: 0.3
-    reloadDelay: 0.3
+    reloadDelay: 0.2
   - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
     delayAfterShot: 0.3
-    reloadDelay: 0.3
+    reloadDelay: 0.2
   - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
     delayAfterShot: 0.3
-    reloadDelay: 0.3
+    reloadDelay: 0.2
   - shot: {fileID: 11400000, guid: 07ffe63e1c8cbe043a3cfe0b5cd7992e, type: 2}
     delayAfterShot: 0.3
-    reloadDelay: 0.3
+    reloadDelay: 0.2
