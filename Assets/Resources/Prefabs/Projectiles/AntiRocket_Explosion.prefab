@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7700761372939823440}
   - component: {fileID: 1594040755141738852}
   - component: {fileID: 6949998906670407419}
-  - component: {fileID: 8429027808116891036}
   - component: {fileID: 8477183892481090222}
   - component: {fileID: 6721332528289669469}
   - component: {fileID: 2794147677542743209}
@@ -151,39 +150,6 @@ MonoBehaviour:
   doDestroyActions: 0
   expireAfterTime: 0.1
   expirationDistance: -1
---- !u!60 &8429027808116891036
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700761372939823446}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.46}
-    newSize: {x: 0.48, y: 0.46}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.07042694, y: -0.06716347}
-      - {x: 0.24113846, y: -0.0030708313}
-      - {x: 0.07040787, y: 0.063770294}
-      - {x: 0.0020367429, y: 0.24029204}
-      - {x: -0.06467438, y: 0.066991806}
-      - {x: -0.24146867, y: 0.0044239014}
-      - {x: -0.065475464, y: -0.066532135}
-      - {x: -0.0014846772, y: -0.22999999}
 --- !u!114 &8477183892481090222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,4 +209,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.23
