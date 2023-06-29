@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static MovementScheme;
 using static StaticDataHolder;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
 {
-    [SerializeField][Tooltip("Will stop chasing its target above that distance")] float chaseRange;
-    [SerializeField][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange;
-    [SerializeField][Tooltip("Will not come closer to target than this distance")] float attackRange;
-    [SerializeField] bool isForceGlobal;
-    [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance;
-    [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance;
+    [SerializeField][Range(2, 30)][Tooltip("Will stop chasing its target above that distance")] float chaseRange = 15;
+    [SerializeField][Range(1, 15)][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange = 5;
+    [SerializeField][Range(1,15)][Tooltip("Will not come closer to target than this distance")] float attackRange = 3;
+    [SerializeField] bool isForceGlobal = false;
+    [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance = 0.5f;
+    [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance = 0.5f;
+    [SerializeField][Range(0.1f, 5)][Tooltip("How often the ship will change tactic from offensive to defensive")] float minMovementPeriod = 1;
+    [SerializeField][Range(1, 10)][Tooltip("How often the ship will change tactic from offensive to defensive")] float maxMovementPeriod = 3;
+    [SerializeField][Range(10, 180)][Tooltip("How often and how much the ship will turn, while randomly exploring the map")] float randomMovementAngle = 30;
     [SerializeField] float shipSize = 1;
-    [SerializeField] float movementMomentum = 0.5f;
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
@@ -25,7 +29,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     private bool orderSent = false;
 
     //Random movement
-    private float movementPeriod;
+    private Vector2 randomMovementVector;
 
     enum MovementMode
     {
@@ -44,7 +48,8 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     {
         base.Start();
         SetupStartingVariables();
-        //GenerateRandomMovementVariables();
+        GenerateRandomMovementVariables();
+        StartRandomMovementCoroutine();
         //SetNotMouseControlled();
     }
     private void SetupStartingVariables()
@@ -53,6 +58,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
         myVehicle = GetComponent<IEntityMover>();
         myParent = gameObject.GetComponentInParent<IParent>();
         CountGuns();
+        CheckForMeleeMode();
         fightTactics = new FightTactics();
     }
     private void CountGuns()
@@ -66,9 +72,8 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     }
     private void GenerateRandomMovementVariables()
     {
-        entityAvoidance = Random.Range(0, 1);
-        projectileAvoidance = Random.Range(0, 1);
-        movementPeriod = Random.Range(2, 8);
+        entityAvoidance = Random.Range(0, 1f);
+        projectileAvoidance = Random.Range(0, 1f);
     }
 
     #region Serialization
@@ -83,11 +88,11 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     }
     private void FixRange()
     {
-        if (chaseRange < avoidRange)
+        if (chaseRange < avoidRange - 1)
         {
             chaseRange = avoidRange + 1;
         }
-        if (chaseRange < attackRange)
+        if (chaseRange < attackRange - 1)
         {
             chaseRange = attackRange + 1;
         }
@@ -110,6 +115,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
         //Order important
         UpdateTactics();
         Vector2 movementVector = CalculateMovementVector();
+        movementVector = ApplyEdgeOfMapVector(movementVector);
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
 
@@ -146,22 +152,24 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
         Vector2 obstacleAvoidanceVector = CalculateObstacleAvoidanceVector();
         Vector2 projectileAvoidanceVector = CalculateProjectileAvoidanceVector();
 
-        Vector2 randomMovement = Vector2.zero;
-        //Vector2 randomMovement = CalculateRandomMovementVector();
+        //Vector2 randomMovement = Vector2.zero;
+        Vector2 randomMovement = randomMovementVector;
 
         float chaseLength = Mathf.Min(chaseVector.magnitude, 1);
         float obstacleAvoidanceLength = Mathf.Min(obstacleAvoidanceVector.magnitude, 1);
         float projectileAvoidanceLength = Mathf.Min(projectileAvoidanceVector.magnitude, 1);
 
-        Vector2 projectilePart = (1 - obstacleAvoidanceLength) * projectileAvoidance * projectileAvoidanceVector.normalized * projectileAvoidanceLength;
+        Vector2 projectilePart = (1 - obstacleAvoidanceLength) * projectileAvoidance * projectileAvoidanceLength * projectileAvoidanceVector.normalized;
         Vector2 obstaclePart = obstacleAvoidanceLength * obstacleAvoidanceVector.normalized;
         Vector2 avoidanceVector = obstaclePart + projectilePart;
 
         Vector2 movementVector = chaseVector;
-        
+
         if (chaseLength < 1)
         {
             movementVector += (1 - chaseLength) * randomMovement;
+            chaseLength = 1;
+            Debug.Log("Added random percentage: " + (1 - chaseLength) + " vector afterwards " + movementVector);
         }
         return chaseLength * movementVector.normalized + (1 + entityAvoidance - chaseLength) * avoidanceVector.normalized;
     }
@@ -213,14 +221,30 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     {
         if (fightTactics.battleMode == BattleMode.RANGED)
         {
-            if (isAboveRange)
+            if (fightTactics.movementMode == MovementMode.CHASING)
             {
-                return deltaPositionToItem.magnitude - attackRange;
+                if (isAboveRange)
+                {
+                    return deltaPositionToItem.magnitude - attackRange;
+                }
+                else
+                {
+                    return 1 / (attackRange - deltaPositionToItem.magnitude);
+                }
             }
             else
+            //if (fightTactics.movementMode == MovementMode.AVOIDING)
             {
-                return 1 / (attackRange - deltaPositionToItem.magnitude);
+                if (isAboveRange)
+                {
+                    return 1 / (deltaPositionToItem.magnitude - attackRange);
+                }
+                else
+                {
+                    return 1;
+                }
             }
+
         }
         else
         {
@@ -231,7 +255,14 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     {
         if (fightTactics.battleMode == BattleMode.RANGED)
         {
-            return deltaPositionToItem.magnitude > attackRange;
+            if (fightTactics.movementMode == MovementMode.CHASING)
+            {
+                return deltaPositionToItem.magnitude > attackRange;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -377,12 +408,31 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     #endregion
 
     #region Random movement
-    private Vector2 CalculateRandomMovementVector()
+    private void StartRandomMovementCoroutine()
     {
-        float period = (Time.time / movementPeriod) * 2 * Mathf.PI;
-        return transform.right * Mathf.Sin(period);
+        StartCoroutine(SetRandomMovementDirection());
+    }
+    private IEnumerator SetRandomMovementDirection()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minMovementPeriod, maxMovementPeriod));
+            float randomMovementRotation = transform.rotation.eulerAngles.z + Random.Range(-randomMovementAngle, randomMovementAngle);
+            randomMovementVector = HelperMethods.VectorUtils.RotateVector(Vector2.up, randomMovementRotation);
+            Debug.Log("new randomMovementVector: "+ randomMovementVector);
+        }
     }
     #endregion
+    #endregion
+
+    #region Edge of map
+    private Vector2 ApplyEdgeOfMapVector(Vector2 movementVector)
+    {
+        // If at the edge of map, the ship is forced to come back
+        Vector2 edgeOfMapVector = Vector2.zero;
+
+        return edgeOfMapVector + movementVector * (1 - edgeOfMapVector.magnitude);
+    }
     #endregion
 
     #region Update tactics
@@ -409,12 +459,40 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
             {
                 float distanceToTarget = HelperMethods.VectorUtils.Distance(gameObject, targetToChase);
                 // If the ship gets above this range to target, it will start attacking again, as it has enough distance to gain useful velocity
-                const float ATTACK_RANGE = 10;
+                float ATTACK_RANGE = chaseRange * 2 / 3;
                 if (distanceToTarget > ATTACK_RANGE)
                 {
                     StartChasing();
                 }
             }
+        }
+        if (fightTactics.battleMode != BattleMode.RANGED)
+        {
+            // How often the ship will change tactic from offensive to defensive
+            if (fightTactics.movementMode == MovementMode.AVOIDING)
+            {
+                StartShootingAfterDelay();
+            }
+            if (fightTactics.movementMode == MovementMode.CHASING)
+            {
+                StartFleeingAfterDelay();
+            }
+        }
+    }
+    private void StartShootingAfterDelay()
+    {
+        if (!orderSent)
+        {
+            orderSent = true;
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.CHASING, Random.Range(minMovementPeriod, maxMovementPeriod)));
+        }
+    }
+    private void StartFleeingAfterDelay()
+    {
+        if (!orderSent)
+        {
+            orderSent = true;
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING, Random.Range(minMovementPeriod, maxMovementPeriod)));
         }
     }
     private void StartAvoiding()
@@ -423,7 +501,6 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
         {
             orderSent = true;
             StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING));
-
         }
     }
     private void StartChasing()
@@ -450,6 +527,10 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     public void NofityOnDestroy(GameObject obj)
     {
         gunCount--;
+        CheckForMeleeMode();
+    }
+    private void CheckForMeleeMode()
+    {
         if (gunCount == 0)
         {
             fightTactics.battleMode = BattleMode.MELEE;
