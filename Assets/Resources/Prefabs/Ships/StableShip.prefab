@@ -382,13 +382,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: fa01c4b06d15a354b8b81df0b51b3edb, type: 2}
   shootingPoint: {fileID: 445601161007613364}
-  forwardGunRotation: 0
-  shootingMode: 0
-  targetTypes: 
   reloadingBarAlwaysOn: 1
+  salvo: {fileID: 11400000, guid: fa01c4b06d15a354b8b81df0b51b3edb, type: 2}
+  shootingDirection: 0
+  targetMode: 0
+  targetTypes: 
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &4803716611508904443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,10 +542,10 @@ MonoBehaviour:
   hasRotationLimits: 1
   leftMaxRotationLimit: 60
   rightMaxRotationLimit: 60
+  predictTargetVelocity: 1
   visualDetectors:
   - {fileID: 8448464666150114285}
   debugZoneOn: 1
-  debugZonePrefab: {fileID: 8395912166832606940, guid: 2dd6f5c4ba49c6142bff8e221e533c74, type: 3}
   DebugZoneTransform: {fileID: 2394063691835432234}
 --- !u!1 &2550649395205867984
 GameObject:
@@ -595,13 +596,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 392aae05b246dd44ea3905a19038726b, type: 2}
   shootingPoint: {fileID: 3503175393803492294}
-  forwardGunRotation: 0
-  shootingMode: 0
-  targetTypes: 010000000200000003000000
   reloadingBarAlwaysOn: 1
+  salvo: {fileID: 11400000, guid: 392aae05b246dd44ea3905a19038726b, type: 2}
+  shootingDirection: 0
+  targetMode: 0
+  targetTypes: 010000000200000003000000
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &7398243765704990038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,12 +758,13 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
-  isControlledByMouse: 0
   isShootingZoneOn: 1
   ignoreMouseCollisions: 0
+  ignoreSameTeamCollisions: 0
   targetTypes: 010000000200000003000000
   actionControllers:
   - {fileID: 863468948743332297}
+  currentTarget: {fileID: 0}
 --- !u!1 &4306293360209334544
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,12 +819,13 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 2367281388257510846}
-  isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
+  ignoreSameTeamCollisions: 0
   targetTypes: 
   actionControllers:
   - {fileID: 6441913592834814980}
+  currentTarget: {fileID: 0}
 --- !u!1 &5004513072726312593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b48e49aca473fc438249ff7efc52aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledByPlayer: 1
+  isControlledByPlayer: 1
   controls: 0
 --- !u!114 &2488323260018361336
 MonoBehaviour:
@@ -2509,7 +2513,15 @@ MonoBehaviour:
     teamInstance: 0
   chaseRange: 10
   avoidRange: 5
+  attackRange: 3
   isForceGlobal: 0
+  entityAvoidance: 0.5
+  projectileAvoidance: 0.5
+  minMovementPeriod: 1
+  maxMovementPeriod: 3
+  randomMovementAngle: 30
+  shipSize: 1
+  targetToChase: {fileID: 0}
 --- !u!114 &-1594027281432790397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,13 +2714,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
   shootingPoint: {fileID: 6441913593890035338}
-  forwardGunRotation: 180
-  shootingMode: 0
-  targetTypes: 
   reloadingBarAlwaysOn: 1
+  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
+  shootingDirection: 0
+  targetMode: 0
+  targetTypes: 
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &5535518891970203682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3891,13 +3904,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
   shootingPoint: {fileID: 6441913594105931014}
-  forwardGunRotation: 180
-  shootingMode: 0
-  targetTypes: 
   reloadingBarAlwaysOn: 1
+  salvo: {fileID: 11400000, guid: 4e91cc379c71f8a4590d025ef1e27046, type: 2}
+  shootingDirection: 0
+  targetMode: 0
+  targetTypes: 
   dontUseProgressionBar: 0
+  shotIndex: 0
 --- !u!114 &5812251090777440677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4361,12 +4375,13 @@ MonoBehaviour:
   mouseRange: 10
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 846410328908534516}
-  isControlledByMouse: 0
   isShootingZoneOn: 0
   ignoreMouseCollisions: 0
+  ignoreSameTeamCollisions: 0
   targetTypes: 
   actionControllers:
   - {fileID: 494917494657619772}
+  currentTarget: {fileID: 0}
 --- !u!1 &6971968425779371095
 GameObject:
   m_ObjectHideFlags: 0

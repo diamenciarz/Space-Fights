@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460665071341731525}
   m_LocalRotation: {x: -0, y: -0, z: -0.08715588, w: 0.9961947}
-  m_LocalPosition: {x: -0.4, y: -0.514, z: -2}
+  m_LocalPosition: {x: -0.4, y: -0.514, z: 0}
   m_LocalScale: {x: 0.7999999, y: 0.7999999, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 1041874885758407220}
   - component: {fileID: 3584015117729830725}
   - component: {fileID: 7148820827750459461}
+  - component: {fileID: 102736346775735439}
   m_Layer: 0
   m_Name: RightWing
   m_TagString: Untagged
@@ -468,6 +469,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 01000000
+--- !u!254 &102736346775735439
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059472270907488857}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5276175891070777197}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 10000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.47766006, y: -0.12901512}
+  m_AngularOffset: 2.9670596
 --- !u!1 &3135078944746659301
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +585,7 @@ GameObject:
   - component: {fileID: 2401057367138457944}
   - component: {fileID: 3214566659546888838}
   - component: {fileID: 6153277888522351955}
+  - component: {fileID: 7264497009302698655}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Untagged
@@ -808,6 +829,25 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0.4952649, y: -0.37570593}
   m_AngularOffset: 1.5707963
+--- !u!254 &7264497009302698655
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893485932021151008}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5276175891070777197}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 10000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.62674326, y: 0.111019544}
+  m_AngularOffset: 4.886922
 --- !u!1 &3999163643028036089
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +981,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5555816698910325487}
+  - {fileID: 8779251895982199213}
   m_Father: {fileID: 6441913594026728078}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1108,6 +1149,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 03000000
+--- !u!1 &5735648931858174781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8779251895982199213}
+  - component: {fileID: 5276175891070777197}
+  - component: {fileID: 6004131471670400533}
+  m_Layer: 7
+  m_Name: AttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8779251895982199213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735648931858174781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2522728260603260505}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &5276175891070777197
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735648931858174781}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!254 &6004131471670400533
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735648931858174781}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 7264960904025806074}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 10000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.000000019670125, y: -0.225}
+  m_AngularOffset: 0
 --- !u!1 &6394176111292057907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6394176111292057907}
   m_LocalRotation: {x: -0, y: -0, z: -0.08715588, w: -0.9961947}
-  m_LocalPosition: {x: 0.40861362, y: -0.51486695, z: -2}
+  m_LocalPosition: {x: 0.40861362, y: -0.51486695, z: 0}
   m_LocalScale: {x: 0.7999999, y: 0.7999999, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1222,6 +1336,7 @@ GameObject:
   - component: {fileID: 1043526973371437154}
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 8938107796251630952}
+  - component: {fileID: 2724801538902861551}
   m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
@@ -1363,8 +1478,8 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592538751967}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 20000
-  m_MaxTorque: 1000
+  m_MaxForce: 10000
+  m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.0000000418318, y: -0.4785}
@@ -1423,6 +1538,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 03000000
+--- !u!254 &2724801538902861551
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5276175891070777197}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 10000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: -0.000000022161675, y: -0.2535}
+  m_AngularOffset: 0
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6441913592538751965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1545,8 +1679,10 @@ MonoBehaviour:
   isForceGlobal: 1
   entityAvoidance: 0
   projectileAvoidance: 0
+  minMovementPeriod: 1
+  maxMovementPeriod: 3
+  randomMovementAngle: 30
   shipSize: 1
-  movementMomentum: 0.5
   targetToChase: {fileID: 0}
 --- !u!114 &1630741118
 MonoBehaviour:
@@ -2019,6 +2155,7 @@ GameObject:
   - component: {fileID: 5803864322049263194}
   - component: {fileID: 7662163393235251778}
   - component: {fileID: 1609254296342363878}
+  - component: {fileID: 8148849362341641058}
   m_Layer: 0
   m_Name: LeftWing
   m_TagString: Untagged
@@ -2242,3 +2379,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 01000000
+--- !u!254 &8148849362341641058
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341605518784828374}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 5276175891070777197}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 10000
+  m_MaxTorque: 500
+  m_CorrectionScale: 0.1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.48672548, y: -0.13147834}
+  m_AngularOffset: 3.3161259
