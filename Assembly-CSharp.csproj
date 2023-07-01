@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\AbstractActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\ParallaxScroller.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\DestroyOnParentDetachedProperty.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\InstantiateOnDeath.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\PushableProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticProgressionBarUpdater.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ClosestTargetFollower.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\InstantiateOnDeath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

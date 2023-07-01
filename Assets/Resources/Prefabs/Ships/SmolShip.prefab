@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 79012b86d43151942845f09e2a3d1bd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,7 +209,7 @@ MonoBehaviour:
   salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
   shootingDirection: 0
   targetMode: 2
-  targetTypes: 010000000200000003000000
+  targetTypes: 010000000500000003000000
   dontUseProgressionBar: 0
   shotIndex: 0
 --- !u!114 &7398243765704990038
@@ -307,8 +307,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -333,7 +333,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 15
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -390,7 +390,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.43858916, y: 0.09256662}
+  m_LinearOffset: {x: -1.3157675, y: 0.27769986}
   m_AngularOffset: -0.17453319
 --- !u!60 &1071542429760869110
 PolygonCollider2D:
@@ -454,7 +454,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.52167994, y: -0.37866393}
+  m_LinearOffset: {x: -1.5650399, y: -1.1359917}
   m_AngularOffset: 2.9670596
 --- !u!114 &7148820827750459461
 MonoBehaviour:
@@ -486,7 +486,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.47766006, y: -0.12901512}
+  m_LinearOffset: {x: -1.4329802, y: -0.3870453}
   m_AngularOffset: 2.9670596
 --- !u!1 &3135078944746659301
 GameObject:
@@ -539,14 +539,14 @@ MonoBehaviour:
   hasRotationLimits: 1
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
-  range: 10
+  range: 20
   mouseRange: 0
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
   isShootingZoneOn: 0
   ignoreMouseCollisions: 1
   ignoreSameTeamCollisions: 1
-  targetTypes: 0100000003000000
+  targetTypes: 010000000300000005000000
   actionControllers:
   - {fileID: 863468948743332297}
   currentTarget: {fileID: 0}
@@ -648,8 +648,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -674,7 +674,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 15
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -731,7 +731,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.40516156, y: 0.07194868}
+  m_LinearOffset: {x: 1.2154847, y: 0.21584605}
   m_AngularOffset: 1.7453294
 --- !u!60 &1773260785822705886
 PolygonCollider2D:
@@ -795,7 +795,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.34213924, y: 0.51574725}
+  m_LinearOffset: {x: 1.0264177, y: 1.5472419}
   m_AngularOffset: 1.9198625
 --- !u!114 &3214566659546888838
 MonoBehaviour:
@@ -827,7 +827,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.4952649, y: -0.37570593}
+  m_LinearOffset: {x: 1.4857947, y: -1.1271176}
   m_AngularOffset: 1.5707963
 --- !u!254 &7264497009302698655
 RelativeJoint2D:
@@ -846,7 +846,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.62674326, y: 0.111019544}
+  m_LinearOffset: {x: 1.88023, y: 0.33305863}
   m_AngularOffset: 4.886922
 --- !u!1 &3999163643028036089
 GameObject:
@@ -919,8 +919,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6cea174836998a549aa57576e1d009a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1023,8 +1023,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 4c0b82a022efe7a43a5aaa97392a933a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1049,7 +1049,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 30
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1220,7 +1220,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.000000019670125, y: -0.225}
+  m_LinearOffset: {x: -0.00000005901037, y: -0.67499995}
   m_AngularOffset: 0
 --- !u!1 &6394176111292057907
 GameObject:
@@ -1293,8 +1293,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 79012b86d43151942845f09e2a3d1bd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1400,8 +1400,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 2b18bad44d40c7f4e9fa485e9836f6a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1456,7 +1456,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 15
   m_LinearDrag: 0.5
   m_AngularDrag: 0.5
   m_GravityScale: 0
@@ -1482,7 +1482,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.0000000418318, y: -0.4785}
+  m_LinearOffset: {x: -0.0000001254954, y: -1.4355}
   m_AngularOffset: -3.1415927
 --- !u!114 &1043526973371437154
 MonoBehaviour:
@@ -1555,7 +1555,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.000000022161675, y: -0.2535}
+  m_LinearOffset: {x: -0.00000006648503, y: -0.7605001}
   m_AngularOffset: 0
 --- !u!1 &6441913592538751965
 GameObject:
@@ -1592,8 +1592,8 @@ Transform:
   m_GameObject: {fileID: 6441913592538751965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6441913594026728078}
   m_Father: {fileID: 0}
@@ -1630,7 +1630,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.1
   m_GravityScale: 0
@@ -1652,13 +1652,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  M1: 20000
-  M2: 1000
-  M3: 5000
+  M1: 60000
+  M2: 3000
+  M3: 15000
   rotationMode: 0
-  T1: 12000
-  T2: 20
-  T3: 80
+  T1: 36000
+  T2: 180
+  T3: 240
 --- !u!114 &3129043820781705072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,16 +1673,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  chaseRange: 10
-  avoidRange: 5
-  attackRange: 0
+  chaseRange: 45
+  avoidRange: 8
+  attackRange: 6
   isForceGlobal: 1
   entityAvoidance: 0
   projectileAvoidance: 0
   minMovementPeriod: 1
   maxMovementPeriod: 3
-  randomMovementAngle: 30
-  shipSize: 1
+  randomMovementAngle: 150
+  shipSize: 1.5
   targetToChase: {fileID: 0}
 --- !u!114 &1630741118
 MonoBehaviour:
@@ -1880,8 +1880,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: dd7e4daef684d0e49aafdbbbdb1a50c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2026,8 +2026,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 110
   m_Sprite: {fileID: 21300000, guid: 8a63fdccddc18c544b5e8d5272bc4416, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2111,8 +2111,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6cea174836998a549aa57576e1d009a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2217,8 +2217,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: b888612a5e219fc4088f0fd3779e8be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2243,7 +2243,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 15
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -2300,7 +2300,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.4476546, y: 0.09010339}
+  m_LinearOffset: {x: 1.3429637, y: 0.27031016}
   m_AngularOffset: 0.17453319
 --- !u!60 &3346224111281637435
 PolygonCollider2D:
@@ -2364,7 +2364,7 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.5307454, y: -0.3811271}
+  m_LinearOffset: {x: 1.592236, y: -1.1433814}
   m_AngularOffset: 3.3161259
 --- !u!114 &1609254296342363878
 MonoBehaviour:
@@ -2396,5 +2396,5 @@ RelativeJoint2D:
   m_MaxTorque: 500
   m_CorrectionScale: 0.1
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.48672548, y: -0.13147834}
+  m_LinearOffset: {x: 1.4601763, y: -0.394435}
   m_AngularOffset: 3.3161259

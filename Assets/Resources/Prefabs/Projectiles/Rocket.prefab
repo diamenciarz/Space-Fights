@@ -389,13 +389,13 @@ MonoBehaviour:
   affectObjectOnce: 1
   hurtsAllies: 1
   damageCategories:
-  - damageType: 1
-    damage: 4
-  startingSpeed: 2
+  - damageType: 2
+    damage: 20
+  startingSpeed: 4
   addCreatorVelocity: 1
-  maxRocketSpeed: 8
+  maxRocketSpeed: 16
   speedChangeRatePerSecond: 3
-  rocketRotationSpeed: 120
+  rocketRotationSpeed: 30
   targetTypes: 0300000001000000
   rocketEyeTransform: {fileID: 1070908890487506755}
   target: {fileID: 0}
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     teamInstance: 0
-  breakEnum: 0100000003000000060000000500000000000000
+  breakEnum: 010000000300000006000000050000000200000000000000
   breakingSounds: []
   breakingSoundVolume: 1
 --- !u!114 &4918023251875234943

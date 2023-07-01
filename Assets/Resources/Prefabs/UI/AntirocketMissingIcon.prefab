@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumSpriteSize: 0.4
-  hideDistance: 12
+  hideDistance: 40
   spriteScale: 4
   screenEdgeOffset: 0.5
   allyColor: {r: 0.46560726, g: 1, b: 0.058823526, a: 1}

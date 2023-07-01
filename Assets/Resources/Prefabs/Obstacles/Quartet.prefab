@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6127911626155478389}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -7.02, y: -7.59, z: 0}
+  m_LocalPosition: {x: -4.69, y: -5.14, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51,20 +51,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.994
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.841
+      value: 3.91
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -122,11 +114,16 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 2.1400003, y: -1.1280004}
+  m_LinearOffset: {x: 3.5400019, y: -10.060001}
   m_AngularOffset: 0
 --- !u!4 &7277372598343545514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
+  m_PrefabInstance: {fileID: 4823980147011454297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &7277372598343545516 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2741658291565901813, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
   m_PrefabInstance: {fileID: 4823980147011454297}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7183275208867744334
@@ -145,20 +142,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.024
+      value: -2.04
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -219,14 +208,14 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6885281441814397756}
+  m_ConnectedRigidBody: {fileID: 7277372598343545516}
   m_BreakForce: 5000
   m_BreakTorque: 5000
   m_MaxForce: 10000
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 2.1940007, y: -1.6540004}
+  m_LinearOffset: {x: 7.4, y: 5.900002}
   m_AngularOffset: 0
 --- !u!1001 &8132175889264473112
 PrefabInstance:
@@ -244,20 +233,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.064
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.277
+      value: -1.12
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -315,7 +296,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -1.8859998, y: -2.2280006}
+  m_LinearOffset: {x: -7.860002, y: -2.320001}
   m_AngularOffset: 0
 --- !u!4 &6257498048018039787 stripped
 Transform:
@@ -343,20 +324,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.121
+      value: -0.84
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.837
+      value: -3.84
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901811, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -414,7 +387,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -2.1940007, y: 1.6540004}
+  m_LinearOffset: {x: -2.400001, y: 9.6}
   m_AngularOffset: 0
 --- !u!4 &6885281441814397754 stripped
 Transform:

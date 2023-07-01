@@ -172,10 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d959443547ebbd4b9e72ea3ee42d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 124
-  maxDistance: 322
-  recalculateOffScreen: 0
+  minDistance: 300
+  maxDistance: 950
+  recalculateOffScreen: 1
   changeSpriteOnRecalculation: 0
+  setRandomRotation: 1
   useCustomPosition: 0
   customPosition: {x: 0, y: 0}
 --- !u!114 &3244885849608403393

@@ -101,5 +101,6 @@ MonoBehaviour:
   maxDistance: 1000
   recalculateOffScreen: 0
   changeSpriteOnRecalculation: 0
+  setRandomRotation: 0
   useCustomPosition: 1
   customPosition: {x: 0, y: 0}

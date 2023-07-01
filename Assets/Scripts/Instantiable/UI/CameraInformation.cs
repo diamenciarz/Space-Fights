@@ -16,13 +16,21 @@ public class CameraInformation : MonoBehaviour
 
     static Camera mainCamera;
     private static bool hasCalculatedCameraSize = false;
+    private static bool hasCalculatedScreenEdges = false;
     private static Vector2 cameraSize;
+
+    private void Awake()
+    {
+        CalculateCameraSize();
+        RecountScreenEdges();
+    }
 
     private static void CalculateCameraSize()
     {
         SetMainCamera(Camera.main);
         cameraSize.y = 2f * mainCamera.orthographicSize;
         cameraSize.x = cameraSize.y * mainCamera.aspect;
+        hasCalculatedCameraSize = true;
     }
 
     void Update()
@@ -31,6 +39,11 @@ public class CameraInformation : MonoBehaviour
     }
     private void RecountScreenEdges()
     {
+        if (!hasCalculatedCameraSize)
+        {
+            CalculateCameraSize();
+        }
+        hasCalculatedScreenEdges = true;
         xMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         xMax = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
         yMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
@@ -86,6 +99,17 @@ public class CameraInformation : MonoBehaviour
         float newXPosition = Mathf.Clamp(position.x, xMin + leftOffset, xMax - rightOffset);
         float newYPosition = Mathf.Clamp(position.y, yMin + bottomOffset, yMax - topOffset);
         return new Vector2(newXPosition, newYPosition);
+    }
+    /// <returns>
+    /// An array with the bottomLeft corner of the camera at index 0 and topRight corner at index 1 given in world units.
+    /// </returns>
+    public static Vector2[] GetDiagonalCameraPoints()
+    {
+        return new Vector2[]
+        {
+            new Vector2(xMin, yMin),
+            new Vector2(xMax, yMax)
+        };
     }
     #endregion
 

@@ -197,7 +197,7 @@ MonoBehaviour:
   hurtsAllies: 0
   damageCategories:
   - damageType: 2
-    damage: 4
+    damage: 12
   startingSpeed: 6
   addCreatorVelocity: 1
 --- !u!114 &4903896277074397251

@@ -102,6 +102,9 @@ MonoBehaviour:
   maxDistance: 850
   recalculateOffScreen: 0
   changeSpriteOnRecalculation: 0
+  setRandomRotation: 0
+  useCustomPosition: 0
+  customPosition: {x: 0, y: 0}
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0

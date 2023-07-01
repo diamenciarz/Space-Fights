@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class ParallaxScroller : MonoBehaviour
 {
     [SerializeField] [Range(0, MAX_DISTANCE)] float minDistance;
@@ -10,6 +11,11 @@ public class ParallaxScroller : MonoBehaviour
     [Tooltip("If on, the position of this doodad will be recalculated after the camera moves too far from it. Set to off if this is an important landmark")]
     [SerializeField] bool recalculateOffScreen = true;
     [SerializeField] bool changeSpriteOnRecalculation = true;
+    [SerializeField] bool setRandomRotation = true;
+
+    [Header("Custom Position")]
+    [SerializeField] bool useCustomPosition = false;
+    [SerializeField] Vector2 customPosition;
 
     private float distanceFromCamera;
     const float MAX_DISTANCE = 1000;
@@ -18,11 +24,13 @@ public class ParallaxScroller : MonoBehaviour
     /// the position of this doodad will be recalculated.
     /// If the camera had 10 units of length, a value of 2 would mean that the position will be recalculated after moving away for a distance of 2 * 10 from the middle of the camera.
     /// </summary>
-    const float CAMERA_DISTANCE_FACTOR = 1;
+    [HideInInspector]
+    public static float CAMERA_DISTANCE_FACTOR = 2;
 
     private Camera mainCamera;
     private Vector2 startingPosition;
     private SetRandomTexture textureUpdater;
+    private SpriteRenderer spriteRenderer;
 
     /// <summary>
     /// If the doodad is further from the middle of the screen than that distance, then it will be put at a random position with a flipped coordinate
@@ -36,11 +44,12 @@ public class ParallaxScroller : MonoBehaviour
     {
         mainCamera = Camera.main;
         textureUpdater = GetComponent<SetRandomTexture>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         SetRandomDistance();
         SetupPositionBoundaries();
-        GoToRandomPosition();
+        SetStartingPosition();
+        SetRandomRotation();
     }
-
     private void SetupPositionBoundaries()
     {
         horizontalBoundary = CameraInformation.GetCameraSize().x * CAMERA_DISTANCE_FACTOR;
@@ -76,9 +85,11 @@ public class ParallaxScroller : MonoBehaviour
         {
             return;
         }
-        if (boundaryDeltaPosition != Vector2.zero)
+        bool positionOutOfBounds = boundaryDeltaPosition != Vector2.zero;
+        if (positionOutOfBounds)
         {
             SetRandomSprite();
+            SetRandomRotation();
         }
     }
     /// <summary>
@@ -109,11 +120,11 @@ public class ParallaxScroller : MonoBehaviour
     private void CounteractCameraMovement()
     {
         Vector2 cameraPosition = mainCamera.transform.position;
-        Vector2 offset = countParallaxOffset(cameraPosition);
+        Vector2 offset = CountParallaxOffset(cameraPosition);
 
         transform.position = new Vector3(startingPosition.x + offset.x, startingPosition.y + offset.y, 1);
     }
-    private Vector2 countParallaxOffset(Vector2 cameraPosition)
+    private Vector2 CountParallaxOffset(Vector2 cameraPosition)
     {
         float parallaxFactor = (distanceFromCamera) / MAX_DISTANCE;
 
@@ -126,17 +137,40 @@ public class ParallaxScroller : MonoBehaviour
             textureUpdater.SetRandomSprite();
         }
     }
+    private void SetRandomRotation()
+    {
+        if (setRandomRotation)
+        {
+            transform.rotation = Quaternion.Euler(0,0,Random.Range(0,360));
+        }
+    }
+    #endregion
+
+    #region Movement
+    private void SetStartingPosition()
+    {
+        if (useCustomPosition)
+        {
+            GoToPosition(customPosition);
+        }
+        else
+        {
+            GoToRandomPosition();
+        }
+    }
     #endregion
 
     #region Mutator methods
-
     public void GoToRandomPosition()
     {
         startingPosition = new Vector2(getRandomWidth(), getRandomHeight());
+        useCustomPosition = false;
     }
     public void GoToPosition(Vector2 position)
     {
+        customPosition = position;
         startingPosition = position;
+        useCustomPosition = true;
     }
     public void SetRandomDistance()
     {
@@ -145,6 +179,7 @@ public class ParallaxScroller : MonoBehaviour
     public void SetDistance(float distance)
     {
         distanceFromCamera = distance;
+        spriteRenderer.sortingOrder = (int)(-10 - distance);
     }
     #endregion
 

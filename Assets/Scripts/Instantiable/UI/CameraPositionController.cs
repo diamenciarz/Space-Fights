@@ -63,7 +63,9 @@ public class CameraPositionController : MonoBehaviour
     #region Movement
     private void Move()
     {
-        transform.position = CountPos();
+        Vector3 newPosition = CountPos();
+        newPosition.z = -10;
+        transform.position = newPosition;
     }
     private Vector2 CountPos()
     {

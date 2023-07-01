@@ -102,6 +102,9 @@ MonoBehaviour:
   maxDistance: 100
   recalculateOffScreen: 0
   changeSpriteOnRecalculation: 0
+  setRandomRotation: 0
+  useCustomPosition: 0
+  customPosition: {x: 0, y: 0}
 --- !u!114 &-5130600736205839532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,4 +122,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f45b791edebb87d4798e1c25019446c1, type: 3}
   - {fileID: 21300000, guid: 80662f0b2396c4141b15cfc5b982e2c6, type: 3}
   spriteProbabilities: 000000000000000000000000
-  spriteRenderer: {fileID: 6676668502653053865}

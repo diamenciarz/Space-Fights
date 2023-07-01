@@ -9,16 +9,16 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
 {
-    [SerializeField][Range(2, 30)][Tooltip("Will stop chasing its target above that distance")] float chaseRange = 15;
-    [SerializeField][Range(1, 15)][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange = 5;
-    [SerializeField][Range(1,15)][Tooltip("Will not come closer to target than this distance")] float attackRange = 3;
+    [SerializeField][Range(2, 200)][Tooltip("Will stop chasing its target above that distance")] float chaseRange = 45;
+    [SerializeField][Range(1, 60)][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange = 8;
+    [SerializeField][Range(1, 60)][Tooltip("Will not come closer to target than this distance")] float attackRange = 6;
     [SerializeField] bool isForceGlobal = false;
     [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance = 0.5f;
     [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance = 0.5f;
     [SerializeField][Range(0.1f, 5)][Tooltip("How often the ship will change tactic from offensive to defensive")] float minMovementPeriod = 1;
     [SerializeField][Range(1, 10)][Tooltip("How often the ship will change tactic from offensive to defensive")] float maxMovementPeriod = 3;
     [SerializeField][Range(10, 180)][Tooltip("How often and how much the ship will turn, while randomly exploring the map")] float randomMovementAngle = 30;
-    [SerializeField] float shipSize = 1;
+    [SerializeField] float shipSize = 1.5f;
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
@@ -27,6 +27,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     private IParent myParent;
     private int gunCount;
     private bool orderSent = false;
+    private float timeSinceStartedRunningAway;
 
     //Random movement
     private Vector2 randomMovementVector;
@@ -169,7 +170,6 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
         {
             movementVector += (1 - chaseLength) * randomMovement;
             chaseLength = 1;
-            Debug.Log("Added random percentage: " + (1 - chaseLength) + " vector afterwards " + movementVector);
         }
         return chaseLength * movementVector.normalized + (1 + entityAvoidance - chaseLength) * avoidanceVector.normalized;
     }
@@ -419,7 +419,6 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
             yield return new WaitForSeconds(Random.Range(minMovementPeriod, maxMovementPeriod));
             float randomMovementRotation = transform.rotation.eulerAngles.z + Random.Range(-randomMovementAngle, randomMovementAngle);
             randomMovementVector = HelperMethods.VectorUtils.RotateVector(Vector2.up, randomMovementRotation);
-            Debug.Log("new randomMovementVector: "+ randomMovementVector);
         }
     }
     #endregion
@@ -449,8 +448,8 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
             {
                 float distanceToTarget = HelperMethods.VectorUtils.Distance(gameObject, targetToChase);
                 // If the ship gets below this distance to a target, then it either has hit it already, or missed and has no velocity left anymore
-                const float MISS_RANGE = 2;
-                if (distanceToTarget < MISS_RANGE)
+
+                if (distanceToTarget < GetMissRange(targetToChase))
                 {
                     StartAvoiding();
                 }
@@ -458,15 +457,18 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
             if (fightTactics.movementMode == MovementMode.AVOIDING)
             {
                 float distanceToTarget = HelperMethods.VectorUtils.Distance(gameObject, targetToChase);
-                // If the ship gets above this range to target, it will start attacking again, as it has enough distance to gain useful velocity
+                // If the ship gets above this range to target, it will start attacking again, as it has enough distance to gain useful velocity.
                 float ATTACK_RANGE = chaseRange * 2 / 3;
-                if (distanceToTarget > ATTACK_RANGE)
+                // In case that the ship would get stuck at a wall, a delay of two seconds is enough for the ship to return
+                float runawayDuration = Time.time - timeSinceStartedRunningAway;
+                bool shouldStartChasing = runawayDuration > 4 || distanceToTarget > ATTACK_RANGE;
+                if (shouldStartChasing)
                 {
                     StartChasing();
                 }
             }
         }
-        if (fightTactics.battleMode != BattleMode.RANGED)
+        if (fightTactics.battleMode == BattleMode.RANGED)
         {
             // How often the ship will change tactic from offensive to defensive
             if (fightTactics.movementMode == MovementMode.AVOIDING)
@@ -479,6 +481,19 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
             }
         }
     }
+    private float GetMissRange(GameObject target)
+    {
+        ShipController otherShipController = target.GetComponentInParent<ShipController>();
+        if (otherShipController)
+        {
+            return otherShipController.shipSize + shipSize;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    
     private void StartShootingAfterDelay()
     {
         if (!orderSent)
@@ -499,6 +514,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     {
         if (!orderSent)
         {
+            timeSinceStartedRunningAway = Time.time;
             orderSent = true;
             StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING));
         }
@@ -517,6 +533,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     private IEnumerator SetMovementModeAfterDelay(MovementMode newMode, float delay = 0.3f)
     {
         yield return new WaitForSeconds(delay);
+        Debug.Log("Started " + newMode.ToString());
         fightTactics.movementMode = newMode;
         orderSent = false;
     }
