@@ -8,6 +8,6 @@ public class InstantiateOnDeath : TriggerOnDeath
 
     protected override void DoDestroyAction()
     {
-        Instantiate(objToInstantiate, transform.position, transform.rotation);
+        Instantiate(objToInstantiate, (Vector2)transform.position, transform.rotation);
     }
 }
