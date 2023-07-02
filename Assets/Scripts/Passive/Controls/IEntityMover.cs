@@ -5,5 +5,4 @@ using UnityEngine;
 public interface IEntityMover
 {
     public abstract void SetInputVector(Vector2 inputVector);
-    public abstract float GetMaxSpeed();
 }

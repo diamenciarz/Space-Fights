@@ -204,7 +204,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         {
             // Prioritize chasing more, if farther away from the target!
             float multiplier = CalculateMultiplier(isAboveRange, deltaPositionToItem);
-            Vector2 predictedTargetPosition = HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, targetToChase, myVehicle.GetMaxSpeed());
+            Vector2 predictedTargetPosition = HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, targetToChase, rb2D.velocity.magnitude);
             Vector2 predictedDeltaPosition = predictedTargetPosition - (Vector2)targetToChase.transform.position;
             Debug.DrawRay(transform.position, (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
             return (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier;

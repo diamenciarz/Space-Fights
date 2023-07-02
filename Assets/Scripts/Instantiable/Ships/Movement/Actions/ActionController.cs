@@ -31,6 +31,11 @@ public abstract class ActionController : TeamUpdater
     }
     protected ActionControllerData GetActionControllerData()
     {
+        if (firstActiveCaller == null)
+        {
+            Debug.LogError("Action controller named " + gameObject.name + " does not have an action caller! Assign some action caller!");
+            return null;
+        }
         return firstActiveCaller.GetData();
     }
     public class ActionControllerData
