@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static MovementScheme;
 using static StaticDataHolder;
-using static UnityEditor.Progress;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
 {
@@ -75,6 +72,9 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     {
         entityAvoidance = Random.Range(0, 1f);
         projectileAvoidance = Random.Range(0, 1f);
+        chaseRange = Random.Range(30, 75);
+        avoidRange = Random.Range(4, 8);
+        attackRange = Random.Range(2, 10);
     }
 
     #region Serialization
