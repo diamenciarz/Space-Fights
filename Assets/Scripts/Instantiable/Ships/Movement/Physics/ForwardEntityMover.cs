@@ -54,8 +54,16 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         //Movement
         UpdateVelocity();
         KillSidewayVelocity();
+        //TODO: Unsolved
+        FixAngularVelocityBug();
     }
-
+    private void FixAngularVelocityBug()
+    {
+        if (Mathf.Abs(myRigidbody2D.angularVelocity) > 1000)
+        {
+            myRigidbody2D.angularVelocity = 0;
+        }
+    }
     #region Input translation
     private void TranslateInputVector()
     {
@@ -104,9 +112,13 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     {
         if (translatedInputVector.x != 0)
         {
-            //float deltaAngle = GetDeltaAngle();
+            float inputVectorDirection = HelperMethods.VectorUtils.VectorDirection(inputVector);
+            float deltaAngle = -Mathf.Sign(translatedInputVector.x);
 
-            float deltaAngle = 5 * -Mathf.Sign(translatedInputVector.x);
+            if (Mathf.Abs(targetAngle + deltaAngle) > inputVectorDirection)
+            {
+                deltaAngle = inputVectorDirection - targetAngle;
+            }
             ModifyDirection(deltaAngle);
         }
         Vector2 angleVector = HelperMethods.VectorUtils.DirectionVector(3, targetAngle);
@@ -123,7 +135,7 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         }
         else
         {
-            moveFactor = 1 + Mathf.Abs(angleFromShipToTargetDirection / 45);
+            moveFactor = 1 - Mathf.Abs(angleFromShipToTargetDirection / 45);
         }
 
         previousRotationAngle = targetAngle;
@@ -138,8 +150,9 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         float t2 = T2 * -myRigidbody2D.angularVelocity;
         float t3 = T3 * -GetAngularAcceleration();
 
+        previousAngularVelocity = myRigidbody2D.angularVelocity;
         float torque = t1 + t2 + t3;
-        Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3 + " angVelocity: " + myRigidbody2D.angularVelocity);
+        //Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3 + " angVelocity: " + myRigidbody2D.angularVelocity);
         myRigidbody2D.AddTorque(torque);
     }
     #endregion

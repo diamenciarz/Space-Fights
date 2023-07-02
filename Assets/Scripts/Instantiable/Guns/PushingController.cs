@@ -21,6 +21,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     [SerializeField] StaticDataHolder.ObjectTypes[] targetTypes;
     [Header("Mouse Steering")]
     [SerializeField] ObjectFollowers targetIcon;
+    [SerializeField] float pushingRange = 15;
     [Header("Progression bar compatibility")]
     [Tooltip("The progression bars and users should be a one-to-one match. If true, this script is not using GetGomponent<>() to find a ProgressionBarProperty.")]
     [SerializeField] bool dontUseProgressionBar;
@@ -34,6 +35,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
 
     //Private variables
     public float totalRayDuration = 3;
+    private GameObject closestTarget;
 
     #region Initialization
     protected override void InitializeStartingVariables()
@@ -53,6 +55,15 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     protected override void TryShoot()
     {
         if (!shoot)
+        {
+            closestTarget = GetTarget();
+            return;
+        }
+        if (!closestTarget)
+        {
+            return;
+        }
+        if (VectorUtils.Distance(gameObject, closestTarget) > pushingRange)
         {
             return;
         }
@@ -132,14 +143,14 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     }
     private void ApplyForceToTarget()
     {
-        cameraTarget.GetComponent<Rigidbody2D>().AddForce(GetPushingForce(), ForceMode2D.Force);
+        closestTarget.GetComponent<Rigidbody2D>().AddForce(GetPushingForce(), ForceMode2D.Force);
     }
     private Vector2 GetPushingForce()
     {
         //return forceOverTime.Evaluate(shotIndex);
-        float force = 100f;
-        Vector2 direction = VectorUtils.DeltaPosition(gameObject, cameraTarget);
-        return direction * force;
+        float force = 25f;
+        Vector2 direction = VectorUtils.TranslatedMousePosition() - (Vector2)closestTarget.transform.position;
+        return Mathf.Min(direction.magnitude * force, 100) * direction.normalized;
     }
     protected override GameObject GetTarget()
     {

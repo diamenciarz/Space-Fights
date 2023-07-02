@@ -733,6 +733,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4976248016089084733, guid: 5e9de39b59b11034f9686c9c020666e6, type: 3}
   m_PrefabInstance: {fileID: 325530391}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &355266700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3503175393803492294, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+  m_PrefabInstance: {fileID: 847843769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356351712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2894,11 +2899,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_Color.b
-      value: 0.97911054
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 597981991798496538, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_Color.g
-      value: 0.97911054
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 619437746515224927, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_LinearOffset.x
@@ -3084,9 +3089,17 @@ PrefabInstance:
       propertyPath: m_LinearOffset.y
       value: 0.20427673
       objectReference: {fileID: 0}
+    - target: {fileID: 6441913592538751777, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: T3
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751965, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_Name
       value: StableShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592538751965, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_RootOrder
@@ -3131,6 +3144,14 @@ PrefabInstance:
     - target: {fileID: 6441913592538751966, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592834814977, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913592834814977, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592834814982, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_LinearOffset.x
@@ -3179,6 +3200,14 @@ PrefabInstance:
     - target: {fileID: 6441913593890035338, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913594073557297, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441913594073557297, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 6441913594073557299, guid: 11d2eff8f9821154e982070a29ffbc4f, type: 3}
       propertyPath: m_LinearOffset.x
@@ -3563,7 +3592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751965, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6441913592538751966, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_RootOrder
@@ -3783,6 +3812,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: targetTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: targetTypes.Array.data[1]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
@@ -3793,6 +3826,10 @@ PrefabInstance:
       propertyPath: actionControllers.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8448464666150114285, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+      propertyPath: actionControllers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1751834079}
     - target: {fileID: 8593999422678323148, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Color.b
       value: 0.98523784
@@ -3881,7 +3918,8 @@ PrefabInstance:
       propertyPath: isForceGlobal
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 863468948743332297, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
 --- !u!1 &848939559 stripped
 GameObject:
@@ -8206,6 +8244,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4976248016089084733, guid: 5e9de39b59b11034f9686c9c020666e6, type: 3}
   m_PrefabInstance: {fileID: 1724938361}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1751834075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2550649395205867984, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
+  m_PrefabInstance: {fileID: 847843769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1751834079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751834075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6793cc9c5d7404888c6569ab98f0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  shootingPoint: {fileID: 355266700}
+  reloadingBarAlwaysOn: 1
+  forceOverTime:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reloadDelay: 0
+  reloadAllAtOnce: 0
+  forwardGunRotation: 0
+  targetMode: 2
+  targetTypes: 01000000
+  targetIcon: 0
+  dontUseProgressionBar: 0
+  totalRayDuration: 3
 --- !u!1001 &1849526647
 PrefabInstance:
   m_ObjectHideFlags: 0
