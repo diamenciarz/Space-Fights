@@ -146,6 +146,9 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\LineHolder.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\ObjectFollower.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\FollowObjectWhileChained.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

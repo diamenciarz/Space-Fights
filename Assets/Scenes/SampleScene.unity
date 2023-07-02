@@ -657,11 +657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901812, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_Color.b
-      value: 0.9782775
+      value: 0.98055744
       objectReference: {fileID: 0}
     - target: {fileID: 2741658291565901812, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
       propertyPath: m_Color.g
-      value: 0.9782775
+      value: 0.98055744
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2741658291565901815, guid: 0b5eee4ee23594e4bbb56f3c51e6d994, type: 3}
@@ -2007,6 +2007,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 493045442}
     m_Modifications:
+    - target: {fileID: 4456331406175181434, guid: 90c1d82e21b3d4b41845217e9a626370, type: 3}
+      propertyPath: m_Color.b
+      value: 0.98055744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456331406175181434, guid: 90c1d82e21b3d4b41845217e9a626370, type: 3}
+      propertyPath: m_Color.g
+      value: 0.98055744
+      objectReference: {fileID: 0}
     - target: {fileID: 4456331406175181436, guid: 90c1d82e21b3d4b41845217e9a626370, type: 3}
       propertyPath: m_Name
       value: Small_Rock
@@ -8277,6 +8285,10 @@ MonoBehaviour:
   targetMode: 2
   targetTypes: 01000000
   targetIcon: 0
+  pushingRange: 15
+  maxArrowLength: 3
+  lineHolderPrefab: {fileID: 9127453912761799392, guid: 483cc9a729127984685d15297318e2be, type: 3}
+  arrowPrefab: {fileID: 9127453912761799392, guid: 3afccb6b8031b574c8f5bed1e4feb9fd, type: 3}
   dontUseProgressionBar: 0
   totalRayDuration: 3
 --- !u!1001 &1849526647
@@ -9052,6 +9064,10 @@ MonoBehaviour:
   targetMode: 2
   targetTypes: 01000000
   targetIcon: 0
+  pushingRange: 15
+  maxArrowLength: 0
+  lineHolderPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 0}
   dontUseProgressionBar: 0
   totalRayDuration: 3
 --- !u!1001 &2097922441

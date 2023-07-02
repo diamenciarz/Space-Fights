@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using static EntityCreator;
 using static HelperMethods;
@@ -22,6 +23,9 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     [Header("Mouse Steering")]
     [SerializeField] ObjectFollowers targetIcon;
     [SerializeField] float pushingRange = 15;
+    [SerializeField] float maxArrowLength;
+    [SerializeField] GameObject lineHolderPrefab;
+    [SerializeField] GameObject arrowPrefab;
     [Header("Progression bar compatibility")]
     [Tooltip("The progression bars and users should be a one-to-one match. If true, this script is not using GetGomponent<>() to find a ProgressionBarProperty.")]
     [SerializeField] bool dontUseProgressionBar;
@@ -36,6 +40,8 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
     //Private variables
     public float totalRayDuration = 3;
     private GameObject closestTarget;
+    private LineHolder lineHolder;
+    private LineHolder beamArrow;
 
     #region Initialization
     protected override void InitializeStartingVariables()
@@ -44,6 +50,26 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         //totalRayDuration = forceOverTime.keys[forceOverTime.keys.Length - 1].time;
         shootingTimeBank = totalRayDuration;
         canShoot = true;
+        CreateLineHolder();
+        CreateBeamArrow();
+    }
+    private void CreateLineHolder()
+    {
+        lineHolder = Instantiate(lineHolderPrefab).GetComponent<LineHolder>();
+        lineHolder.ConnectWithLine(gameObject);
+        lineHolder.SetLineVisibility(false);
+    }
+    private void CreateBeamArrow()
+    {
+        GameObject arrow = Instantiate(arrowPrefab);
+        FollowObjectWhileChained follower = arrow.GetComponent<FollowObjectWhileChained>();
+        GameObject closestMouseCursor = StaticDataHolder.ListContents.Generic.GetClosestMouseCursor(transform.position);
+        follower.SetObjectToFollow(closestMouseCursor);
+        follower.ChainTo(lineHolder.gameObject, maxArrowLength);
+
+        beamArrow = arrow.GetComponent<LineHolder>();
+        beamArrow.ConnectWithLine(lineHolder.gameObject);
+        beamArrow.SetLineVisibility(false);
     }
     protected override void CallStartingMethods()
     {
@@ -57,29 +83,41 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         if (!shoot)
         {
             closestTarget = GetTarget();
+            StopLine();
             return;
         }
         if (!closestTarget)
         {
+            StopLine();
             return;
         }
         if (VectorUtils.Distance(gameObject, closestTarget) > pushingRange)
         {
+            StopLine();
             return;
         }
         if (!canShoot)
         {
+            StopLine();
             return;
         }
         if (isDetached)
         {
+            StopLine();
             return;
         }
         bool hasAmmo = shootingTimeBank > 0;
-        if (hasAmmo)
+        if (!hasAmmo)
         {
-            PushTarget();
+            StopLine();
+            return;
         }
+        PushTarget();
+    }
+    private void StopLine()
+    {
+        beamArrow.SetLineVisibility(false);
+        lineHolder.SetLineVisibility(false);
     }
     #endregion
 
@@ -139,6 +177,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         PlayPushSound();
         ApplyForceToTarget();
 
+        EnableLine();
         DecreasePushingTime();
     }
     private void ApplyForceToTarget()
@@ -150,7 +189,7 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         //return forceOverTime.Evaluate(shotIndex);
         float force = 25f;
         Vector2 direction = VectorUtils.TranslatedMousePosition() - (Vector2)closestTarget.transform.position;
-        return Mathf.Min(direction.magnitude * force, 100) * direction.normalized;
+        return Mathf.Min(direction.magnitude, maxArrowLength) * force * direction.normalized;
     }
     protected override GameObject GetTarget()
     {
@@ -165,6 +204,12 @@ public class PushingController : AbstractShootingController, IProgressionBarComp
         List<GameObject> potentialTargets = StaticDataHolder.ListContents.Generic.GetObjectList(targetTypes);
         StaticDataHolder.ListModification.SubtractNeutralsAndAllies(potentialTargets, team);
         return StaticDataHolder.ListContents.Generic.GetClosestObject(potentialTargets, mousePosition);
+    }
+    private void EnableLine()
+    {
+        lineHolder.GetComponent<ObjectFollower>().SetObjectToFollow(closestTarget);
+        lineHolder.SetLineVisibility(true);
+        beamArrow.SetLineVisibility(true);
     }
     private void DecreasePushingTime()
     {
