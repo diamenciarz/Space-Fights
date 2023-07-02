@@ -3,10 +3,6 @@ using UnityEngine;
 public class ForwardEntityMover : MonoBehaviour, IEntityMover
 {
     #region Serialization
-    [Tooltip("The highest speed that the vehicle can accelerate towards")]
-    [SerializeField] float maxSpeed;
-    [Tooltip("The lowest speed that the vehicle can travel backwards")]
-    [SerializeField] float minSpeed;
     [Tooltip("Turn speed in degrees per second (at the highest speed)")]
     [SerializeField] float maxTurningSpeed;
     [Tooltip("How slippery the driving experience is. 1 for no drifting, 0 for driving on ice")]
@@ -19,12 +15,14 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     [Header("Rotation")]
     [SerializeField] float T1 = 2500;
     [SerializeField] float T2 = 250;
+    [SerializeField] float T3 = 250;
     #endregion
 
     #region Private variables
     //Objects
     Rigidbody2D myRigidbody2D;
     private Vector2 inputVector;
+    private Vector2 translatedInputVector;
     private Vector2 lastVelocity;
 
     private float previousAngularVelocity;
@@ -48,6 +46,8 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     #region Update
     void FixedUpdate()
     {
+        // Translate input vector
+        TranslateInputVector();
         // Rotation
         UpdateTargetAngle();
         RotateTowardsDirectionAngle();
@@ -55,6 +55,22 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         UpdateVelocity();
         KillSidewayVelocity();
     }
+
+    #region Input translation
+    private void TranslateInputVector()
+    {
+        if (inputVector.magnitude == 0)
+        {
+            translatedInputVector = Vector2.zero;
+            return;
+        }
+        float currentAngle = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
+        float inputAngle = HelperMethods.VectorUtils.VectorDirection(inputVector);
+        float currentAngleToInput = inputAngle - currentAngle;
+        translatedInputVector = HelperMethods.VectorUtils.DirectionVectorNormalized(currentAngleToInput);
+        //Debug.Log("Angle: " + currentAngleToInput + " to vector: " + translatedInputVector);
+    }
+    #endregion
 
     #region Movement
     private void UpdateVelocity()
@@ -73,7 +89,7 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     private Vector2 GetForwardForce()
     {
         const float SLIGHT_SIDEWAYS_MOVEMENT = 0.1f;
-        return transform.up * inputVector.y + transform.right * inputVector.x * SLIGHT_SIDEWAYS_MOVEMENT;
+        return transform.up * translatedInputVector.y + transform.right * translatedInputVector.x * SLIGHT_SIDEWAYS_MOVEMENT;
         //return transform.up * Vector2.Dot(inputVector, transform.up);
     }
     private void ApplyForce(Vector2 force)
@@ -86,24 +102,15 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     #region Rotation
     private void UpdateTargetAngle()
     {
-        if (inputVector.x != 0)
+        if (translatedInputVector.x != 0)
         {
             //float deltaAngle = GetDeltaAngle();
 
-            float deltaAngle = 5 * -Mathf.Sign(inputVector.x);
+            float deltaAngle = 5 * -Mathf.Sign(translatedInputVector.x);
             ModifyDirection(deltaAngle);
         }
         Vector2 angleVector = HelperMethods.VectorUtils.DirectionVector(3, targetAngle);
         Debug.DrawRay(transform.position, angleVector, Color.red);
-    }
-    private float GetDeltaAngle()
-    {
-        float directionVector = HelperMethods.VectorUtils.VectorDirection(inputVector);
-        float directionVectorClamped = HelperMethods.AngleUtils.ClampAngle180(directionVector);
-        float rotation = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
-        float deltaAngle = HelperMethods.AngleUtils.ClampAngle180(directionVectorClamped - rotation);
-        //float maxSpeedPercentage = myRigidbody2D.velocity.magnitude / maxSpeed;
-        return deltaAngle;
     }
     private void ModifyDirection(float deltaDirection)
     {
@@ -129,9 +136,10 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         float currentAngle = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
         float t1 = T1 * HelperMethods.AngleUtils.ClampAngle180(targetAngle - currentAngle);
         float t2 = T2 * -myRigidbody2D.angularVelocity;
+        float t3 = T3 * -GetAngularAcceleration();
 
-        float torque = t1 + t2;
-        Debug.Log("P: " + t1 + " I: " + t2 + " D: " + 0 + " angVelocity: " + myRigidbody2D.angularVelocity);
+        float torque = t1 + t2 + t3;
+        Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3 + " angVelocity: " + myRigidbody2D.angularVelocity);
         myRigidbody2D.AddTorque(torque);
     }
     #endregion
@@ -159,14 +167,6 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     private Vector2 GetForwardVelocity()
     {
         return transform.up * Vector2.Dot(myRigidbody2D.velocity, transform.up);
-    }
-    public float GetMaxSpeed()
-    {
-        return maxSpeed;
-    }
-    public float GetMinSpeed()
-    {
-        return minSpeed;
     }
     public float GetMaxTurningSpeed()
     {

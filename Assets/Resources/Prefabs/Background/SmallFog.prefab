@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c49f5530051074eab89a191e1b5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 2
-  maxDelay: 10
+  minDelay: 4
+  maxDelay: 15
   flickerDuration: 0.25
   flickerGradients:
   - serializedVersion: 2
@@ -187,7 +187,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 5
-  gradientProbabilities: 050000000000000000000000
+  gradientProbabilities: 050000000100000001000000
 --- !u!114 &6676668502653053871
 MonoBehaviour:
   m_ObjectHideFlags: 0

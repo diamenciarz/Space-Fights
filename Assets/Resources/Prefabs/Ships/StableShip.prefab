@@ -2233,10 +2233,11 @@ MonoBehaviour:
   maxTurningSpeed: 60
   driftFactor: 0.9
   M1: 60000
-  M2: 6000
+  M2: 3000
   M3: 20
-  T1: 100
+  T1: 300
   T2: 20
+  T3: 1
 --- !u!50 &6441913592538751967
 Rigidbody2D:
   serializedVersion: 4

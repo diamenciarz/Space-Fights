@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c49f5530051074eab89a191e1b5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelay: 10
-  maxDelay: 60
-  flickerDuration: 10
+  minDelay: 5
+  maxDelay: 20
+  flickerDuration: 0.25
   flickerGradients:
   - serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 0.50980395}
