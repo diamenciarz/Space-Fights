@@ -16,7 +16,6 @@ public class CameraInformation : MonoBehaviour
 
     static Camera mainCamera;
     private static bool hasCalculatedCameraSize = false;
-    private static bool hasCalculatedScreenEdges = false;
     private static Vector2 cameraSize;
 
     private void Awake()
@@ -43,7 +42,6 @@ public class CameraInformation : MonoBehaviour
         {
             CalculateCameraSize();
         }
-        hasCalculatedScreenEdges = true;
         xMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         xMax = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
         yMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
