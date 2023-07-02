@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EntityMover : MonoBehaviour, IEntityMover
+public class ForwardEntityMover : MonoBehaviour, IEntityMover
 {
     #region Serialization
     [Tooltip("The highest speed that the vehicle can accelerate towards")]

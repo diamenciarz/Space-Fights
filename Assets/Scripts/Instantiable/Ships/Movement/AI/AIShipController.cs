@@ -4,7 +4,7 @@ using UnityEngine;
 using static MovementScheme;
 using static StaticDataHolder;
 
-public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
+public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INotifyOnDestroy
 {
     [SerializeField][Range(2, 200)][Tooltip("Will stop chasing its target above that distance")] float chaseRange = 45;
     [SerializeField][Range(1, 60)][Tooltip("Will start avoiding obstacles below that distance")] float avoidRange = 8;
@@ -19,7 +19,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
-    public GameObject targetToChase;
+    private GameObject targetToChase;
     private FightTactics fightTactics;
     private IParent myParent;
     private int gunCount;
@@ -483,7 +483,7 @@ public class ShipController : TeamUpdater, ISerializationCallbackReceiver, INoti
     }
     private float GetMissRange(GameObject target)
     {
-        ShipController otherShipController = target.GetComponentInParent<ShipController>();
+        AIShipController otherShipController = target.GetComponentInParent<AIShipController>();
         if (otherShipController)
         {
             return otherShipController.shipSize + shipSize;

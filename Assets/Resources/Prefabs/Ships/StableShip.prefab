@@ -2321,7 +2321,6 @@ GameObject:
   - component: {fileID: 6441913592538751777}
   - component: {fileID: 6441913592538751967}
   - component: {fileID: 1630741118}
-  - component: {fileID: 2488323260018361336}
   - component: {fileID: 5166552632043362251}
   - component: {fileID: -6443159064478190265}
   - component: {fileID: 4590534427023860326}
@@ -2420,38 +2419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isControlledByPlayer: 1
   controls: 0
---- !u!114 &2488323260018361336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592538751965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de898801af72c6469d83a3cc4e3ea97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlledByPlayer: 1
-  controlScheme: {fileID: 11400000, guid: 6fe0b3f1a63ae514ab1df81e98777b2a, type: 2}
-  primaryAction:
-    key: 32
-    type: 10
-    action: {fileID: 0}
-    actionControllers:
-    - {fileID: 6441913592834814980}
-    - {fileID: 494917494657619772}
-  secondaryAction:
-    key: 304
-    type: 11
-    action: {fileID: 0}
-    actionControllers:
-    - {fileID: 7551173842708764306}
-  ternaryAction:
-    key: 0
-    type: 0
-    action: {fileID: 0}
-    actionControllers: []
 --- !u!114 &5166552632043362251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2519,9 +2486,8 @@ MonoBehaviour:
   projectileAvoidance: 0.5
   minMovementPeriod: 1
   maxMovementPeriod: 3
-  randomMovementAngle: 30
-  shipSize: 1
-  targetToChase: {fileID: 0}
+  randomMovementAngle: 150
+  shipSize: 2
 --- !u!114 &-1594027281432790397
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using static ActionController;
 using static MovementScheme;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(EntityMover))]
+[RequireComponent(typeof(ForwardEntityMover))]
 public class EntityInput : MonoBehaviour, IActionControllerCaller
 {
     public bool controlledByPlayer;
@@ -15,14 +15,14 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     public ActionTriplet ternaryAction;
 
     private Rigidbody2D rb2D;
-    private EntityMover entityMover;
+    private ForwardEntityMover entityMover;
     private ActionData actionData;
     private List<ActionTriplet> allActionTriplets = new List<ActionTriplet>();
 
     public class ActionData
     {
         public Rigidbody2D rigidbody2D;
-        public EntityMover entityMover;
+        public ForwardEntityMover entityMover;
         public float percentage;
     }
 
@@ -35,7 +35,7 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     private void SetupStartingVariables()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        entityMover = GetComponent<EntityMover>();
+        entityMover = GetComponent<ForwardEntityMover>();
         DefineActionData();
         SetupAllActionTriplets();
     }

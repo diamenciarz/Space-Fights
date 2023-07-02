@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Passive\Interfaces\IProgressionBar.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\SalvoScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\ShipController.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\AIShipController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractActiveAction.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Guns\AutomaticGunRotator.cs" />
@@ -133,7 +133,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\RandomTimeExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Guns\GunController.cs" />
     <Compile Include="Assets\Scripts\Passive\Helpers\StaticDataHolder.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\EntityMover.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\ForwardEntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\RocketController.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\SingleShotScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\PointPushingForce.cs" />
