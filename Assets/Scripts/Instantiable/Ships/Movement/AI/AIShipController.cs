@@ -535,7 +535,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         if (!orderSent)
         {
             orderSent = true;
-            StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING, Random.Range(minMovementPeriod, maxMovementPeriod)));
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.AVOIDING, Random.Range(minChaseDuration, maxChaseDuration)));
         }
     }
     private void StartAvoiding()

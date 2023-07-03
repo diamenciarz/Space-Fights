@@ -110,15 +110,12 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     #region Rotation
     private void UpdateTargetAngle()
     {
+        Debug.Log("Target angle: " + targetAngle);
         if (translatedInputVector.x != 0)
         {
             float inputVectorDirection = HelperMethods.VectorUtils.VectorDirection(inputVector);
             float deltaAngle = -Mathf.Sign(translatedInputVector.x);
 
-            if (Mathf.Abs(targetAngle + deltaAngle) > inputVectorDirection)
-            {
-                deltaAngle = inputVectorDirection - targetAngle;
-            }
             ModifyDirection(deltaAngle);
         }
         Vector2 angleVector = HelperMethods.VectorUtils.DirectionVector(3, targetAngle);
