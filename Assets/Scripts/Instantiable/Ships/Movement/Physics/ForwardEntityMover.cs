@@ -76,7 +76,6 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         float inputAngle = HelperMethods.VectorUtils.VectorDirection(inputVector);
         float currentAngleToInput = inputAngle - currentAngle;
         translatedInputVector = HelperMethods.VectorUtils.DirectionVectorNormalized(currentAngleToInput);
-        //Debug.Log("Angle: " + currentAngleToInput + " to vector: " + translatedInputVector);
     }
     #endregion
 
@@ -110,16 +109,21 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     #region Rotation
     private void UpdateTargetAngle()
     {
-        Debug.Log("Target angle: " + targetAngle);
+        Vector2 angleVector = HelperMethods.VectorUtils.DirectionVector(3, targetAngle);
+        Debug.DrawRay(transform.position, angleVector, Color.red);
         if (translatedInputVector.x != 0)
         {
-            float inputVectorDirection = HelperMethods.VectorUtils.VectorDirection(inputVector);
             float deltaAngle = -Mathf.Sign(translatedInputVector.x);
+            float inputVectorDirection = HelperMethods.VectorUtils.VectorDirection(inputVector);
+            bool snapToInputVector = Mathf.Abs(HelperMethods.AngleUtils.ClampAngle360(targetAngle) - inputVectorDirection) < 5;
+            if (snapToInputVector)
+            {
+                targetAngle = inputVectorDirection;
+                return;
+            }
 
             ModifyDirection(deltaAngle);
         }
-        Vector2 angleVector = HelperMethods.VectorUtils.DirectionVector(3, targetAngle);
-        Debug.DrawRay(transform.position, angleVector, Color.red);
     }
     private void ModifyDirection(float deltaDirection)
     {
@@ -132,7 +136,7 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         }
         else
         {
-            moveFactor = 1 - Mathf.Abs(angleFromShipToTargetDirection / 45);
+            moveFactor = 1 + Mathf.Abs(angleFromShipToTargetDirection / 45);
         }
 
         previousRotationAngle = targetAngle;
@@ -149,7 +153,7 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
 
         previousAngularVelocity = myRigidbody2D.angularVelocity;
         float torque = t1 + t2 + t3;
-        //Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3 + " angVelocity: " + myRigidbody2D.angularVelocity);
+        Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3);
         myRigidbody2D.AddTorque(torque);
     }
     #endregion

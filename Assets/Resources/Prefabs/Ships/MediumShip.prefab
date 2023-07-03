@@ -898,7 +898,7 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites: []
-  partHealth: 150
+  partHealth: 200
   barHealth: 50
   destroyDamage: 1000
   immunities: []
@@ -1831,7 +1831,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 5057970825632474978}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -1902,7 +1902,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -1921,7 +1921,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 4400702746985605334}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -2338,6 +2338,10 @@ MonoBehaviour:
   projectileAvoidance: 0.5
   minMovementPeriod: 1
   maxMovementPeriod: 3
+  minChaseDuration: 10
+  maxChaseDuration: 20
+  minFleeDuration: 5
+  maxFleeDuration: 10
   randomMovementAngle: 150
   shipSize: 2
   followObject: {fileID: 0}
@@ -2366,13 +2370,13 @@ GameObject:
   - component: {fileID: 6441913592834814977}
   - component: {fileID: 6441913592834814978}
   - component: {fileID: 6441913592834814981}
-  - component: {fileID: 6441913592834814982}
   - component: {fileID: 6441913592834814980}
   - component: {fileID: 5535518891970203682}
   - component: {fileID: 212362505441456787}
   - component: {fileID: 2840782541516616931}
   - component: {fileID: 535006687838750076}
   - component: {fileID: 3118542449087796360}
+  - component: {fileID: 6441913592834814982}
   m_Layer: 7
   m_Name: LeftGun
   m_TagString: Untagged
@@ -2500,25 +2504,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!254 &6441913592834814982
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913592834815039}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913594073557300}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_MaxForce: 5000
-  m_MaxTorque: 1000
-  m_CorrectionScale: 0.3
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.0000001311342, y: 1.5000005}
-  m_AngularOffset: 0
 --- !u!114 &6441913592834814980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2628,6 +2613,25 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -1.4669999, y: 1.6005006}
   m_AngularOffset: -1.3379651
+--- !u!254 &6441913592834814982
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592834815039}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913594073557300}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 5000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.0000001311342, y: 1.5000005}
+  m_AngularOffset: 0
 --- !u!1 &6441913592912191834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,7 +3350,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 1177742716018359492}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -3417,7 +3421,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 6441913592454232450}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 500
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -3436,7 +3440,7 @@ RelativeJoint2D:
   m_ConnectedRigidBody: {fileID: 7264960904025806074}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_MaxForce: 5000
+  m_MaxForce: 20000
   m_MaxTorque: 1000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
@@ -3485,8 +3489,8 @@ GameObject:
   - component: {fileID: 6441913594127976648}
   - component: {fileID: 6441913594127976649}
   - component: {fileID: 6441913594127976652}
-  - component: {fileID: 6441913594127976651}
   - component: {fileID: 8077016238563249273}
+  - component: {fileID: 6441913594127976651}
   - component: {fileID: 494917494657619772}
   - component: {fileID: 5812251090777440677}
   - component: {fileID: 5191196131033383256}
@@ -3619,25 +3623,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!254 &6441913594127976651
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6441913594127976646}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6441913592222990136}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_MaxForce: 5000
-  m_MaxTorque: 1000
-  m_CorrectionScale: 0.3
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.00000013113421, y: 1.5000006}
-  m_AngularOffset: 0
 --- !u!254 &8077016238563249273
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -3657,6 +3642,25 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 1.5330001, y: 1.6005003}
   m_AngularOffset: -1.3379651
+--- !u!254 &6441913594127976651
+RelativeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913594127976646}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 6441913592222990136}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_MaxForce: 5000
+  m_MaxTorque: 1000
+  m_CorrectionScale: 0.3
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.00000013113421, y: 1.5000006}
+  m_AngularOffset: 0
 --- !u!114 &494917494657619772
 MonoBehaviour:
   m_ObjectHideFlags: 0
