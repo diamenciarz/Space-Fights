@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Passive\Controls\IEntityMover.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\ProgressionConeProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Physics\SidewaysEntityMover.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\LineHolder.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\IPlayerControllable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraInformation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ObjectMissingIcon.cs" />
@@ -116,8 +117,10 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\MouseCursorFollower.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\FollowObjectWhileChained.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Actions\ActionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TeamUpdater.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\UI\ObjectFollower.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IPushable.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Guns\AbstractShootingController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IDamageable.cs" />
@@ -146,9 +149,6 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\UI\LineHolder.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\UI\ObjectFollower.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\UI\FollowObjectWhileChained.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

@@ -249,7 +249,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 200
+  minKineticEnergy: 400
   collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   barHealth: 50
   destroyDamage: 20
   immunities: []
-  minKineticEnergy: 200
+  minKineticEnergy: 400
   collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
@@ -2340,6 +2340,8 @@ MonoBehaviour:
   maxMovementPeriod: 3
   randomMovementAngle: 150
   shipSize: 2
+  followObject: {fileID: 0}
+  followLeash: 5
 --- !u!114 &-1594027281432790397
 MonoBehaviour:
   m_ObjectHideFlags: 0

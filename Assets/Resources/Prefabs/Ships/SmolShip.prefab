@@ -366,7 +366,7 @@ MonoBehaviour:
   immunities:
   - damageType: 1
     immunityPercentage: 0.5
-  minKineticEnergy: 200
+  minKineticEnergy: 400
   collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
@@ -707,7 +707,7 @@ MonoBehaviour:
   immunities:
   - damageType: 1
     immunityPercentage: 0.5
-  minKineticEnergy: 200
+  minKineticEnergy: 400
   collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   immunities:
   - damageType: 1
     immunityPercentage: 0.25
-  minKineticEnergy: 100
+  minKineticEnergy: 400
   collisionDamageModifier: 0.25
   breakingSounds: []
   breakingSoundVolume: 1
@@ -1681,9 +1681,14 @@ MonoBehaviour:
   projectileAvoidance: 0
   minMovementPeriod: 1
   maxMovementPeriod: 3
+  minChaseDuration: 10
+  maxChaseDuration: 20
+  minFleeDuration: 5
+  maxFleeDuration: 10
   randomMovementAngle: 150
   shipSize: 1.5
-  targetToChase: {fileID: 0}
+  followObject: {fileID: 0}
+  followLeash: 5
 --- !u!114 &1630741118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,7 +2281,7 @@ MonoBehaviour:
   immunities:
   - damageType: 1
     immunityPercentage: 0.5
-  minKineticEnergy: 200
+  minKineticEnergy: 400
   collisionDamageModifier: 0.1
   breakingSounds: []
   breakingSoundVolume: 1

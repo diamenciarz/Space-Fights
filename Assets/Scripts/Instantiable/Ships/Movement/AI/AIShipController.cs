@@ -12,10 +12,16 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     [SerializeField] bool isForceGlobal = false;
     [SerializeField][Range(0, 1)][Tooltip("0 - obstacles ignored when chasing; 1 - obstacles avoided at close range even when chasing")] float entityAvoidance = 0.5f;
     [SerializeField][Range(0, 1)][Tooltip("0 - projectiles ignored when chasing; 1 - projectiles avoided at close range even when chasing")] float projectileAvoidance = 0.5f;
-    [SerializeField][Range(0.1f, 5)][Tooltip("How often the ship will change tactic from offensive to defensive")] float minMovementPeriod = 1;
-    [SerializeField][Range(1, 10)][Tooltip("How often the ship will change tactic from offensive to defensive")] float maxMovementPeriod = 3;
+    [SerializeField][Range(0.1f, 5)][Tooltip("How often the ship will change direction of random movement")] float minMovementPeriod = 1;
+    [SerializeField][Range(1, 10)][Tooltip("How often the ship will change direction of random movement")] float maxMovementPeriod = 3;
+    [SerializeField][Range(0.1f, 60)][Tooltip("How often the ship will change tactic from offensive to defensive")] float minChaseDuration = 10;
+    [SerializeField][Range(1, 60)][Tooltip("How often the ship will change tactic from offensive to defensive")] float maxChaseDuration = 20;
+    [SerializeField][Range(0.1f, 60)][Tooltip("How often the ship will change tactic from defensive to offensive")] float minFleeDuration = 5;
+    [SerializeField][Range(1, 60)][Tooltip("How often the ship will change tactic from defensive to offensive")] float maxFleeDuration = 10;
     [SerializeField][Range(10, 180)][Tooltip("How often and how much the ship will turn, while randomly exploring the map")] float randomMovementAngle = 30;
     [SerializeField] float shipSize = 1.5f;
+    [SerializeField] GameObject followObject;
+    [SerializeField] float followLeash = 5;
 
     IEntityMover myVehicle;
     private Rigidbody2D rb2D;
@@ -70,11 +76,11 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     }
     private void GenerateRandomMovementVariables()
     {
-        entityAvoidance = Random.Range(0, 1f);
-        projectileAvoidance = Random.Range(0, 1f);
-        chaseRange = Random.Range(30, 75);
+        entityAvoidance = Random.Range(0.5f, 1f);
+        projectileAvoidance = Random.Range(0.5f, 1f);
+        chaseRange = Random.Range(30, 60);
         avoidRange = Random.Range(4, 8);
-        attackRange = Random.Range(2, 10);
+        attackRange = Random.Range(2, 6);
     }
 
     #region Serialization
@@ -154,7 +160,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         Vector2 projectileAvoidanceVector = CalculateProjectileAvoidanceVector();
 
         //Vector2 randomMovement = Vector2.zero;
-        Vector2 randomMovement = randomMovementVector;
+        Vector2 randomMovement = CalculateRandomMovementVector();
 
         float chaseLength = Mathf.Min(chaseVector.magnitude, 1);
         float obstacleAvoidanceLength = Mathf.Min(obstacleAvoidanceVector.magnitude, 1);
@@ -421,6 +427,28 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
             randomMovementVector = HelperMethods.VectorUtils.RotateVector(Vector2.up, randomMovementRotation);
         }
     }
+    private Vector2 CalculateRandomMovementVector()
+    {
+        Vector2 followVector = CalculateFollowVector();
+        float followLength = Mathf.Min(followVector.magnitude, 1);
+        Debug.Log("Follow vector " + followVector);
+        return followLength * followVector.normalized;
+        //return followLength * followVector.normalized + (1 - followLength) * randomMovementVector;
+    }
+    private Vector2 CalculateFollowVector()
+    {
+        if (followObject == null)
+        {
+            return Vector2.zero;
+        }
+        Vector2 deltaPositionToFollowObject = HelperMethods.VectorUtils.DeltaPosition(gameObject, followObject);
+        if (deltaPositionToFollowObject.magnitude < followLeash)
+        {
+            return Vector2.zero;
+        }
+        float followVectorMagnitude = (deltaPositionToFollowObject.magnitude - followLeash) / followLeash;
+        return followVectorMagnitude * deltaPositionToFollowObject.normalized;
+    }
     #endregion
     #endregion
 
@@ -499,7 +527,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         if (!orderSent)
         {
             orderSent = true;
-            StartCoroutine(SetMovementModeAfterDelay(MovementMode.CHASING, Random.Range(minMovementPeriod, maxMovementPeriod)));
+            StartCoroutine(SetMovementModeAfterDelay(MovementMode.CHASING, Random.Range(minFleeDuration, maxFleeDuration)));
         }
     }
     private void StartFleeingAfterDelay()
