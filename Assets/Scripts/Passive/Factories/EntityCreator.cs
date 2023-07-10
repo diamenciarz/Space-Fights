@@ -128,6 +128,7 @@ public class EntityCreator : MonoBehaviour
         SummonedProjectileData newData = new SummonedProjectileData();
         newData.projectileType = projectileToSummon;
         newData.summonPosition = data.summonPosition;
+        newData.startingVelocity = data.startingVelocity;
         newData.summonRotation = CountSummonRotation(data, i);
         newData.SetTeam(data.GetTeam());
         newData.createdBy = data.createdBy;
@@ -263,28 +264,28 @@ public class EntityCreator : MonoBehaviour
     }
     private static void ModifyStartingSpeed(GameObject summonedObject, SummonedProjectileData data)
     {
-        if (data.createdBy == null)
+        if (data.startingVelocity == null)
         {
             return;
         }
-        IModifiableStartingSpeed iSpeed = summonedObject.GetComponent<IModifiableStartingSpeed>();
-        Rigidbody2D parentRB2D = data.createdBy.GetComponent<Rigidbody2D>();
-        if (iSpeed != null && parentRB2D != null)
+        IModifiableStartingSpeed iSpeed = summonedObject.GetComponentInParent<IModifiableStartingSpeed>();
+        if (iSpeed == null)
         {
-            if (iSpeed.ShouldModifyVelocity())
-            {
-                Vector2 parentVelocity = parentRB2D.velocity;
-                Vector2 summonDirection = HelperMethods.VectorUtils.DirectionVectorNormalized(data.summonRotation.eulerAngles.z);
-                Vector2 velocityInObjectDirection = HelperMethods.VectorUtils.ProjectVector(parentVelocity, summonDirection);
-                float deltaVelocity = velocityInObjectDirection.magnitude;
-                if (Vector2.Dot(parentVelocity, summonDirection) < 0)
-                {
-                    return;
-                    //deltaVelocity *= -1;
-                }
-                iSpeed.IncreaseStartingSpeed(deltaVelocity);
-            }
+            return;
         }
+        if (!iSpeed.ShouldModifyVelocity())
+        {
+            return;
+        }
+        Vector2 summonDirection = HelperMethods.VectorUtils.DirectionVectorNormalized(data.summonRotation.eulerAngles.z);
+        Vector2 velocityInObjectDirection = HelperMethods.VectorUtils.ProjectVector(data.startingVelocity, summonDirection);
+        float deltaVelocity = velocityInObjectDirection.magnitude;
+        if (Vector2.Dot(data.startingVelocity, summonDirection) < 0)
+        {
+            return;
+            //deltaVelocity *= -1;
+        }
+        iSpeed.IncreaseStartingSpeed(deltaVelocity);
     }
     private static void SetRocketTarget(GameObject summonedObject, SummonedProjectileData data)
     {
@@ -355,6 +356,7 @@ public class SummonedShotData
     public Quaternion summonRotation;
     private Team team;
     public GameObject createdBy;
+    public Vector2 startingVelocity;
     [Tooltip("If null, will shoot forward")]
     public GameObject target;
     public Team GetTeam()
@@ -373,6 +375,7 @@ public class SummonedProjectileData
     public Quaternion summonRotation;
     private Team team;
     public GameObject createdBy;
+    public Vector2 startingVelocity;
     [Tooltip("If null, will shoot forward")]
     public GameObject target;
     public Team GetTeam()

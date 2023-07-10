@@ -42,16 +42,18 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     private float currentTimeBetweenEachShot;
     private float salvoTimeSum;
     private List<INotifyOnDestroy> notifyOnDestroy = new List<INotifyOnDestroy>();
+    private Rigidbody2D rb2D;
 
     #region Initialization
     protected override void InitializeStartingVariables()
     {
         lastShotTime = Time.time;
         salvoTimeSum = salvo.GetSalvoTimeSum();
-        shootingTimeBank = salvoTimeSum;
+        shootingTimeBank = salvoTimeSum;    
         shotAmount = salvo.shots.Length;
         canShoot = true;
         shotIndex = 0;
+        rb2D = GetComponentInParent<Rigidbody2D>();
     }
     protected override void CallStartingMethods()
     {
@@ -166,6 +168,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
         data.summonRotation = GetRotation();
         data.summonPosition = shootingPoint.position;
         data.SetTeam(team);
+        data.startingVelocity = GetVelocity();
         data.createdBy = createdBy;
         data.shot = salvo.shots[shotIndex].shot;
         data.target = GetTarget();
@@ -185,6 +188,17 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
             //shootingMode == ShootingMode.FindTarget
             GameObject foundTarget = FindTarget();
             return GetRotationToTarget(foundTarget);
+        }
+    }
+    private Vector2 GetVelocity()
+    {
+        if (rb2D)
+        {
+            return rb2D.velocity;
+        }
+        else
+        {
+            return Vector2.zero;
         }
     }
     protected override GameObject GetTarget()

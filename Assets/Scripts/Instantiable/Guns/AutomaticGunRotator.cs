@@ -217,7 +217,7 @@ public class AutomaticGunRotator : TeamUpdater
     {
         if (shootingController == null)
         {
-            return Vector2.zero;
+            return closestTarget.transform.position;
         }
 
         SalvoScriptableObject.Shot shot = GetShot();
@@ -227,7 +227,7 @@ public class AutomaticGunRotator : TeamUpdater
 
         if (projectileController == null)
         {
-            return Vector2.zero;
+            return closestTarget.transform.position;
         }
 
         float myProjectileSpeed = projectileController.GetStartingSpeed();
