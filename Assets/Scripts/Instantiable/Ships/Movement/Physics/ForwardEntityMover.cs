@@ -169,7 +169,35 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     #region Public methods
     public void SetInputVector(Vector2 newInputVector)
     {
-        inputVector = newInputVector;
+        Vector2 mapEdgeVector = CalculateMapEdgeVector();
+        if (mapEdgeVector.magnitude > 1)
+        {
+            mapEdgeVector = mapEdgeVector.normalized;
+        }
+        inputVector = mapEdgeVector + (1 - mapEdgeVector.magnitude) * newInputVector;
+    }
+    private Vector2 CalculateMapEdgeVector()
+    {
+        Vector2 returnVector = Vector2.zero;
+        Vector2 topRightDelta = (Vector2)transform.position - StaticMapInformation.topRightCorner;
+        if (topRightDelta.x > 0)
+        {
+            returnVector.x -= topRightDelta.x;
+        }
+        if (topRightDelta.y > 0)
+        {
+            returnVector.y -= topRightDelta.y;
+        }
+        Vector2 bottomLeftDelta = (Vector2)transform.position - StaticMapInformation.bottomLeftCorner;
+        if (bottomLeftDelta.x < 0)
+        {
+            returnVector.x -= topRightDelta.x;
+        }
+        if (bottomLeftDelta.y < 0)
+        {
+            returnVector.y -= topRightDelta.y;
+        }
+        return returnVector;
     }
     #endregion
 
