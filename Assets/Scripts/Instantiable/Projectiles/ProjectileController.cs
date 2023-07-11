@@ -56,8 +56,16 @@ public class ProjectileController : OnCollisionDamage, IParent, IModifiableStart
     #endregion
 
     #region Mutator methods
-    public void IncreaseStartingSpeed(float deltaSpeed)
+    public void IncreaseStartingSpeed(Vector2 deltaVelocity)
     {
+        Vector2 summonDirection = HelperMethods.VectorUtils.DirectionVectorNormalized(transform.rotation.eulerAngles.z);
+        if (Vector2.Dot(deltaVelocity, summonDirection) < 0)
+        {
+            return;
+            //deltaVelocity *= -1;
+        }
+        Vector2 velocityInObjectDirection = HelperMethods.VectorUtils.ProjectVector(deltaVelocity, summonDirection);
+        float deltaSpeed = velocityInObjectDirection.magnitude;
         startingSpeed += deltaSpeed;
     }
 

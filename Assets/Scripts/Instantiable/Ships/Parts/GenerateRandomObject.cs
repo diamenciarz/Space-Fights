@@ -2,13 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
+public class GenerateRandomObject : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [Header("Instances")]
     [SerializeField] List<GameObject> objectsToInstantiate;
     [Tooltip("Each value is the chance for this object to be chosen")]
     [SerializeField][Range(0, 100)] List<int> objProbabilities;
+    [Header("Generation settings")]
+    [Tooltip("-1 for infinite repetitions")]
+    [SerializeField] int repetitions = 1;
+    [SerializeField] float delay = 0;
+    [SerializeField] bool destroyAfterGenerations = true;
 
-    protected override void DoDestroyAction()
+    private void Start()
+    {
+        StartCoroutine(StartCounter());
+    }
+    private IEnumerator StartCounter()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            if (repetitions == -1)
+            {
+                GenerateRandomObj();
+            }
+            else
+            if(repetitions > 0)
+            {
+                GenerateRandomObj();
+                repetitions--;
+            }
+            else
+            {
+                if (destroyAfterGenerations)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
+    #region Generation
+    private void GenerateRandomObj()
     {
         SummonedGameObjectData data = new SummonedGameObjectData();
         data.gameObject = GetRandomObject();
@@ -55,5 +90,6 @@ public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
             objProbabilities.RemoveAt(objProbabilities.Count - 1);
         }
     }
+    #endregion
     #endregion
 }

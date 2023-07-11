@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: 0
-  barDeltaPosition: {x: 0, y: 1.5}
+  barDeltaPosition: {x: 0, y: 2.5}
   isAlwaysOn: 0
   hideDelay: 1
 --- !u!58 &4590534427023860326

@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 4456331406175181439}
   - component: {fileID: 4456331406175181434}
   - component: {fileID: 4456331406175181435}
-  - component: {fileID: 5121285997641913254}
-  - component: {fileID: 49335754480182673}
-  - component: {fileID: 477665981838516455}
-  - component: {fileID: 3162747271885406307}
-  - component: {fileID: -7737142247830527722}
-  - component: {fileID: -2520967828303433538}
+  - component: {fileID: 4456331406175181432}
+  - component: {fileID: 1773797774739811279}
+  - component: {fileID: 7169724224806529152}
+  - component: {fileID: -5239499641382828744}
+  - component: {fileID: 4718300232392988197}
+  - component: {fileID: -645976544288835518}
   m_Layer: 17
-  m_Name: TinyRock
+  m_Name: Big_Rock_V3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,15 +77,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1376389509
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4503fad95f0f505458c5e7df54204a22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 353ef3bd1e581894d8b663c0f3fa76bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.18, y: 0.18}
+  m_Size: {x: 0.98, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &5121285997641913254
+--- !u!60 &4456331406175181432
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,20 +129,22 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.18}
-    newSize: {x: 0.18, y: 0.18}
+    oldSize: {x: 0.89, y: 0.82}
+    newSize: {x: 0.98, y: 0.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.012269119, y: 0.094161406}
-      - {x: -0.08587158, y: 0.006936528}
-      - {x: -0.033867143, y: -0.08740262}
-      - {x: 0.06307869, y: -0.077272765}
-      - {x: 0.08929251, y: 0.049689695}
---- !u!114 &49335754480182673
+    - - {x: 0.45564, y: -0.013883963}
+      - {x: 0.29119235, y: 0.2904366}
+      - {x: -0.10285264, y: 0.40575528}
+      - {x: -0.45687482, y: 0.1921073}
+      - {x: -0.42463666, y: -0.14802468}
+      - {x: -0.28772482, y: -0.3447831}
+      - {x: 0.21143778, y: -0.42010292}
+--- !u!114 &1773797774739811279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,14 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000
   unchangeableTeam: 1
   team:
     teamInstance: 0
   breakingSounds: []
   breakingSoundVolume: 1
   dontUseProgressionBar: 1
---- !u!114 &477665981838516455
+--- !u!114 &7169724224806529152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,32 +178,20 @@ MonoBehaviour:
   team:
     teamInstance: 0
   sprites: []
-  partHealth: 50
-  barHealth: 50
+  partHealth: 150
+  barHealth: 30
   destroyDamage: 20
   immunities:
   - damageType: 0
     immunityPercentage: 0.5
-  minKineticEnergy: 100
+  minKineticEnergy: 250
   collisionDamageModifier: 0.5
   breakingSounds: []
   breakingSoundVolume: 1
   hitSounds: []
   hitSoundVolume: 1
   dontUseProgressionBar: 1
---- !u!114 &3162747271885406307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4456331406175181436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853c992c62beedc45b29efd8b1f3bf44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7737142247830527722
+--- !u!114 &-5239499641382828744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,7 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 1
---- !u!114 &-2520967828303433538
+  velocityMode: 1
+  maxRandomSpeedForward: 0
+  randomSpeedCone: 0
+--- !u!114 &4718300232392988197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,3 +219,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-645976544288835518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4374818285127458d2819a7c1e7bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  activateOn: 00000000
+  objectsToInstantiate:
+  - {fileID: 8880477798655701778, guid: 20ee919325bc7284aa6cf1bb8230ca2e, type: 3}
+  objProbabilities: 01000000

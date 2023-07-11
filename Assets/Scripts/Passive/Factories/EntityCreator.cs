@@ -22,7 +22,9 @@ public class EntityCreator : MonoBehaviour
         Tiny_Rock,
         Invisible_Explosion,
         AntiRocket,
-        AntiRocket_Explosion
+        AntiRocket_Explosion,
+        Big_Rock,
+        Huge_Rock
     }
     public enum Entities
     {
@@ -110,10 +112,16 @@ public class EntityCreator : MonoBehaviour
     }
     private static void LogError(SummonedShotData data)
     {
+        if (data != null)
+        {
+            Debug.LogError("Salvo was null!");
+        }
         if (data.createdBy)
         {
             Debug.LogError("Salvo created by " + data.createdBy + " was null!");
+            return;
         }
+        Debug.LogError("Salvo was null!");
     }
     #endregion
 
@@ -237,7 +245,7 @@ public class EntityCreator : MonoBehaviour
     {
         SetTeam(summonedObject, data);
         SetCreatedBy(summonedObject, data.createdBy);
-        ModifyStartingSpeed(summonedObject, data);
+        ModifyStartingSpeed(summonedObject, data.startingVelocity);
     }
     private static void SetTeam(GameObject summonedObject, SummonedProjectileData data)
     {
@@ -262,9 +270,9 @@ public class EntityCreator : MonoBehaviour
             }
         }
     }
-    private static void ModifyStartingSpeed(GameObject summonedObject, SummonedProjectileData data)
+    private static void ModifyStartingSpeed(GameObject summonedObject, Vector2 startingVelocity)
     {
-        if (data.startingVelocity == null)
+        if (startingVelocity == null)
         {
             return;
         }
@@ -277,15 +285,7 @@ public class EntityCreator : MonoBehaviour
         {
             return;
         }
-        Vector2 summonDirection = HelperMethods.VectorUtils.DirectionVectorNormalized(data.summonRotation.eulerAngles.z);
-        Vector2 velocityInObjectDirection = HelperMethods.VectorUtils.ProjectVector(data.startingVelocity, summonDirection);
-        float deltaVelocity = velocityInObjectDirection.magnitude;
-        if (Vector2.Dot(data.startingVelocity, summonDirection) < 0)
-        {
-            return;
-            //deltaVelocity *= -1;
-        }
-        iSpeed.IncreaseStartingSpeed(deltaVelocity);
+        iSpeed.IncreaseStartingSpeed(startingVelocity);
     }
     private static void SetRocketTarget(GameObject summonedObject, SummonedProjectileData data)
     {
@@ -346,6 +346,52 @@ public class EntityCreator : MonoBehaviour
     }
     #endregion
     #endregion
+
+    #region Objects
+    public static void SummonGameObject(SummonedGameObjectData data)
+    {
+        if (IsGameObjectNull(data))
+        {
+            return;
+        }
+        GameObject summonedObject = Instantiate(data.gameObject, data.summonPosition, data.summonRotation);
+        ModifyStartingSpeed(summonedObject, data);
+    }
+    private static bool IsGameObjectNull(SummonedGameObjectData data)
+    {
+        if (data == null || data.gameObject == null)
+        {
+            LogError(data);
+            return true;
+        }
+        return false;
+    }
+    private static void LogError(SummonedGameObjectData data)
+    {
+        Debug.LogError("Game object was null!");
+    }
+    private static void ModifyStartingSpeed(GameObject summonedObject, SummonedGameObjectData data)
+    {
+        Debug.Log("Speed: " + data.startingVelocity);
+        if (data.startingVelocity == null)
+        {
+            return;
+        }
+        IModifiableStartingSpeed[] iSpeed = summonedObject.GetComponentsInChildren<IModifiableStartingSpeed>();
+        if (iSpeed == null)
+        {
+            return;
+        }
+        foreach (var item in iSpeed)
+        {
+            if (!item.ShouldModifyVelocity())
+            {
+                continue;
+            }
+            item.IncreaseStartingSpeed(data.startingVelocity);
+        }
+    }
+    #endregion
 }
 
 #region Data types
@@ -399,6 +445,13 @@ public class SummonedProgressionBarData
     public Vector2 barDeltaPosition;
 
 
+}
+public class SummonedGameObjectData
+{
+    public GameObject gameObject;
+    public Vector2 summonPosition;
+    public Quaternion summonRotation;
+    public Vector2 startingVelocity;
 }
 #endregion
 

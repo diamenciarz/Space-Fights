@@ -9,13 +9,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456331406175181439}
-  - component: {fileID: 4456331406175181435}
   - component: {fileID: 4456331406175181434}
+  - component: {fileID: 4456331406175181435}
+  - component: {fileID: 5121285997641913254}
+  - component: {fileID: 49335754480182673}
+  - component: {fileID: 477665981838516455}
   - component: {fileID: -4620731767413067690}
   - component: {fileID: 8634893909989444650}
-  - component: {fileID: -8753964994974527525}
+  - component: {fileID: -3024385140716683222}
   m_Layer: 17
-  m_Name: Small_Rock
+  m_Name: Small_Rock_V2
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,27 +39,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -178.71}
---- !u!50 &4456331406175181435
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4456331406175181436}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &4456331406175181434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1376389509
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc67cfedfc8f44c46b86056436971216, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e317cb6c351c76447a14c1806f3f34e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +91,105 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &4456331406175181435
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 80f491870851c9e4bae7f21f56359c1b, type: 2}
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &5121285997641913254
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.45, y: 0.4}
+    newSize: {x: 0.43, y: 0.43}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.15880778, y: 0.14819585}
+      - {x: -0.23331587, y: -0.045405112}
+      - {x: -0.085045986, y: -0.18525839}
+      - {x: 0.07305479, y: -0.20644405}
+      - {x: 0.23441347, y: 0.024984129}
+      - {x: 0.08816372, y: 0.2004426}
+--- !u!114 &49335754480182673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  putInLists: 01000000
+  unchangeableTeam: 1
+  team:
+    teamInstance: 0
+  breakingSounds: []
+  breakingSoundVolume: 1
+  dontUseProgressionBar: 1
+--- !u!114 &477665981838516455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba588690b076d22468ac28e5c4b9efd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  sprites: []
+  partHealth: 50
+  barHealth: 15
+  destroyDamage: 20
+  immunities:
+  - damageType: 0
+    immunityPercentage: 0.5
+  minKineticEnergy: 150
+  collisionDamageModifier: 0.5
+  breakingSounds: []
+  breakingSoundVolume: 1
+  hitSounds: []
+  hitSoundVolume: 1
+  dontUseProgressionBar: 1
 --- !u!114 &-4620731767413067690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8753964994974527525
+--- !u!114 &-3024385140716683222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,13 +227,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456331406175181436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fefc791a0daf8394db5e8b43ca7406e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c4374818285127458d2819a7c1e7bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team:
+    teamInstance: 0
+  activateOn: 00000000
   objectsToInstantiate:
-  - {fileID: 4456331406175181436, guid: 66aa46ffb2ad76240aa5c77e3b3967e0, type: 3}
-  - {fileID: 4456331406175181436, guid: cbc773eeaf754c14b8aee40ca768ba03, type: 3}
-  objProbabilities: 0100000001000000
-  repetitions: 1
-  delay: 0
-  destroyAfterGenerations: 1
+  - {fileID: 8880477798655701778, guid: fb40c168ef1108844a8b31fc1427db40, type: 3}
+  objProbabilities: 01000000
