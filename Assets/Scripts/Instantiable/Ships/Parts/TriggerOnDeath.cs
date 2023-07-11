@@ -4,6 +4,7 @@ public abstract class TriggerOnDeath : TeamUpdater
 {
     [Tooltip("Leave empty to always activate")]
     [SerializeField] DestroyCause[] activateOn;
+    private bool activated = false;
     #region OnDestroy
     public enum DestroyCause
     {
@@ -12,8 +13,13 @@ public abstract class TriggerOnDeath : TeamUpdater
     }
     public void CallDestroyAction(DestroyCause cause)
     {
+        if (activated)
+        {
+            return;
+        }
         if (activateOn.Length == 0 || ListContains(cause))
         {
+            activated = true;
             DoDestroyAction();
         }
     }
