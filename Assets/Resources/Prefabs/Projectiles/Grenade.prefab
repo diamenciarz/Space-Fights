@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -7255239622593922487}
   - component: {fileID: 6226319890669195142}
   - component: {fileID: 6231088200646790901}
+  - component: {fileID: -5001495658100894796}
   m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
@@ -225,3 +226,15 @@ MonoBehaviour:
   breakEnum: 05000000
   breakingSounds: []
   breakingSoundVolume: 1
+--- !u!114 &-5001495658100894796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

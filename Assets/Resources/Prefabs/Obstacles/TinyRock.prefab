@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 477665981838516455}
   - component: {fileID: 3162747271885406307}
   - component: {fileID: -7737142247830527722}
+  - component: {fileID: -2520967828303433538}
   m_Layer: 17
   m_Name: TinyRock
   m_TagString: Obstacle
@@ -213,3 +214,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 1
+--- !u!114 &-2520967828303433538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

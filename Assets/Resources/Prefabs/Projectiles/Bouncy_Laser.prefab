@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 292488992788198187}
   - component: {fileID: 5268208231612974113}
   - component: {fileID: 46769452457529992}
+  - component: {fileID: -987783922905499873}
   m_Layer: 8
   m_Name: Bouncy_Laser
   m_TagString: Untagged
@@ -285,3 +286,15 @@ MonoBehaviour:
     teamInstance: 0
   affectObjectOnce: 1
   pushingForce: 20
+--- !u!114 &-987783922905499873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

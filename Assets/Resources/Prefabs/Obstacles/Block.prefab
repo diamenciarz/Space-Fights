@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2741658291565901815}
   - component: {fileID: 2741658291565901814}
   - component: {fileID: 1622040987594177281}
+  - component: {fileID: -6117940423908372231}
   m_Layer: 6
   m_Name: Block
   m_TagString: Obstacle
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1376389509
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9eb8d704711b4a147b5a3bb8f2d1a12e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 15
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}
@@ -199,3 +200,15 @@ MonoBehaviour:
     teamInstance: 0
   activateOn: 
   objToInstantiate: {fileID: 278044871683149735, guid: 8b400584d570e734d9977a07c05e008b, type: 3}
+--- !u!114 &-6117940423908372231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741658291565901808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -8,7 +8,6 @@ public class SetStartingVelocityProperty : MonoBehaviour, IModifiableStartingSpe
     
     public void IncreaseStartingSpeed(float deltaSpeed)
     {
-        Debug.Log("Modified speed by: " + deltaSpeed);
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
         if (rb2D)
         {

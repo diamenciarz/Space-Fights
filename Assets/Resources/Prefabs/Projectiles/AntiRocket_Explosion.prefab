@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6721332528289669469}
   - component: {fileID: 2794147677542743209}
   - component: {fileID: 5816422260157763891}
+  - component: {fileID: -7721517957884657523}
   m_Layer: 8
   m_Name: AntiRocket_Explosion
   m_TagString: Untagged
@@ -210,3 +211,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.23
+--- !u!114 &-7721517957884657523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

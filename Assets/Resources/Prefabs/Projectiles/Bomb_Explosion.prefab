@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4969334111073187723}
   - component: {fileID: 7901248762215323648}
   - component: {fileID: 6337006721521068565}
+  - component: {fileID: -5669286306358848126}
   m_Layer: 8
   m_Name: Bomb_Explosion
   m_TagString: Untagged
@@ -196,3 +197,15 @@ MonoBehaviour:
   doDestroyActions: 1
   expireAfterTime: 0.1
   expirationDistance: -1
+--- !u!114 &-5669286306358848126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700761372939823446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

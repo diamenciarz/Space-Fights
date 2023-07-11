@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 3584015117729830725}
   - component: {fileID: 7148820827750459461}
   - component: {fileID: 102736346775735439}
+  - component: {fileID: 7123886872310084705}
   m_Layer: 0
   m_Name: RightWing
   m_TagString: Untagged
@@ -488,6 +489,18 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -1.4329802, y: -0.3870453}
   m_AngularOffset: 2.9670596
+--- !u!114 &7123886872310084705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059472270907488857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3135078944746659301
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +599,7 @@ GameObject:
   - component: {fileID: 3214566659546888838}
   - component: {fileID: 6153277888522351955}
   - component: {fileID: 7264497009302698655}
+  - component: {fileID: 2224777439359221645}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Untagged
@@ -848,6 +862,18 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 1.88023, y: 0.33305863}
   m_AngularOffset: 4.886922
+--- !u!114 &2224777439359221645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893485932021151008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3999163643028036089
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +987,7 @@ GameObject:
   - component: {fileID: 84601112019320437}
   - component: {fileID: 7864284901952902704}
   - component: {fileID: 2413983068291882298}
+  - component: {fileID: 4266334894264259433}
   m_Layer: 7
   m_Name: Cabin
   m_TagString: Untagged
@@ -1149,6 +1176,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   putInLists: 03000000
+--- !u!114 &4266334894264259433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004513072726312593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5735648931858174781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1376,7 @@ GameObject:
   - component: {fileID: 4691310009605776348}
   - component: {fileID: 8938107796251630952}
   - component: {fileID: 2724801538902861551}
+  - component: {fileID: 4590209101377273411}
   m_Layer: 7
   m_Name: BackCone
   m_TagString: Untagged
@@ -1557,6 +1597,18 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -0.00000006648503, y: -0.7605001}
   m_AngularOffset: 0
+--- !u!114 &4590209101377273411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441913592164531680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6441913592538751965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,6 +2213,7 @@ GameObject:
   - component: {fileID: 7662163393235251778}
   - component: {fileID: 1609254296342363878}
   - component: {fileID: 8148849362341641058}
+  - component: {fileID: 65251406961173375}
   m_Layer: 0
   m_Name: LeftWing
   m_TagString: Untagged
@@ -2403,3 +2456,15 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 1.4601763, y: -0.394435}
   m_AngularOffset: 3.3161259
+--- !u!114 &65251406961173375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341605518784828374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65373f7c6f20b3488f092787ecd3b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
