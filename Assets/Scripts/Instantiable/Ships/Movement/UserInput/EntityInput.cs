@@ -5,24 +5,20 @@ using static ActionController;
 using static MovementScheme;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(ForwardEntityMover))]
-public class EntityInput : MonoBehaviour, IActionControllerCaller
+public class EntityInput : MonoBehaviour, IActionControllerCaller, IPlayerControllable
 {
-    public bool controlledByPlayer;
-    public MovementScheme controlScheme;
-    public ActionTriplet primaryAction;
-    public ActionTriplet secondaryAction;
-    public ActionTriplet ternaryAction;
+    public bool isControlledByPlayer;
+    public List<ActionTriplet> actions;
 
     private Rigidbody2D rb2D;
-    private ForwardEntityMover entityMover;
+    private IEntityMover entityMover;
     private ActionData actionData;
     private List<ActionTriplet> allActionTriplets = new List<ActionTriplet>();
 
     public class ActionData
     {
         public Rigidbody2D rigidbody2D;
-        public ForwardEntityMover entityMover;
+        public IEntityMover entityMover;
         public float percentage;
     }
 
@@ -30,12 +26,12 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     private void Start()
     {
         SetupStartingVariables();
-        AddToListeners();
+        AddActionsToListeners();
     }
     private void SetupStartingVariables()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        entityMover = GetComponent<ForwardEntityMover>();
+        entityMover = GetComponent<IEntityMover>();
         DefineActionData();
         SetupAllActionTriplets();
     }
@@ -47,10 +43,7 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     }
     private void SetupAllActionTriplets()
     {
-        allActionTriplets.AddRange(controlScheme.controls);
-        allActionTriplets.Add(primaryAction);
-        allActionTriplets.Add(secondaryAction);
-        allActionTriplets.Add(ternaryAction);
+        allActionTriplets.AddRange(actions);
         RemoveNullActions();
     }
     private void RemoveNullActions()
@@ -63,11 +56,12 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
             }
         }
     }
-    private void AddToListeners()
+    private void AddActionsToListeners()
     {
-        AddToListener(primaryAction);
-        AddToListener(secondaryAction);
-        AddToListener(ternaryAction);
+        foreach (var action in actions)
+        {
+            AddToListener(action);
+        }
     }
     private void AddToListener(ActionTriplet actionTriplet)
     {
@@ -108,7 +102,7 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
     }
     private bool IsManualInputOff(ActionTriplet actionTriplet)
     {
-        return actionTriplet == null || !controlledByPlayer;
+        return actionTriplet == null || !isControlledByPlayer;
     }
     private bool IsActionActive(ActionTriplet actionTriplet)
     {
@@ -158,6 +152,10 @@ public class EntityInput : MonoBehaviour, IActionControllerCaller
             Debug.LogError("Action was null!");
             return null;
         }*/
+    }
+    public void SetIsControlledByMouse(bool isOn)
+    {
+        isControlledByPlayer = isOn;
     }
     #endregion
 
