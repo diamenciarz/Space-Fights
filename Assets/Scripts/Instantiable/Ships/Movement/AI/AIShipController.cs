@@ -431,9 +431,8 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     {
         Vector2 followVector = CalculateFollowVector();
         float followLength = Mathf.Min(followVector.magnitude, 1);
-        Debug.Log("Follow vector " + followVector);
-        return followLength * followVector.normalized;
-        //return followLength * followVector.normalized + (1 - followLength) * randomMovementVector;
+        //return followLength * followVector.normalized;
+        return followLength * followVector.normalized + (1 - followLength) * randomMovementVector;
     }
     private Vector2 CalculateFollowVector()
     {
