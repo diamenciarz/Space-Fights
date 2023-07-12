@@ -18,4 +18,8 @@ public static class StaticMapInformation
         mapWidth = topRight.x - botLeft.x;
         mapHeight = topRight.y - botLeft.y;
     }
+    public static Vector2 GetMapPercentagePosition(float xPercentage, float yPercentage)
+    {
+        return new Vector2(bottomLeftCorner.x + mapWidth * Mathf.Clamp01(xPercentage), bottomLeftCorner.y + mapHeight * Mathf.Clamp01(yPercentage));
+    }
 }

@@ -8,6 +8,8 @@ using static TeamUpdater;
 public static class StaticDataHolder
 {
     public static Dictionary<ObjectTypes, List<GameObject>> listDictionary = new Dictionary<ObjectTypes, List<GameObject>>();
+    public const int OBSTACLE_LIMIT = 100;
+
 
     public static List<float> soundDurationList = new List<float>();
     public static int soundLimit = 10;
