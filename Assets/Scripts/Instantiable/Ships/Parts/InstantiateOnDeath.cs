@@ -10,6 +10,10 @@ public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
 
     protected override void DoDestroyAction()
     {
+        if (objectsToInstantiate == null)
+        {
+            return;
+        }
         SummonedGameObjectData data = new SummonedGameObjectData();
         data.gameObject = GetRandomObject();
         data.summonPosition = transform.position;
