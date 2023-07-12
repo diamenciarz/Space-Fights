@@ -11,7 +11,6 @@ public class MapInformation : MonoBehaviour
     {
         float x = mapWidth / 2;
         float y = mapHeight / 2;
-        StaticMapInformation.topRightCorner = new Vector2(x, y);
-        StaticMapInformation.bottomLeftCorner = new Vector2(-x, -y);
+        StaticMapInformation.SetMapCorners(new Vector2(x, y), new Vector2(-x, -y));
     }
 }
