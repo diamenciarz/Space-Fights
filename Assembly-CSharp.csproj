@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ListUpdaterOnJointBreak.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\UICreator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ShootOnDeath.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Controllers\MapInformation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\MovementScheme.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\BounceProperty.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\Abstract\ExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\UserInput\UserEntityController.cs" />
     <Compile Include="Assets\Scripts\Passive\Interfaces\IModifiableStartingSpeed.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\BreakOutOfMap.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ProgressionBarController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\TargetFollowerProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\AbstractActionCalculator.cs" />
@@ -89,12 +91,14 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\PushableProperty.cs" />
     <Compile Include="Assets\Scripts\Passive\UI\StaticProgressionBarUpdater.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\ClosestTargetFollower.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Projectiles\SetStartingVelocityProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\BreakOnCollision.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\Actions\AbstractMoveAction.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\ActionCalculators\ForwardActionCalculator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TriggerOnDeath.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\OnCollisionDamage.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraPositionController.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\GenerateRandomObject.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\SetRandomTexture.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\CameraControllerImplementation.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Assets\Scripts\Instantiable\UI\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Properties\DeterministicExpirationProperty.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\MouseCursorFollower.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Controllers\DebrisGenerator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\UI\FollowObjectWhileChained.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\Actions\ActionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\TeamUpdater.cs" />
@@ -129,6 +134,7 @@
     <Compile Include="Assets\Scripts\Passive\Helpers\HelperMethods.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\DamageReceiver.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\HealthManager.cs" />
+    <Compile Include="Assets\Scripts\Passive\Helpers\StaticMapInformation.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\ExplosionController.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Effects\DoodadFlicker.cs" />
     <Compile Include="Assets\Scripts\Passive\Damage\RayScriptableObject.cs" />
@@ -148,12 +154,6 @@
     <Compile Include="Assets\Scripts\Passive\Interfaces\ITeamable.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Projectiles\SetStartingVelocityProperty.cs" />
-    <Compile Include="Assets\Scripts\Passive\Helpers\StaticMapInformation.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Controllers\MapInformation.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Projectiles\BreakOutOfMap.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Controllers\DebrisGenerator.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\GenerateRandomObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

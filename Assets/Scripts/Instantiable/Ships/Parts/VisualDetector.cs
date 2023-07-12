@@ -16,9 +16,9 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     [SerializeField] bool hasRotationLimits;
     [SerializeField] float leftMaxRotationLimit;
     [SerializeField] float rightMaxRotationLimit;
-    [Tooltip("The visual range of the camera. Choose 0 for infinite range")]
+    [Tooltip("The visual range of the camera. Choose -1 for infinite range")]
     [SerializeField] float range = 10f;
-    [Tooltip("The click range of the camera if overridden by mouse cursor. Choose 0 for infinite range")]
+    [Tooltip("The click range of the camera if overridden by mouse cursor. Choose -1 for infinite range")]
     [SerializeField] float mouseRange = 10f;
     [SerializeField] float refreshRate = 0.1f;
     [SerializeField] Transform visualZoneOrigin;
@@ -323,7 +323,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
     {
         if (isControlledByMouse)
         {
-            if (mouseRange == 0)
+            if (mouseRange == -1)
             {
                 return 1000;
             }
@@ -331,7 +331,7 @@ public class VisualDetector : TeamUpdater, IProgressionBarCompatible, IActionCon
         }
         else
         {
-            if (range == 0)
+            if (range == -1)
             {
                 return 1000;
             }
