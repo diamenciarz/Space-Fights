@@ -153,6 +153,7 @@ MonoBehaviour:
   predictTargetVelocity: 1
   visualDetectors:
   - {fileID: 8448464666150114285}
+  shootingPointTransform: {fileID: 3503175393803492294}
   debugZoneOn: 0
   DebugZoneTransform: {fileID: 2394063691835432234}
 --- !u!1 &2550649395205867984

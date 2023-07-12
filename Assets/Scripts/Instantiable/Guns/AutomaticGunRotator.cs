@@ -21,6 +21,7 @@ public class AutomaticGunRotator : TeamUpdater
 
     [Header("Instances")]
     [SerializeField] VisualDetector[] visualDetectors;
+    [SerializeField] Transform shootingPointTransform;
 
     [Header("Debug zone")]
     [SerializeField] bool debugZoneOn = true;
@@ -231,7 +232,7 @@ public class AutomaticGunRotator : TeamUpdater
         }
 
         float myProjectileSpeed = projectileController.GetStartingSpeed();
-        return HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, closestTarget, myProjectileSpeed);
+        return HelperMethods.ObjectUtils.PredictTargetPositionUponHit(shootingPointTransform.position, closestTarget, myProjectileSpeed);
     }
     private SalvoScriptableObject.Shot GetShot()
     {

@@ -867,8 +867,9 @@ public static class HelperMethods
                     targetPosition += imoveable.GetAcceleration() * timeToTarget * timeToTarget / 2;
                 }
                 timeToTarget = CalculateTimeToTarget(myPosition, targetPosition, mySpeed);
-                //Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
             }
+            Debug.DrawLine(startingTargetPosition, targetPosition, Color.red, 0.05f);
+            Debug.DrawLine(myPosition, targetPosition, Color.blue, 0.05f);
             return targetPosition;
         }
         private static float CalculateTimeToTarget(Vector2 myPosition, Vector2 targetPosition, float mySpeed)
