@@ -372,7 +372,6 @@ public class EntityCreator : MonoBehaviour
     }
     private static void ModifyStartingSpeed(GameObject summonedObject, SummonedGameObjectData data)
     {
-        Debug.Log("Speed: " + data.startingVelocity);
         if (data.startingVelocity == null)
         {
             return;

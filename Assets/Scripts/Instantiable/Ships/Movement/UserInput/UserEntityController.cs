@@ -23,13 +23,13 @@ public class UserEntityController : MonoBehaviour
     void Start()
     {
         StartupMethods();
-        SetIsMouseControlled();
+        SetIsPlayerControlled();
     }
     private void StartupMethods()
     {
         myVehicle = GetComponent<IEntityMover>();
     }
-    private void SetIsMouseControlled()
+    private void SetIsPlayerControlled()
     {
         StaticCameraController.SetObserveMe(gameObject, isControlledByPlayer);
         IPlayerControllable[] components = GetComponentsInChildren<IPlayerControllable>();
@@ -99,7 +99,7 @@ public class UserEntityController : MonoBehaviour
     public void SetIsControlledByPlayer(bool set)
     {
         isControlledByPlayer = set;
-        SetIsMouseControlled();
+        SetIsPlayerControlled();
     }
     #endregion
 }
