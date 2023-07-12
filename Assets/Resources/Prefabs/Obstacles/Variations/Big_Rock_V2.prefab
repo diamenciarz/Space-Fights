@@ -237,4 +237,5 @@ MonoBehaviour:
   activateOn: 00000000
   objectsToInstantiate:
   - {fileID: 8880477798655701778, guid: 20ee919325bc7284aa6cf1bb8230ca2e, type: 3}
-  objProbabilities: 01000000
+  - {fileID: 8880477798655701778, guid: fb7882f21b853ce41a305c1236771613, type: 3}
+  objProbabilities: 0100000001000000
