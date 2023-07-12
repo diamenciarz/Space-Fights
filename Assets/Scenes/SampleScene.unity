@@ -9708,7 +9708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552876671861867409, guid: b9bc5942bbada5f48a0f885ad8def907, type: 3}
       propertyPath: probabilities.Array.data[0]
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1552876671861867409, guid: b9bc5942bbada5f48a0f885ad8def907, type: 3}
       propertyPath: probabilities.Array.data[1]

@@ -79,7 +79,7 @@ public class DebrisGenerator : MonoBehaviour, ISerializationCallbackReceiver
     }
     private Vector2 GetVelocity(SummonedGameObjectData data, int index)
     {
-        float velocity = maxVelocities[index];
+        float velocity = Random.Range(0.1f * maxVelocities[index], maxVelocities[index]);
         return HelperMethods.VectorUtils.DirectionVector(velocity, data.summonRotation.eulerAngles.z);
     }
     #region Serialization
