@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24db90145b67e144e8dd6bb767ade6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putInLists: 00000000
+  putInLists: 01000000
   unchangeableTeam: 1
   team:
     teamInstance: 0
