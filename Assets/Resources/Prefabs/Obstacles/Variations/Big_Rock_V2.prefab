@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5239499641382828744}
   - component: {fileID: 4718300232392988197}
   - component: {fileID: -645976544288835518}
+  - component: {fileID: -2709417678602182768}
   m_Layer: 17
   m_Name: Big_Rock_V2
   m_TagString: Obstacle
@@ -239,3 +240,18 @@ MonoBehaviour:
   - {fileID: 8880477798655701778, guid: 20ee919325bc7284aa6cf1bb8230ca2e, type: 3}
   - {fileID: 8880477798655701778, guid: fb7882f21b853ce41a305c1236771613, type: 3}
   objProbabilities: 0100000001000000
+--- !u!114 &-2709417678602182768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92fae586f0c74d41a5345feab8079c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSizePercentage: 75
+  maxSizePercentage: 100
+  changeMassAccordingly: 1

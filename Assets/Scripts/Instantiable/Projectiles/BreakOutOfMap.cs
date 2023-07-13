@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class BreakOutOfMap : MonoBehaviour
 {
-    private float outOfMapOffset = 10;
+    /// <summary>
+    /// The objects will only disappear once they are out of sight
+    /// </summary>
+    private float outOfMapOffset = 20;
     private bool isDestroyed = false;
 
     private void Start()

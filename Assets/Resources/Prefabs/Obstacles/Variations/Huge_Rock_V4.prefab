@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5239499641382828744}
   - component: {fileID: 4718300232392988197}
   - component: {fileID: -2269015369488699075}
+  - component: {fileID: -2770883426796039314}
   m_Layer: 17
   m_Name: Huge_Rock_V4
   m_TagString: Obstacle
@@ -243,3 +244,18 @@ MonoBehaviour:
   - {fileID: 8880477798655701778, guid: 16124ee80677fc04b874054020ae3bfc, type: 3}
   - {fileID: 8880477798655701778, guid: b59cbe34944d44e479ee456cc13986f9, type: 3}
   objProbabilities: 0100000001000000
+--- !u!114 &-2770883426796039314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92fae586f0c74d41a5345feab8079c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSizePercentage: 50
+  maxSizePercentage: 200
+  changeMassAccordingly: 1

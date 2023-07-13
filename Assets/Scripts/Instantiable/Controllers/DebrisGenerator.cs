@@ -13,6 +13,7 @@ public class DebrisGenerator : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] float delay = 0;
     [SerializeField][Range(0, 10)] int minGeneratedObjects = 2;
     [SerializeField][Range(1, 20)] int maxGeneratedObjects = 5;
+    [SerializeField][Range(0,100)] float outOfMapOffset = 10;
 
     private Coroutine generationCoroutine;
     private void Start()
@@ -54,12 +55,12 @@ public class DebrisGenerator : MonoBehaviour, ISerializationCallbackReceiver
         {
             if (Random.Range(0, 2) == 0)
             {
-                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(Random.Range(0, 1f), 1);
+                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(Random.Range(0, 1f), 1) + new Vector2(0, outOfMapOffset);
                 data.summonRotation = Quaternion.Euler(0, 0,Random.Range(120,240));
             }
             else
             {
-                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(Random.Range(0, 1f), 0);
+                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(Random.Range(0, 1f), 0) - new Vector2(0, outOfMapOffset);
                 data.summonRotation = Quaternion.Euler(0, 0,Random.Range(-60,60));
             }
         }
@@ -67,12 +68,12 @@ public class DebrisGenerator : MonoBehaviour, ISerializationCallbackReceiver
         {
             if (Random.Range(0, 2) == 0)
             {
-                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(1, Random.Range(0, 1f));
+                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(1, Random.Range(0, 1f)) + new Vector2(outOfMapOffset, 0);
                 data.summonRotation = Quaternion.Euler(0, 0,Random.Range(60,120));
             }
             else
             {
-                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(0, Random.Range(0, 1f));
+                data.summonPosition = StaticMapInformation.GetMapPercentagePosition(0, Random.Range(0, 1f)) - new Vector2(outOfMapOffset, 0);
                 data.summonRotation = Quaternion.Euler(0, 0,Random.Range(240,300));
             }
         }

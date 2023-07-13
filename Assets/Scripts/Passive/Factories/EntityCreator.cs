@@ -355,6 +355,7 @@ public class EntityCreator : MonoBehaviour
             return;
         }
         GameObject summonedObject = Instantiate(data.gameObject, data.summonPosition, data.summonRotation);
+        ModifySize(summonedObject, data);
         ModifyStartingSpeed(summonedObject, data);
     }
     private static bool IsGameObjectNull(SummonedGameObjectData data)
@@ -369,6 +370,16 @@ public class EntityCreator : MonoBehaviour
     private static void LogError(SummonedGameObjectData data)
     {
         Debug.LogError("Game object was null!");
+    }
+    private static void ModifySize(GameObject summonedObject, SummonedGameObjectData data)
+    {
+        summonedObject.transform.localScale = new Vector3(data.originalSizeFraction * summonedObject.transform.localScale.x, 
+            data.originalSizeFraction * summonedObject.transform.localScale.y, data.originalSizeFraction * summonedObject.transform.localScale.z);
+        Rigidbody2D rb2D = summonedObject.GetComponent<Rigidbody2D>();
+        if (rb2D != null)
+        {
+            rb2D.mass *= data.originalSizeFraction;
+        }
     }
     private static void ModifyStartingSpeed(GameObject summonedObject, SummonedGameObjectData data)
     {
@@ -451,6 +462,7 @@ public class SummonedGameObjectData
     public Vector2 summonPosition;
     public Quaternion summonRotation;
     public Vector2 startingVelocity;
+    public float originalSizeFraction = 1;
 }
 #endregion
 

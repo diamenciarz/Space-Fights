@@ -19,6 +19,7 @@ public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
         data.summonPosition = transform.position;
         data.summonRotation = transform.rotation;
         data.startingVelocity = GetVelocity();
+        data.originalSizeFraction = GetSize();
         EntityCreator.SummonGameObject(data);
     }
     private GameObject GetRandomObject()
@@ -36,6 +37,18 @@ public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
         else
         {
             return rb2D.velocity;
+        }
+    }
+    private float GetSize()
+    {
+        ISizeScaled size = GetComponent<ISizeScaled>();
+        if (size != null)
+        {
+            return size.GetOriginalSizePercentage();
+        }
+        else
+        {
+            return 1;
         }
     }
     #region Serialization

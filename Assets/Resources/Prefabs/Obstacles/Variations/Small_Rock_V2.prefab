@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -4620731767413067690}
   - component: {fileID: 8634893909989444650}
   - component: {fileID: -3024385140716683222}
+  - component: {fileID: 3158253783478287766}
   m_Layer: 17
   m_Name: Small_Rock_V2
   m_TagString: Obstacle
@@ -237,3 +238,18 @@ MonoBehaviour:
   - {fileID: 8880477798655701778, guid: fb40c168ef1108844a8b31fc1427db40, type: 3}
   - {fileID: 8880477798655701778, guid: d50575d8142a6a144b5b5c0c928ce243, type: 3}
   objProbabilities: 0100000001000000
+--- !u!114 &3158253783478287766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456331406175181436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92fae586f0c74d41a5345feab8079c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSizePercentage: 75
+  maxSizePercentage: 100
+  changeMassAccordingly: 1
