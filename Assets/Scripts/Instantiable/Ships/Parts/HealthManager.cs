@@ -17,7 +17,7 @@ public class HealthManager : ListUpdater, IParent, ITeamable, IProgressionBarCom
     [SerializeField] bool dontUseProgressionBar = true;
 
     //Private variables
-    private float health;
+    public float health;
     private float maxHealth;
     private List<DamageReceiver> parts = new List<DamageReceiver>();
     private GameObject createdBy;

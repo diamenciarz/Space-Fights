@@ -15,7 +15,6 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     [Header("Rotation")]
     [SerializeField] float T1 = 2500;
     [SerializeField] float T2 = 250;
-    [SerializeField] float T3 = 250;
     #endregion
 
     #region Private variables
@@ -48,21 +47,14 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     {
         // Translate input vector
         TranslateInputVector();
+        
         // Rotation
         UpdateTargetAngle();
         RotateTowardsDirectionAngle();
+        
         //Movement
         UpdateVelocity();
         KillSidewayVelocity();
-        //TODO: Unsolved
-        FixAngularVelocityBug();
-    }
-    private void FixAngularVelocityBug()
-    {
-        if (Mathf.Abs(myRigidbody2D.angularVelocity) > 1000)
-        {
-            myRigidbody2D.angularVelocity = 0;
-        }
     }
     #region Input translation
     private void TranslateInputVector()
@@ -122,7 +114,8 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
                 return;
             }
 
-            ModifyDirection(deltaAngle);
+            targetAngle = inputVectorDirection;
+            //ModifyDirection(deltaAngle);
         }
     }
     private void ModifyDirection(float deltaDirection)
@@ -149,11 +142,10 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
         float currentAngle = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
         float t1 = T1 * HelperMethods.AngleUtils.ClampAngle180(targetAngle - currentAngle);
         float t2 = T2 * -myRigidbody2D.angularVelocity;
-        float t3 = T3 * -GetAngularAcceleration();
 
         previousAngularVelocity = myRigidbody2D.angularVelocity;
-        float torque = t1 + t2 + t3;
-        Debug.Log("P: " + t1 + " I: " + t2 + " D: " + t3);
+        float torque = t1 + t2;
+        Debug.Log("P: " + t1 + " I: " + t2);
         myRigidbody2D.AddTorque(torque);
     }
     #endregion

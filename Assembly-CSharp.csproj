@@ -65,7 +65,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ListUpdaterOnJointBreak.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\UICreator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\ShootOnDeath.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Controllers\MapInformation.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Controllers\MapSettings.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Parts\SpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Passive\Controls\MovementScheme.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Projectiles\BounceProperty.cs" />

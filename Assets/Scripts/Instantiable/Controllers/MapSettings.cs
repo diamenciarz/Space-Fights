@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapInformation : MonoBehaviour
+public class MapSettings : MonoBehaviour
 {
     [SerializeField] float mapHeight;
     [SerializeField] float mapWidth;
