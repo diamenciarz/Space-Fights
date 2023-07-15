@@ -568,10 +568,23 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     #endregion
 
     #region Mutator methods
+    public void SetFollowObject(GameObject newObj)
+    {
+        followObject = newObj;
+    }
     public void NofityOnDestroy(GameObject obj)
     {
-        gunCount--;
-        CheckForMeleeMode();
+        if (DestroyedGun(obj))
+        {
+            gunCount--;
+            CheckForMeleeMode();
+        }
+    }
+
+    private bool DestroyedGun(GameObject obj)
+    {
+        GunController controller = obj.GetComponentInChildren<GunController>();
+        return controller != null;
     }
     private void CheckForMeleeMode()
     {
