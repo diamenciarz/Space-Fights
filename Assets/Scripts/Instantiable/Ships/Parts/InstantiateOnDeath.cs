@@ -10,7 +10,7 @@ public class InstantiateOnDeath : TriggerOnDeath, ISerializationCallbackReceiver
 
     protected override void DoDestroyAction()
     {
-        if (objectsToInstantiate == null)
+        if (objectsToInstantiate == null || objectsToInstantiate.Count == 0)
         {
             return;
         }

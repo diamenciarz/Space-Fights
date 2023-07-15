@@ -156,6 +156,7 @@ MonoBehaviour:
   breakingSounds: []
   breakingSoundVolume: 1
   dontUseProgressionBar: 1
+  health: 0
 --- !u!114 &2741658291565901814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2741658291565901808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c4374818285127458d2819a7c1e7bad, type: 3}
   m_Name: 
@@ -199,7 +200,8 @@ MonoBehaviour:
   team:
     teamInstance: 0
   activateOn: 
-  objToInstantiate: {fileID: 278044871683149735, guid: 8b400584d570e734d9977a07c05e008b, type: 3}
+  objectsToInstantiate: []
+  objProbabilities: 
 --- !u!114 &-6117940423908372231
 MonoBehaviour:
   m_ObjectHideFlags: 0
