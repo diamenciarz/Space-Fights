@@ -1630,7 +1630,7 @@ GameObject:
   - component: {fileID: -1594027281432790397}
   - component: {fileID: 4658438160379836531}
   m_Layer: 7
-  m_Name: SmolShip
+  m_Name: _Prefab2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

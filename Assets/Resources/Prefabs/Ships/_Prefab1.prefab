@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: -4586166943237408770}
   - component: {fileID: -1594027281432790397}
   m_Layer: 7
-  m_Name: MediumShip
+  m_Name: _Prefab1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
