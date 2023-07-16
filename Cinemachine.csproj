@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6DAD1BCB-457A-904E-1F5C-7B2F2F093D47}</ProjectGuid>
+    <ProjectGuid>{3740BB30-341F-8798-9484-3EB4B95DF9B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Cinemachine</AssemblyName>
@@ -825,27 +825,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{3A09933D-320A-D856-173F-E7071C162742}</Project>
+      <Project>{F2044FE4-594B-B4AA-9C8F-F7861D275CD8}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
-      <Project>{896350C4-D5AF-DD01-9AF1-F4E7458F5B7C}</Project>
+      <Project>{A4F8F9C5-8074-0AEB-B882-340AE5A9BEE5}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
-      <Project>{DDBD4767-604C-29C9-DE8B-8FDC8D8DBC75}</Project>
+      <Project>{E035FE7F-C6B3-96E2-AF03-A31177AE5F33}</Project>
       <Name>Unity.RenderPipelines.Universal.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.PixelPerfect.csproj">
-      <Project>{EFF05DA9-D10F-BB87-A8FE-E5266DA55992}</Project>
+      <Project>{0B1B16B2-E172-6203-4AF8-02BD11217B1A}</Project>
       <Name>Unity.2D.PixelPerfect</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{B5667FFD-66A4-0D23-14C6-7573402A02DF}</Project>
+      <Project>{F4D32142-1A53-5FB1-D028-122BA6D4DEC6}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{1F619F8D-CB3A-6D11-D146-F66190756184}</Project>
+      <Project>{5E350642-1794-A0C7-A278-CE85C87B2CA3}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
   </ItemGroup>
