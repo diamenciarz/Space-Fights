@@ -29,7 +29,6 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
     [SerializeField] RotationMode rotationMode;
     [SerializeField] float T1 = 5000;
     [SerializeField] float T2 = 10;
-    [SerializeField] float T3 = 40;
     #endregion
 
     #region Private variables
@@ -170,8 +169,7 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
         float anglePercentage = deltaAngle / 180;
         float t1 = anglePercentage * T1;
         float t2 = -T2 * myRigidbody2D.angularVelocity;
-        float t3 = -T3 * GetAngularAcceleration();
-        return t1 + t2 + t3;
+        return t1 + t2;
     }
 
     private void ApplyTorque(float torque)
