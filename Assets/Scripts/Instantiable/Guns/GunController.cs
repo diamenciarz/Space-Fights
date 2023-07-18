@@ -12,6 +12,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     public SalvoScriptableObject salvo;
 
     [Header("Settings")]
+    [SerializeField] float recoil = 100;
     [Tooltip("Describes how the gun will choose the direction of the projectiles coming out of its pipe")]
     [SerializeField] ShootingMode shootingDirection;
     [Tooltip("Describes how the gun will give targets to its projectiles")]
@@ -43,6 +44,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
     private float salvoTimeSum;
     private List<INotifyOnDestroy> notifyOnDestroy = new List<INotifyOnDestroy>();
     private Rigidbody2D rb2D;
+    private IParent parent;
 
     #region Initialization
     protected override void InitializeStartingVariables()
@@ -54,6 +56,7 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
         canShoot = true;
         shotIndex = 0;
         rb2D = GetComponentInParent<Rigidbody2D>();
+        parent = GetComponentInParent<IParent>();
     }
     protected override void CallStartingMethods()
     {
@@ -160,8 +163,10 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
         PlayShotSound();
         DecreaseShootingTime();
         CreateShot(shotIndex);
+        ApplyRecoil();
         //Update time bank
     }
+    #region Create shot
     private void CreateShot(int shotIndex)
     {
         SummonedShotData data = new SummonedShotData();
@@ -286,6 +291,16 @@ public class GunController : AbstractShootingController, IProgressionBarCompatib
             currentTimeBetweenEachShot = 100000;
         }
     }
+    #endregion
+
+    #region Recoil
+    private void ApplyRecoil()
+    {
+        float shotDirection = GetRotation().eulerAngles.z;
+        Vector2 force = -VectorUtils.DirectionVector(recoil, shotDirection);
+        parent.GetGameObject().GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+    }
+    #endregion
     #endregion
 
     #region UI

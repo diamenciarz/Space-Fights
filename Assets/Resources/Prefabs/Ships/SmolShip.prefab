@@ -336,7 +336,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 15
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}
@@ -690,7 +690,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 15
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}
@@ -1078,7 +1078,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 30
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}
@@ -1498,7 +1498,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 15
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}
@@ -1671,6 +1671,7 @@ MonoBehaviour:
   breakingSounds: []
   breakingSoundVolume: 1
   dontUseProgressionBar: 0
+  health: 0
 --- !u!50 &6441913592538751967
 Rigidbody2D:
   serializedVersion: 4
@@ -2303,7 +2304,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 15
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7fac513402dbde74897a9455a8f65a70, type: 2}

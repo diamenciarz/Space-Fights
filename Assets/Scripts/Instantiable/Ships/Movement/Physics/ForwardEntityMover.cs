@@ -47,11 +47,11 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     {
         // Translate input vector
         TranslateInputVector();
-        
+
         // Rotation
         UpdateTargetAngle();
         RotateTowardsDirectionAngle();
-        
+
         //Movement
         UpdateVelocity();
         KillSidewayVelocity();
@@ -140,7 +140,7 @@ public class ForwardEntityMover : MonoBehaviour, IEntityMover
     private void RotateTowardsDirectionAngle()
     {
         float currentAngle = HelperMethods.AngleUtils.ClampAngle180(myRigidbody2D.rotation);
-        float t1 = T1 * HelperMethods.AngleUtils.ClampAngle180(targetAngle - currentAngle);
+        float t1 = T1 * Mathf.Clamp(HelperMethods.AngleUtils.ClampAngle180(targetAngle - currentAngle), -maxTurningSpeed, maxTurningSpeed);
         float t2 = T2 * -myRigidbody2D.angularVelocity;
 
         previousAngularVelocity = myRigidbody2D.angularVelocity;
