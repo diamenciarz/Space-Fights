@@ -198,7 +198,7 @@ MonoBehaviour:
   damageCategories:
   - damageType: 1
     damage: 6
-  startingSpeed: 16
+  startingSpeed: 20
   addCreatorVelocity: 0
 --- !u!114 &3724997657364934861
 MonoBehaviour:

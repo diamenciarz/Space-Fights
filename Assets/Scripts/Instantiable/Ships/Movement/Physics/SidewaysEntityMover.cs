@@ -13,7 +13,8 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
     enum RotationMode
     {
         ROTATE_FORWARD,
-        STABILIZE
+        STABILIZE,
+        FOLLOW_MOUSE
     }
 
     #region Serialization
@@ -62,7 +63,8 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
         {
             mapEdgeVector = mapEdgeVector.normalized;
         }
-        inputVector = mapEdgeVector + (1 - mapEdgeVector.magnitude) * newInputVector;
+        inputVector.x = mapEdgeVector.x + (1 - Math.Abs(mapEdgeVector.x)) * newInputVector.x;
+        inputVector.y = mapEdgeVector.y + (1 - Math.Abs(mapEdgeVector.y)) * newInputVector.y;
 
     }
     private Vector2 CalculateMapEdgeVector()
@@ -129,26 +131,23 @@ public class SidewaysEntityMover : MonoBehaviour, IEntityMover, IMoveable
     #region Rotation
     private void UpdateRotation()
     {
+        float deltaAngle = CalculateDeltaAngle(GetRotationTarget());
+        float torqueToApply = GetTorqueToApply(deltaAngle);
+        ApplyTorque(torqueToApply);
+    }
+    private Vector2 GetRotationTarget()
+    {
         if (rotationMode == RotationMode.ROTATE_FORWARD)
         {
-            RoatateForward();
+            return inputVector;
         }
         if (rotationMode == RotationMode.STABILIZE)
         {
-            Stabilize();
+            return Vector2.up;
         }
-    }
-    private void RoatateForward()
-    {
-        float deltaAngle = CalculateDeltaAngle(inputVector);
-        float torqueToApply = GetTorqueToApply(deltaAngle);
-        ApplyTorque(torqueToApply);
-    }
-    private void Stabilize()
-    {
-        float deltaAngle = CalculateDeltaAngle(Vector2.up);
-        float torqueToApply = GetTorqueToApply(deltaAngle);
-        ApplyTorque(torqueToApply);
+        //if (rotationMode == RotationMode.FOLLOW_MOUSE)
+        Vector2 mousePos = HelperMethods.VectorUtils.TranslatedMousePosition();
+        return mousePos - (Vector2)transform.position;
     }
     private float CalculateDeltaAngle(Vector2 targetDirection)
     {

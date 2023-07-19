@@ -215,7 +215,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 7.4, y: 5.900002}
+  m_LinearOffset: {x: 9.14, y: 5.900002}
   m_AngularOffset: 0
 --- !u!1001 &8132175889264473112
 PrefabInstance:
@@ -296,7 +296,7 @@ RelativeJoint2D:
   m_MaxTorque: 10000
   m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -7.860002, y: -2.320001}
+  m_LinearOffset: {x: -10.280001, y: -5.4400015}
   m_AngularOffset: 0
 --- !u!4 &6257498048018039787 stripped
 Transform:

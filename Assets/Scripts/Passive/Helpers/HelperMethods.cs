@@ -159,20 +159,20 @@ public static class HelperMethods
 
         }
         /// <summary>
-        /// Returns true if the distance between two positions is smaller or equal to range
+        /// Returns true if the distance between two positions is smaller or equal to range. -1 for infinite range
         /// </summary>
         /// <returns></returns>
         public static bool IsPositionInRange(Vector2 position, Vector2 from, float range)
         {
-            return range == 0 || Distance(position, from) <= range;
+            return range == -1 || Distance(position, from) <= range;
         }
         /// <summary>
-        /// Returns true if the distance between two positions is smaller or equal to range
+        /// Returns true if the distance between two positions is smaller or equal to range. -1 for infinite range
         /// </summary>
         /// <returns></returns>
         public static bool IsPositionInRange(GameObject from, GameObject to, float range)
         {
-            return range == 0 || Distance(from, to) <= range;
+            return range == -1 || Distance(from, to) <= range;
         }
         /// <summary>
         /// Returns true if the target position is inside a given Cone
@@ -868,8 +868,8 @@ public static class HelperMethods
                 }
                 timeToTarget = CalculateTimeToTarget(myPosition, targetPosition, mySpeed);
             }
-            Debug.DrawLine(startingTargetPosition, targetPosition, Color.red, 0.05f);
-            Debug.DrawLine(myPosition, targetPosition, Color.blue, 0.05f);
+            //Debug.DrawLine(startingTargetPosition, targetPosition, Color.red, 0.05f);
+            //Debug.DrawLine(myPosition, targetPosition, Color.blue, 0.05f);
             return targetPosition;
         }
         private static float CalculateTimeToTarget(Vector2 myPosition, Vector2 targetPosition, float mySpeed)

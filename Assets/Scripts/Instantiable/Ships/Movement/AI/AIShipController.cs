@@ -22,12 +22,14 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     [SerializeField] float shipSize = 1.5f;
     [SerializeField] GameObject followObject;
     [SerializeField] float followLeash = 5;
+    [SerializeField] bool predictTarget;
+    [SerializeField] bool predictMyself;
 
     IEntityMover myVehicle;
+    private IParent myParent;
     private Rigidbody2D rb2D;
     private GameObject targetToChase;
     private FightTactics fightTactics;
-    private IParent myParent;
     private int gunCount;
     private bool orderSent = false;
     private float timeSinceStartedRunningAway;
@@ -35,13 +37,12 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     //Random movement
     private Vector2 randomMovementVector;
 
-    enum MovementMode
+    public enum MovementMode
     {
         CHASING,
-        AVOIDING,
-        IDLE
+        AVOIDING
     }
-    enum BattleMode
+    public enum BattleMode
     {
         RANGED,
         MELEE
@@ -122,7 +123,6 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         //Order important
         UpdateTactics();
         Vector2 movementVector = CalculateMovementVector();
-        movementVector = ApplyEdgeOfMapVector(movementVector);
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
 
@@ -152,6 +152,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     #region Movement vector
     private Vector2 CalculateMovementVector()
     {
+        
         targetToChase = ListContents.Enemies.GetClosestEnemy(transform.position, team);
         //Vector2 chaseVector = Vector2.zero;
         Vector2 chaseVector = CalculateChaseVector();
@@ -210,10 +211,41 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
         {
             // Prioritize chasing more, if farther away from the target!
             float multiplier = CalculateMultiplier(isAboveRange, deltaPositionToItem);
-            Vector2 predictedTargetPosition = HelperMethods.ObjectUtils.PredictTargetPositionUponHit(transform.position, targetToChase, rb2D.velocity.magnitude);
-            Vector2 predictedDeltaPosition = predictedTargetPosition - (Vector2)targetToChase.transform.position;
-            Debug.DrawRay(transform.position, (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
-            return (deltaPositionToItem + predictedDeltaPosition).normalized * multiplier;
+            
+            Vector2 myFuturePosition = CalculateMyFuturePosition();
+            Vector2 predictedTargetPosition = HelperMethods.ObjectUtils.PredictTargetPositionUponHit(myFuturePosition, targetToChase, rb2D.velocity.magnitude);
+            Vector2 predictedDeltaPosition = (Vector2)targetToChase.transform.position - myFuturePosition;
+
+            if (predictTarget)
+            {
+                if (predictMyself)
+                {
+                    predictedDeltaPosition = predictedTargetPosition - myFuturePosition;
+                    Debug.DrawRay(myFuturePosition, (predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
+                    return (predictedDeltaPosition).normalized * multiplier;
+                }
+                else
+                {
+                    predictedDeltaPosition = predictedTargetPosition - (Vector2)transform.position;
+                    Debug.DrawRay(transform.position, (predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
+                    return (predictedDeltaPosition).normalized * multiplier;
+                }
+            }
+            else
+            {
+                if (predictMyself)
+                {
+                    predictedDeltaPosition = (Vector2)targetToChase.transform.position - myFuturePosition;
+                    Debug.DrawRay(myFuturePosition, (predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
+                    return (predictedDeltaPosition).normalized * multiplier;
+                }
+                else
+                {
+                    predictedDeltaPosition = targetToChase.transform.position - transform.position;
+                    Debug.DrawRay(transform.position, (predictedDeltaPosition).normalized * multiplier, Color.blue, 0.05f);
+                    return (predictedDeltaPosition).normalized * multiplier;
+                }
+            }
         }
         else
         {
@@ -221,6 +253,22 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
             float multiplier = CalculateMultiplier(isAboveRange, deltaPositionToItem);
             Debug.DrawRay(transform.position, -deltaPositionToItem.normalized * multiplier, Color.red, 0.05f);
             return -deltaPositionToItem.normalized * multiplier;
+        }
+    }
+    private Vector2 CalculateMyFuturePosition()
+    {
+        bool velocityIsSignificant = HelperMethods.VectorUtils.Distance(targetToChase, gameObject) > 5;
+        //bool velocityIsSignificant = rb2D.velocity.magnitude > 1 && HelperMethods.VectorUtils.Distance(targetToChase, gameObject) > 5;
+        if (velocityIsSignificant)
+        {
+            Debug.Log("Predicted my position");
+            float timeToTarget = HelperMethods.VectorUtils.Distance(targetToChase, gameObject) / rb2D.velocity.magnitude;
+            return (Vector2)transform.position + rb2D.velocity * timeToTarget;
+        }
+        else
+        {
+            Debug.Log("Did not predict my position");
+            return transform.position;
         }
     }
     private float CalculateMultiplier(bool isAboveRange, Vector2 deltaPositionToItem)
@@ -451,16 +499,6 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     #endregion
     #endregion
 
-    #region Edge of map
-    private Vector2 ApplyEdgeOfMapVector(Vector2 movementVector)
-    {
-        // If at the edge of map, the ship is forced to come back
-        Vector2 edgeOfMapVector = Vector2.zero;
-
-        return edgeOfMapVector + movementVector * (1 - edgeOfMapVector.magnitude);
-    }
-    #endregion
-
     #region Update tactics
     private void UpdateTactics()
     {
@@ -568,7 +606,7 @@ public class AIShipController : TeamUpdater, ISerializationCallbackReceiver, INo
     #endregion
 
     #region Mutator methods
-    public void SetFollowObject(GameObject newObj)
+    public void SetObjectToFollow(GameObject newObj)
     {
         followObject = newObj;
     }

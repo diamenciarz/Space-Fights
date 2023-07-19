@@ -2,7 +2,7 @@ using UnityEngine;
 using static TeamUpdater;
 
 /// <summary>
-/// Functions for determining the team and object responsible for the creation of this object
+/// Functions for determining the team and object responsible for the creation of this object. Either A ProjectileController or a HealthManager
 /// </summary>
 public interface IParent
 {

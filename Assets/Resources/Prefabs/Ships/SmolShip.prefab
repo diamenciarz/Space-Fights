@@ -208,6 +208,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 3503175393803492294}
   reloadingBarAlwaysOn: 1
   salvo: {fileID: 11400000, guid: b1d7498e12ebc5d469c59b846fd5ac96, type: 2}
+  recoil: 100
   shootingDirection: 0
   targetMode: 2
   targetTypes: 010000000500000003000000
@@ -554,7 +555,7 @@ MonoBehaviour:
   leftMaxRotationLimit: 90
   rightMaxRotationLimit: 90
   range: 20
-  mouseRange: 0
+  mouseRange: -1
   refreshRate: 0.1
   visualZoneOrigin: {fileID: 3628950189056374314}
   isShootingZoneOn: 0
@@ -1137,7 +1138,9 @@ MonoBehaviour:
   partHealth: 50
   barHealth: 50
   destroyDamage: 1000
-  immunities: []
+  immunities:
+  - damageType: 0
+    immunityPercentage: 0
   minKineticEnergy: 150
   collisionDamageModifier: 0.25
   breakingSounds: []
@@ -1712,7 +1715,6 @@ MonoBehaviour:
   rotationMode: 0
   T1: 36000
   T2: 180
-  T3: 240
 --- !u!114 &3129043820781705072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,6 +1745,8 @@ MonoBehaviour:
   shipSize: 1.5
   followObject: {fileID: 0}
   followLeash: 5
+  predictTarget: 0
+  predictMyself: 0
 --- !u!114 &1630741118
 MonoBehaviour:
   m_ObjectHideFlags: 0
