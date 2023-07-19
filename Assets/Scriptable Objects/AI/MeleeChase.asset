@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe338fa89a768ee4c8a0c7f8750fef20, type: 3}
-  m_Name: Chase target
+  m_Script: {fileID: 11500000, guid: 6febc0aa357cf9a4ba902f62433b90d9, type: 3}
+  m_Name: MeleeChase
   m_EditorClassIdentifier: 
-  chaseRange: 153
-  avoidRange: 8
-  attackRange: 10
-  projectileAvoidance: 0.5
-  entityAvoidance: 0.65
-  predictTarget: 1
-  predictMyself: 0
-  battleMode: 0
-  movementMode: 0
+  movementBehaviour: {fileID: 11400000, guid: e9469d1ef6e1dfc44ab017961f7ab00a, type: 2}
+  condition: {fileID: 11400000, guid: 7e3cf15d9218323439941633f6ee6bf4, type: 2}

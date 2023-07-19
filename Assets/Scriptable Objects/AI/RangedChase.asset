@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6febc0aa357cf9a4ba902f62433b90d9, type: 3}
+  m_Name: RangedChase
+  m_EditorClassIdentifier: 
+  movementBehaviour: {fileID: 11400000, guid: 565ed0ce23f5f854f8f803cd9dba9ad4, type: 2}
+  condition: {fileID: 11400000, guid: 7e3cf15d9218323439941633f6ee6bf4, type: 2}

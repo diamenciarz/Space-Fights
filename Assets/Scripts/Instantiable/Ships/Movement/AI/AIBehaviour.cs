@@ -8,12 +8,13 @@ public class AIBehaviour: TeamUpdater
 {
     [SerializeField] float shipSize = 1.5f;
     [SerializeField] bool isForceGlobal = false;
-    [SerializeField] MovementBehaviour[] behaviours;
+    [SerializeField] Behaviour[] behaviours;
 
     IEntityMover myVehicle;
     private IParent myParent;
     private Rigidbody2D rb2D;
-
+    private float lastBehaviourChangeTime;
+    private int behaviourIndex = 0;
 
     #region Startup
     protected override void Start()
@@ -28,9 +29,15 @@ public class AIBehaviour: TeamUpdater
     #region Update
     void Update()
     {
+        if(behaviours.Length == 0)
+        {
+            return;
+        }
+
+        UpdateBehaviourIndex();
         MovementBehaviourData data = GetMovementData();
-        MovementBehaviour behaviour = behaviours[0];
-        Vector2 movementVector = behaviour.CalculateMovementVector(data);
+        Behaviour behaviour = behaviours[behaviourIndex];
+        Vector2 movementVector = behaviour.movementBehaviour.CalculateMovementVector(data);
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
     private MovementBehaviourData GetMovementData()
@@ -44,7 +51,30 @@ public class AIBehaviour: TeamUpdater
         data.team = team;
         return data;
     }
-    
+    private void UpdateBehaviourIndex()
+    {
+        if (behaviours.Length == 1)
+        {
+            return;
+        }
+        if (behaviours[behaviourIndex].condition.IsSatisfied(GetConditionData()))
+        {
+            behaviourIndex++;
+            if (behaviourIndex == behaviours.Length)
+            {
+                behaviourIndex = 0;
+            }
+            lastBehaviourChangeTime = Time.time;
+        }
+    }
+    private ConditionData GetConditionData()
+    {
+        ConditionData conditionData = new ConditionData();
+        conditionData.lastBehaviourChangeTime = lastBehaviourChangeTime;
+        conditionData.gameObject = gameObject;
+        return conditionData;
+    }
+
     #region Helper methods
     private Vector2 TranslateMovementVector(Vector2 globalForce)
     {

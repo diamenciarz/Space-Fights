@@ -5,8 +5,8 @@ using static StaticDataHolder;
 using static TeamUpdater;
 using static AIShipController;
 
-[CreateAssetMenu(fileName = "Chase target", menuName = "Behaviours/ChaseTarget")]
-public class StayInRangeBehaviour : MovementBehaviour
+[CreateAssetMenu(fileName = "Chase target", menuName = "AI/Behaviours/ChaseTargetRelation")]
+public class BehaviourInRelationToTarget : MovementBehaviour
 {
 
     [SerializeField][Range(2, 200)][Tooltip("Will stop chasing its target above that distance")] protected float chaseRange = 45;

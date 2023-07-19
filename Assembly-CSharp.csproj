@@ -159,8 +159,11 @@
     <Compile Include="Assets\Scripts\Passive\Factories\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Passive\Factories\EntityCreator.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\AIBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\MovementBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\StayInRangeBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Behaviours\MovementBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Behaviours\BehaviourInRelationToTarget.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Conditions\ICondition.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Conditions\TimeoutCondition.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Behaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

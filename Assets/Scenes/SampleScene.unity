@@ -4343,11 +4343,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123906716187227227, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Color.b
-      value: 0.98776644
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 3123906716187227227, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Color.g
-      value: 0.98776644
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 3129043820781705072, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Enabled
@@ -5148,11 +5148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5256657394948946071, guid: 790d60a1fb3b5d24892e4125e7800799, type: 3}
       propertyPath: m_Color.b
-      value: 0.95138097
+      value: 0.9736476
       objectReference: {fileID: 0}
     - target: {fileID: 5256657394948946071, guid: 790d60a1fb3b5d24892e4125e7800799, type: 3}
       propertyPath: m_Color.g
-      value: 0.95138097
+      value: 0.9736476
       objectReference: {fileID: 0}
     - target: {fileID: 5282177261062252218, guid: 790d60a1fb3b5d24892e4125e7800799, type: 3}
       propertyPath: m_AngularOffset
@@ -7863,11 +7863,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2cc34d3483462284f9591d1ce98e3d8b, type: 3}
     - target: {fileID: 8593999422678323148, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Color.b
-      value: 0.9923969
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 8593999422678323148, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_Color.g
-      value: 0.9923969
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 8602573373574342804, guid: c45058f813dd3464ea4b5632518b84be, type: 3}
       propertyPath: m_FlipX
@@ -7955,7 +7955,8 @@ MonoBehaviour:
   shipSize: 1.5
   isForceGlobal: 1
   behaviours:
-  - {fileID: 11400000, guid: 87b555425c6ceb84c9b141d0fa17e0b7, type: 2}
+  - {fileID: 11400000, guid: c1e6f28505d4f7946be17268bf00afc2, type: 2}
+  - {fileID: 11400000, guid: 2204daf4416b0f54a8a6fd7958ed2031, type: 2}
 --- !u!4 &1482246691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1552876671861867414, guid: b9bc5942bbada5f48a0f885ad8def907, type: 3}
