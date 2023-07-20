@@ -830,7 +830,7 @@ public static class HelperMethods
         /// This edits the original array and removes repeated values from it
         /// </summary>
         /// <param name="targetTypes"></param>
-        private static void RemoveRepeatedTargetTypes(ref StaticDataHolder.ObjectTypes[] targetTypes)
+        private static void RemoveRepeatedTargetTypes(ref ObjectTypes[] targetTypes)
         {
             List<StaticDataHolder.ObjectTypes> nonRepeatedTargetTypes = new List<StaticDataHolder.ObjectTypes>();
             foreach (var type in targetTypes)
@@ -897,6 +897,18 @@ public static class HelperMethods
             }
             //Debug.DrawLine(startingTargetPosition, targetPosition, Color.red);
             return targetPosition;
+        }
+        public static List<GameObject> GetGameObjectsWithinRange(List<GameObject> objects, Vector2 centerPosition, float range)
+        {
+            List<GameObject> list = new List<GameObject>();
+            foreach (GameObject obj in objects)
+            {
+                if (VectorUtils.Distance(centerPosition, (Vector2)obj.transform.position) <= range)
+                {
+                    list.Add(obj);
+                }
+            }
+            return list;
         }
     }
     /// <summary>

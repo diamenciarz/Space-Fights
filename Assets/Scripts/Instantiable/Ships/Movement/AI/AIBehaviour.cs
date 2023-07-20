@@ -2,42 +2,59 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StaticDataHolder;
 
 [Serializable]
-public class AIBehaviour: TeamUpdater
+public class AIBehaviour: TeamUpdater, INotifyOnDestroy
 {
     [SerializeField] float shipSize = 1.5f;
     [SerializeField] bool isForceGlobal = false;
-    [SerializeField] Behaviour[] behaviours;
+    [SerializeField] BehaviourCollection behaviours;
 
     IEntityMover myVehicle;
     private IParent myParent;
     private Rigidbody2D rb2D;
     private float lastBehaviourChangeTime;
     private int behaviourIndex = 0;
+    private bool conditionChanged;
+    private int gunCount;
 
     #region Startup
     protected override void Start()
     {
         base.Start();
+        SetupStartingVariables();
+        CountGuns();
+    }
+    private void SetupStartingVariables()
+    {
         rb2D = GetComponent<Rigidbody2D>();
         myVehicle = GetComponent<IEntityMover>();
         myParent = gameObject.GetComponentInParent<IParent>();
+    }
+    private void CountGuns()
+    {
+        GunController[] gunControllers = GetComponentsInChildren<GunController>();
+        foreach (GunController controller in gunControllers)
+        {
+            controller.AddOnDestroyAction(this);
+        }
+        gunCount = gunControllers.Length;
     }
     #endregion
 
     #region Update
     void Update()
     {
-        if(behaviours.Length == 0)
+        if(behaviours == null)
         {
+            myVehicle.SetInputVector(TranslateMovementVector(Vector2.zero));
             return;
         }
 
-        UpdateBehaviourIndex();
         MovementBehaviourData data = GetMovementData();
-        Behaviour behaviour = behaviours[behaviourIndex];
-        Vector2 movementVector = behaviour.movementBehaviour.CalculateMovementVector(data);
+        MovementBehaviour behaviour = behaviours.GetMovementBehaviour(GetConditionData());
+        Vector2 movementVector = behaviour.CalculateMovementVector(data);
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
     private MovementBehaviourData GetMovementData()
@@ -51,27 +68,17 @@ public class AIBehaviour: TeamUpdater
         data.team = team;
         return data;
     }
-    private void UpdateBehaviourIndex()
-    {
-        if (behaviours.Length == 1)
-        {
-            return;
-        }
-        if (behaviours[behaviourIndex].condition.IsSatisfied(GetConditionData()))
-        {
-            behaviourIndex++;
-            if (behaviourIndex == behaviours.Length)
-            {
-                behaviourIndex = 0;
-            }
-            lastBehaviourChangeTime = Time.time;
-        }
-    }
     private ConditionData GetConditionData()
     {
         ConditionData conditionData = new ConditionData();
         conditionData.lastBehaviourChangeTime = lastBehaviourChangeTime;
         conditionData.gameObject = gameObject;
+        conditionData.target = ListContents.Enemies.GetClosestEnemy(transform.position, team);
+        conditionData.firstConditionCall = conditionChanged;
+        conditionData.gunCount = gunCount;
+        conditionData.shipSize = shipSize;
+        conditionData.team = team;
+        conditionChanged = false;
         return conditionData;
     }
 
@@ -97,5 +104,20 @@ public class AIBehaviour: TeamUpdater
         return rotatedVector;
     }
     #endregion
+    #endregion
+
+    #region Mutator methods
+    public void NofityOnDestroy(GameObject obj)
+    {
+        if (DestroyedGun(obj))
+        {
+            gunCount--;
+        }
+    }
+    private bool DestroyedGun(GameObject obj)
+    {
+        GunController controller = obj.GetComponentInChildren<GunController>();
+        return controller != null;
+    }
     #endregion
 }

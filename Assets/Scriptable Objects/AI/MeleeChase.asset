@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MeleeChase
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 11400000, guid: e9469d1ef6e1dfc44ab017961f7ab00a, type: 2}
-  condition: {fileID: 11400000, guid: 7e3cf15d9218323439941633f6ee6bf4, type: 2}
+  condition: {fileID: 11400000, guid: 821ab1774fd584740af86bcef8299107, type: 2}
