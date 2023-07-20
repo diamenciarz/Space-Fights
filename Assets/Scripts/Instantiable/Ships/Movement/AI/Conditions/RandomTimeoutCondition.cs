@@ -10,20 +10,19 @@ public class RandomTimeoutCondition : Condition
     [SerializeField] float minTimeoutDelay;
     [SerializeField] float maxTimeoutDelay;
 
-    private float time = -1;
-    private ConditionData data;
-    public override bool IsSatisfied(ConditionData newData)
+    private Dictionary<GameObject, float> times = new Dictionary<GameObject, float>();
+    public override bool IsSatisfied(ConditionData data)
     {
-        data = newData;
-        GenerateTime();
+        GenerateTime(data);
         float timePassed = Time.time - data.lastBehaviourChangeTime;
-        return timePassed > time;
+        return timePassed > times[data.gameObject];
     }
-    private void GenerateTime()
+    private void GenerateTime(ConditionData data)
     {
         if(data.firstConditionCall == true)
         {
-            time = UnityEngine.Random.Range(minTimeoutDelay, maxTimeoutDelay);
+            times[data.gameObject] = UnityEngine.Random.Range(minTimeoutDelay, maxTimeoutDelay);
+            Debug.Log("New time: " + times[data.gameObject]);
         }
     }
 }

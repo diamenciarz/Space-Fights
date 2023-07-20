@@ -170,6 +170,7 @@
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\BehaviourTree.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Conditions\ObjectTypeCountCondition.cs" />
     <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Conditions\TeamCountCondition.cs" />
+    <Compile Include="Assets\Scripts\Instantiable\Ships\Movement\AI\Conditions\GunCountCondition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

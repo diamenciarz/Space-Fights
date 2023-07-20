@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aaa3aea7d3cbf74fa1775d4c9f21c4e, type: 3}
-  m_Name: RangedMelee
+  m_Script: {fileID: 11500000, guid: 6febc0aa357cf9a4ba902f62433b90d9, type: 3}
+  m_Name: MeleeAvoid
   m_EditorClassIdentifier: 
-  ifBehaviour: {fileID: 11400000, guid: 2204daf4416b0f54a8a6fd7958ed2031, type: 2}
-  elseBehaviour: {fileID: 0}
-  condition: {fileID: 0}
+  movementBehaviour: {fileID: 11400000, guid: d6d811023faa417469547f845fe85c74, type: 2}

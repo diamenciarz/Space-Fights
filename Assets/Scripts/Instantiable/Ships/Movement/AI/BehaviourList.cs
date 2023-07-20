@@ -8,9 +8,9 @@ public class BehaviourList : BehaviourCollection
     [SerializeField] BehaviourCollection[] behaviours;
     [SerializeField] Condition[] conditions;
 
-    private int behaviourIndex;
-    private float lastBehaviourChangeTime;
-    private bool conditionChanged = false;
+    private Dictionary<GameObject, int> indexes = new Dictionary<GameObject, int>();
+    private Dictionary<GameObject, float> lastBehaviourChangeTimes = new Dictionary<GameObject, float>();
+    private Dictionary<GameObject, bool> conditionChanged = new Dictionary<GameObject, bool>();
     public override MovementBehaviour GetMovementBehaviour(ConditionData data)
     {
         if(behaviours == null)
@@ -18,9 +18,25 @@ public class BehaviourList : BehaviourCollection
             return null;
         }
         // Method order matters
-        UpdateBehaviourIndex(data);
+        EnsureIndexPresent(data);
         UpdateData(data);
-        return behaviours[behaviourIndex].GetMovementBehaviour(data);
+        UpdateBehaviourIndex(data);
+        return behaviours[indexes[data.gameObject]].GetMovementBehaviour(data);
+    }
+    private void EnsureIndexPresent(ConditionData data)
+    {
+        if (!indexes.ContainsKey(data.gameObject))
+        {
+            indexes.Add(data.gameObject, 0);
+        }
+        if (!lastBehaviourChangeTimes.ContainsKey(data.gameObject))
+        {
+            lastBehaviourChangeTimes.Add(data.gameObject, Time.time);
+        }
+        if (!conditionChanged.ContainsKey(data.gameObject))
+        {
+            conditionChanged.Add(data.gameObject, true);
+        }
     }
     private void UpdateBehaviourIndex(ConditionData data)
     {
@@ -28,20 +44,22 @@ public class BehaviourList : BehaviourCollection
         {
             return;
         }
-        if (conditions[behaviourIndex].IsSatisfied(data))
+        
+        if (conditions[indexes[data.gameObject]].IsSatisfied(data))
         {
-            behaviourIndex++;
-            conditionChanged = true;
-            if (behaviourIndex == behaviours.Length)
+            indexes[data.gameObject]++;
+            conditionChanged[data.gameObject] = true;
+            if (indexes[data.gameObject] == behaviours.Length)
             {
-                behaviourIndex = 0;
+                indexes[data.gameObject] = 0;
             }
-            lastBehaviourChangeTime = Time.time;
+            lastBehaviourChangeTimes[data.gameObject] = Time.time;
         }
     }
     private void UpdateData(ConditionData data)
     {
-        data.firstConditionCall = conditionChanged;
-        data.lastBehaviourChangeTime = lastBehaviourChangeTime;
+        data.firstConditionCall = conditionChanged[data.gameObject];
+        data.lastBehaviourChangeTime = lastBehaviourChangeTimes[data.gameObject];
+        conditionChanged[data.gameObject] = false;
     }
 }

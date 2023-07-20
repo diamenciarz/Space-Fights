@@ -7954,7 +7954,7 @@ MonoBehaviour:
     teamInstance: 0
   shipSize: 1.5
   isForceGlobal: 1
-  behaviours: {fileID: 11400000, guid: c1e6f28505d4f7946be17268bf00afc2, type: 2}
+  behaviours: {fileID: 11400000, guid: 3b64f4e8d9eceaf40ac800fc65d3a53f, type: 2}
 --- !u!4 &1482246691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1552876671861867414, guid: b9bc5942bbada5f48a0f885ad8def907, type: 3}

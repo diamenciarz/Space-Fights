@@ -15,7 +15,6 @@ public class AIBehaviour: TeamUpdater, INotifyOnDestroy
     private IParent myParent;
     private Rigidbody2D rb2D;
     private float lastBehaviourChangeTime;
-    private int behaviourIndex = 0;
     private bool conditionChanged;
     private int gunCount;
 
@@ -31,6 +30,8 @@ public class AIBehaviour: TeamUpdater, INotifyOnDestroy
         rb2D = GetComponent<Rigidbody2D>();
         myVehicle = GetComponent<IEntityMover>();
         myParent = gameObject.GetComponentInParent<IParent>();
+        lastBehaviourChangeTime = Time.time;
+        conditionChanged = true;
     }
     private void CountGuns()
     {
@@ -54,6 +55,7 @@ public class AIBehaviour: TeamUpdater, INotifyOnDestroy
 
         MovementBehaviourData data = GetMovementData();
         MovementBehaviour behaviour = behaviours.GetMovementBehaviour(GetConditionData());
+        Debug.Log(behaviour.name);
         Vector2 movementVector = behaviour.CalculateMovementVector(data);
         myVehicle.SetInputVector(TranslateMovementVector(movementVector));
     }
