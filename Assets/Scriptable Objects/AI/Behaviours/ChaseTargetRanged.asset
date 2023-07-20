@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRange: 45
   avoidRange: 8
-  attackRange: 6
+  attackRange: 10
   projectileAvoidance: 0.5
   entityAvoidance: 0.5
   battleMode: 0

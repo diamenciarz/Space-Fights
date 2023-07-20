@@ -5,7 +5,7 @@ using static StaticDataHolder;
 using static TeamUpdater;
 using static AIShipController;
 
-[CreateAssetMenu(fileName = "Chase target", menuName = "AI/Behaviours/ChaseTargetRelation")]
+[CreateAssetMenu(fileName = "Chase target", menuName = "AI/MovementBehaviours/ChaseTargetRelation")]
 public class BehaviourInRelationToTarget : MovementBehaviour
 {
 
